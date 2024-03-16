@@ -1,0 +1,10 @@
+C:\Users\Home\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Debug\VisualTrack.csproj.AssemblyReference.cache
+C:\Users\Home\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Debug\VisualTrack.Form1.resources
+C:\Users\Home\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Debug\VisualTrack.Properties.Resources.resources
+C:\Users\Home\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Debug\VisualTrack.csproj.GenerateResource.cache
+C:\Users\Home\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Debug\VisualTrack.csproj.CoreCompileInputs.cache
+C:\Users\Home\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\bin\Debug\VisualTrack.exe.config
+C:\Users\Home\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\bin\Debug\VisualTrack.exe
+C:\Users\Home\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\bin\Debug\VisualTrack.pdb
+C:\Users\Home\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Debug\VisualTrack.exe
+C:\Users\Home\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Debug\VisualTrack.pdb
