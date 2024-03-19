@@ -41,10 +41,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.zetaTable = new System.Windows.Forms.DataGridView();
-            this.UCaChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ImportZeta = new System.Windows.Forms.OpenFileDialog();
             this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.U = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.U_std = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,12 +54,18 @@
             this.UCaFlatStd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Zeta_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Zeta_col_std = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCaChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ImportZeta = new System.Windows.Forms.OpenFileDialog();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1.SuspendLayout();
             this.Zeta.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zetaTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UCaChart)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -94,7 +96,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -143,73 +145,6 @@
             this.zetaTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.zetaTable.Size = new System.Drawing.Size(1322, 406);
             this.zetaTable.TabIndex = 0;
-            // 
-            // UCaChart
-            // 
-            chartArea1.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea1.AlignWithChartArea = "ChartArea2";
-            chartArea1.Name = "ChartArea1";
-            chartArea2.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea2.BorderColor = System.Drawing.Color.Bisque;
-            chartArea2.Name = "ChartArea2";
-            this.UCaChart.ChartAreas.Add(chartArea1);
-            this.UCaChart.ChartAreas.Add(chartArea2);
-            this.UCaChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.UCaChart.Legends.Add(legend1);
-            this.UCaChart.Location = new System.Drawing.Point(3, 3);
-            this.UCaChart.Name = "UCaChart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.Name = "UCaSeries";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series2.Legend = "Legend1";
-            series2.Name = "UCaError";
-            series2.YValuesPerPoint = 3;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "FittingLine";
-            series4.ChartArea = "ChartArea2";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series4.Legend = "Legend1";
-            series4.Name = "UCaFlat";
-            series5.ChartArea = "ChartArea2";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series5.Legend = "Legend1";
-            series5.Name = "UCaFlatError";
-            series5.YValuesPerPoint = 3;
-            this.UCaChart.Series.Add(series1);
-            this.UCaChart.Series.Add(series2);
-            this.UCaChart.Series.Add(series3);
-            this.UCaChart.Series.Add(series4);
-            this.UCaChart.Series.Add(series5);
-            this.UCaChart.Size = new System.Drawing.Size(1322, 405);
-            this.UCaChart.TabIndex = 1;
-            this.UCaChart.Text = "chart1";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1337, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(905, 510);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // NameColumn
             // 
@@ -289,6 +224,87 @@
             this.Zeta_col_std.HeaderText = "Zeta std";
             this.Zeta_col_std.Name = "Zeta_col_std";
             // 
+            // UCaChart
+            // 
+            chartArea1.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea1.AlignWithChartArea = "ChartArea2";
+            chartArea1.Name = "ChartArea1";
+            chartArea2.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea2.BorderColor = System.Drawing.Color.Bisque;
+            chartArea2.Name = "ChartArea2";
+            this.UCaChart.ChartAreas.Add(chartArea1);
+            this.UCaChart.ChartAreas.Add(chartArea2);
+            this.UCaChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.UCaChart.Legends.Add(legend1);
+            this.UCaChart.Location = new System.Drawing.Point(3, 3);
+            this.UCaChart.Name = "UCaChart";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.Legend = "Legend1";
+            series1.Name = "UCaSeries";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series2.Legend = "Legend1";
+            series2.Name = "UCaError";
+            series2.YValuesPerPoint = 3;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "FittingLine";
+            series4.ChartArea = "ChartArea2";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series4.Legend = "Legend1";
+            series4.Name = "UCaFlat";
+            series5.ChartArea = "ChartArea2";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series5.Legend = "Legend1";
+            series5.Name = "UCaFlatError";
+            series5.YValuesPerPoint = 3;
+            this.UCaChart.Series.Add(series1);
+            this.UCaChart.Series.Add(series2);
+            this.UCaChart.Series.Add(series3);
+            this.UCaChart.Series.Add(series4);
+            this.UCaChart.Series.Add(series5);
+            this.UCaChart.Size = new System.Drawing.Size(1322, 405);
+            this.UCaChart.TabIndex = 1;
+            this.UCaChart.Text = "chart1";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1576, 835);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.button1, 0, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(1337, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(200, 100);
+            this.tableLayoutPanel3.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,6 +320,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.zetaTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UCaChart)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -332,6 +349,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UCaFlatStd;
         private System.Windows.Forms.DataGridViewTextBoxColumn Zeta_Col;
         private System.Windows.Forms.DataGridViewTextBoxColumn Zeta_col_std;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
     }
 }
 

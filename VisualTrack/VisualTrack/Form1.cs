@@ -117,7 +117,8 @@ namespace VisualTrack
             foreach (DataGridViewRow row in zetaTable.Rows)
             {
                 row.Cells["UCaFlat"].Value = Double.Parse(row.Cells["UCa"].Value.ToString()) + ((N/2)-i+0.5)*b;
-
+                //UCaFlatStd
+                row.Cells["UCaFlatStd"].Value = Double.Parse(row.Cells["UCastd"].Value.ToString()) / Double.Parse(row.Cells["UCa"].Value.ToString())*Double.Parse(row.Cells["UCaFlat"].Value.ToString());
                 DrawUCaFlatt(i, Double.Parse(row.Cells["UCaFlat"].Value.ToString()), 0);
                 i++;
             }
@@ -171,9 +172,8 @@ namespace VisualTrack
                         UCa_std = Calc_UCa_std(U,Ca,U_std,Ca_std);
 
                         //Name, U, U std, Ca, Ca std, Trcs, S, U/Ca, U/Ca std
-                        zetaTable.Rows.Add(line[0], Convert.ToDouble(line[1], provider),
-                            Convert.ToDouble(line[2], provider), Convert.ToDouble(line[3], provider),
-                            Convert.ToDouble(line[4], provider), Convert.ToDouble(line[5], provider), Convert.ToDouble(line[6], provider),
+                        zetaTable.Rows.Add(line[0], U, U_std, Ca, Ca_std,
+                            Convert.ToDouble(line[5], provider), Convert.ToDouble(line[6], provider),
                             UCa, UCa_std, 0, 0, 0, 0);
 
                         DrawUCa(i+1,UCa,UCa_std);
@@ -188,6 +188,14 @@ namespace VisualTrack
 
         private void button1_Click(object sender, EventArgs e)
         {
+            zetaTable.Rows.Clear();
+            UCaChart.Series["UCaError"].Points.Clear();
+            UCaChart.Series["UCaSeries"].Points.Clear();
+
+            UCaChart.Series["UCaFlatError"].Points.Clear();
+            UCaChart.Series["UCaFlat"].Points.Clear();
+
+            UCaChart.Series["FittingLine"].Points.Clear();
             readFile();
             FlattUCa();
         }
