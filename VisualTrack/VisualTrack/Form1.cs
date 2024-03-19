@@ -23,7 +23,11 @@ namespace VisualTrack
             UCaChart.Series["UCaError"].Points.Clear();
             UCaChart.Series["UCaSeries"].Points.Clear();
 
+            UCaChart.Series["UCaFlatError"].Points.Clear();
+            UCaChart.Series["UCaFlat"].Points.Clear();
+
             UCaChart.ChartAreas[0].AxisX.Minimum = 0;
+            UCaChart.ChartAreas[1].AxisX.Minimum = 0;
         }
         private double Calc_UCa_std(double U, double Ca, double U_std, double Ca_std)
         {
