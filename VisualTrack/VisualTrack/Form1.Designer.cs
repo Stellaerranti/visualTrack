@@ -59,6 +59,18 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ImportZeta = new System.Windows.Forms.OpenFileDialog();
+            this.fileLabel = new System.Windows.Forms.Label();
+            this.DurangoAgeText = new System.Windows.Forms.TextBox();
+            this.DurangoErrText = new System.Windows.Forms.TextBox();
+            this.yr1Text = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.SlopeLabel = new System.Windows.Forms.Label();
+            this.InterseptLabel = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Zeta.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -76,7 +88,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1584, 861);
+            this.tabControl1.Size = new System.Drawing.Size(1445, 861);
             this.tabControl1.TabIndex = 0;
             // 
             // Zeta
@@ -85,7 +97,7 @@
             this.Zeta.Location = new System.Drawing.Point(4, 22);
             this.Zeta.Name = "Zeta";
             this.Zeta.Padding = new System.Windows.Forms.Padding(3);
-            this.Zeta.Size = new System.Drawing.Size(1576, 835);
+            this.Zeta.Size = new System.Drawing.Size(1437, 835);
             this.Zeta.TabIndex = 0;
             this.Zeta.Text = "Zeta";
             this.Zeta.UseVisualStyleBackColor = true;
@@ -102,7 +114,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1570, 829);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1431, 829);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -117,7 +129,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1328, 823);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1210, 823);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // zetaTable
@@ -143,7 +155,7 @@
             this.zetaTable.Name = "zetaTable";
             this.zetaTable.RowHeadersVisible = false;
             this.zetaTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.zetaTable.Size = new System.Drawing.Size(1322, 406);
+            this.zetaTable.Size = new System.Drawing.Size(1204, 406);
             this.zetaTable.TabIndex = 0;
             // 
             // NameColumn
@@ -267,34 +279,53 @@
             this.UCaChart.Series.Add(series3);
             this.UCaChart.Series.Add(series4);
             this.UCaChart.Series.Add(series5);
-            this.UCaChart.Size = new System.Drawing.Size(1322, 405);
+            this.UCaChart.Size = new System.Drawing.Size(1204, 405);
             this.UCaChart.TabIndex = 1;
             this.UCaChart.Text = "chart1";
             // 
             // tableLayoutPanel3
             // 
+            this.tableLayoutPanel3.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Controls.Add(this.button1, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(1337, 3);
+            this.tableLayoutPanel3.Controls.Add(this.fileLabel, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.DurangoAgeText, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.DurangoErrText, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.yr1Text, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.label1, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.label2, 1, 2);
+            this.tableLayoutPanel3.Controls.Add(this.label3, 1, 3);
+            this.tableLayoutPanel3.Controls.Add(this.label4, 0, 4);
+            this.tableLayoutPanel3.Controls.Add(this.SlopeLabel, 0, 5);
+            this.tableLayoutPanel3.Controls.Add(this.InterseptLabel, 0, 6);
+            this.tableLayoutPanel3.Controls.Add(this.label7, 1, 5);
+            this.tableLayoutPanel3.Controls.Add(this.label8, 1, 6);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(1219, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 5;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(230, 202);
+            this.tableLayoutPanel3.RowCount = 10;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.182644F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(209, 355);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Location = new System.Drawing.Point(6, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
+            this.button1.Text = "Import";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -308,11 +339,116 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // fileLabel
+            // 
+            this.fileLabel.AutoSize = true;
+            this.fileLabel.Location = new System.Drawing.Point(109, 3);
+            this.fileLabel.Name = "fileLabel";
+            this.fileLabel.Size = new System.Drawing.Size(10, 13);
+            this.fileLabel.TabIndex = 3;
+            this.fileLabel.Text = "-";
+            // 
+            // DurangoAgeText
+            // 
+            this.DurangoAgeText.Location = new System.Drawing.Point(6, 41);
+            this.DurangoAgeText.Name = "DurangoAgeText";
+            this.DurangoAgeText.Size = new System.Drawing.Size(94, 20);
+            this.DurangoAgeText.TabIndex = 4;
+            this.DurangoAgeText.Text = "0";
+            // 
+            // DurangoErrText
+            // 
+            this.DurangoErrText.Location = new System.Drawing.Point(6, 76);
+            this.DurangoErrText.Name = "DurangoErrText";
+            this.DurangoErrText.Size = new System.Drawing.Size(94, 20);
+            this.DurangoErrText.TabIndex = 5;
+            this.DurangoErrText.Text = "0";
+            // 
+            // yr1Text
+            // 
+            this.yr1Text.Location = new System.Drawing.Point(6, 111);
+            this.yr1Text.Name = "yr1Text";
+            this.yr1Text.Size = new System.Drawing.Size(94, 20);
+            this.yr1Text.TabIndex = 6;
+            this.yr1Text.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(109, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Durango age Ma";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(109, 73);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Durango Err";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(109, 108);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(24, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "yr-1";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 143);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(50, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Flattering";
+            // 
+            // SlopeLabel
+            // 
+            this.SlopeLabel.AutoSize = true;
+            this.SlopeLabel.Location = new System.Drawing.Point(6, 178);
+            this.SlopeLabel.Name = "SlopeLabel";
+            this.SlopeLabel.Size = new System.Drawing.Size(10, 13);
+            this.SlopeLabel.TabIndex = 11;
+            this.SlopeLabel.Text = "-";
+            // 
+            // InterseptLabel
+            // 
+            this.InterseptLabel.AutoSize = true;
+            this.InterseptLabel.Location = new System.Drawing.Point(6, 213);
+            this.InterseptLabel.Name = "InterseptLabel";
+            this.InterseptLabel.Size = new System.Drawing.Size(10, 13);
+            this.InterseptLabel.TabIndex = 12;
+            this.InterseptLabel.Text = "-";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(109, 178);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 13);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Slope";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(109, 213);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(48, 13);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Intersept";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1584, 861);
+            this.ClientSize = new System.Drawing.Size(1445, 861);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = " VisualTrack";
@@ -324,6 +460,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.zetaTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UCaChart)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -353,6 +490,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Zeta_Col;
         private System.Windows.Forms.DataGridViewTextBoxColumn Zeta_col_std;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Label fileLabel;
+        private System.Windows.Forms.TextBox DurangoAgeText;
+        private System.Windows.Forms.TextBox DurangoErrText;
+        private System.Windows.Forms.TextBox yr1Text;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label SlopeLabel;
+        private System.Windows.Forms.Label InterseptLabel;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
 
