@@ -211,19 +211,55 @@ namespace VisualTrack
             {
                 return false;
             }
+
             else
             {
                return true;
             }
         }
 
-        private double FindZeta(double UCa, double yr1,double DurAgeMa, double PW, double Tracks)
+        private double FindZeta(double yr1,double DurAgeMa, double PW, double Tracks)
         {
             return PW * Math.Exp(yr1*DurAgeMa-1)/(Tracks*yr1);
         }
 
         private void ZetaCalc()
         {
+            double PW = 0;
+            double PW_sum = 0;
+            double Track = 0;
+            double Track_sum = 0;
+
+            double DurangoAge = Double.Parse(DurangoAgeText.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
+            double DurangoErr = Double.Parse(DurangoErrText.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
+            double yr1 = Double.Parse(yr1Text.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
+
+            double S_sum = 0;
+            
+            if(yr1 == 0)
+            {
+                return;
+            }
+
+            foreach (DataGridViewRow row in zetaTable.Rows)
+            {
+
+                //row.Cells["UCaFlat"].Value
+                
+                PW = Double.Parse(row.Cells["UCaFlat"].Value.ToString()) * Double.Parse(row.Cells["S"].Value.ToString());
+                Track = Double.Parse(row.Cells["Trs"].Value.ToString());
+
+                row.Cells["Zeta_Col"].Value = FindZeta(yr1,DurangoAge,PW, Track);
+
+                S_sum += Double.Parse(row.Cells["S"].Value.ToString());
+                Track_sum += Track;
+                PW_sum += PW;
+            }
+
+            zeta_value = FindZeta(yr1, DurangoAge, PW_sum, Track_sum);
+
+            zetaLabel.Text = zeta_value.ToString();
+
 
         }
 
