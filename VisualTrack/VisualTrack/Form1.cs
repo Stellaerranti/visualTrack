@@ -15,7 +15,8 @@ namespace VisualTrack
 {
     public partial class Form1 : Form
     {
-        
+        public double zeta_value = 0;
+        public double zetaErr_value = 0;
 
         public Form1()
         {
@@ -46,10 +47,11 @@ namespace VisualTrack
             UCaChart.ChartAreas[1].AxisY.Minimum = 0;
             //UCaChart.ChartAreas[1].AxisY.Title = "U/Ca Flattened";
         }
+
         private double Calc_UCa_std(double U, double Ca, double U_std, double Ca_std)
         {
-            // return (Ca*U_std+U*Ca_std)/(Ca*Ca);
-            return (U / Ca) * Math.Sqrt((Ca_std / Ca) * (Ca_std / Ca) + (U_std / U) * (U_std / U));
+             return Math.Sqrt((U_std/Ca)* (U_std / Ca) + (U*Ca_std/(Ca*Ca))* (U * Ca_std / (Ca * Ca)));
+            //return (U / Ca) * Math.Sqrt((Ca_std / Ca) * (Ca_std / Ca) + (U_std / U) * (U_std / U));
         }
 
         private void DrawUCa(int N, double UCa,double UCa_std)
@@ -106,20 +108,25 @@ namespace VisualTrack
         }
 
         private void FlattUCa()
+
+
         {
             double b = MSE_b();
             double a = MSE_a();
             int N = zetaTable.Rows.Count;
             int i = 1;
 
+            SlopeLabel.Text = b.ToString("E3");
+            InterseptLabel.Text = a.ToString("E3");
+
             UCaChart.Series["FittingLine"].Points.AddXY(0, a);
             UCaChart.Series["FittingLine"].Points.AddXY(N, a+b*N);
 
             foreach (DataGridViewRow row in zetaTable.Rows)
             {
-                row.Cells["UCaFlat"].Value = Double.Parse(row.Cells["UCa"].Value.ToString()) + ((N/2)-i+0.5)*b;
+                row.Cells["UCaFlat"].Value = (Double.Parse(row.Cells["UCa"].Value.ToString()) + ((N/2)-i+0.5)*b).ToString("E3");
                 //UCaFlatStd
-                row.Cells["UCaFlatStd"].Value = Double.Parse(row.Cells["UCastd"].Value.ToString()) / Double.Parse(row.Cells["UCa"].Value.ToString())*Double.Parse(row.Cells["UCaFlat"].Value.ToString());
+                row.Cells["UCaFlatStd"].Value = (Double.Parse(row.Cells["UCastd"].Value.ToString()) / Double.Parse(row.Cells["UCa"].Value.ToString())*Double.Parse(row.Cells["UCaFlat"].Value.ToString())).ToString("E3");
                 DrawUCaFlatt(i, Double.Parse(row.Cells["UCaFlat"].Value.ToString()), 0);
                 i++;
             }
@@ -175,9 +182,9 @@ namespace VisualTrack
                         UCa_std = Calc_UCa_std(U,Ca,U_std,Ca_std);
 
                         //Name, U, U std, Ca, Ca std, Trcs, S, U/Ca, U/Ca std
-                        zetaTable.Rows.Add(line[0], U, U_std, Ca, Ca_std,
-                            Convert.ToDouble(line[5], provider), Convert.ToDouble(line[6], provider),
-                            UCa, UCa_std, 0, 0, 0, 0);
+                        zetaTable.Rows.Add(line[0], U.ToString("E3"), U_std.ToString("E3"), Ca.ToString("E3"), Ca_std.ToString("E3"),   
+                            Convert.ToDouble(line[5], provider).ToString("E3"), Convert.ToDouble(line[6], provider).ToString("E3"),
+                            UCa.ToString("E3"), UCa_std.ToString("E3"), 0, 0, 0, 0);
 
                         DrawUCa(i+1,UCa,UCa_std);
                     }
@@ -189,6 +196,38 @@ namespace VisualTrack
             }
         }
 
+        
+        private bool CheckZetaInput()
+        {
+            if (!Double.TryParse(DurangoAgeText.Text, NumberStyles.Any,  CultureInfo.InvariantCulture, out double check_age))
+            {
+                return false;
+            }
+            else if (!Double.TryParse(DurangoErrText.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out double check_err))
+            {
+                return false;
+            }
+            else if (!Double.TryParse(yr1Text.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out double check_yr1))
+            {
+                return false;
+            }
+            else
+            {
+               return true;
+            }
+        }
+
+        private double FindZeta(double UCa, double yr1,double DurAgeMa, double PW, double Tracks)
+        {
+            return PW * Math.Exp(yr1*DurAgeMa-1)/(Tracks*yr1);
+        }
+
+        private void ZetaCalc()
+        {
+
+        }
+
+        //import file
         private void button1_Click(object sender, EventArgs e)
         {
             zetaTable.Rows.Clear();
@@ -201,6 +240,31 @@ namespace VisualTrack
             UCaChart.Series["FittingLine"].Points.Clear();
             readFile();
             FlattUCa();
+
+        }
+
+        private void DurangoAgeText_TextChanged(object sender, EventArgs e)
+        {
+            if(CheckZetaInput())
+            {
+                ZetaCalc();
+            }
+        }
+
+        private void DurangoErrText_TextChanged(object sender, EventArgs e)
+        {
+            if (CheckZetaInput())
+            {
+                ZetaCalc();
+            }
+        }
+
+        private void yr1Text_TextChanged(object sender, EventArgs e)
+        {
+            if (CheckZetaInput())
+            {
+                ZetaCalc();
+            }
         }
     }
 }

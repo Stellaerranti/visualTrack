@@ -19,3 +19,8 @@ VisualTrack/.vs/VisualTrack/FileContentIndex/a4da6b2c-ca91-42af-b5d5-6325fa079cb
 *.exe
 *.pdb
 *.exe
+*.exe
+VisualTrack/VisualTrack/obj/Debug/VisualTrack.csproj.GenerateResource.cache
+VisualTrack/VisualTrack/obj/Debug/VisualTrack.exe
+VisualTrack/VisualTrack/obj/Debug/VisualTrack.pdb
+VisualTrack/VisualTrack/bin/Debug/VisualTrack.pdb

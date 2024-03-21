@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series19 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Zeta = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -56,9 +56,7 @@
             this.Zeta_col_std = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UCaChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ImportZeta = new System.Windows.Forms.OpenFileDialog();
+            this.importButton = new System.Windows.Forms.Button();
             this.fileLabel = new System.Windows.Forms.Label();
             this.DurangoAgeText = new System.Windows.Forms.TextBox();
             this.DurangoErrText = new System.Windows.Forms.TextBox();
@@ -71,6 +69,12 @@
             this.InterseptLabel = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.zetaLabel = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.zetaErr = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ImportZeta = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.Zeta.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -238,47 +242,47 @@
             // 
             // UCaChart
             // 
-            chartArea1.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea1.AlignWithChartArea = "ChartArea2";
-            chartArea1.Name = "ChartArea1";
-            chartArea2.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea2.BorderColor = System.Drawing.Color.Bisque;
-            chartArea2.Name = "ChartArea2";
-            this.UCaChart.ChartAreas.Add(chartArea1);
-            this.UCaChart.ChartAreas.Add(chartArea2);
+            chartArea7.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea7.AlignWithChartArea = "ChartArea2";
+            chartArea7.Name = "ChartArea1";
+            chartArea8.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea8.BorderColor = System.Drawing.Color.Bisque;
+            chartArea8.Name = "ChartArea2";
+            this.UCaChart.ChartAreas.Add(chartArea7);
+            this.UCaChart.ChartAreas.Add(chartArea8);
             this.UCaChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.UCaChart.Legends.Add(legend1);
+            legend4.Enabled = false;
+            legend4.Name = "Legend1";
+            this.UCaChart.Legends.Add(legend4);
             this.UCaChart.Location = new System.Drawing.Point(3, 3);
             this.UCaChart.Name = "UCaChart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.Name = "UCaSeries";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series2.Legend = "Legend1";
-            series2.Name = "UCaError";
-            series2.YValuesPerPoint = 3;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "FittingLine";
-            series4.ChartArea = "ChartArea2";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series4.Legend = "Legend1";
-            series4.Name = "UCaFlat";
-            series5.ChartArea = "ChartArea2";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series5.Legend = "Legend1";
-            series5.Name = "UCaFlatError";
-            series5.YValuesPerPoint = 3;
-            this.UCaChart.Series.Add(series1);
-            this.UCaChart.Series.Add(series2);
-            this.UCaChart.Series.Add(series3);
-            this.UCaChart.Series.Add(series4);
-            this.UCaChart.Series.Add(series5);
+            series16.ChartArea = "ChartArea1";
+            series16.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series16.Legend = "Legend1";
+            series16.Name = "UCaSeries";
+            series17.ChartArea = "ChartArea1";
+            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series17.Legend = "Legend1";
+            series17.Name = "UCaError";
+            series17.YValuesPerPoint = 3;
+            series18.ChartArea = "ChartArea1";
+            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series18.Legend = "Legend1";
+            series18.Name = "FittingLine";
+            series19.ChartArea = "ChartArea2";
+            series19.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series19.Legend = "Legend1";
+            series19.Name = "UCaFlat";
+            series20.ChartArea = "ChartArea2";
+            series20.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series20.Legend = "Legend1";
+            series20.Name = "UCaFlatError";
+            series20.YValuesPerPoint = 3;
+            this.UCaChart.Series.Add(series16);
+            this.UCaChart.Series.Add(series17);
+            this.UCaChart.Series.Add(series18);
+            this.UCaChart.Series.Add(series19);
+            this.UCaChart.Series.Add(series20);
             this.UCaChart.Size = new System.Drawing.Size(1204, 405);
             this.UCaChart.TabIndex = 1;
             this.UCaChart.Text = "chart1";
@@ -289,7 +293,7 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.button1, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.importButton, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.fileLabel, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.DurangoAgeText, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.DurangoErrText, 0, 2);
@@ -302,6 +306,10 @@
             this.tableLayoutPanel3.Controls.Add(this.InterseptLabel, 0, 6);
             this.tableLayoutPanel3.Controls.Add(this.label7, 1, 5);
             this.tableLayoutPanel3.Controls.Add(this.label8, 1, 6);
+            this.tableLayoutPanel3.Controls.Add(this.zetaLabel, 0, 8);
+            this.tableLayoutPanel3.Controls.Add(this.label6, 1, 8);
+            this.tableLayoutPanel3.Controls.Add(this.zetaErr, 0, 9);
+            this.tableLayoutPanel3.Controls.Add(this.label10, 1, 9);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(1219, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -319,25 +327,15 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(209, 355);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
-            // button1
+            // importButton
             // 
-            this.button1.Location = new System.Drawing.Point(6, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Import";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1576, 835);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.importButton.Location = new System.Drawing.Point(6, 6);
+            this.importButton.Name = "importButton";
+            this.importButton.Size = new System.Drawing.Size(75, 23);
+            this.importButton.TabIndex = 2;
+            this.importButton.Text = "Import";
+            this.importButton.UseVisualStyleBackColor = true;
+            this.importButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // fileLabel
             // 
@@ -355,6 +353,7 @@
             this.DurangoAgeText.Size = new System.Drawing.Size(94, 20);
             this.DurangoAgeText.TabIndex = 4;
             this.DurangoAgeText.Text = "0";
+            this.DurangoAgeText.TextChanged += new System.EventHandler(this.DurangoAgeText_TextChanged);
             // 
             // DurangoErrText
             // 
@@ -363,6 +362,7 @@
             this.DurangoErrText.Size = new System.Drawing.Size(94, 20);
             this.DurangoErrText.TabIndex = 5;
             this.DurangoErrText.Text = "0";
+            this.DurangoErrText.TextChanged += new System.EventHandler(this.DurangoErrText_TextChanged);
             // 
             // yr1Text
             // 
@@ -371,6 +371,7 @@
             this.yr1Text.Size = new System.Drawing.Size(94, 20);
             this.yr1Text.TabIndex = 6;
             this.yr1Text.Text = "0";
+            this.yr1Text.TextChanged += new System.EventHandler(this.yr1Text_TextChanged);
             // 
             // label1
             // 
@@ -444,6 +445,52 @@
             this.label8.TabIndex = 14;
             this.label8.Text = "Intersept";
             // 
+            // zetaLabel
+            // 
+            this.zetaLabel.AutoSize = true;
+            this.zetaLabel.Location = new System.Drawing.Point(6, 283);
+            this.zetaLabel.Name = "zetaLabel";
+            this.zetaLabel.Size = new System.Drawing.Size(10, 13);
+            this.zetaLabel.TabIndex = 15;
+            this.zetaLabel.Text = "-";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(109, 283);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(29, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Zeta";
+            // 
+            // zetaErr
+            // 
+            this.zetaErr.AutoSize = true;
+            this.zetaErr.Location = new System.Drawing.Point(6, 318);
+            this.zetaErr.Name = "zetaErr";
+            this.zetaErr.Size = new System.Drawing.Size(10, 13);
+            this.zetaErr.TabIndex = 17;
+            this.zetaErr.Text = "-";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(109, 318);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(46, 13);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "Zeta std";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1437, 835);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -475,7 +522,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.DataVisualization.Charting.Chart UCaChart;
         private System.Windows.Forms.DataGridView zetaTable;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn U;
         private System.Windows.Forms.DataGridViewTextBoxColumn U_std;
@@ -502,6 +548,11 @@
         private System.Windows.Forms.Label InterseptLabel;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label zetaLabel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label zetaErr;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button importButton;
     }
 }
 
