@@ -33,11 +33,20 @@ namespace VisualTrack
 
             UCaChart.Series["FittingLine"].Points.Clear();
 
-            UCaChart.Series["UCaFlatError"].MarkerColor = UCaChart.Series["UCaError"].MarkerColor;
-            UCaChart.Series["UCaFlat"].MarkerColor = UCaChart.Series["UCaSeries"].MarkerColor;
-            UCaChart.Series["UCaFlat"].MarkerImage = UCaChart.Series["UCaSeries"].MarkerImage;
+            //UCaChart.Series["UCaFlatError"].MarkerColor = UCaChart.Series["UCaError"].MarkerColor;
+            //UCaChart.Series["UCaFlat"].MarkerColor = UCaChart.Series["UCaSeries"].MarkerColor;
+            //UCaChart.Series["UCaFlat"].MarkerImage = UCaChart.Series["UCaSeries"].MarkerImage;
 
-            UCaChart.Series["FittingLine"].MarkerColor = Color.Red;
+            UCaChart.Series["FittingLine"].Color = Color.Red;           
+
+            UCaChart.Series["UCaSeries"].Color = Color.Blue;
+            UCaChart.Series["UCaError"].Color = Color.Orange;
+
+            UCaChart.Series["UCaFlat"].MarkerStyle = MarkerStyle.Square;
+            UCaChart.Series["UCaFlat"].Color = Color.Blue;
+            UCaChart.Series["UCaFlatError"].Color = Color.Orange;
+
+            
 
             UCaChart.ChartAreas[0].AxisX.Minimum = 0;
             UCaChart.ChartAreas[0].AxisY.Minimum = 0;
@@ -127,9 +136,10 @@ namespace VisualTrack
                 row.Cells["UCaFlat"].Value = (Double.Parse(row.Cells["UCa"].Value.ToString()) + ((N/2)-i+0.5)*b).ToString("E3");
                 //UCaFlatStd
                 row.Cells["UCaFlatStd"].Value = (Double.Parse(row.Cells["UCastd"].Value.ToString()) / Double.Parse(row.Cells["UCa"].Value.ToString())*Double.Parse(row.Cells["UCaFlat"].Value.ToString())).ToString("E3");
-                DrawUCaFlatt(i, Double.Parse(row.Cells["UCaFlat"].Value.ToString()), 0);
+                DrawUCaFlatt(i, Double.Parse(row.Cells["UCaFlat"].Value.ToString()), Double.Parse(row.Cells["UCaFlatStd"].Value.ToString()));
                 i++;
             }
+
         }
 
         private void readFile()
