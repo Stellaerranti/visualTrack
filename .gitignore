@@ -24,3 +24,8 @@ VisualTrack/VisualTrack/obj/Debug/VisualTrack.csproj.GenerateResource.cache
 VisualTrack/VisualTrack/obj/Debug/VisualTrack.exe
 VisualTrack/VisualTrack/obj/Debug/VisualTrack.pdb
 VisualTrack/VisualTrack/bin/Debug/VisualTrack.pdb
+*.exe
+VisualTrack/VisualTrack/bin/Debug/VisualTrack.pdb
+VisualTrack/VisualTrack/obj/Debug/VisualTrack.csproj.GenerateResource.cache
+VisualTrack/VisualTrack/obj/Debug/VisualTrack.exe
+VisualTrack/VisualTrack/obj/Debug/VisualTrack.pdb

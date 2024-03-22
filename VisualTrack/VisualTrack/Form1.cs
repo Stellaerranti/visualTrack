@@ -223,10 +223,23 @@ namespace VisualTrack
             return PW * Math.Exp(yr1*DurAgeMa-1)/(Tracks*yr1);
         }
 
+        private double ZetaSTD(double zeta, double yr1, double DurAgeMa, double DurAge_std, double PW, double PW_std, double Tracks)
+        {
+            double first_bracket = zeta * zeta * 4 / Tracks;
+            double second_bracket = (zeta * PW_std / PW);
+            double third_bracket = ((DurAge_std*Math.Exp(DurAgeMa*yr1-1))/(DurAgeMa*Tracks/PW));
+
+            return Math.Sqrt(Math.Pow(first_bracket, 2)+Math.Pow(second_bracket, 2)+Math.Pow(third_bracket,2));
+        }
+
         private void ZetaCalc()
         {
             double PW = 0;
             double PW_sum = 0;
+
+            double PW_std = 0;
+            double PW_std_sum = 0;
+
             double Track = 0;
             double Track_sum = 0;
 
@@ -236,11 +249,11 @@ namespace VisualTrack
 
             double S_sum = 0;
             
-            if(yr1 == 0)
+            if((yr1 == 0) || (DurangoAge == 0) || (DurangoErr == 0))
             {
                 return;
             }
-
+          
             foreach (DataGridViewRow row in zetaTable.Rows)
             {
 
@@ -249,17 +262,26 @@ namespace VisualTrack
                 PW = Double.Parse(row.Cells["UCaFlat"].Value.ToString()) * Double.Parse(row.Cells["S"].Value.ToString());
                 Track = Double.Parse(row.Cells["Trs"].Value.ToString());
 
+                PW_std = PW*Double.Parse(row.Cells["UCaFlatStd"].Value.ToString())/ Double.Parse(row.Cells["UCaFlat"].Value.ToString());
+
                 row.Cells["Zeta_Col"].Value = FindZeta(yr1,DurangoAge,PW, Track);
+
+                row.Cells["Zeta_col_std"].Value = ZetaSTD(FindZeta(yr1, DurangoAge, PW, Track),
+                    yr1, DurangoAge, DurangoErr, PW, PW_std, Track);
 
                 S_sum += Double.Parse(row.Cells["S"].Value.ToString());
                 Track_sum += Track;
                 PW_sum += PW;
+                PW_std_sum += PW_std * PW_std;
             }
 
+            PW_std_sum = Math.Sqrt(PW_std_sum);
+
             zeta_value = FindZeta(yr1, DurangoAge, PW_sum, Track_sum);
+            zetaErr_value = ZetaSTD(zeta_value,yr1,DurangoAge,DurangoErr,PW_sum,PW_std_sum,Track_sum);
 
             zetaLabel.Text = zeta_value.ToString();
-
+            zetaErrLabel.Text = zetaErr_value.ToString();
 
         }
 
