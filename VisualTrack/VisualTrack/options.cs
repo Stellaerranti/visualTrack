@@ -14,9 +14,11 @@ namespace VisualTrack
 {
     public partial class options : Form
     {
-        public options()
+        private readonly Form1 _form1;
+        public options(Form1 form1)
         {
             InitializeComponent();
+            _form1 = form1;
         }
 
         private void options_Load(object sender, EventArgs e)
@@ -63,6 +65,9 @@ namespace VisualTrack
                     case 2: Settings.Default.S = Double.Parse(dimTextBox.Text, NumberStyles.Any, CultureInfo.InvariantCulture); break;
                     case 3: Settings.Default.Tracks = Double.Parse(dimTextBox.Text, NumberStyles.Any, CultureInfo.InvariantCulture); break;
                 }
+
+                Settings.Default.Save();
+                this._form1.optionsChanged();
             }
             catch { }
         }

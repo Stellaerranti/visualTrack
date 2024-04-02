@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using VisualTrack.Properties;
 
 
 namespace VisualTrack
@@ -19,7 +20,7 @@ namespace VisualTrack
         public double zeta_value = 0;
         public double zetaErr_value = 0;
 
-        options option_window = new options();
+        options option_window;
 
         public Form1()
         {
@@ -59,7 +60,13 @@ namespace VisualTrack
             UCaChart.ChartAreas[1].AxisY.Minimum = 0;
             //UCaChart.ChartAreas[1].AxisY.Title = "U/Ca Flattened";
 
-            options option_window = new options();
+            option_window = new options(this);
+
+            Settings.Default.S = 1;
+            Settings.Default.Tracks = 1;
+
+            Settings.Default.Ca_dimension = 1;
+            Settings.Default.U_dimension = 1;
         }
 
         private double Calc_UCa_std(double U, double Ca, double U_std, double Ca_std)
@@ -346,9 +353,32 @@ namespace VisualTrack
         }
 
         private void optiondButton_Click(object sender, EventArgs e)
-        {
+        {            
             option_window.Show();
+        }
 
+        public void optionsChanged()
+        {
+            try
+            {
+                foreach (DataGridViewRow row in zetaTable.Rows)
+                {
+                    row.Cells["U"].Value = Double.Parse(row.Cells["U"].Value.ToString())*Settings.Default.U_dimension;
+                    row.Cells["U_std"].Value = Double.Parse(row.Cells["U_std"].Value.ToString()) * Settings.Default.U_dimension;
+
+                    row.Cells["Ca"].Value = Double.Parse(row.Cells["Ca"].Value.ToString()) * Settings.Default.Ca_dimension;
+                    row.Cells["Ca_std"].Value = Double.Parse(row.Cells["Ca_std"].Value.ToString()) * Settings.Default.Ca_dimension;
+
+                    row.Cells["S"].Value = Double.Parse(row.Cells["S"].Value.ToString()) * Settings.Default.S;
+                    row.Cells["Trs"].Value = Double.Parse(row.Cells["Trs"].Value.ToString()) * Settings.Default.Tracks;
+                }
+                Settings.Default.S = 1;
+                Settings.Default.Tracks = 1;
+
+                Settings.Default.Ca_dimension = 1;
+                Settings.Default.U_dimension = 1;
+            }
+            catch { }
         }
     }
 }
