@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,10 @@ namespace VisualTrack
             InitializeComponent();
         }
 
-
+        private void options_Load(object sender, EventArgs e)
+        {
+            standartDimBox.SelectedIndex = 0;
+        }
 
         private void options_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -28,15 +32,41 @@ namespace VisualTrack
 
         private void SettingsBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-           /* switch (SettingsBox.SelectedIndex) 
+           standartDimBox.SelectedIndex = 0;
+
+           switch (SettingsBox.SelectedIndex)
             {
-                case 0: label1.Text = Settings.Default.U_dimension.ToString(); break;
-                case 1: label1.Text = Settings.Default.Ca_dimension.ToString(); break;
-                case 2: label1.Text = Settings.Default.S.ToString(); break;
-                case 3: label1.Text = Settings.Default.Tracks.ToString(); break;
-            }*/
-
-
+                case 0: dimTextBox.Text = Settings.Default.U_dimension.ToString(); break;
+                case 1: dimTextBox.Text = Settings.Default.Ca_dimension.ToString(); break;
+                case 2: dimTextBox.Text = Settings.Default.S.ToString(); break;
+                case 3: dimTextBox.Text = Settings.Default.Tracks.ToString(); break;
+            }
         }
+
+        private void standartDimBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch(standartDimBox.SelectedIndex) 
+            {
+                case 1: dimTextBox.Text = (1000000).ToString(); break;
+                case 2: dimTextBox.Text = (2000).ToString(); break;
+            }
+        }
+
+        private void saveOptionsButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                switch (SettingsBox.SelectedIndex)
+                {
+                    case 0: Settings.Default.U_dimension = Double.Parse(dimTextBox.Text, NumberStyles.Any, CultureInfo.InvariantCulture); break;
+                    case 1: Settings.Default.Ca_dimension = Double.Parse(dimTextBox.Text, NumberStyles.Any, CultureInfo.InvariantCulture); break;
+                    case 2: Settings.Default.S = Double.Parse(dimTextBox.Text, NumberStyles.Any, CultureInfo.InvariantCulture); break;
+                    case 3: Settings.Default.Tracks = Double.Parse(dimTextBox.Text, NumberStyles.Any, CultureInfo.InvariantCulture); break;
+                }
+            }
+            catch { }
+        }
+
+       
     }
 }
