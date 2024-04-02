@@ -11,12 +11,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
+
 namespace VisualTrack
 {
     public partial class Form1 : Form
     {
         public double zeta_value = 0;
         public double zetaErr_value = 0;
+
+        options option_window = new options();
 
         public Form1()
         {
@@ -55,6 +58,8 @@ namespace VisualTrack
             UCaChart.ChartAreas[1].AxisX.Minimum = 0;
             UCaChart.ChartAreas[1].AxisY.Minimum = 0;
             //UCaChart.ChartAreas[1].AxisY.Title = "U/Ca Flattened";
+
+            options option_window = new options();
         }
 
         private double Calc_UCa_std(double U, double Ca, double U_std, double Ca_std)
@@ -298,16 +303,7 @@ namespace VisualTrack
         //import file
         private void button1_Click(object sender, EventArgs e)
         {
-            zetaTable.Rows.Clear();
-            UCaChart.Series["UCaError"].Points.Clear();
-            UCaChart.Series["UCaSeries"].Points.Clear();
-
-            UCaChart.Series["UCaFlatError"].Points.Clear();
-            UCaChart.Series["UCaFlat"].Points.Clear();
-
-            UCaChart.Series["FittingLine"].Points.Clear();
-            readFile();
-            FlattUCa();
+            
 
         }
 
@@ -333,6 +329,26 @@ namespace VisualTrack
             {
                 ZetaCalc();
             }
+        }
+
+        private void toolStripImport_Click(object sender, EventArgs e)
+        {
+            zetaTable.Rows.Clear();
+            UCaChart.Series["UCaError"].Points.Clear();
+            UCaChart.Series["UCaSeries"].Points.Clear();
+
+            UCaChart.Series["UCaFlatError"].Points.Clear();
+            UCaChart.Series["UCaFlat"].Points.Clear();
+
+            UCaChart.Series["FittingLine"].Points.Clear();
+            readFile();
+            FlattUCa();
+        }
+
+        private void optiondButton_Click(object sender, EventArgs e)
+        {
+            option_window.Show();
+
         }
     }
 }

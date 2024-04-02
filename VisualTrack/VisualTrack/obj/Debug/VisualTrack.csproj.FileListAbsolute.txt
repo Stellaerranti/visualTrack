@@ -18,3 +18,4 @@ C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Debug\Vi
 C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Debug\VisualTrack.csproj.CoreCompileInputs.cache
 C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Debug\VisualTrack.exe
 C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Debug\VisualTrack.pdb
+C:\Users\Home\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Debug\VisualTrack.options.resources
