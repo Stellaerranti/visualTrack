@@ -20,6 +20,11 @@ namespace VisualTrack
         public double zeta_value = 0;
         public double zetaErr_value = 0;
 
+        private double previous_U_dimensions = 1;
+        private double previous_Ca_dimensions = 1;
+        private double previous_S_dimensions = 1;
+        private double previous_Tracks_dimensions = 1;
+
         options option_window;
 
         public Form1()
@@ -193,11 +198,11 @@ namespace VisualTrack
 
                         string[] line = lines[i].Split(new[] { ' ', '\t' });
 
-                        U = Convert.ToDouble(line[1], provider);
-                        Ca = Convert.ToDouble(line[3], provider);
+                        U = Convert.ToDouble(line[1], provider)*Settings.Default.U_dimension;
+                        Ca = Convert.ToDouble(line[3], provider) * Settings.Default.Ca_dimension;
 
-                        U_std = Convert.ToDouble(line[2], provider);
-                        Ca_std = Convert.ToDouble(line[4], provider);
+                        U_std = Convert.ToDouble(line[2], provider) * Settings.Default.U_dimension;
+                        Ca_std = Convert.ToDouble(line[4], provider) * Settings.Default.Ca_dimension;
 
                         UCa = U / Ca;
 
@@ -205,7 +210,8 @@ namespace VisualTrack
 
                         //Name, U, U std, Ca, Ca std, Trcs, S, U/Ca, U/Ca std
                         zetaTable.Rows.Add(line[0], U.ToString("E3"), U_std.ToString("E3"), Ca.ToString("E3"), Ca_std.ToString("E3"),   
-                            Convert.ToDouble(line[5], provider).ToString("E3"), Convert.ToDouble(line[6], provider).ToString("E3"),
+                            (Convert.ToDouble(line[5], provider) * Settings.Default.Tracks).ToString("E3"),
+                            (Convert.ToDouble(line[6], provider) * Settings.Default.S).ToString("E3"),
                             UCa.ToString("E3"), UCa_std.ToString("E3"), 0, 0, 0, 0);
 
                         DrawUCa(i+1,UCa,UCa_std);
@@ -218,7 +224,6 @@ namespace VisualTrack
             }
         }
 
-        
         private bool CheckZetaInput()
         {
             if (!Double.TryParse(DurangoAgeText.Text, NumberStyles.Any,  CultureInfo.InvariantCulture, out double check_age))
@@ -361,22 +366,84 @@ namespace VisualTrack
         {
             try
             {
+                double U = 0;
+                double Ca = 0;
+                double U_std = 0;
+                double Ca_std = 0;
+
+                double UCa = 0;
+                double UCa_std = 0;
+
+                int i = 0;
+
+                UCaChart.Series["UCaError"].Points.Clear();
+                UCaChart.Series["UCaSeries"].Points.Clear();
+
+                UCaChart.Series["UCaFlatError"].Points.Clear();
+                UCaChart.Series["UCaFlat"].Points.Clear();
+
+                UCaChart.Series["FittingLine"].Points.Clear();
+
                 foreach (DataGridViewRow row in zetaTable.Rows)
-                {
-                    row.Cells["U"].Value = Double.Parse(row.Cells["U"].Value.ToString())*Settings.Default.U_dimension;
-                    row.Cells["U_std"].Value = Double.Parse(row.Cells["U_std"].Value.ToString()) * Settings.Default.U_dimension;
+                {              
 
-                    row.Cells["Ca"].Value = Double.Parse(row.Cells["Ca"].Value.ToString()) * Settings.Default.Ca_dimension;
-                    row.Cells["Ca_std"].Value = Double.Parse(row.Cells["Ca_std"].Value.ToString()) * Settings.Default.Ca_dimension;
+                    U = Convert.ToDouble(row.Cells["U"].Value);
+                    Ca = Convert.ToDouble(row.Cells["Ca"].Value);
 
-                    row.Cells["S"].Value = Double.Parse(row.Cells["S"].Value.ToString()) * Settings.Default.S;
-                    row.Cells["Trs"].Value = Double.Parse(row.Cells["Trs"].Value.ToString()) * Settings.Default.Tracks;
+                    U_std = Convert.ToDouble(row.Cells["U_std"].Value);
+                    Ca_std = Convert.ToDouble(row.Cells["Ca_std"].Value);
+
+                    if (previous_U_dimensions != Settings.Default.U_dimension)
+                    {
+                        U = U * Settings.Default.U_dimension;
+                        U_std = U_std * Settings.Default.U_dimension;
+                        row.Cells["U"].Value = U;
+                        row.Cells["U_std"].Value = U_std;                        
+                    }
+                    if(previous_Ca_dimensions != Settings.Default.Ca_dimension)
+                    {
+                        Ca = Ca * Settings.Default.Ca_dimension;
+                        Ca_std = Ca_std * Settings.Default.Ca_dimension;
+
+                        row.Cells["Ca"].Value = Ca;
+                        row.Cells["Ca_std"].Value = Ca_std;                       
+                    }
+                    if(previous_S_dimensions != Settings.Default.S)
+                    {
+                        row.Cells["S"].Value = Double.Parse(row.Cells["S"].Value.ToString()) * Settings.Default.S;
+                    }
+                    if(previous_Tracks_dimensions !=  Settings.Default.Tracks) 
+                    {
+                        row.Cells["Trs"].Value = Double.Parse(row.Cells["Trs"].Value.ToString()) * Settings.Default.Tracks;
+
+                    }                    
+
+                    UCa = U / Ca;
+
+                    UCa_std = Calc_UCa_std(U, Ca, U_std, Ca_std);
+
+                    row.Cells["UCa"].Value = UCa;
+                    row.Cells["UCastd"].Value = UCa_std;
+
+                    DrawUCa(i + 1, UCa, UCa_std);
+                    i++;
                 }
-                Settings.Default.S = 1;
-                Settings.Default.Tracks = 1;
 
-                Settings.Default.Ca_dimension = 1;
-                Settings.Default.U_dimension = 1;
+                FlattUCa();
+
+                if (previous_U_dimensions != Settings.Default.U_dimension)
+                {previous_U_dimensions = Settings.Default.U_dimension;}
+                if (previous_Ca_dimensions != Settings.Default.Ca_dimension)
+                {previous_Ca_dimensions = Settings.Default.Ca_dimension;}
+                if (previous_S_dimensions != Settings.Default.S)
+                { previous_S_dimensions = Settings.Default.S; }
+                if (previous_Tracks_dimensions != Settings.Default.Tracks)
+                { previous_Tracks_dimensions = Settings.Default.Tracks; }
+
+                DurangoAgeText_TextChanged(new object(), new EventArgs());
+                DurangoErrText_TextChanged(new object(), new EventArgs());
+                yr1Text_TextChanged(new object(), new EventArgs());
+
             }
             catch { }
         }
