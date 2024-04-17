@@ -8,3 +8,14 @@ C:\Users\Home\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Release\V
 C:\Users\Home\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Release\VisualTrack.csproj.CoreCompileInputs.cache
 C:\Users\Home\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Release\VisualTrack.exe
 C:\Users\Home\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Release\VisualTrack.pdb
+C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\bin\Release\VisualTrack.exe.config
+C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\bin\Release\VisualTrack.exe
+C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\bin\Release\VisualTrack.pdb
+C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Release\VisualTrack.csproj.AssemblyReference.cache
+C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Release\VisualTrack.Form1.resources
+C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Release\VisualTrack.options.resources
+C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Release\VisualTrack.Properties.Resources.resources
+C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Release\VisualTrack.csproj.GenerateResource.cache
+C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Release\VisualTrack.csproj.CoreCompileInputs.cache
+C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Release\VisualTrack.exe
+C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Release\VisualTrack.pdb
