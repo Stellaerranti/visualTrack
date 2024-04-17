@@ -139,7 +139,7 @@ namespace VisualTrack
         {
             double b = MSE_b();
             double a = MSE_a();
-            int N = zetaTable.Rows.Count;
+            int N = zetaTable.Rows.Count +1 ;
             int i = 1;
 
             SlopeLabel.Text = b.ToString("E3");
@@ -150,7 +150,7 @@ namespace VisualTrack
 
             foreach (DataGridViewRow row in zetaTable.Rows)
             {
-                row.Cells["UCaFlat"].Value = (Double.Parse(row.Cells["UCa"].Value.ToString()) + ((N/2)-i+0.5)*b).ToString("E3");
+                row.Cells["UCaFlat"].Value = (Double.Parse(row.Cells["UCa"].Value.ToString()) + ((N/2)-(i+1)+0.5)*b).ToString("E3");
                 //UCaFlatStd
                 row.Cells["UCaFlatStd"].Value = (Double.Parse(row.Cells["UCastd"].Value.ToString()) / Double.Parse(row.Cells["UCa"].Value.ToString())*Double.Parse(row.Cells["UCaFlat"].Value.ToString())).ToString("E3");
                 DrawUCaFlatt(i, Double.Parse(row.Cells["UCaFlat"].Value.ToString()), Double.Parse(row.Cells["UCaFlatStd"].Value.ToString()));
@@ -206,7 +206,9 @@ namespace VisualTrack
 
                         UCa = U / Ca;
 
-                        UCa_std = Calc_UCa_std(U,Ca,U_std,Ca_std);
+                        //UCa_std = (Calc_UCa_std(U,Ca,U_std,Ca_std)/UCa)*(UCa* 1000000);
+                        UCa_std = Calc_UCa_std(U, Ca, U_std, Ca_std); 
+                        //UCa = UCa * 1000000;
 
                         //Name, U, U std, Ca, Ca std, Trcs, S, U/Ca, U/Ca std
                         zetaTable.Rows.Add(line[0], U.ToString("E3"), U_std.ToString("E3"), Ca.ToString("E3"), Ca_std.ToString("E3"),   
@@ -247,7 +249,7 @@ namespace VisualTrack
 
         private double FindZeta(double yr1,double DurAgeMa, double PW, double Tracks)
         {
-            return PW * Math.Exp(yr1*DurAgeMa-1)/(Tracks*yr1);
+            return PW * (Math.Exp(yr1* 1000000 * DurAgeMa)-1)/(Tracks*yr1);
         }
 
         private double ZetaSTD(double zeta, double yr1, double DurAgeMa, double DurAge_std, double PW, double PW_std, double Tracks)
@@ -286,7 +288,7 @@ namespace VisualTrack
 
                 //row.Cells["UCaFlat"].Value
                 
-                PW = Double.Parse(row.Cells["UCaFlat"].Value.ToString()) * Double.Parse(row.Cells["S"].Value.ToString());
+                PW = Double.Parse(row.Cells["UCaFlat"].Value.ToString())*132.704 * Double.Parse(row.Cells["S"].Value.ToString());
                 Track = Double.Parse(row.Cells["Trs"].Value.ToString());
 
                 PW_std = PW*Double.Parse(row.Cells["UCaFlatStd"].Value.ToString())/ Double.Parse(row.Cells["UCaFlat"].Value.ToString());

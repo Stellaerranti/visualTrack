@@ -1,29 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Home\\Documents\\GitHub\\visualTrack\\VisualTrack\\",
+  "WorkspaceRootPath": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|C:\\Users\\Home\\Documents\\GitHub\\visualTrack\\VisualTrack\\visualtrack\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\visualtrack\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|solutionrelative:visualtrack\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|c:\\users\\home\\documents\\github\\visualtrack\\visualtrack\\visualtrack\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|solutionrelative:visualtrack\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|c:\\users\\home\\documents\\github\\visualtrack\\visualtrack\\visualtrack\\options.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|c:\\users\\rudko\\documents\\github\\visualtrack\\visualtrack\\visualtrack\\options.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|solutionrelative:visualtrack\\options.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|c:\\users\\home\\documents\\github\\visualtrack\\visualtrack\\visualtrack\\options.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\visualtrack\\options.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|solutionrelative:visualtrack\\options.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|VisualTrack||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\visualtrack\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|solutionrelative:visualtrack\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|c:\\users\\home\\documents\\github\\visualtrack\\visualtrack\\visualtrack\\properties\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}",
-      "RelativeMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|solutionrelative:visualtrack\\properties\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}"
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|VisualTrack||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -37,11 +33,11 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "options.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "C:\\Users\\Home\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\options.cs",
+              "DocumentMoniker": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\options.cs",
               "RelativeDocumentMoniker": "VisualTrack\\options.cs",
-              "ToolTip": "C:\\Users\\Home\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\options.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "ToolTip": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\options.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "RelativeToolTip": "VisualTrack\\options.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-02T15:19:04.493Z",
@@ -49,13 +45,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "options.cs",
-              "DocumentMoniker": "C:\\Users\\Home\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\options.cs",
+              "DocumentMoniker": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\options.cs",
               "RelativeDocumentMoniker": "VisualTrack\\options.cs",
-              "ToolTip": "C:\\Users\\Home\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\options.cs",
+              "ToolTip": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\options.cs",
               "RelativeToolTip": "VisualTrack\\options.cs",
-              "ViewState": "AQIAACoAAAAAAAAAAAAAAEUAAAAQAAAA",
+              "ViewState": "AQIAABYAAAAAAAAAAAAgwEUAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-02T15:20:02.998Z",
               "EditorCaption": ""
@@ -64,22 +60,21 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "VisualTrack",
-              "DocumentMoniker": "C:\\Users\\Home\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\VisualTrack.csproj",
+              "DocumentMoniker": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\VisualTrack.csproj",
               "RelativeDocumentMoniker": "VisualTrack\\VisualTrack.csproj",
-              "ToolTip": "C:\\Users\\Home\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\VisualTrack.csproj",
+              "ToolTip": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\VisualTrack.csproj",
               "RelativeToolTip": "VisualTrack\\VisualTrack.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-04-02T15:12:38.874Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-02T15:12:38.874Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "C:\\Users\\Home\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\Form1.cs",
               "RelativeDocumentMoniker": "VisualTrack\\Form1.cs",
-              "ToolTip": "C:\\Users\\Home\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "VisualTrack\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "ToolTip": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
+              "RelativeToolTip": "VisualTrack\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-21T11:22:51.639Z",
               "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
@@ -88,11 +83,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\Home\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\Form1.cs",
               "RelativeDocumentMoniker": "VisualTrack\\Form1.cs",
-              "ToolTip": "C:\\Users\\Home\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\Form1.cs",
-              "RelativeToolTip": "VisualTrack\\Form1.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAAAAGwBAAAkAAAA",
+              "ToolTip": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\Form1.cs*",
+              "RelativeToolTip": "VisualTrack\\Form1.cs*",
+              "ViewState": "AQIAAAgBAAAAAAAAAAAIwCMBAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-19T10:48:02.671Z",
               "EditorCaption": ""

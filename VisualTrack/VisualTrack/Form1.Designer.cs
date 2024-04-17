@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ImportZeta = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripImport = new System.Windows.Forms.ToolStripButton();
@@ -293,47 +293,47 @@
             // 
             // UCaChart
             // 
-            chartArea5.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea5.AlignWithChartArea = "ChartArea2";
-            chartArea5.Name = "ChartArea1";
-            chartArea6.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea6.BorderColor = System.Drawing.Color.Bisque;
-            chartArea6.Name = "ChartArea2";
-            this.UCaChart.ChartAreas.Add(chartArea5);
-            this.UCaChart.ChartAreas.Add(chartArea6);
+            chartArea1.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea1.AlignWithChartArea = "ChartArea2";
+            chartArea1.Name = "ChartArea1";
+            chartArea2.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea2.BorderColor = System.Drawing.Color.Bisque;
+            chartArea2.Name = "ChartArea2";
+            this.UCaChart.ChartAreas.Add(chartArea1);
+            this.UCaChart.ChartAreas.Add(chartArea2);
             this.UCaChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend3.Enabled = false;
-            legend3.Name = "Legend1";
-            this.UCaChart.Legends.Add(legend3);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.UCaChart.Legends.Add(legend1);
             this.UCaChart.Location = new System.Drawing.Point(3, 3);
             this.UCaChart.Name = "UCaChart";
-            series11.ChartArea = "ChartArea1";
-            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series11.Legend = "Legend1";
-            series11.Name = "UCaSeries";
-            series12.ChartArea = "ChartArea1";
-            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series12.Legend = "Legend1";
-            series12.Name = "UCaError";
-            series12.YValuesPerPoint = 3;
-            series13.ChartArea = "ChartArea1";
-            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series13.Legend = "Legend1";
-            series13.Name = "FittingLine";
-            series14.ChartArea = "ChartArea2";
-            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series14.Legend = "Legend1";
-            series14.Name = "UCaFlat";
-            series15.ChartArea = "ChartArea2";
-            series15.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series15.Legend = "Legend1";
-            series15.Name = "UCaFlatError";
-            series15.YValuesPerPoint = 3;
-            this.UCaChart.Series.Add(series11);
-            this.UCaChart.Series.Add(series12);
-            this.UCaChart.Series.Add(series13);
-            this.UCaChart.Series.Add(series14);
-            this.UCaChart.Series.Add(series15);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.Legend = "Legend1";
+            series1.Name = "UCaSeries";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series2.Legend = "Legend1";
+            series2.Name = "UCaError";
+            series2.YValuesPerPoint = 3;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "FittingLine";
+            series4.ChartArea = "ChartArea2";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series4.Legend = "Legend1";
+            series4.Name = "UCaFlat";
+            series5.ChartArea = "ChartArea2";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series5.Legend = "Legend1";
+            series5.Name = "UCaFlatError";
+            series5.YValuesPerPoint = 3;
+            this.UCaChart.Series.Add(series1);
+            this.UCaChart.Series.Add(series2);
+            this.UCaChart.Series.Add(series3);
+            this.UCaChart.Series.Add(series4);
+            this.UCaChart.Series.Add(series5);
             this.UCaChart.Size = new System.Drawing.Size(1199, 390);
             this.UCaChart.TabIndex = 1;
             this.UCaChart.Text = "chart1";
@@ -390,27 +390,30 @@
             // 
             // DurangoAgeText
             // 
+            this.DurangoAgeText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DurangoAgeText.Location = new System.Drawing.Point(6, 41);
             this.DurangoAgeText.Name = "DurangoAgeText";
-            this.DurangoAgeText.Size = new System.Drawing.Size(56, 20);
+            this.DurangoAgeText.Size = new System.Drawing.Size(93, 20);
             this.DurangoAgeText.TabIndex = 4;
             this.DurangoAgeText.Text = "0";
             this.DurangoAgeText.TextChanged += new System.EventHandler(this.DurangoAgeText_TextChanged);
             // 
             // DurangoErrText
             // 
+            this.DurangoErrText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DurangoErrText.Location = new System.Drawing.Point(6, 76);
             this.DurangoErrText.Name = "DurangoErrText";
-            this.DurangoErrText.Size = new System.Drawing.Size(56, 20);
+            this.DurangoErrText.Size = new System.Drawing.Size(93, 20);
             this.DurangoErrText.TabIndex = 5;
             this.DurangoErrText.Text = "0";
             this.DurangoErrText.TextChanged += new System.EventHandler(this.DurangoErrText_TextChanged);
             // 
             // yr1Text
             // 
+            this.yr1Text.Dock = System.Windows.Forms.DockStyle.Fill;
             this.yr1Text.Location = new System.Drawing.Point(6, 111);
             this.yr1Text.Name = "yr1Text";
-            this.yr1Text.Size = new System.Drawing.Size(56, 20);
+            this.yr1Text.Size = new System.Drawing.Size(93, 20);
             this.yr1Text.TabIndex = 6;
             this.yr1Text.Text = "0";
             this.yr1Text.TextChanged += new System.EventHandler(this.yr1Text_TextChanged);

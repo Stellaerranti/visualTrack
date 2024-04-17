@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.SettingsBox = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.standartDimBox = new System.Windows.Forms.ComboBox();
-            this.dimTextBox = new System.Windows.Forms.TextBox();
-            this.saveOptionsButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.dimTextBox = new System.Windows.Forms.TextBox();
+            this.saveOptionsButton = new System.Windows.Forms.Button();
+            this.SettingsBox = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
@@ -55,21 +55,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(270, 106);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // SettingsBox
-            // 
-            this.SettingsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SettingsBox.FormattingEnabled = true;
-            this.SettingsBox.Items.AddRange(new object[] {
-            "U",
-            "Ca",
-            "S",
-            "Tracks"});
-            this.SettingsBox.Location = new System.Drawing.Point(5, 5);
-            this.SettingsBox.Name = "SettingsBox";
-            this.SettingsBox.Size = new System.Drawing.Size(60, 96);
-            this.SettingsBox.TabIndex = 2;
-            this.SettingsBox.SelectedIndexChanged += new System.EventHandler(this.SettingsBox_SelectedIndexChanged);
             // 
             // tableLayoutPanel3
             // 
@@ -104,25 +89,6 @@
             this.standartDimBox.TabIndex = 3;
             this.standartDimBox.SelectedIndexChanged += new System.EventHandler(this.standartDimBox_SelectedIndexChanged);
             // 
-            // dimTextBox
-            // 
-            this.dimTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dimTextBox.Location = new System.Drawing.Point(97, 36);
-            this.dimTextBox.Name = "dimTextBox";
-            this.dimTextBox.Size = new System.Drawing.Size(84, 20);
-            this.dimTextBox.TabIndex = 4;
-            // 
-            // saveOptionsButton
-            // 
-            this.saveOptionsButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.saveOptionsButton.Location = new System.Drawing.Point(97, 67);
-            this.saveOptionsButton.Name = "saveOptionsButton";
-            this.saveOptionsButton.Size = new System.Drawing.Size(84, 24);
-            this.saveOptionsButton.TabIndex = 5;
-            this.saveOptionsButton.Text = "Save";
-            this.saveOptionsButton.UseVisualStyleBackColor = true;
-            this.saveOptionsButton.Click += new System.EventHandler(this.saveOptionsButton_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -142,6 +108,40 @@
             this.label2.Size = new System.Drawing.Size(84, 29);
             this.label2.TabIndex = 7;
             this.label2.Text = "Manual";
+            // 
+            // dimTextBox
+            // 
+            this.dimTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dimTextBox.Location = new System.Drawing.Point(97, 36);
+            this.dimTextBox.Name = "dimTextBox";
+            this.dimTextBox.Size = new System.Drawing.Size(84, 20);
+            this.dimTextBox.TabIndex = 4;
+            // 
+            // saveOptionsButton
+            // 
+            this.saveOptionsButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.saveOptionsButton.Location = new System.Drawing.Point(97, 67);
+            this.saveOptionsButton.Name = "saveOptionsButton";
+            this.saveOptionsButton.Size = new System.Drawing.Size(84, 24);
+            this.saveOptionsButton.TabIndex = 5;
+            this.saveOptionsButton.Text = "Save";
+            this.saveOptionsButton.UseVisualStyleBackColor = true;
+            this.saveOptionsButton.Click += new System.EventHandler(this.saveOptionsButton_Click);
+            // 
+            // SettingsBox
+            // 
+            this.SettingsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SettingsBox.FormattingEnabled = true;
+            this.SettingsBox.Items.AddRange(new object[] {
+            "U",
+            "Ca",
+            "S",
+            "Tracks"});
+            this.SettingsBox.Location = new System.Drawing.Point(5, 5);
+            this.SettingsBox.Name = "SettingsBox";
+            this.SettingsBox.Size = new System.Drawing.Size(60, 96);
+            this.SettingsBox.TabIndex = 2;
+            this.SettingsBox.SelectedIndexChanged += new System.EventHandler(this.SettingsBox_SelectedIndexChanged);
             // 
             // options
             // 
