@@ -133,6 +133,7 @@ namespace VisualTrack
             return (xsq_sum*y_sum-xy_sum*x_sum) / (N * xsq_sum - x_sum * x_sum);
         }
 
+        //Flattering UCA chart
         private void FlattUCa()
 
 
@@ -159,6 +160,7 @@ namespace VisualTrack
 
         }
 
+        //Reading file
         private void readFile()
         {
             if (ImportZeta.ShowDialog() == DialogResult.Cancel) { return; }
@@ -223,6 +225,18 @@ namespace VisualTrack
             catch
             {
                 MessageBox.Show("Error while reading file at line " + (ni + 1).ToString());
+            }
+        }
+
+        //reading from Data grid and plotting charts
+        private void update()
+        {
+            
+
+            foreach (DataGridViewRow row in zetaTable.Rows)
+            {
+                DrawUCa(row.Index + 1, Double.Parse(row.Cells["UCa"].Value.ToString()), Double.Parse(row.Cells["UCastd"].Value.ToString()));
+
             }
         }
 
@@ -314,7 +328,7 @@ namespace VisualTrack
 
         }
 
-        //import file
+        //Dead function
         private void button1_Click(object sender, EventArgs e)
         {
             
@@ -364,6 +378,7 @@ namespace VisualTrack
             option_window.Show();
         }
 
+        //Currently offline
         public void optionsChanged()
         {
             try
@@ -448,6 +463,36 @@ namespace VisualTrack
 
             }
             catch { }
+        }
+
+        private void calculateZeta_Click(object sender, EventArgs e)
+        {
+            if (CheckZetaInput())
+            {
+                ZetaCalc();
+            }
+        }
+
+        private void deleteRow_Click(object sender, EventArgs e)
+        {
+            UCaChart.Series["UCaError"].Points.Clear();
+            UCaChart.Series["UCaSeries"].Points.Clear();
+
+            UCaChart.Series["UCaFlatError"].Points.Clear();
+            UCaChart.Series["UCaFlat"].Points.Clear();
+
+            UCaChart.Series["FittingLine"].Points.Clear();
+
+            zetaTable.Rows.RemoveAt(zetaTable.CurrentCell.RowIndex);
+
+            update();
+
+            FlattUCa();
+
+            if (CheckZetaInput())
+            {
+                ZetaCalc();
+            }
         }
     }
 }

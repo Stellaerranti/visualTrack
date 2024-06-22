@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ImportZeta = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripImport = new System.Windows.Forms.ToolStripButton();
@@ -62,6 +62,7 @@
             this.Zeta_col_std = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UCaChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.yr1Text = new System.Windows.Forms.TextBox();
             this.fileLabel = new System.Windows.Forms.Label();
             this.DurangoAgeText = new System.Windows.Forms.TextBox();
             this.DurangoErrText = new System.Windows.Forms.TextBox();
@@ -75,11 +76,12 @@
             this.label8 = new System.Windows.Forms.Label();
             this.zetaLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.zetaErrLabel = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.calculateZeta = new System.Windows.Forms.Button();
+            this.zetaErrLabel = new System.Windows.Forms.Label();
+            this.deleteRow = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.yr1Text = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -120,6 +122,7 @@
             this.optiondButton.Name = "optiondButton";
             this.optiondButton.Size = new System.Drawing.Size(53, 22);
             this.optiondButton.Text = "Options";
+            this.optiondButton.Visible = false;
             this.optiondButton.Click += new System.EventHandler(this.optiondButton_Click);
             // 
             // tableLayoutPanel4
@@ -293,47 +296,47 @@
             // 
             // UCaChart
             // 
-            chartArea3.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea3.AlignWithChartArea = "ChartArea2";
-            chartArea3.Name = "ChartArea1";
-            chartArea4.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea4.BorderColor = System.Drawing.Color.Bisque;
-            chartArea4.Name = "ChartArea2";
-            this.UCaChart.ChartAreas.Add(chartArea3);
-            this.UCaChart.ChartAreas.Add(chartArea4);
+            chartArea5.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea5.AlignWithChartArea = "ChartArea2";
+            chartArea5.Name = "ChartArea1";
+            chartArea6.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea6.BorderColor = System.Drawing.Color.Bisque;
+            chartArea6.Name = "ChartArea2";
+            this.UCaChart.ChartAreas.Add(chartArea5);
+            this.UCaChart.ChartAreas.Add(chartArea6);
             this.UCaChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.UCaChart.Legends.Add(legend2);
+            legend3.Enabled = false;
+            legend3.Name = "Legend1";
+            this.UCaChart.Legends.Add(legend3);
             this.UCaChart.Location = new System.Drawing.Point(3, 3);
             this.UCaChart.Name = "UCaChart";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series6.Legend = "Legend1";
-            series6.Name = "UCaSeries";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series7.Legend = "Legend1";
-            series7.Name = "UCaError";
-            series7.YValuesPerPoint = 3;
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series8.Legend = "Legend1";
-            series8.Name = "FittingLine";
-            series9.ChartArea = "ChartArea2";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series9.Legend = "Legend1";
-            series9.Name = "UCaFlat";
-            series10.ChartArea = "ChartArea2";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series10.Legend = "Legend1";
-            series10.Name = "UCaFlatError";
-            series10.YValuesPerPoint = 3;
-            this.UCaChart.Series.Add(series6);
-            this.UCaChart.Series.Add(series7);
-            this.UCaChart.Series.Add(series8);
-            this.UCaChart.Series.Add(series9);
-            this.UCaChart.Series.Add(series10);
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series11.Legend = "Legend1";
+            series11.Name = "UCaSeries";
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series12.Legend = "Legend1";
+            series12.Name = "UCaError";
+            series12.YValuesPerPoint = 3;
+            series13.ChartArea = "ChartArea1";
+            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series13.Legend = "Legend1";
+            series13.Name = "FittingLine";
+            series14.ChartArea = "ChartArea2";
+            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series14.Legend = "Legend1";
+            series14.Name = "UCaFlat";
+            series15.ChartArea = "ChartArea2";
+            series15.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series15.Legend = "Legend1";
+            series15.Name = "UCaFlatError";
+            series15.YValuesPerPoint = 3;
+            this.UCaChart.Series.Add(series11);
+            this.UCaChart.Series.Add(series12);
+            this.UCaChart.Series.Add(series13);
+            this.UCaChart.Series.Add(series14);
+            this.UCaChart.Series.Add(series15);
             this.UCaChart.Size = new System.Drawing.Size(1199, 390);
             this.UCaChart.TabIndex = 1;
             this.UCaChart.Text = "chart1";
@@ -358,25 +361,38 @@
             this.tableLayoutPanel3.Controls.Add(this.label8, 1, 6);
             this.tableLayoutPanel3.Controls.Add(this.zetaLabel, 0, 8);
             this.tableLayoutPanel3.Controls.Add(this.label6, 1, 8);
-            this.tableLayoutPanel3.Controls.Add(this.zetaErrLabel, 0, 9);
             this.tableLayoutPanel3.Controls.Add(this.label10, 1, 9);
             this.tableLayoutPanel3.Controls.Add(this.label5, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.calculateZeta, 1, 10);
+            this.tableLayoutPanel3.Controls.Add(this.zetaErrLabel, 1, 4);
+            this.tableLayoutPanel3.Controls.Add(this.deleteRow, 0, 10);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(1214, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 10;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.09082F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.182644F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(208, 355);
+            this.tableLayoutPanel3.RowCount = 11;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.10581F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.10581F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.10581F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.10581F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.10581F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.10581F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.10581F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.10581F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.10581F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.023855F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.023855F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(208, 322);
             this.tableLayoutPanel3.TabIndex = 2;
+            // 
+            // yr1Text
+            // 
+            this.yr1Text.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.yr1Text.Location = new System.Drawing.Point(6, 93);
+            this.yr1Text.Name = "yr1Text";
+            this.yr1Text.Size = new System.Drawing.Size(93, 20);
+            this.yr1Text.TabIndex = 22;
+            this.yr1Text.Text = "0";
+            this.yr1Text.TextChanged += new System.EventHandler(this.yr1Text_TextChanged);
             // 
             // fileLabel
             // 
@@ -384,14 +400,14 @@
             this.fileLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fileLabel.Location = new System.Drawing.Point(108, 3);
             this.fileLabel.Name = "fileLabel";
-            this.fileLabel.Size = new System.Drawing.Size(94, 32);
+            this.fileLabel.Size = new System.Drawing.Size(94, 26);
             this.fileLabel.TabIndex = 3;
             this.fileLabel.Text = "-";
             // 
             // DurangoAgeText
             // 
             this.DurangoAgeText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DurangoAgeText.Location = new System.Drawing.Point(6, 41);
+            this.DurangoAgeText.Location = new System.Drawing.Point(6, 35);
             this.DurangoAgeText.Name = "DurangoAgeText";
             this.DurangoAgeText.Size = new System.Drawing.Size(93, 20);
             this.DurangoAgeText.TabIndex = 4;
@@ -401,7 +417,7 @@
             // DurangoErrText
             // 
             this.DurangoErrText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DurangoErrText.Location = new System.Drawing.Point(6, 76);
+            this.DurangoErrText.Location = new System.Drawing.Point(6, 64);
             this.DurangoErrText.Name = "DurangoErrText";
             this.DurangoErrText.Size = new System.Drawing.Size(93, 20);
             this.DurangoErrText.TabIndex = 5;
@@ -411,7 +427,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(108, 38);
+            this.label1.Location = new System.Drawing.Point(108, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 13);
             this.label1.TabIndex = 7;
@@ -420,7 +436,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(108, 73);
+            this.label2.Location = new System.Drawing.Point(108, 61);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 13);
             this.label2.TabIndex = 8;
@@ -429,7 +445,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(108, 108);
+            this.label3.Location = new System.Drawing.Point(108, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(24, 13);
             this.label3.TabIndex = 9;
@@ -438,7 +454,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 143);
+            this.label4.Location = new System.Drawing.Point(6, 119);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 10;
@@ -447,7 +463,7 @@
             // SlopeLabel
             // 
             this.SlopeLabel.AutoSize = true;
-            this.SlopeLabel.Location = new System.Drawing.Point(6, 178);
+            this.SlopeLabel.Location = new System.Drawing.Point(6, 148);
             this.SlopeLabel.Name = "SlopeLabel";
             this.SlopeLabel.Size = new System.Drawing.Size(10, 13);
             this.SlopeLabel.TabIndex = 11;
@@ -456,7 +472,7 @@
             // InterseptLabel
             // 
             this.InterseptLabel.AutoSize = true;
-            this.InterseptLabel.Location = new System.Drawing.Point(6, 213);
+            this.InterseptLabel.Location = new System.Drawing.Point(6, 177);
             this.InterseptLabel.Name = "InterseptLabel";
             this.InterseptLabel.Size = new System.Drawing.Size(10, 13);
             this.InterseptLabel.TabIndex = 12;
@@ -465,7 +481,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(108, 178);
+            this.label7.Location = new System.Drawing.Point(108, 148);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(34, 13);
             this.label7.TabIndex = 13;
@@ -474,7 +490,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(108, 213);
+            this.label8.Location = new System.Drawing.Point(108, 177);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(48, 13);
             this.label8.TabIndex = 14;
@@ -483,7 +499,7 @@
             // zetaLabel
             // 
             this.zetaLabel.AutoSize = true;
-            this.zetaLabel.Location = new System.Drawing.Point(6, 283);
+            this.zetaLabel.Location = new System.Drawing.Point(6, 235);
             this.zetaLabel.Name = "zetaLabel";
             this.zetaLabel.Size = new System.Drawing.Size(10, 13);
             this.zetaLabel.TabIndex = 15;
@@ -492,25 +508,16 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(108, 283);
+            this.label6.Location = new System.Drawing.Point(108, 235);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(29, 13);
             this.label6.TabIndex = 16;
             this.label6.Text = "Zeta";
             // 
-            // zetaErrLabel
-            // 
-            this.zetaErrLabel.AutoSize = true;
-            this.zetaErrLabel.Location = new System.Drawing.Point(6, 318);
-            this.zetaErrLabel.Name = "zetaErrLabel";
-            this.zetaErrLabel.Size = new System.Drawing.Size(10, 13);
-            this.zetaErrLabel.TabIndex = 17;
-            this.zetaErrLabel.Text = "-";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(108, 318);
+            this.label10.Location = new System.Drawing.Point(108, 264);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(46, 13);
             this.label10.TabIndex = 18;
@@ -522,9 +529,40 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Location = new System.Drawing.Point(6, 3);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 32);
+            this.label5.Size = new System.Drawing.Size(93, 26);
             this.label5.TabIndex = 19;
             this.label5.Text = "File:";
+            // 
+            // calculateZeta
+            // 
+            this.calculateZeta.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.calculateZeta.Location = new System.Drawing.Point(108, 295);
+            this.calculateZeta.Name = "calculateZeta";
+            this.calculateZeta.Size = new System.Drawing.Size(94, 21);
+            this.calculateZeta.TabIndex = 23;
+            this.calculateZeta.Text = "Get Zeta";
+            this.calculateZeta.UseVisualStyleBackColor = true;
+            this.calculateZeta.Click += new System.EventHandler(this.calculateZeta_Click);
+            // 
+            // zetaErrLabel
+            // 
+            this.zetaErrLabel.AutoSize = true;
+            this.zetaErrLabel.Location = new System.Drawing.Point(108, 119);
+            this.zetaErrLabel.Name = "zetaErrLabel";
+            this.zetaErrLabel.Size = new System.Drawing.Size(10, 13);
+            this.zetaErrLabel.TabIndex = 17;
+            this.zetaErrLabel.Text = "-";
+            // 
+            // deleteRow
+            // 
+            this.deleteRow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.deleteRow.Location = new System.Drawing.Point(6, 295);
+            this.deleteRow.Name = "deleteRow";
+            this.deleteRow.Size = new System.Drawing.Size(93, 21);
+            this.deleteRow.TabIndex = 24;
+            this.deleteRow.Text = "Delete row";
+            this.deleteRow.UseVisualStyleBackColor = true;
+            this.deleteRow.Click += new System.EventHandler(this.deleteRow_Click);
             // 
             // tabPage2
             // 
@@ -535,16 +573,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // yr1Text
-            // 
-            this.yr1Text.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.yr1Text.Location = new System.Drawing.Point(6, 111);
-            this.yr1Text.Name = "yr1Text";
-            this.yr1Text.Size = new System.Drawing.Size(93, 20);
-            this.yr1Text.TabIndex = 22;
-            this.yr1Text.Text = "0";
-            this.yr1Text.TextChanged += new System.EventHandler(this.yr1Text_TextChanged);
             // 
             // Form1
             // 
@@ -616,6 +644,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripButton optiondButton;
         private System.Windows.Forms.TextBox yr1Text;
+        private System.Windows.Forms.Button calculateZeta;
+        private System.Windows.Forms.Button deleteRow;
     }
 }
 
