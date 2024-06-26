@@ -82,6 +82,10 @@
             this.zetaErrLabel = new System.Windows.Forms.Label();
             this.deleteRow = new System.Windows.Forms.Button();
             this.age = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.DurangoTestGrid = new System.Windows.Forms.DataGridView();
+            this.AgeGrid = new System.Windows.Forms.DataGridView();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -91,6 +95,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.zetaTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UCaChart)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
+            this.age.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DurangoTestGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AgeGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -566,6 +575,7 @@
             // 
             // age
             // 
+            this.age.Controls.Add(this.tableLayoutPanel5);
             this.age.Location = new System.Drawing.Point(4, 22);
             this.age.Name = "age";
             this.age.Padding = new System.Windows.Forms.Padding(3);
@@ -573,6 +583,53 @@
             this.age.TabIndex = 1;
             this.age.Text = "Age";
             this.age.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 0, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1425, 798);
+            this.tableLayoutPanel5.TabIndex = 0;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.DurangoTestGrid, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.AgeGrid, 0, 1);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(1205, 792);
+            this.tableLayoutPanel6.TabIndex = 0;
+            // 
+            // DurangoTestGrid
+            // 
+            this.DurangoTestGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DurangoTestGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DurangoTestGrid.Location = new System.Drawing.Point(3, 3);
+            this.DurangoTestGrid.Name = "DurangoTestGrid";
+            this.DurangoTestGrid.Size = new System.Drawing.Size(1199, 390);
+            this.DurangoTestGrid.TabIndex = 0;
+            // 
+            // AgeGrid
+            // 
+            this.AgeGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.AgeGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AgeGrid.Location = new System.Drawing.Point(3, 399);
+            this.AgeGrid.Name = "AgeGrid";
+            this.AgeGrid.Size = new System.Drawing.Size(1199, 390);
+            this.AgeGrid.TabIndex = 1;
             // 
             // Form1
             // 
@@ -595,6 +652,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.UCaChart)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.age.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DurangoTestGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AgeGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -646,6 +708,10 @@
         private System.Windows.Forms.TextBox yr1Text;
         private System.Windows.Forms.Button calculateZeta;
         private System.Windows.Forms.Button deleteRow;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.DataGridView DurangoTestGrid;
+        private System.Windows.Forms.DataGridView AgeGrid;
     }
 }
 
