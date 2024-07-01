@@ -475,24 +475,36 @@ namespace VisualTrack
 
         private void deleteRow_Click(object sender, EventArgs e)
         {
-            UCaChart.Series["UCaError"].Points.Clear();
-            UCaChart.Series["UCaSeries"].Points.Clear();
-
-            UCaChart.Series["UCaFlatError"].Points.Clear();
-            UCaChart.Series["UCaFlat"].Points.Clear();
-
-            UCaChart.Series["FittingLine"].Points.Clear();
-
-            zetaTable.Rows.RemoveAt(zetaTable.CurrentCell.RowIndex);
-
-            update();
-
-            FlattUCa();
-
-            if (CheckZetaInput())
+            try
             {
-                ZetaCalc();
+
+                zetaTable.Rows.RemoveAt(zetaTable.CurrentCell.RowIndex);
+
+                UCaChart.Series["UCaError"].Points.Clear();
+                UCaChart.Series["UCaSeries"].Points.Clear();
+
+                UCaChart.Series["UCaFlatError"].Points.Clear();
+                UCaChart.Series["UCaFlat"].Points.Clear();
+
+                UCaChart.Series["FittingLine"].Points.Clear();
+
+                update();
+
+                FlattUCa();
+
+                if (CheckZetaInput())
+                {
+                    ZetaCalc();
+                }
             }
+            catch { }
+        }
+
+        private void ageImport_Click(object sender, EventArgs e)
+        {
+            
+            
+                 
         }
     }
 }
