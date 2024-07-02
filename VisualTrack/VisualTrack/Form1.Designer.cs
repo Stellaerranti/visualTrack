@@ -29,18 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ImportZeta = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripImport = new System.Windows.Forms.ToolStripButton();
             this.optiondButton = new System.Windows.Forms.ToolStripButton();
+            this.ageImport = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Zeta = new System.Windows.Forms.TabPage();
@@ -83,14 +84,22 @@
             this.deleteRow = new System.Windows.Forms.Button();
             this.age = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.ageImport = new System.Windows.Forms.ToolStripButton();
+            this.TestGrid = new System.Windows.Forms.DataGridView();
+            this.rawUCa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCaD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TestDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AgeGrid = new System.Windows.Forms.DataGridView();
-            this.DurangoTestGrid = new System.Windows.Forms.DataGridView();
             this.SampleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UstdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CaDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CastdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCaDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCastdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PiQi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PiQistd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sigma = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -102,8 +111,8 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.age.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TestGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AgeGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DurangoTestGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -138,6 +147,16 @@
             this.optiondButton.Text = "Options";
             this.optiondButton.Visible = false;
             this.optiondButton.Click += new System.EventHandler(this.optiondButton_Click);
+            // 
+            // ageImport
+            // 
+            this.ageImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ageImport.Image = ((System.Drawing.Image)(resources.GetObject("ageImport.Image")));
+            this.ageImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ageImport.Name = "ageImport";
+            this.ageImport.Size = new System.Drawing.Size(72, 22);
+            this.ageImport.Text = "Import age ";
+            this.ageImport.Click += new System.EventHandler(this.ageImport_Click);
             // 
             // tableLayoutPanel4
             // 
@@ -310,47 +329,47 @@
             // 
             // UCaChart
             // 
-            chartArea3.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea3.AlignWithChartArea = "ChartArea2";
-            chartArea3.Name = "ChartArea1";
-            chartArea4.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea4.BorderColor = System.Drawing.Color.Bisque;
-            chartArea4.Name = "ChartArea2";
-            this.UCaChart.ChartAreas.Add(chartArea3);
-            this.UCaChart.ChartAreas.Add(chartArea4);
+            chartArea1.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea1.AlignWithChartArea = "ChartArea2";
+            chartArea1.Name = "ChartArea1";
+            chartArea2.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea2.BorderColor = System.Drawing.Color.Bisque;
+            chartArea2.Name = "ChartArea2";
+            this.UCaChart.ChartAreas.Add(chartArea1);
+            this.UCaChart.ChartAreas.Add(chartArea2);
             this.UCaChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.UCaChart.Legends.Add(legend2);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.UCaChart.Legends.Add(legend1);
             this.UCaChart.Location = new System.Drawing.Point(3, 3);
             this.UCaChart.Name = "UCaChart";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series6.Legend = "Legend1";
-            series6.Name = "UCaSeries";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series7.Legend = "Legend1";
-            series7.Name = "UCaError";
-            series7.YValuesPerPoint = 3;
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series8.Legend = "Legend1";
-            series8.Name = "FittingLine";
-            series9.ChartArea = "ChartArea2";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series9.Legend = "Legend1";
-            series9.Name = "UCaFlat";
-            series10.ChartArea = "ChartArea2";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series10.Legend = "Legend1";
-            series10.Name = "UCaFlatError";
-            series10.YValuesPerPoint = 3;
-            this.UCaChart.Series.Add(series6);
-            this.UCaChart.Series.Add(series7);
-            this.UCaChart.Series.Add(series8);
-            this.UCaChart.Series.Add(series9);
-            this.UCaChart.Series.Add(series10);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.Legend = "Legend1";
+            series1.Name = "UCaSeries";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series2.Legend = "Legend1";
+            series2.Name = "UCaError";
+            series2.YValuesPerPoint = 3;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "FittingLine";
+            series4.ChartArea = "ChartArea2";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series4.Legend = "Legend1";
+            series4.Name = "UCaFlat";
+            series5.ChartArea = "ChartArea2";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series5.Legend = "Legend1";
+            series5.Name = "UCaFlatError";
+            series5.YValuesPerPoint = 3;
+            this.UCaChart.Series.Add(series1);
+            this.UCaChart.Series.Add(series2);
+            this.UCaChart.Series.Add(series3);
+            this.UCaChart.Series.Add(series4);
+            this.UCaChart.Series.Add(series5);
             this.UCaChart.Size = new System.Drawing.Size(1199, 390);
             this.UCaChart.TabIndex = 1;
             this.UCaChart.Text = "chart1";
@@ -591,11 +610,12 @@
             // 
             // tableLayoutPanel5
             // 
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
+            this.tableLayoutPanel5.ColumnCount = 3;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel5.Controls.Add(this.AgeGrid, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.DurangoTestGrid, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.TestGrid, 1, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -605,64 +625,128 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(1425, 798);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
-            // ageImport
+            // TestGrid
             // 
-            this.ageImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ageImport.Image = ((System.Drawing.Image)(resources.GetObject("ageImport.Image")));
-            this.ageImport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ageImport.Name = "ageImport";
-            this.ageImport.Size = new System.Drawing.Size(72, 22);
-            this.ageImport.Text = "Import age ";
-            this.ageImport.Click += new System.EventHandler(this.ageImport_Click);
+            this.TestGrid.AllowUserToAddRows = false;
+            this.TestGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TestGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.rawUCa,
+            this.UCaD,
+            this.TestDur});
+            this.TestGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TestGrid.Location = new System.Drawing.Point(929, 402);
+            this.TestGrid.Name = "TestGrid";
+            this.TestGrid.RowHeadersVisible = false;
+            this.TestGrid.Size = new System.Drawing.Size(279, 393);
+            this.TestGrid.TabIndex = 5;
+            // 
+            // rawUCa
+            // 
+            this.rawUCa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.rawUCa.HeaderText = "raw U/Ca";
+            this.rawUCa.Name = "rawUCa";
+            // 
+            // UCaD
+            // 
+            this.UCaD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCaD.HeaderText = "U/Ca";
+            this.UCaD.Name = "UCaD";
+            // 
+            // TestDur
+            // 
+            this.TestDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TestDur.HeaderText = "Test";
+            this.TestDur.Name = "TestDur";
             // 
             // AgeGrid
             // 
+            this.AgeGrid.AllowUserToAddRows = false;
             this.AgeGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AgeGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AgeGrid.Location = new System.Drawing.Point(3, 402);
-            this.AgeGrid.Name = "AgeGrid";
-            this.AgeGrid.Size = new System.Drawing.Size(1205, 393);
-            this.AgeGrid.TabIndex = 2;
-            // 
-            // DurangoTestGrid
-            // 
-            this.DurangoTestGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DurangoTestGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.AgeGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SampleName,
             this.UDur,
             this.UstdDur,
             this.CaDur,
-            this.CastdDur});
-            this.DurangoTestGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DurangoTestGrid.Location = new System.Drawing.Point(3, 3);
-            this.DurangoTestGrid.Name = "DurangoTestGrid";
-            this.DurangoTestGrid.Size = new System.Drawing.Size(1205, 393);
-            this.DurangoTestGrid.TabIndex = 3;
+            this.CastdDur,
+            this.UCaDur,
+            this.UCastdDur,
+            this.PiQi,
+            this.PiQistd,
+            this.FT,
+            this.sigma});
+            this.AgeGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AgeGrid.Location = new System.Drawing.Point(3, 402);
+            this.AgeGrid.Name = "AgeGrid";
+            this.AgeGrid.RowHeadersVisible = false;
+            this.AgeGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.AgeGrid.Size = new System.Drawing.Size(920, 393);
+            this.AgeGrid.TabIndex = 6;
             // 
             // SampleName
             // 
+            this.SampleName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.SampleName.HeaderText = "Name";
             this.SampleName.Name = "SampleName";
             // 
             // UDur
             // 
+            this.UDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.UDur.HeaderText = "U";
             this.UDur.Name = "UDur";
             // 
             // UstdDur
             // 
+            this.UstdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.UstdDur.HeaderText = "Ustd";
             this.UstdDur.Name = "UstdDur";
             // 
             // CaDur
             // 
+            this.CaDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CaDur.HeaderText = "Ca";
             this.CaDur.Name = "CaDur";
             // 
             // CastdDur
             // 
+            this.CastdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CastdDur.HeaderText = "Castd";
             this.CastdDur.Name = "CastdDur";
+            // 
+            // UCaDur
+            // 
+            this.UCaDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCaDur.HeaderText = "U/Ca";
+            this.UCaDur.Name = "UCaDur";
+            // 
+            // UCastdDur
+            // 
+            this.UCastdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCastdDur.HeaderText = "U/Ca std";
+            this.UCastdDur.Name = "UCastdDur";
+            // 
+            // PiQi
+            // 
+            this.PiQi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PiQi.HeaderText = "PiQi";
+            this.PiQi.Name = "PiQi";
+            // 
+            // PiQistd
+            // 
+            this.PiQistd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PiQistd.HeaderText = "PiQi std";
+            this.PiQistd.Name = "PiQistd";
+            // 
+            // FT
+            // 
+            this.FT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.FT.HeaderText = "FT";
+            this.FT.Name = "FT";
+            // 
+            // sigma
+            // 
+            this.sigma.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.sigma.HeaderText = "2 sigma";
+            this.sigma.Name = "sigma";
             // 
             // Form1
             // 
@@ -687,8 +771,8 @@
             this.tableLayoutPanel3.PerformLayout();
             this.age.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TestGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AgeGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DurangoTestGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -742,13 +826,22 @@
         private System.Windows.Forms.Button deleteRow;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.ToolStripButton ageImport;
+        private System.Windows.Forms.DataGridView TestGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rawUCa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCaD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TestDur;
         private System.Windows.Forms.DataGridView AgeGrid;
-        private System.Windows.Forms.DataGridView DurangoTestGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn SampleName;
         private System.Windows.Forms.DataGridViewTextBoxColumn UDur;
         private System.Windows.Forms.DataGridViewTextBoxColumn UstdDur;
         private System.Windows.Forms.DataGridViewTextBoxColumn CaDur;
         private System.Windows.Forms.DataGridViewTextBoxColumn CastdDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCaDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCastdDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PiQi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PiQistd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sigma;
     }
 }
 
