@@ -200,11 +200,11 @@ namespace VisualTrack
 
                         string[] line = lines[i].Split(new[] { ' ', '\t' });
 
-                        U = Convert.ToDouble(line[1], provider)*Settings.Default.U_dimension;
-                        Ca = Convert.ToDouble(line[3], provider) * Settings.Default.Ca_dimension;
+                        U = Convert.ToDouble(line[1], provider);
+                        Ca = Convert.ToDouble(line[3], provider);
 
-                        U_std = Convert.ToDouble(line[2], provider) * Settings.Default.U_dimension;
-                        Ca_std = Convert.ToDouble(line[4], provider) * Settings.Default.Ca_dimension;
+                        U_std = Convert.ToDouble(line[2], provider);
+                        Ca_std = Convert.ToDouble(line[4], provider);
 
                         UCa = U / Ca;
 
@@ -214,8 +214,8 @@ namespace VisualTrack
 
                         //Name, U, U std, Ca, Ca std, Trcs, S, U/Ca, U/Ca std
                         zetaTable.Rows.Add(line[0], U.ToString("E3"), U_std.ToString("E3"), Ca.ToString("E3"), Ca_std.ToString("E3"),   
-                            (Convert.ToDouble(line[5], provider) * Settings.Default.Tracks).ToString("E3"),
-                            (Convert.ToDouble(line[6], provider) * Settings.Default.S).ToString("E3"),
+                            (Convert.ToDouble(line[5], provider)).ToString("E3"),
+                            (Convert.ToDouble(line[6], provider)).ToString("E3"),
                             UCa.ToString("E3"), UCa_std.ToString("E3"), 0, 0, 0, 0);
 
                         DrawUCa(i+1,UCa,UCa_std);
@@ -226,6 +226,66 @@ namespace VisualTrack
             {
                 MessageBox.Show("Error while reading file at line " + (ni + 1).ToString());
             }
+        }
+
+        private void readTestFile()
+        {
+            if (ImportTest.ShowDialog() == DialogResult.Cancel) { return; }
+
+            string filename = ImportTest.FileName;
+            int ni = 0;
+
+            try
+            {
+                string[] lines = System.IO.File.ReadAllLines(filename);
+
+                //fileLabel.Text = Path.GetFileName(filename);
+                double U = 0;
+                double Ca = 0;
+                double U_std = 0;
+                double Ca_std = 0;
+
+                double UCa = 0;
+                double UCa_std = 0;
+
+                NumberFormatInfo provider = new NumberFormatInfo();
+                provider.NumberDecimalSeparator = ".";
+
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    ni = i;
+
+                    if (lines[i].Length > 2)
+                    {
+                        while (lines[i].Contains("  ")) { lines[i] = lines[i].Replace("  ", " "); }
+                        while (lines[i].Contains("\t\t")) { lines[i] = lines[i].Replace("\t\t", "\t"); }
+                        while (lines[i].Contains("\t ")) { lines[i] = lines[i].Replace("\t ", "\t"); }
+                        while (lines[i].Contains(" \t")) { lines[i] = lines[i].Replace(" \t", "\t"); }
+                        while (lines[i].Contains(",")) { lines[i] = lines[i].Replace(",", "."); }
+
+                        string[] line = lines[i].Split(new[] { ' ', '\t' });
+
+                        U = Convert.ToDouble(line[1], provider);
+                        Ca = Convert.ToDouble(line[3], provider);
+
+                        U_std = Convert.ToDouble(line[2], provider);
+                        Ca_std = Convert.ToDouble(line[4], provider);
+
+                        UCa = U / Ca;
+
+                        //UCa_std = (Calc_UCa_std(U,Ca,U_std,Ca_std)/UCa)*(UCa* 1000000);
+                        UCa_std = Calc_UCa_std(U, Ca, U_std, Ca_std);
+
+                        TestGrid.Rows.Add(0,U.ToString("E3"), U_std.ToString("E3"),Ca.ToString("E3"),Ca_std.ToString("E3"),UCa.ToString("E3"),UCa_std.ToString("E3"));
+                    }
+                }
+            }
+            catch 
+            {
+                MessageBox.Show("Error while reading file at line " + (ni + 1).ToString());
+            }
+
+
         }
 
         //reading from Data grid and plotting charts
@@ -325,6 +385,7 @@ namespace VisualTrack
 
             zetaLabel.Text = zeta_value.ToString();
             zetaErrLabel.Text = zetaErr_value.ToString();
+
 
         }
 
@@ -500,11 +561,12 @@ namespace VisualTrack
             catch { }
         }
 
+        //Import file for Durango session
         private void ageImport_Click(object sender, EventArgs e)
         {
-            
-            
-                 
+            readTestFile();
+
+
         }
     }
 }
