@@ -160,7 +160,7 @@ namespace VisualTrack
 
         }
 
-        //Reading file
+        //Reading files
         private void readFile()
         {
             if (ImportZeta.ShowDialog() == DialogResult.Cancel) { return; }
@@ -228,6 +228,71 @@ namespace VisualTrack
             }
         }
 
+        private void readSampleFile()
+        {
+            if (ImportSample.ShowDialog() == DialogResult.Cancel) { return; }
+
+            string filename = ImportSample.FileName;
+            int ni = 0;
+            try 
+            {
+
+                string[] lines = System.IO.File.ReadAllLines(filename);
+                //fileLabel.Text = Path.GetFileName(filename);
+                FileSampleLabel.Text = Path.GetFileName(filename);
+
+                double U = 0;
+                double Ca = 0;
+                double U_std = 0;
+                double Ca_std = 0;
+
+                double UCa = 0;
+                double UCa_std = 0;
+
+                NumberFormatInfo provider = new NumberFormatInfo();
+                provider.NumberDecimalSeparator = ".";
+
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    ni = i;
+
+                    if (lines[i].Length > 2)
+                    {
+                        while (lines[i].Contains("  ")) { lines[i] = lines[i].Replace("  ", " "); }
+                        while (lines[i].Contains("\t\t")) { lines[i] = lines[i].Replace("\t\t", "\t"); }
+                        while (lines[i].Contains("\t ")) { lines[i] = lines[i].Replace("\t ", "\t"); }
+                        while (lines[i].Contains(" \t")) { lines[i] = lines[i].Replace(" \t", "\t"); }
+                        while (lines[i].Contains(",")) { lines[i] = lines[i].Replace(",", "."); }
+
+                        string[] line = lines[i].Split(new[] { ' ', '\t' });
+
+                        U = Convert.ToDouble(line[1], provider);
+                        Ca = Convert.ToDouble(line[3], provider);
+
+                        U_std = Convert.ToDouble(line[2], provider);
+                        Ca_std = Convert.ToDouble(line[4], provider);
+
+                        UCa = U / Ca;
+
+                        //UCa_std = (Calc_UCa_std(U,Ca,U_std,Ca_std)/UCa)*(UCa* 1000000);
+                        UCa_std = Calc_UCa_std(U, Ca, U_std, Ca_std);
+                        //UCa = UCa * 1000000;
+
+                        AgeGrid.Rows.Add(line[0], (Convert.ToDouble(line[5], provider)).ToString("E3"), (Convert.ToDouble(line[6], provider)).ToString("E3")
+                            , U.ToString("E3"), U_std.ToString("E3"), Ca.ToString("E3"), Ca_std.ToString("E3"), UCa.ToString("E3"), UCa_std.ToString("E3"),0,0,0,0);
+
+
+                    }
+                }
+
+
+            } 
+            catch 
+            {
+                MessageBox.Show("Error while reading file at line " + (ni + 1).ToString());
+            }
+        }
+
         private void readTestFile()
         {
             if (ImportTest.ShowDialog() == DialogResult.Cancel) { return; }
@@ -287,6 +352,24 @@ namespace VisualTrack
 
 
         }
+        
+
+        //Main age calculation
+
+        private void getWeighted()
+        {
+            
+            double ConvFactor = Double.Parse(ConvFactorLabel.Text);
+
+            foreach(DataGridViewRow row in AgeGrid.Rows)
+            {
+                row.Cells["Weighted"].Value = (ConvFactor * Double.Parse(row.Cells["UCaDur"].Value.ToString())).ToString();
+
+
+            }
+        }
+        
+        //This 4 functions for durango testing
 
         private void getRaw()
         {
@@ -524,10 +607,7 @@ namespace VisualTrack
             readFile();
             FlattUCa();
 
-            if (Double.Parse(TestGrid.Rows[0].Cells[0].Value.ToString()) == 0)
-            {
-                testDurango();
-            }
+
 
         }
 
@@ -665,6 +745,13 @@ namespace VisualTrack
 
             readTestFile();
             testDurango();
+        }
+
+        private void toolStrip_importSample_Click(object sender, EventArgs e)
+        {
+            AgeGrid.Rows.Clear();
+            readSampleFile();
+
         }
     }
 }

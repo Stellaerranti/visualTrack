@@ -85,17 +85,6 @@
             this.age = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.AgeGrid = new System.Windows.Forms.DataGridView();
-            this.SampleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UstdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CaDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CastdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCaDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCastdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PiQi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PiQistd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sigma = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TestGrid = new System.Windows.Forms.DataGridView();
             this.rawUCaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -122,6 +111,24 @@
             this.TestLabel = new System.Windows.Forms.Label();
             this.TestStdLabel = new System.Windows.Forms.Label();
             this.ConvStdLabel = new System.Windows.Forms.Label();
+            this.toolStrip_importSample = new System.Windows.Forms.ToolStripButton();
+            this.SampleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UstdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CaDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CastdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCaDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCastdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Weighted = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Weightedstd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sigma = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImportSample = new System.Windows.Forms.OpenFileDialog();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.FileSampleLabel = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -136,6 +143,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.AgeGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TestGrid)).BeginInit();
             this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -143,7 +151,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripImport,
             this.optiondButton,
-            this.ageTestImport});
+            this.ageTestImport,
+            this.toolStrip_importSample});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1445, 25);
@@ -177,8 +186,8 @@
             this.ageTestImport.Image = ((System.Drawing.Image)(resources.GetObject("ageTestImport.Image")));
             this.ageTestImport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ageTestImport.Name = "ageTestImport";
-            this.ageTestImport.Size = new System.Drawing.Size(72, 22);
-            this.ageTestImport.Text = "Import age ";
+            this.ageTestImport.Size = new System.Drawing.Size(95, 22);
+            this.ageTestImport.Text = "Import durango";
             this.ageTestImport.Click += new System.EventHandler(this.ageImport_Click);
             // 
             // tableLayoutPanel4
@@ -641,6 +650,7 @@
             this.tableLayoutPanel5.Controls.Add(this.AgeGrid, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.TestGrid, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel7, 1, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -656,14 +666,16 @@
             this.AgeGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.AgeGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SampleName,
+            this.NAge,
+            this.SAge,
             this.UDur,
             this.UstdDur,
             this.CaDur,
             this.CastdDur,
             this.UCaDur,
             this.UCastdDur,
-            this.PiQi,
-            this.PiQistd,
+            this.Weighted,
+            this.Weightedstd,
             this.FT,
             this.sigma});
             this.AgeGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -673,72 +685,6 @@
             this.AgeGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.AgeGrid.Size = new System.Drawing.Size(1205, 393);
             this.AgeGrid.TabIndex = 6;
-            // 
-            // SampleName
-            // 
-            this.SampleName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.SampleName.HeaderText = "Name";
-            this.SampleName.Name = "SampleName";
-            // 
-            // UDur
-            // 
-            this.UDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UDur.HeaderText = "U";
-            this.UDur.Name = "UDur";
-            // 
-            // UstdDur
-            // 
-            this.UstdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UstdDur.HeaderText = "Ustd";
-            this.UstdDur.Name = "UstdDur";
-            // 
-            // CaDur
-            // 
-            this.CaDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CaDur.HeaderText = "Ca";
-            this.CaDur.Name = "CaDur";
-            // 
-            // CastdDur
-            // 
-            this.CastdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CastdDur.HeaderText = "Castd";
-            this.CastdDur.Name = "CastdDur";
-            // 
-            // UCaDur
-            // 
-            this.UCaDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCaDur.HeaderText = "U/Ca";
-            this.UCaDur.Name = "UCaDur";
-            // 
-            // UCastdDur
-            // 
-            this.UCastdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCastdDur.HeaderText = "U/Ca std";
-            this.UCastdDur.Name = "UCastdDur";
-            // 
-            // PiQi
-            // 
-            this.PiQi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PiQi.HeaderText = "PiQi";
-            this.PiQi.Name = "PiQi";
-            // 
-            // PiQistd
-            // 
-            this.PiQistd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PiQistd.HeaderText = "PiQi std";
-            this.PiQistd.Name = "PiQistd";
-            // 
-            // FT
-            // 
-            this.FT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.FT.HeaderText = "FT";
-            this.FT.Name = "FT";
-            // 
-            // sigma
-            // 
-            this.sigma.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.sigma.HeaderText = "2 sigma";
-            this.sigma.Name = "sigma";
             // 
             // TestGrid
             // 
@@ -996,6 +942,143 @@
             this.ConvStdLabel.TabIndex = 14;
             this.ConvStdLabel.Text = "-";
             // 
+            // toolStrip_importSample
+            // 
+            this.toolStrip_importSample.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStrip_importSample.Image = ((System.Drawing.Image)(resources.GetObject("toolStrip_importSample.Image")));
+            this.toolStrip_importSample.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStrip_importSample.Name = "toolStrip_importSample";
+            this.toolStrip_importSample.Size = new System.Drawing.Size(88, 22);
+            this.toolStrip_importSample.Text = "Import sample";
+            this.toolStrip_importSample.Click += new System.EventHandler(this.toolStrip_importSample_Click);
+            // 
+            // SampleName
+            // 
+            this.SampleName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SampleName.HeaderText = "Name";
+            this.SampleName.Name = "SampleName";
+            // 
+            // NAge
+            // 
+            this.NAge.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NAge.HeaderText = "N";
+            this.NAge.Name = "NAge";
+            // 
+            // SAge
+            // 
+            this.SAge.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SAge.HeaderText = "S";
+            this.SAge.Name = "SAge";
+            // 
+            // UDur
+            // 
+            this.UDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UDur.HeaderText = "U";
+            this.UDur.Name = "UDur";
+            // 
+            // UstdDur
+            // 
+            this.UstdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UstdDur.HeaderText = "Ustd";
+            this.UstdDur.Name = "UstdDur";
+            // 
+            // CaDur
+            // 
+            this.CaDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CaDur.HeaderText = "Ca";
+            this.CaDur.Name = "CaDur";
+            // 
+            // CastdDur
+            // 
+            this.CastdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CastdDur.HeaderText = "Castd";
+            this.CastdDur.Name = "CastdDur";
+            // 
+            // UCaDur
+            // 
+            this.UCaDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCaDur.HeaderText = "U/Ca";
+            this.UCaDur.Name = "UCaDur";
+            // 
+            // UCastdDur
+            // 
+            this.UCastdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCastdDur.HeaderText = "U/Ca std";
+            this.UCastdDur.Name = "UCastdDur";
+            // 
+            // Weighted
+            // 
+            this.Weighted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Weighted.HeaderText = "Weighted ";
+            this.Weighted.Name = "Weighted";
+            // 
+            // Weightedstd
+            // 
+            this.Weightedstd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Weightedstd.HeaderText = "Weighted  std";
+            this.Weightedstd.Name = "Weightedstd";
+            // 
+            // FT
+            // 
+            this.FT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.FT.HeaderText = "FT";
+            this.FT.Name = "FT";
+            // 
+            // sigma
+            // 
+            this.sigma.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.sigma.HeaderText = "2 sigma";
+            this.sigma.Name = "sigma";
+            // 
+            // ImportSample
+            // 
+            this.ImportSample.FileName = "openFileDialog1";
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Controls.Add(this.label15, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.FileSampleLabel, 1, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(1214, 402);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 10;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(208, 350);
+            this.tableLayoutPanel7.TabIndex = 8;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label15.Location = new System.Drawing.Point(6, 3);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(93, 31);
+            this.label15.TabIndex = 1;
+            this.label15.Text = "File:";
+            // 
+            // FileSampleLabel
+            // 
+            this.FileSampleLabel.AutoSize = true;
+            this.FileSampleLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FileSampleLabel.Location = new System.Drawing.Point(108, 3);
+            this.FileSampleLabel.Name = "FileSampleLabel";
+            this.FileSampleLabel.Size = new System.Drawing.Size(94, 31);
+            this.FileSampleLabel.TabIndex = 2;
+            this.FileSampleLabel.Text = "-";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1023,6 +1106,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.TestGrid)).EndInit();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1077,17 +1162,6 @@
         private System.Windows.Forms.ToolStripButton ageTestImport;
         private System.Windows.Forms.DataGridView TestGrid;
         private System.Windows.Forms.DataGridView AgeGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SampleName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UstdDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CaDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CastdDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCaDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCastdDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PiQi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PiQistd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sigma;
         private System.Windows.Forms.OpenFileDialog ImportTest;
         private System.Windows.Forms.Label zetaErrLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn rawUCaTest;
@@ -1114,6 +1188,24 @@
         private System.Windows.Forms.Label TestLabel;
         private System.Windows.Forms.Label TestStdLabel;
         private System.Windows.Forms.Label ConvStdLabel;
+        private System.Windows.Forms.ToolStripButton toolStrip_importSample;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SampleName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NAge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SAge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UstdDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CaDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CastdDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCaDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCastdDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Weighted;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Weightedstd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sigma;
+        private System.Windows.Forms.OpenFileDialog ImportSample;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label FileSampleLabel;
     }
 }
 
