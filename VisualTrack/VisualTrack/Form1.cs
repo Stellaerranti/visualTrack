@@ -239,7 +239,7 @@ namespace VisualTrack
             {
                 string[] lines = System.IO.File.ReadAllLines(filename);
 
-                //fileLabel.Text = Path.GetFileName(filename);
+                TestFileLabel.Text = Path.GetFileName(filename);
                 double U = 0;
                 double Ca = 0;
                 double U_std = 0;
@@ -276,7 +276,7 @@ namespace VisualTrack
                         //UCa_std = (Calc_UCa_std(U,Ca,U_std,Ca_std)/UCa)*(UCa* 1000000);
                         UCa_std = Calc_UCa_std(U, Ca, U_std, Ca_std);
 
-                        TestGrid.Rows.Add(0,U.ToString("E3"), U_std.ToString("E3"),Ca.ToString("E3"),Ca_std.ToString("E3"),UCa.ToString("E3"),UCa_std.ToString("E3"));
+                        TestGrid.Rows.Add(0,U.ToString("E3"), U_std.ToString("E3"),Ca.ToString("E3"),Ca_std.ToString("E3"),UCa.ToString("E3"),UCa_std.ToString("E3"),0,0);
                     }
                 }
             }
@@ -286,6 +286,97 @@ namespace VisualTrack
             }
 
 
+        }
+
+        private void getRaw()
+        {
+            try {
+                int i = 0;
+               foreach (DataGridViewRow row in TestGrid.Rows) 
+                {
+                    if (Double.TryParse(zetaTable.Rows[i].Cells["UCaFlat"].Value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out double check_err))
+                    {
+                        row.Cells["rawUCaTest"].Value = (Double.Parse(zetaTable.Rows[i].Cells["UCaFlat"].Value.ToString())* 132.704).ToString("E4");
+                        i++;
+                    }
+                    else
+                    {
+                        break;
+                    }             
+                }
+            }
+            catch { }
+        }
+
+        private void getConvFactor()
+        {
+            try
+            {
+                double raw_mean = 0;
+                double mean = 0;
+
+                foreach(DataGridViewRow row in TestGrid.Rows)
+                {
+                    raw_mean = raw_mean + Double.Parse(row.Cells["rawUCaTest"].Value.ToString());
+                    mean = mean + Double.Parse(row.Cells["UCaTest"].Value.ToString());
+                }
+
+                raw_mean = raw_mean/TestGrid.Rows.Count;
+                mean = mean/TestGrid.Rows.Count;
+
+                RawTestLabel.Text = raw_mean.ToString();
+                UCaTestLabel.Text = mean.ToString();
+
+                ConvFactorLabel.Text = (raw_mean/mean).ToString();
+            }
+            catch { }
+        }
+
+        private void conductTest()
+        {
+
+            try
+            {
+                double test = 0;
+                double test_mean = 0;
+                double convUCa = 0;
+
+                foreach (DataGridViewRow row in TestGrid.Rows)
+                {
+                    convUCa = Double.Parse(row.Cells["UCaTest"].Value.ToString()) * Double.Parse(ConvFactorLabel.Text);
+
+                    test = convUCa / Double.Parse(row.Cells["rawUCaTest"].Value.ToString());
+
+                    row.Cells["ConvUCaTest"].Value = convUCa.ToString();
+
+                    row.Cells["TestDur"].Value = test.ToString();
+
+                    test_mean = test_mean + test;
+                }
+                test_mean = test_mean / TestGrid.Rows.Count;
+                TestLabel.Text = test_mean.ToString();
+
+                double s = 0;
+
+                foreach (DataGridViewRow row in TestGrid.Rows)
+                {
+                    s = (Double.Parse(row.Cells["TestDur"].Value.ToString()) - test_mean) * (Double.Parse(row.Cells["TestDur"].Value.ToString()) - test_mean);
+                }
+
+                double std = Math.Sqrt(s/(TestGrid.Rows.Count-1));
+
+                TestStdLabel.Text = std.ToString();
+
+                ConvStdLabel.Text = (Double.Parse(ConvFactorLabel.Text)* std).ToString();
+            }
+            catch { }
+        }
+
+        private void testDurango()
+        {
+            getRaw();
+            getConvFactor();
+            conductTest();
         }
 
         //reading from Data grid and plotting charts
@@ -432,6 +523,12 @@ namespace VisualTrack
             UCaChart.Series["FittingLine"].Points.Clear();
             readFile();
             FlattUCa();
+
+            if (Double.Parse(TestGrid.Rows[0].Cells[0].Value.ToString()) == 0)
+            {
+                testDurango();
+            }
+
         }
 
         private void optiondButton_Click(object sender, EventArgs e)
@@ -564,9 +661,10 @@ namespace VisualTrack
         //Import file for Durango session
         private void ageImport_Click(object sender, EventArgs e)
         {
+            TestGrid.Rows.Clear();
+
             readTestFile();
-
-
+            testDurango();
         }
     }
 }
