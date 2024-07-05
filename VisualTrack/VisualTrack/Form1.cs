@@ -455,6 +455,19 @@ namespace VisualTrack
             catch { }
 
         }
+
+        private void poolAge()
+        {
+            double yr1 = Double.Parse(yr1Text.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
+            double PW = Double.Parse(PWLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
+            double PW_std = Double.Parse(PWStdLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
+            double Ns = Double.Parse(NsLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
+
+            double age = (1 / yr1) * Math.Log(1 + (yr1 * zeta_value * Ns / PW)) / 1000000;
+
+            PooledAgeLabel.Text = age.ToString();
+            AgeStdLabel.Text = (age*Math.Sqrt((4/Ns)+(PW_std/PW)* (PW_std / PW)+(zetaErr_value/zeta_value)* (zetaErr_value / zeta_value))).ToString();
+        }
         
         //This 4 functions for durango testing
 
@@ -846,7 +859,9 @@ namespace VisualTrack
             getWeighted();
             getPW();
             getFTage();
-            
+            poolAge();
+
+
         }
     }
 }

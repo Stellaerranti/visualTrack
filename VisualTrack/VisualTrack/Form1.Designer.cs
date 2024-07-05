@@ -145,6 +145,8 @@
             this.PWStdLabel = new System.Windows.Forms.Label();
             this.GrainsLabel = new System.Windows.Forms.Label();
             this.NsLabel = new System.Windows.Forms.Label();
+            this.PooledAgeLabel = new System.Windows.Forms.Label();
+            this.AgeStdLabel = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -1066,6 +1068,8 @@
             this.tableLayoutPanel7.Controls.Add(this.PWStdLabel, 1, 4);
             this.tableLayoutPanel7.Controls.Add(this.GrainsLabel, 1, 1);
             this.tableLayoutPanel7.Controls.Add(this.NsLabel, 1, 2);
+            this.tableLayoutPanel7.Controls.Add(this.PooledAgeLabel, 1, 9);
+            this.tableLayoutPanel7.Controls.Add(this.AgeStdLabel, 1, 10);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(1214, 402);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
@@ -1272,6 +1276,26 @@
             this.NsLabel.TabIndex = 18;
             this.NsLabel.Text = "-";
             // 
+            // PooledAgeLabel
+            // 
+            this.PooledAgeLabel.AutoSize = true;
+            this.PooledAgeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PooledAgeLabel.Location = new System.Drawing.Point(108, 291);
+            this.PooledAgeLabel.Name = "PooledAgeLabel";
+            this.PooledAgeLabel.Size = new System.Drawing.Size(94, 29);
+            this.PooledAgeLabel.TabIndex = 19;
+            this.PooledAgeLabel.Text = "-";
+            // 
+            // AgeStdLabel
+            // 
+            this.AgeStdLabel.AutoSize = true;
+            this.AgeStdLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AgeStdLabel.Location = new System.Drawing.Point(108, 323);
+            this.AgeStdLabel.Name = "AgeStdLabel";
+            this.AgeStdLabel.Size = new System.Drawing.Size(94, 35);
+            this.AgeStdLabel.TabIndex = 20;
+            this.AgeStdLabel.Text = "-";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1415,6 +1439,8 @@
         private System.Windows.Forms.Label PWStdLabel;
         private System.Windows.Forms.Label GrainsLabel;
         private System.Windows.Forms.Label NsLabel;
+        private System.Windows.Forms.Label PooledAgeLabel;
+        private System.Windows.Forms.Label AgeStdLabel;
     }
 }
 
