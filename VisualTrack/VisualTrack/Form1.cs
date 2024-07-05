@@ -20,6 +20,11 @@ namespace VisualTrack
         public double zeta_value = 0;
         public double zetaErr_value = 0;
 
+        public double durango_test_res = 0;
+        public double durango_test_std = 0;
+
+        public double conv_factor = 0;
+
         private double previous_U_dimensions = 1;
         private double previous_Ca_dimensions = 1;
         private double previous_S_dimensions = 1;
@@ -214,7 +219,7 @@ namespace VisualTrack
 
                         //Name, U, U std, Ca, Ca std, Trcs, S, U/Ca, U/Ca std
                         zetaTable.Rows.Add(line[0], U.ToString("E3"), U_std.ToString("E3"), Ca.ToString("E3"), Ca_std.ToString("E3"),   
-                            (Convert.ToDouble(line[5], provider)).ToString("E3"),
+                            (Convert.ToDouble(line[5], provider)).ToString(),
                             (Convert.ToDouble(line[6], provider)).ToString("E3"),
                             UCa.ToString("E3"), UCa_std.ToString("E3"), 0, 0, 0, 0);
 
@@ -249,6 +254,8 @@ namespace VisualTrack
                 double UCa = 0;
                 double UCa_std = 0;
 
+                double N_sum = 0;
+
                 NumberFormatInfo provider = new NumberFormatInfo();
                 provider.NumberDecimalSeparator = ".";
 
@@ -278,12 +285,17 @@ namespace VisualTrack
                         UCa_std = Calc_UCa_std(U, Ca, U_std, Ca_std);
                         //UCa = UCa * 1000000;
 
-                        AgeGrid.Rows.Add(line[0], (Convert.ToDouble(line[5], provider)).ToString("E3"), (Convert.ToDouble(line[6], provider)).ToString("E3")
+                        N_sum = N_sum + Convert.ToDouble(line[5], provider);
+
+                        AgeGrid.Rows.Add(line[0], (Convert.ToDouble(line[5], provider)).ToString(), (Convert.ToDouble(line[6], provider)).ToString("E3")
                             , U.ToString("E3"), U_std.ToString("E3"), Ca.ToString("E3"), Ca_std.ToString("E3"), UCa.ToString("E3"), UCa_std.ToString("E3"),0,0,0,0);
 
 
                     }
+                    
                 }
+                GrainsLabel.Text = (ni + 1).ToString();
+                NsLabel.Text = (N_sum).ToString();
 
 
             } 
@@ -358,15 +370,90 @@ namespace VisualTrack
 
         private void getWeighted()
         {
-            
-            double ConvFactor = Double.Parse(ConvFactorLabel.Text);
-
+           
             foreach(DataGridViewRow row in AgeGrid.Rows)
             {
-                row.Cells["Weighted"].Value = (ConvFactor * Double.Parse(row.Cells["UCaDur"].Value.ToString())).ToString();
+                row.Cells["Weighted"].Value = (conv_factor * Double.Parse(row.Cells["UCaDur"].Value.ToString())).ToString("E3");
 
-
+                row.Cells["Weightedstd"].Value = (conv_factor * Double.Parse(row.Cells["UCaDur"].Value.ToString()) * (
+                    (Double.Parse(row.Cells["UCastdDur"].Value.ToString())/ Double.Parse(row.Cells["UCaDur"].Value.ToString()))+ durango_test_std)).ToString("E3");
             }
+        }
+
+        private void getPW()
+        {
+            double PW = 0;
+            double PW_std = 0;
+
+            double PW_sum = 0;
+            double PW_std_sum = 0;
+
+            foreach (DataGridViewRow row in AgeGrid.Rows)
+            {
+                //part for PW
+                PW = Double.Parse(row.Cells["Weighted"].Value.ToString()) * Double.Parse(row.Cells["SAge"].Value.ToString());
+
+                PW_sum = PW_sum + PW;
+
+                PW_std = Math.Sqrt(Double.Parse(row.Cells["Weighted"].Value.ToString()) * Double.Parse(row.Cells["SAge"].Value.ToString())
+                    * Double.Parse(row.Cells["Weighted"].Value.ToString()) * Double.Parse(row.Cells["SAge"].Value.ToString()));
+
+                PW_std_sum = PW_std_sum + PW_std * PW_std;
+            }
+
+
+            PW_std_sum = Math.Sqrt(PW_std_sum);
+
+
+            PWLabel.Text = PW_sum.ToString("E3");
+            PWStdLabel.Text = PW_std_sum.ToString("E3");
+
+        }
+
+        private void getFTage()
+        {
+            try
+            {
+
+                double Ns = 0;
+                double S = 0;
+                double Weighted = 0;
+                double Weighted_std = 0;
+
+                double FT = 0;
+                double FT_std = 0;
+
+                double yr1 = Double.Parse(yr1Text.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
+
+                foreach (DataGridViewRow row in AgeGrid.Rows)
+                {
+                    //part for FT
+
+                    Ns = Double.Parse(row.Cells["NAge"].Value.ToString());
+                    S = Double.Parse(row.Cells["SAge"].Value.ToString());
+                    Weighted = Double.Parse(row.Cells["Weighted"].Value.ToString());
+                    Weighted_std = Double.Parse(row.Cells["Weightedstd"].Value.ToString());
+
+                    if (Ns == 0)
+                    {
+                        FT = (1 / yr1)*Math.Log(1+(1 / yr1)*zeta_value*(Weighted/(S*Weighted_std*Weighted_std))*(0.5/((Weighted/Weighted_std)* (Weighted / Weighted_std) + 0.5))) / 1000000;
+
+                        FT_std = FT*Math.Sqrt(8+1/((Weighted / Weighted_std)* (Weighted / Weighted_std) + 0.5)+(zetaErr_value/zeta_value)* (zetaErr_value / zeta_value));
+                    }
+                    else
+                    {
+                        FT = (1 / yr1) * Math.Log(1+(yr1*zeta_value*(Ns/S)/Weighted))/ 1000000;
+
+                        FT_std = FT*Math.Sqrt(4/Ns+(Weighted_std/Weighted)* (Weighted_std / Weighted) + (zetaErr_value / zeta_value) * (zetaErr_value / zeta_value));
+                    }
+
+                    row.Cells["FT"].Value = FT.ToString("E3");
+                    row.Cells["sigma"].Value=FT_std.ToString("E3");
+
+                }
+            }
+            catch { }
+
         }
         
         //This 4 functions for durango testing
@@ -410,7 +497,9 @@ namespace VisualTrack
                 RawTestLabel.Text = raw_mean.ToString();
                 UCaTestLabel.Text = mean.ToString();
 
-                ConvFactorLabel.Text = (raw_mean/mean).ToString();
+                conv_factor = raw_mean / mean;
+
+                ConvFactorLabel.Text = (conv_factor).ToString();
             }
             catch { }
         }
@@ -436,21 +525,21 @@ namespace VisualTrack
 
                     test_mean = test_mean + test;
                 }
-                test_mean = test_mean / TestGrid.Rows.Count;
-                TestLabel.Text = test_mean.ToString();
+                durango_test_res = test_mean / TestGrid.Rows.Count;
+                TestLabel.Text = durango_test_res.ToString();
 
                 double s = 0;
 
                 foreach (DataGridViewRow row in TestGrid.Rows)
                 {
-                    s = (Double.Parse(row.Cells["TestDur"].Value.ToString()) - test_mean) * (Double.Parse(row.Cells["TestDur"].Value.ToString()) - test_mean);
+                    s = (Double.Parse(row.Cells["TestDur"].Value.ToString()) - durango_test_res) * (Double.Parse(row.Cells["TestDur"].Value.ToString()) - durango_test_res);
                 }
 
-                double std = Math.Sqrt(s/(TestGrid.Rows.Count-1));
+                durango_test_std = Math.Sqrt(s/(TestGrid.Rows.Count-1));
 
-                TestStdLabel.Text = std.ToString();
+                TestStdLabel.Text = durango_test_std.ToString();
 
-                ConvStdLabel.Text = (Double.Parse(ConvFactorLabel.Text)* std).ToString();
+                ConvStdLabel.Text = (Double.Parse(ConvFactorLabel.Text)* durango_test_std).ToString();
             }
             catch { }
         }
@@ -560,6 +649,9 @@ namespace VisualTrack
             zetaLabel.Text = zeta_value.ToString();
             zetaErrLabel.Text = zetaErr_value.ToString();
 
+
+            ZetaAgeLabel.Text = zeta_value.ToString();
+            ZetaStdAgeLAbel.Text = zetaErr_value.ToString();
 
         }
 
@@ -751,7 +843,10 @@ namespace VisualTrack
         {
             AgeGrid.Rows.Clear();
             readSampleFile();
-
+            getWeighted();
+            getPW();
+            getFTage();
+            
         }
     }
 }
