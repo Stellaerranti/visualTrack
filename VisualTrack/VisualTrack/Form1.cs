@@ -817,32 +817,6 @@ namespace VisualTrack
             }
         }
 
-        private void deleteRow_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                zetaTable.Rows.RemoveAt(zetaTable.CurrentCell.RowIndex);
-
-                UCaChart.Series["UCaError"].Points.Clear();
-                UCaChart.Series["UCaSeries"].Points.Clear();
-
-                UCaChart.Series["UCaFlatError"].Points.Clear();
-                UCaChart.Series["UCaFlat"].Points.Clear();
-
-                UCaChart.Series["FittingLine"].Points.Clear();
-
-                update();
-
-                FlattUCa();
-
-                if (CheckZetaInput())
-                {
-                    ZetaCalc();
-                }
-            }
-            catch { }
-        }
 
         //Import file for Zeta session
         private void importZetaFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -899,6 +873,48 @@ namespace VisualTrack
             { MessageBox.Show("No sample data"); }
             else { AgeCalcutation(); }
             
+        }
+
+
+        //Deleting rows
+        private void DeleteRowTestGrid_Click(object sender, EventArgs e)
+        {
+            TestGrid.Rows.RemoveAt(TestGrid.CurrentCell.RowIndex);
+            testDurango();
+            AgeCalcutation();
+        }
+        private void deleteRow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                zetaTable.Rows.RemoveAt(zetaTable.CurrentCell.RowIndex);
+
+                UCaChart.Series["UCaError"].Points.Clear();
+                UCaChart.Series["UCaSeries"].Points.Clear();
+
+                UCaChart.Series["UCaFlatError"].Points.Clear();
+                UCaChart.Series["UCaFlat"].Points.Clear();
+
+                UCaChart.Series["FittingLine"].Points.Clear();
+
+                update();
+
+                FlattUCa();
+
+                if (CheckZetaInput())
+                {
+                    ZetaCalc();
+                }
+            }
+            catch { }
+        }
+
+        private void DeleteRowAgeGrid_Click(object sender, EventArgs e)
+        {
+            AgeGrid.Rows.RemoveAt(AgeGrid.CurrentCell.RowIndex);
+
+            AgeCalcutation();
         }
     }
 }

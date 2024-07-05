@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.ImportZeta = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -150,6 +150,8 @@
             this.importSampleFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conductTestButton = new System.Windows.Forms.Button();
             this.poolAgeButton = new System.Windows.Forms.Button();
+            this.DeleteRowTestGrid = new System.Windows.Forms.Button();
+            this.DeleteRowAgeGrid = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -360,47 +362,47 @@
             // 
             // UCaChart
             // 
-            chartArea1.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea1.AlignWithChartArea = "ChartArea2";
-            chartArea1.Name = "ChartArea1";
-            chartArea2.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea2.BorderColor = System.Drawing.Color.Bisque;
-            chartArea2.Name = "ChartArea2";
-            this.UCaChart.ChartAreas.Add(chartArea1);
-            this.UCaChart.ChartAreas.Add(chartArea2);
+            chartArea5.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea5.AlignWithChartArea = "ChartArea2";
+            chartArea5.Name = "ChartArea1";
+            chartArea6.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea6.BorderColor = System.Drawing.Color.Bisque;
+            chartArea6.Name = "ChartArea2";
+            this.UCaChart.ChartAreas.Add(chartArea5);
+            this.UCaChart.ChartAreas.Add(chartArea6);
             this.UCaChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.UCaChart.Legends.Add(legend1);
+            legend3.Enabled = false;
+            legend3.Name = "Legend1";
+            this.UCaChart.Legends.Add(legend3);
             this.UCaChart.Location = new System.Drawing.Point(3, 3);
             this.UCaChart.Name = "UCaChart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.Name = "UCaSeries";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series2.Legend = "Legend1";
-            series2.Name = "UCaError";
-            series2.YValuesPerPoint = 3;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "FittingLine";
-            series4.ChartArea = "ChartArea2";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series4.Legend = "Legend1";
-            series4.Name = "UCaFlat";
-            series5.ChartArea = "ChartArea2";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series5.Legend = "Legend1";
-            series5.Name = "UCaFlatError";
-            series5.YValuesPerPoint = 3;
-            this.UCaChart.Series.Add(series1);
-            this.UCaChart.Series.Add(series2);
-            this.UCaChart.Series.Add(series3);
-            this.UCaChart.Series.Add(series4);
-            this.UCaChart.Series.Add(series5);
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series11.Legend = "Legend1";
+            series11.Name = "UCaSeries";
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series12.Legend = "Legend1";
+            series12.Name = "UCaError";
+            series12.YValuesPerPoint = 3;
+            series13.ChartArea = "ChartArea1";
+            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series13.Legend = "Legend1";
+            series13.Name = "FittingLine";
+            series14.ChartArea = "ChartArea2";
+            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series14.Legend = "Legend1";
+            series14.Name = "UCaFlat";
+            series15.ChartArea = "ChartArea2";
+            series15.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series15.Legend = "Legend1";
+            series15.Name = "UCaFlatError";
+            series15.YValuesPerPoint = 3;
+            this.UCaChart.Series.Add(series11);
+            this.UCaChart.Series.Add(series12);
+            this.UCaChart.Series.Add(series13);
+            this.UCaChart.Series.Add(series14);
+            this.UCaChart.Series.Add(series15);
             this.UCaChart.Size = new System.Drawing.Size(1199, 390);
             this.UCaChart.TabIndex = 1;
             this.UCaChart.Text = "chart1";
@@ -859,6 +861,7 @@
             this.tableLayoutPanel6.Controls.Add(this.TestStdLabel, 1, 6);
             this.tableLayoutPanel6.Controls.Add(this.ConvStdLabel, 1, 4);
             this.tableLayoutPanel6.Controls.Add(this.conductTestButton, 1, 7);
+            this.tableLayoutPanel6.Controls.Add(this.DeleteRowTestGrid, 0, 7);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(1214, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
@@ -1041,6 +1044,7 @@
             this.tableLayoutPanel7.Controls.Add(this.PooledAgeLabel, 1, 9);
             this.tableLayoutPanel7.Controls.Add(this.AgeStdLabel, 1, 10);
             this.tableLayoutPanel7.Controls.Add(this.poolAgeButton, 1, 11);
+            this.tableLayoutPanel7.Controls.Add(this.DeleteRowAgeGrid, 0, 11);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(1214, 402);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
@@ -1324,6 +1328,28 @@
             this.poolAgeButton.UseVisualStyleBackColor = true;
             this.poolAgeButton.Click += new System.EventHandler(this.poolAgeButton_Click);
             // 
+            // DeleteRowTestGrid
+            // 
+            this.DeleteRowTestGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DeleteRowTestGrid.Location = new System.Drawing.Point(6, 209);
+            this.DeleteRowTestGrid.Name = "DeleteRowTestGrid";
+            this.DeleteRowTestGrid.Size = new System.Drawing.Size(93, 25);
+            this.DeleteRowTestGrid.TabIndex = 16;
+            this.DeleteRowTestGrid.Text = "delete row";
+            this.DeleteRowTestGrid.UseVisualStyleBackColor = true;
+            this.DeleteRowTestGrid.Click += new System.EventHandler(this.DeleteRowTestGrid_Click);
+            // 
+            // DeleteRowAgeGrid
+            // 
+            this.DeleteRowAgeGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DeleteRowAgeGrid.Location = new System.Drawing.Point(6, 303);
+            this.DeleteRowAgeGrid.Name = "DeleteRowAgeGrid";
+            this.DeleteRowAgeGrid.Size = new System.Drawing.Size(93, 25);
+            this.DeleteRowAgeGrid.TabIndex = 22;
+            this.DeleteRowAgeGrid.Text = "delete row";
+            this.DeleteRowAgeGrid.UseVisualStyleBackColor = true;
+            this.DeleteRowAgeGrid.Click += new System.EventHandler(this.DeleteRowAgeGrid_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1472,6 +1498,8 @@
         private System.Windows.Forms.ToolStripMenuItem importSampleFileToolStripMenuItem;
         private System.Windows.Forms.Button conductTestButton;
         private System.Windows.Forms.Button poolAgeButton;
+        private System.Windows.Forms.Button DeleteRowTestGrid;
+        private System.Windows.Forms.Button DeleteRowAgeGrid;
     }
 }
 
