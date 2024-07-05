@@ -478,9 +478,145 @@ namespace VisualTrack
                 getPW();
                 getFTage();
                 poolAge();
+                chiSq();
             }
         }
-        
+
+
+        //Chi square calculation
+
+        private void chiSq()
+        {
+            double br_sq = 0;
+            double br_sq_sum = 0;
+
+            double ratio = 0;
+            double ratio_sum = 0;
+
+            double sigm = 0; ;
+            double sigm_sum = 0;
+
+            double Ns = 0;
+            double S = 0;
+
+            double FT = 0;
+            double FT_std = 0;
+
+            double UCa = 0;
+            double UCa_std = 0;
+
+            double Chi = 0;
+
+            foreach (DataGridViewRow row in AgeGrid.Rows)
+            {
+                Ns = Double.Parse(row.Cells["NAge"].Value.ToString());
+                S = Double.Parse(row.Cells["SAge"].Value.ToString());
+
+                FT = Double.Parse(row.Cells["FT"].Value.ToString());
+                FT_std = Double.Parse(row.Cells["sigma"].Value.ToString());
+
+                UCa = Double.Parse(row.Cells["UCaDur"].Value.ToString());
+                UCa_std = Double.Parse(row.Cells["UCastdDur"].Value.ToString());
+
+                if (Ns == 0) 
+                {
+                    br_sq = (Math.Sqrt(FT)/(FT_std/(2*Math.Sqrt(FT)))) * (Math.Sqrt(FT) / (FT_std / (2 * Math.Sqrt(FT))));
+
+                    ratio = Math.Sqrt(FT) / Math.Pow(FT_std / (2 * Math.Sqrt(FT)), 2);
+
+                    sigm = 1 / Math.Pow(FT_std / (2 * Math.Sqrt(FT)), 2);
+                }
+                else
+                {
+                    br_sq = Math.Pow(Math.Log(FT)/Math.Sqrt((1/Ns) + Math.Pow(UCa_std/UCa/2,2)), 2);
+
+                    ratio = Math.Log(FT)/Math.Pow(Math.Sqrt((1 / Ns) + Math.Pow(UCa_std / UCa/2, 2)), 2);
+
+                    sigm = 1 / Math.Pow(Math.Sqrt((1 / Ns) + Math.Pow(UCa_std / UCa / 2, 2)), 2);
+                }
+
+                br_sq_sum = br_sq_sum + br_sq;
+
+                ratio_sum = ratio_sum + ratio;  
+
+                sigm_sum = sigm_sum + sigm;
+
+            }
+
+            Chi = br_sq_sum - Math.Pow(ratio_sum, 2)/ sigm_sum;
+
+            ChiLabel.Text = Chi.ToString(); 
+
+            PLabel.Text = Pchisq(Chi,AgeGrid.Rows.Count-1).ToString();
+
+        }
+
+        //Number of functions for P of chisq. NOT MY CODE
+
+        private double Pchisq(double Cv,int Dof)
+        {
+            if (Cv < 0 || Dof < 1)
+            {
+                return 0.0;
+            }
+            double K = ((double)Dof) * 0.5;
+            double X = Cv * 0.5;
+            if (Dof == 2)
+            {
+                return Math.Exp(-1.0 * X);
+            }
+
+            double PValue = igf(K, X);
+            if (Double.IsNaN(PValue) || Double.IsInfinity (PValue) || PValue <= 1e-8)
+            {
+                return 1e-14;
+            }
+
+            PValue /= approx_gamma(K);
+            //PValue /= tgamma(K); 
+
+            return (1.0 - PValue);
+        }
+
+        private double igf(double S, double Z)
+        {
+            if (Z < 0.0)
+            {
+                return 0.0;
+            }
+            double Sc = (1.0 / S);
+            Sc *= Math.Pow(Z, S);
+            Sc *= Math.Exp(-Z);
+
+            double Sum = 1.0;
+            double Nom = 1.0;
+            double Denom = 1.0;
+
+            for (int I = 0; I < 200; I++)
+            {
+                Nom *= Z;
+                S++;
+                Denom *= S;
+                Sum += (Nom / Denom);
+            }
+
+            return Sum * Sc;
+        }
+
+        private double approx_gamma(double Z)
+        {
+            const double RECIP_E = 0.36787944117144232159552377016147;  // RECIP_E = (E^-1) = (1.0 / E)
+            const double TWOPI = 6.283185307179586476925286766559;  // TWOPI = 2.0 * PI
+
+            double D = 1.0 / (10.0 * Z);
+            D = 1.0 / ((12 * Z) - D);
+            D = (D + Z) * RECIP_E;
+            D = Math.Pow(D, Z);
+            D *= Math.Sqrt(TWOPI / Z);
+
+            return D;
+        }
+
         //This 4 functions for durango testing
 
         private void getRaw()
@@ -580,6 +716,7 @@ namespace VisualTrack
         }
 
         //reading from Data grid and plotting charts
+
         private void update()
         {
             
