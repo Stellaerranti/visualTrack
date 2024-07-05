@@ -468,6 +468,18 @@ namespace VisualTrack
             PooledAgeLabel.Text = age.ToString();
             AgeStdLabel.Text = (age*Math.Sqrt((4/Ns)+(PW_std/PW)* (PW_std / PW)+(zetaErr_value/zeta_value)* (zetaErr_value / zeta_value))).ToString();
         }
+
+        private void AgeCalcutation()
+        {
+            if ((AgeGrid.Rows.Count>1) && (CheckZetaInput()) && (TestGrid.Rows.Count > 1)
+                && (zetaTable.Rows.Count > 1) && (Double.TryParse(ZetaAgeLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out double check_err)))
+            {
+                getWeighted();
+                getPW();
+                getFTage();
+                poolAge();
+            }
+        }
         
         //This 4 functions for durango testing
 
@@ -559,9 +571,12 @@ namespace VisualTrack
 
         private void testDurango()
         {
-            getRaw();
-            getConvFactor();
-            conductTest();
+            if ((TestGrid.Rows.Count > 1) && (zetaTable.Rows.Count > 1))
+            {
+                getRaw();
+                getConvFactor();
+                conductTest();
+            }
         }
 
         //reading from Data grid and plotting charts
@@ -666,6 +681,8 @@ namespace VisualTrack
             ZetaAgeLabel.Text = zeta_value.ToString();
             ZetaStdAgeLAbel.Text = zetaErr_value.ToString();
 
+            AgeCalcutation();
+
         }
 
         //Dead function
@@ -699,22 +716,6 @@ namespace VisualTrack
             }
         }
 
-        private void toolStripImport_Click(object sender, EventArgs e)
-        {
-            zetaTable.Rows.Clear();
-            UCaChart.Series["UCaError"].Points.Clear();
-            UCaChart.Series["UCaSeries"].Points.Clear();
-
-            UCaChart.Series["UCaFlatError"].Points.Clear();
-            UCaChart.Series["UCaFlat"].Points.Clear();
-
-            UCaChart.Series["FittingLine"].Points.Clear();
-            readFile();
-            FlattUCa();
-
-
-
-        }
 
         private void optiondButton_Click(object sender, EventArgs e)
         {            
@@ -843,25 +844,61 @@ namespace VisualTrack
             catch { }
         }
 
-        //Import file for Durango session
-        private void ageImport_Click(object sender, EventArgs e)
+        //Import file for Zeta session
+        private void importZetaFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            zetaTable.Rows.Clear();
+            UCaChart.Series["UCaError"].Points.Clear();
+            UCaChart.Series["UCaSeries"].Points.Clear();
+
+            UCaChart.Series["UCaFlatError"].Points.Clear();
+            UCaChart.Series["UCaFlat"].Points.Clear();
+
+            UCaChart.Series["FittingLine"].Points.Clear();
+            readFile();
+            FlattUCa();
+            testDurango();
+            AgeCalcutation();
+        }
+
+
+        //Import files for durango calculations
+
+        private void importTestFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TestGrid.Rows.Clear();
 
             readTestFile();
             testDurango();
-        }
+            AgeCalcutation();
 
-        private void toolStrip_importSample_Click(object sender, EventArgs e)
+
+        }
+        //Import file for Age session
+        private void importSampleFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AgeGrid.Rows.Clear();
             readSampleFile();
-            getWeighted();
-            getPW();
-            getFTage();
-            poolAge();
+            AgeCalcutation();
+        }
 
-
+        //Get conv factor
+        private void conductTestButton_Click(object sender, EventArgs e)
+        {
+            testDurango();
+            AgeCalcutation();
+        }
+        //Get age
+        private void poolAgeButton_Click(object sender, EventArgs e)
+        {
+            if (!Double.TryParse(ZetaAgeLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out double check_err))
+                { MessageBox.Show("No Zeta"); }
+            else if(!Double.TryParse(ConvFactorLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out double check_err_2))
+            { MessageBox.Show("No conversion factor"); }
+            else if (AgeGrid.Rows.Count < 1)
+            { MessageBox.Show("No sample data"); }
+            else { AgeCalcutation(); }
+            
         }
     }
 }
