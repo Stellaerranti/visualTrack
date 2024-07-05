@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -567,13 +568,18 @@ namespace VisualTrack
             }
 
             double PValue = igf(K, X);
-            if (Double.IsNaN(PValue) || Double.IsInfinity (PValue) || PValue <= 1e-8)
+            if (Double.IsNaN(PValue) || Double.IsInfinity (PValue) || PValue <= 1e-8 || 1 - PValue < 0)
             {
                 return 1e-14;
             }
 
             PValue /= approx_gamma(K);
             //PValue /= tgamma(K); 
+
+           /* if (1.0 - PValue < 0)
+            {
+                return 0;
+            }*/
 
             return (1.0 - PValue);
         }
@@ -616,6 +622,36 @@ namespace VisualTrack
 
             return D;
         }
+
+        /*
+        private double  gamma(double N)
+        {
+             double SQRT2PI = 2.5066282746310005024157652848110452530069867406099383;
+
+             double Z = ( double)N;
+             double Sc = powl((Z + A), (Z + 0.5));
+            Sc *= expl(-1.0 * (Z + A));
+            Sc /= Z;
+
+             double F = 1.0;
+             double Ck;
+             double Sum = SQRT2PI;
+
+
+            for (int K = 1; K < A; K++)
+            {
+                Z++;
+                Ck = powl(A - K, K - 0.5);
+                Ck *= expl(A - K);
+                Ck /= F;
+
+                Sum += (Ck / Z);
+
+                F *= (-1.0 * K);
+            }
+
+            return (double)(Sum * Sc);
+        }*/
 
         //This 4 functions for durango testing
 
