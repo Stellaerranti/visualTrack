@@ -219,7 +219,7 @@ namespace VisualTrack
                         //UCa = UCa * 1000000;
 
                         //Name, U, U std, Ca, Ca std, Trcs, S, U/Ca, U/Ca std
-                        zetaTable.Rows.Add(line[0], U.ToString("E3"), U_std.ToString("E3"), Ca.ToString("E3"), Ca_std.ToString("E3"),   
+                        zetaTable.Rows.Add(line[0], U.ToString("F4"), U_std.ToString("F4"), Ca.ToString("E3"), Ca_std.ToString("E3"),   
                             (Convert.ToDouble(line[5], provider)).ToString(),
                             (Convert.ToDouble(line[6], provider)).ToString("E3"),
                             UCa.ToString("E3"), UCa_std.ToString("E3"), 0, 0, 0, 0);
@@ -289,7 +289,7 @@ namespace VisualTrack
                         N_sum = N_sum + Convert.ToDouble(line[5], provider);
 
                         AgeGrid.Rows.Add(line[0], (Convert.ToDouble(line[5], provider)).ToString(), (Convert.ToDouble(line[6], provider)).ToString("E3")
-                            , U.ToString("E3"), U_std.ToString("E3"), Ca.ToString("E3"), Ca_std.ToString("E3"), UCa.ToString("E3"), UCa_std.ToString("E3"),0,0,0,0);
+                            , U.ToString("F4"), U_std.ToString("F4"), Ca.ToString("E3"), Ca_std.ToString("E3"), UCa.ToString("E3"), UCa_std.ToString("E3"),0,0,0,0);
 
 
                     }
@@ -354,7 +354,7 @@ namespace VisualTrack
                         //UCa_std = (Calc_UCa_std(U,Ca,U_std,Ca_std)/UCa)*(UCa* 1000000);
                         UCa_std = Calc_UCa_std(U, Ca, U_std, Ca_std);
 
-                        TestGrid.Rows.Add(0,U.ToString("E3"), U_std.ToString("E3"),Ca.ToString("E3"),Ca_std.ToString("E3"),UCa.ToString("E3"),UCa_std.ToString("E3"),0,0);
+                        TestGrid.Rows.Add(0,U.ToString("F4"), U_std.ToString("F4"),Ca.ToString("E3"),Ca_std.ToString("E3"),UCa.ToString("E3"),UCa_std.ToString("E3"),0,0);
                     }
                 }
             }
@@ -448,8 +448,8 @@ namespace VisualTrack
                         FT_std = FT*Math.Sqrt(4/Ns+(Weighted_std/Weighted)* (Weighted_std / Weighted) + (zetaErr_value / zeta_value) * (zetaErr_value / zeta_value));
                     }
 
-                    row.Cells["FT"].Value = FT.ToString("E3");
-                    row.Cells["sigma"].Value=FT_std.ToString("E3");
+                    row.Cells["FT"].Value = FT.ToString("F4");
+                    row.Cells["sigma"].Value=FT_std.ToString("F4");
 
                 }
             }
@@ -1006,6 +1006,11 @@ namespace VisualTrack
             FlattUCa();
             testDurango();
             AgeCalcutation();
+
+            if (CheckZetaInput())
+            {
+                ZetaCalc();
+            }
         }
 
 

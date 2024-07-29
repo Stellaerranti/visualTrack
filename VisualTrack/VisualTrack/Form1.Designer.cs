@@ -150,10 +150,10 @@
             this.AgeStdLabel = new System.Windows.Forms.Label();
             this.poolAgeButton = new System.Windows.Forms.Button();
             this.DeleteRowAgeGrid = new System.Windows.Forms.Button();
-            this.ImportTest = new System.Windows.Forms.OpenFileDialog();
-            this.ImportSample = new System.Windows.Forms.OpenFileDialog();
             this.ChiLabel = new System.Windows.Forms.Label();
             this.PLabel = new System.Windows.Forms.Label();
+            this.ImportTest = new System.Windows.Forms.OpenFileDialog();
+            this.ImportSample = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -494,7 +494,7 @@
             this.yr1Text.Name = "yr1Text";
             this.yr1Text.Size = new System.Drawing.Size(93, 20);
             this.yr1Text.TabIndex = 22;
-            this.yr1Text.Text = "0";
+            this.yr1Text.Text = "1.55E-10";
             this.yr1Text.TextChanged += new System.EventHandler(this.yr1Text_TextChanged);
             // 
             // fileLabel
@@ -514,7 +514,7 @@
             this.DurangoAgeText.Name = "DurangoAgeText";
             this.DurangoAgeText.Size = new System.Drawing.Size(93, 20);
             this.DurangoAgeText.TabIndex = 4;
-            this.DurangoAgeText.Text = "0";
+            this.DurangoAgeText.Text = "31.44";
             this.DurangoAgeText.TextChanged += new System.EventHandler(this.DurangoAgeText_TextChanged);
             // 
             // DurangoErrText
@@ -522,9 +522,10 @@
             this.DurangoErrText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DurangoErrText.Location = new System.Drawing.Point(6, 64);
             this.DurangoErrText.Name = "DurangoErrText";
+            this.DurangoErrText.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.DurangoErrText.Size = new System.Drawing.Size(93, 20);
             this.DurangoErrText.TabIndex = 5;
-            this.DurangoErrText.Text = "0";
+            this.DurangoErrText.Text = "0.18";
             this.DurangoErrText.TextChanged += new System.EventHandler(this.DurangoErrText_TextChanged);
             // 
             // label1
@@ -1346,14 +1347,6 @@
             this.DeleteRowAgeGrid.UseVisualStyleBackColor = true;
             this.DeleteRowAgeGrid.Click += new System.EventHandler(this.DeleteRowAgeGrid_Click);
             // 
-            // ImportTest
-            // 
-            this.ImportTest.FileName = "ImportTest";
-            // 
-            // ImportSample
-            // 
-            this.ImportSample.FileName = "openFileDialog1";
-            // 
             // ChiLabel
             // 
             this.ChiLabel.AutoSize = true;
@@ -1373,6 +1366,14 @@
             this.PLabel.Size = new System.Drawing.Size(94, 24);
             this.PLabel.TabIndex = 24;
             this.PLabel.Text = "-";
+            // 
+            // ImportTest
+            // 
+            this.ImportTest.FileName = "ImportTest";
+            // 
+            // ImportSample
+            // 
+            this.ImportSample.FileName = "openFileDialog1";
             // 
             // Form1
             // 
