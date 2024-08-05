@@ -295,7 +295,7 @@ namespace VisualTrack
                     }
                     
                 }
-                GrainsLabel.Text = (ni + 1).ToString();
+                GrainsLabel.Text = (ni).ToString();
                 NsLabel.Text = (N_sum).ToString();
 
 
@@ -381,13 +381,12 @@ namespace VisualTrack
             }
         }
 
-        private void getPW()
+        private double getPW()
         {
             double PW = 0;
-            double PW_std = 0;
+           
 
             double PW_sum = 0;
-            double PW_std_sum = 0;
 
             foreach (DataGridViewRow row in AgeGrid.Rows)
             {
@@ -396,19 +395,34 @@ namespace VisualTrack
 
                 PW_sum = PW_sum + PW;
 
-                PW_std = Math.Sqrt(Double.Parse(row.Cells["Weighted"].Value.ToString()) * Double.Parse(row.Cells["SAge"].Value.ToString())
-                    * Double.Parse(row.Cells["Weighted"].Value.ToString()) * Double.Parse(row.Cells["SAge"].Value.ToString()));
+            }
 
+
+
+            PWLabel.Text = PW_sum.ToString("E3");
+
+            return PW_sum;
+        }
+
+        private double getPWSTD()
+        {
+            double PW_std = 0;
+            double PW_std_sum = 0;
+
+            foreach (DataGridViewRow row in AgeGrid.Rows)
+            {
+
+                // PW_std = Math.Sqrt(Double.Parse(row.Cells["Weighted"].Value.ToString()) * Double.Parse(row.Cells["SAge"].Value.ToString())
+                //   * Double.Parse(row.Cells["Weighted"].Value.ToString()) * Double.Parse(row.Cells["SAge"].Value.ToString()));
+                PW_std = Double.Parse(row.Cells["Weightedstd"].Value.ToString()) * Double.Parse(row.Cells["SAge"].Value.ToString());
                 PW_std_sum = PW_std_sum + PW_std * PW_std;
             }
 
 
             PW_std_sum = Math.Sqrt(PW_std_sum);
-
-
-            PWLabel.Text = PW_sum.ToString("E3");
             PWStdLabel.Text = PW_std_sum.ToString("E3");
 
+            return PW_std_sum;
         }
 
         private void getFTage()
@@ -457,17 +471,19 @@ namespace VisualTrack
 
         }
 
-        private void poolAge()
+        private void poolAge(double PW, double PW_std)
         {
             double yr1 = Double.Parse(yr1Text.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
-            double PW = Double.Parse(PWLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
-            double PW_std = Double.Parse(PWStdLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
+            //double PW = Double.Parse(PWLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
+            //double PW_std = Double.Parse(PWStdLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
             double Ns = Double.Parse(NsLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
 
             double age = (1 / yr1) * Math.Log(1 + (yr1 * zeta_value * Ns / PW)) / 1000000;
+            //double age = (1 / 1.55) * Math.Log(1 + (yr1 * zeta_value * Ns / PW)) * 10000;
+            double age_std = age * Math.Sqrt((4 / Ns) + Math.Pow((PW_std / PW),2) + Math.Pow((zetaErr_value / zeta_value),2));
 
             PooledAgeLabel.Text = age.ToString();
-            AgeStdLabel.Text = (age*Math.Sqrt((4/Ns)+(PW_std/PW)* (PW_std / PW)+(zetaErr_value/zeta_value)* (zetaErr_value / zeta_value))).ToString();
+            AgeStdLabel.Text = (age_std).ToString();
         }
 
         private void AgeCalcutation()
@@ -476,9 +492,10 @@ namespace VisualTrack
                 && (zetaTable.Rows.Count > 1) && (Double.TryParse(ZetaAgeLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out double check_err)))
             {
                 getWeighted();
-                getPW();
+                double PW = getPW();
+                double PW_std = getPWSTD();
                 getFTage();
-                poolAge();
+                poolAge(PW, PW_std);
                 chiSq();
             }
         }
@@ -789,14 +806,14 @@ namespace VisualTrack
         {
             return PW * (Math.Exp(yr1* 1000000 * DurAgeMa)-1)/(Tracks*yr1);
         }
-
+        
         private double ZetaSTD(double zeta, double yr1, double DurAgeMa, double DurAge_std, double PW, double PW_std, double Tracks)
         {
             double first_bracket = zeta * zeta * 4 / Tracks;
             double second_bracket = (zeta * PW_std / PW);
-            double third_bracket = ((DurAge_std*Math.Exp(DurAgeMa*yr1-1))/(DurAgeMa*Tracks/PW));
+            double third_bracket = ((DurAge_std/ DurAgeMa * Math.Exp(DurAgeMa*yr1-1))/(Tracks/PW));
 
-            return Math.Sqrt(Math.Pow(first_bracket, 2)+Math.Pow(second_bracket, 2)+Math.Pow(third_bracket,2));
+            return Math.Sqrt(first_bracket + Math.Pow(second_bracket, 2)+Math.Pow(third_bracket,2));
         }
 
         private void ZetaCalc()
