@@ -376,8 +376,10 @@ namespace VisualTrack
             {
                 row.Cells["Weighted"].Value = (conv_factor * Double.Parse(row.Cells["UCaDur"].Value.ToString())).ToString("E3");
 
-                row.Cells["Weightedstd"].Value = (conv_factor * Double.Parse(row.Cells["UCaDur"].Value.ToString()) * (
+                 row.Cells["Weightedstd"].Value = (conv_factor * Double.Parse(row.Cells["UCaDur"].Value.ToString()) * (
                     (Double.Parse(row.Cells["UCastdDur"].Value.ToString())/ Double.Parse(row.Cells["UCaDur"].Value.ToString()))+ durango_test_std)).ToString("E3");
+
+
             }
         }
 
