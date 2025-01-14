@@ -84,22 +84,10 @@
             this.calculateZeta = new System.Windows.Forms.Button();
             this.deleteRow = new System.Windows.Forms.Button();
             this.zetaErrLabel = new System.Windows.Forms.Label();
-            this.age = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.AgeGrid = new System.Windows.Forms.DataGridView();
-            this.SampleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UstdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CaDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CastdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCaDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCastdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Weighted = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Weightedstd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sigma = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImportTest = new System.Windows.Forms.OpenFileDialog();
+            this.ImportSample = new System.Windows.Forms.OpenFileDialog();
+            this.Zeta_test = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.TestGrid = new System.Windows.Forms.DataGridView();
             this.rawUCaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -127,6 +115,22 @@
             this.ConvStdLabel = new System.Windows.Forms.Label();
             this.conductTestButton = new System.Windows.Forms.Button();
             this.DeleteRowTestGrid = new System.Windows.Forms.Button();
+            this.Age = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.AgeGrid = new System.Windows.Forms.DataGridView();
+            this.SampleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UstdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CaDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CastdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCaDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCastdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Weighted = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Weightedstd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sigma = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.label15 = new System.Windows.Forms.Label();
             this.FileSampleLabel = new System.Windows.Forms.Label();
@@ -152,8 +156,6 @@
             this.DeleteRowAgeGrid = new System.Windows.Forms.Button();
             this.ChiLabel = new System.Windows.Forms.Label();
             this.PLabel = new System.Windows.Forms.Label();
-            this.ImportTest = new System.Windows.Forms.OpenFileDialog();
-            this.ImportSample = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -163,11 +165,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.zetaTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UCaChart)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
-            this.age.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AgeGrid)).BeginInit();
+            this.Zeta_test.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TestGrid)).BeginInit();
             this.tableLayoutPanel6.SuspendLayout();
+            this.Age.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AgeGrid)).BeginInit();
             this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -243,7 +247,8 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.Zeta);
-            this.tabControl1.Controls.Add(this.age);
+            this.tabControl1.Controls.Add(this.Zeta_test);
+            this.tabControl1.Controls.Add(this.Age);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
@@ -668,35 +673,339 @@
             this.zetaErrLabel.TabIndex = 17;
             this.zetaErrLabel.Text = "-";
             // 
-            // age
+            // ImportTest
             // 
-            this.age.Controls.Add(this.tableLayoutPanel5);
-            this.age.Location = new System.Drawing.Point(4, 22);
-            this.age.Name = "age";
-            this.age.Padding = new System.Windows.Forms.Padding(3);
-            this.age.Size = new System.Drawing.Size(1431, 804);
-            this.age.TabIndex = 1;
-            this.age.Text = "Age";
-            this.age.UseVisualStyleBackColor = true;
+            this.ImportTest.FileName = "ImportTest";
             // 
-            // tableLayoutPanel5
+            // ImportSample
             // 
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Controls.Add(this.AgeGrid, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.TestGrid, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel7, 1, 1);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(1425, 798);
-            this.tableLayoutPanel5.TabIndex = 0;
+            this.ImportSample.FileName = "openFileDialog1";
+            // 
+            // Zeta_test
+            // 
+            this.Zeta_test.Controls.Add(this.tableLayoutPanel8);
+            this.Zeta_test.Location = new System.Drawing.Point(4, 22);
+            this.Zeta_test.Name = "Zeta_test";
+            this.Zeta_test.Size = new System.Drawing.Size(1431, 804);
+            this.Zeta_test.TabIndex = 2;
+            this.Zeta_test.Text = "Zeta test";
+            this.Zeta_test.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 2;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel8.Controls.Add(this.TestGrid, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel6, 1, 0);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 2;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(1431, 804);
+            this.tableLayoutPanel8.TabIndex = 0;
+            // 
+            // TestGrid
+            // 
+            this.TestGrid.AllowUserToAddRows = false;
+            this.TestGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TestGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.rawUCaTest,
+            this.UTest,
+            this.UstdTest,
+            this.CaTest,
+            this.CastdTest,
+            this.UCaTest,
+            this.UCastdTest,
+            this.ConvUCaTest,
+            this.TestDur});
+            this.TestGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TestGrid.Location = new System.Drawing.Point(3, 3);
+            this.TestGrid.Name = "TestGrid";
+            this.TestGrid.RowHeadersVisible = false;
+            this.tableLayoutPanel8.SetRowSpan(this.TestGrid, 2);
+            this.TestGrid.Size = new System.Drawing.Size(1210, 798);
+            this.TestGrid.TabIndex = 6;
+            // 
+            // rawUCaTest
+            // 
+            this.rawUCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.rawUCaTest.HeaderText = "raw U/Ca";
+            this.rawUCaTest.Name = "rawUCaTest";
+            // 
+            // UTest
+            // 
+            this.UTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UTest.HeaderText = "U";
+            this.UTest.Name = "UTest";
+            // 
+            // UstdTest
+            // 
+            this.UstdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UstdTest.HeaderText = "U std";
+            this.UstdTest.Name = "UstdTest";
+            // 
+            // CaTest
+            // 
+            this.CaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CaTest.HeaderText = "Ca";
+            this.CaTest.Name = "CaTest";
+            // 
+            // CastdTest
+            // 
+            this.CastdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CastdTest.HeaderText = "Ca std";
+            this.CastdTest.Name = "CastdTest";
+            // 
+            // UCaTest
+            // 
+            this.UCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCaTest.HeaderText = "U/Ca";
+            this.UCaTest.Name = "UCaTest";
+            // 
+            // UCastdTest
+            // 
+            this.UCastdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCastdTest.HeaderText = "U/Ca std";
+            this.UCastdTest.Name = "UCastdTest";
+            // 
+            // ConvUCaTest
+            // 
+            this.ConvUCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ConvUCaTest.HeaderText = "Conv U/Ca";
+            this.ConvUCaTest.Name = "ConvUCaTest";
+            // 
+            // TestDur
+            // 
+            this.TestDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TestDur.HeaderText = "Test";
+            this.TestDur.Name = "TestDur";
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.label9, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.TestFileLabel, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.label11, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.label12, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.label13, 0, 3);
+            this.tableLayoutPanel6.Controls.Add(this.label14, 0, 4);
+            this.tableLayoutPanel6.Controls.Add(this.label16, 0, 5);
+            this.tableLayoutPanel6.Controls.Add(this.label17, 0, 6);
+            this.tableLayoutPanel6.Controls.Add(this.RawTestLabel, 1, 1);
+            this.tableLayoutPanel6.Controls.Add(this.UCaTestLabel, 1, 2);
+            this.tableLayoutPanel6.Controls.Add(this.ConvFactorLabel, 1, 3);
+            this.tableLayoutPanel6.Controls.Add(this.TestLabel, 1, 5);
+            this.tableLayoutPanel6.Controls.Add(this.TestStdLabel, 1, 6);
+            this.tableLayoutPanel6.Controls.Add(this.ConvStdLabel, 1, 4);
+            this.tableLayoutPanel6.Controls.Add(this.conductTestButton, 1, 7);
+            this.tableLayoutPanel6.Controls.Add(this.DeleteRowTestGrid, 0, 7);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(1219, 3);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 8;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(209, 240);
+            this.tableLayoutPanel6.TabIndex = 8;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.Location = new System.Drawing.Point(6, 3);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(94, 26);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "File:";
+            // 
+            // TestFileLabel
+            // 
+            this.TestFileLabel.AutoSize = true;
+            this.TestFileLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TestFileLabel.Location = new System.Drawing.Point(109, 3);
+            this.TestFileLabel.Name = "TestFileLabel";
+            this.TestFileLabel.Size = new System.Drawing.Size(94, 26);
+            this.TestFileLabel.TabIndex = 1;
+            this.TestFileLabel.Text = "-";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label11.Location = new System.Drawing.Point(6, 32);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(94, 26);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Raw U/Ca";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label12.Location = new System.Drawing.Point(6, 61);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(94, 26);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "U/Ca";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label13.Location = new System.Drawing.Point(6, 90);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(94, 26);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "Conversion factor";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label14.Location = new System.Drawing.Point(6, 119);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(94, 26);
+            this.label14.TabIndex = 5;
+            this.label14.Text = "2SD";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label16.Location = new System.Drawing.Point(6, 148);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(94, 26);
+            this.label16.TabIndex = 7;
+            this.label16.Text = "Test";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label17.Location = new System.Drawing.Point(6, 177);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(94, 26);
+            this.label17.TabIndex = 8;
+            this.label17.Text = "2SD";
+            // 
+            // RawTestLabel
+            // 
+            this.RawTestLabel.AutoSize = true;
+            this.RawTestLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RawTestLabel.Location = new System.Drawing.Point(109, 32);
+            this.RawTestLabel.Name = "RawTestLabel";
+            this.RawTestLabel.Size = new System.Drawing.Size(94, 26);
+            this.RawTestLabel.TabIndex = 9;
+            this.RawTestLabel.Text = "-";
+            // 
+            // UCaTestLabel
+            // 
+            this.UCaTestLabel.AutoSize = true;
+            this.UCaTestLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UCaTestLabel.Location = new System.Drawing.Point(109, 61);
+            this.UCaTestLabel.Name = "UCaTestLabel";
+            this.UCaTestLabel.Size = new System.Drawing.Size(94, 26);
+            this.UCaTestLabel.TabIndex = 10;
+            this.UCaTestLabel.Text = "-";
+            // 
+            // ConvFactorLabel
+            // 
+            this.ConvFactorLabel.AutoSize = true;
+            this.ConvFactorLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConvFactorLabel.Location = new System.Drawing.Point(109, 90);
+            this.ConvFactorLabel.Name = "ConvFactorLabel";
+            this.ConvFactorLabel.Size = new System.Drawing.Size(94, 26);
+            this.ConvFactorLabel.TabIndex = 11;
+            this.ConvFactorLabel.Text = "-";
+            // 
+            // TestLabel
+            // 
+            this.TestLabel.AutoSize = true;
+            this.TestLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TestLabel.Location = new System.Drawing.Point(109, 148);
+            this.TestLabel.Name = "TestLabel";
+            this.TestLabel.Size = new System.Drawing.Size(94, 26);
+            this.TestLabel.TabIndex = 12;
+            this.TestLabel.Text = "-";
+            // 
+            // TestStdLabel
+            // 
+            this.TestStdLabel.AutoSize = true;
+            this.TestStdLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TestStdLabel.Location = new System.Drawing.Point(109, 177);
+            this.TestStdLabel.Name = "TestStdLabel";
+            this.TestStdLabel.Size = new System.Drawing.Size(94, 26);
+            this.TestStdLabel.TabIndex = 13;
+            this.TestStdLabel.Text = "-";
+            // 
+            // ConvStdLabel
+            // 
+            this.ConvStdLabel.AutoSize = true;
+            this.ConvStdLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConvStdLabel.Location = new System.Drawing.Point(109, 119);
+            this.ConvStdLabel.Name = "ConvStdLabel";
+            this.ConvStdLabel.Size = new System.Drawing.Size(94, 26);
+            this.ConvStdLabel.TabIndex = 14;
+            this.ConvStdLabel.Text = "-";
+            // 
+            // conductTestButton
+            // 
+            this.conductTestButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.conductTestButton.Location = new System.Drawing.Point(109, 209);
+            this.conductTestButton.Name = "conductTestButton";
+            this.conductTestButton.Size = new System.Drawing.Size(94, 25);
+            this.conductTestButton.TabIndex = 15;
+            this.conductTestButton.Text = "Test";
+            this.conductTestButton.UseVisualStyleBackColor = true;
+            // 
+            // DeleteRowTestGrid
+            // 
+            this.DeleteRowTestGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DeleteRowTestGrid.Location = new System.Drawing.Point(6, 209);
+            this.DeleteRowTestGrid.Name = "DeleteRowTestGrid";
+            this.DeleteRowTestGrid.Size = new System.Drawing.Size(94, 25);
+            this.DeleteRowTestGrid.TabIndex = 16;
+            this.DeleteRowTestGrid.Text = "delete row";
+            this.DeleteRowTestGrid.UseVisualStyleBackColor = true;
+            // 
+            // Age
+            // 
+            this.Age.Controls.Add(this.tableLayoutPanel9);
+            this.Age.Location = new System.Drawing.Point(4, 22);
+            this.Age.Name = "Age";
+            this.Age.Padding = new System.Windows.Forms.Padding(3);
+            this.Age.Size = new System.Drawing.Size(1431, 804);
+            this.Age.TabIndex = 3;
+            this.Age.Text = "Age";
+            this.Age.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.ColumnCount = 2;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel9.Controls.Add(this.AgeGrid, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel7, 1, 0);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 2;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(1425, 798);
+            this.tableLayoutPanel9.TabIndex = 0;
             // 
             // AgeGrid
             // 
@@ -717,12 +1026,13 @@
             this.FT,
             this.sigma});
             this.AgeGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AgeGrid.Location = new System.Drawing.Point(3, 402);
+            this.AgeGrid.Location = new System.Drawing.Point(3, 3);
             this.AgeGrid.Name = "AgeGrid";
             this.AgeGrid.RowHeadersVisible = false;
             this.AgeGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.AgeGrid.Size = new System.Drawing.Size(1205, 393);
-            this.AgeGrid.TabIndex = 6;
+            this.tableLayoutPanel9.SetRowSpan(this.AgeGrid, 2);
+            this.AgeGrid.Size = new System.Drawing.Size(1205, 792);
+            this.AgeGrid.TabIndex = 11;
             // 
             // SampleName
             // 
@@ -802,280 +1112,6 @@
             this.sigma.HeaderText = "2 sigma";
             this.sigma.Name = "sigma";
             // 
-            // TestGrid
-            // 
-            this.TestGrid.AllowUserToAddRows = false;
-            this.TestGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TestGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.rawUCaTest,
-            this.UTest,
-            this.UstdTest,
-            this.CaTest,
-            this.CastdTest,
-            this.UCaTest,
-            this.UCastdTest,
-            this.ConvUCaTest,
-            this.TestDur});
-            this.TestGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TestGrid.Location = new System.Drawing.Point(3, 3);
-            this.TestGrid.Name = "TestGrid";
-            this.TestGrid.RowHeadersVisible = false;
-            this.TestGrid.Size = new System.Drawing.Size(1205, 393);
-            this.TestGrid.TabIndex = 5;
-            // 
-            // rawUCaTest
-            // 
-            this.rawUCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.rawUCaTest.HeaderText = "raw U/Ca";
-            this.rawUCaTest.Name = "rawUCaTest";
-            // 
-            // UTest
-            // 
-            this.UTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UTest.HeaderText = "U";
-            this.UTest.Name = "UTest";
-            // 
-            // UstdTest
-            // 
-            this.UstdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UstdTest.HeaderText = "U std";
-            this.UstdTest.Name = "UstdTest";
-            // 
-            // CaTest
-            // 
-            this.CaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CaTest.HeaderText = "Ca";
-            this.CaTest.Name = "CaTest";
-            // 
-            // CastdTest
-            // 
-            this.CastdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CastdTest.HeaderText = "Ca std";
-            this.CastdTest.Name = "CastdTest";
-            // 
-            // UCaTest
-            // 
-            this.UCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCaTest.HeaderText = "U/Ca";
-            this.UCaTest.Name = "UCaTest";
-            // 
-            // UCastdTest
-            // 
-            this.UCastdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCastdTest.HeaderText = "U/Ca std";
-            this.UCastdTest.Name = "UCastdTest";
-            // 
-            // ConvUCaTest
-            // 
-            this.ConvUCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ConvUCaTest.HeaderText = "Conv U/Ca";
-            this.ConvUCaTest.Name = "ConvUCaTest";
-            // 
-            // TestDur
-            // 
-            this.TestDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TestDur.HeaderText = "Test";
-            this.TestDur.Name = "TestDur";
-            // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
-            this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Controls.Add(this.label9, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.TestFileLabel, 1, 0);
-            this.tableLayoutPanel6.Controls.Add(this.label11, 0, 1);
-            this.tableLayoutPanel6.Controls.Add(this.label12, 0, 2);
-            this.tableLayoutPanel6.Controls.Add(this.label13, 0, 3);
-            this.tableLayoutPanel6.Controls.Add(this.label14, 0, 4);
-            this.tableLayoutPanel6.Controls.Add(this.label16, 0, 5);
-            this.tableLayoutPanel6.Controls.Add(this.label17, 0, 6);
-            this.tableLayoutPanel6.Controls.Add(this.RawTestLabel, 1, 1);
-            this.tableLayoutPanel6.Controls.Add(this.UCaTestLabel, 1, 2);
-            this.tableLayoutPanel6.Controls.Add(this.ConvFactorLabel, 1, 3);
-            this.tableLayoutPanel6.Controls.Add(this.TestLabel, 1, 5);
-            this.tableLayoutPanel6.Controls.Add(this.TestStdLabel, 1, 6);
-            this.tableLayoutPanel6.Controls.Add(this.ConvStdLabel, 1, 4);
-            this.tableLayoutPanel6.Controls.Add(this.conductTestButton, 1, 7);
-            this.tableLayoutPanel6.Controls.Add(this.DeleteRowTestGrid, 0, 7);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(1214, 3);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 8;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(208, 240);
-            this.tableLayoutPanel6.TabIndex = 7;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(6, 3);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(93, 26);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "File:";
-            // 
-            // TestFileLabel
-            // 
-            this.TestFileLabel.AutoSize = true;
-            this.TestFileLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TestFileLabel.Location = new System.Drawing.Point(108, 3);
-            this.TestFileLabel.Name = "TestFileLabel";
-            this.TestFileLabel.Size = new System.Drawing.Size(94, 26);
-            this.TestFileLabel.TabIndex = 1;
-            this.TestFileLabel.Text = "-";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(6, 32);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(93, 26);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "Raw U/Ca";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(6, 61);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(93, 26);
-            this.label12.TabIndex = 3;
-            this.label12.Text = "U/Ca";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label13.Location = new System.Drawing.Point(6, 90);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(93, 26);
-            this.label13.TabIndex = 4;
-            this.label13.Text = "Conversion factor";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label14.Location = new System.Drawing.Point(6, 119);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(93, 26);
-            this.label14.TabIndex = 5;
-            this.label14.Text = "2SD";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label16.Location = new System.Drawing.Point(6, 148);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(93, 26);
-            this.label16.TabIndex = 7;
-            this.label16.Text = "Test";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label17.Location = new System.Drawing.Point(6, 177);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(93, 26);
-            this.label17.TabIndex = 8;
-            this.label17.Text = "2SD";
-            // 
-            // RawTestLabel
-            // 
-            this.RawTestLabel.AutoSize = true;
-            this.RawTestLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RawTestLabel.Location = new System.Drawing.Point(108, 32);
-            this.RawTestLabel.Name = "RawTestLabel";
-            this.RawTestLabel.Size = new System.Drawing.Size(94, 26);
-            this.RawTestLabel.TabIndex = 9;
-            this.RawTestLabel.Text = "-";
-            // 
-            // UCaTestLabel
-            // 
-            this.UCaTestLabel.AutoSize = true;
-            this.UCaTestLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UCaTestLabel.Location = new System.Drawing.Point(108, 61);
-            this.UCaTestLabel.Name = "UCaTestLabel";
-            this.UCaTestLabel.Size = new System.Drawing.Size(94, 26);
-            this.UCaTestLabel.TabIndex = 10;
-            this.UCaTestLabel.Text = "-";
-            // 
-            // ConvFactorLabel
-            // 
-            this.ConvFactorLabel.AutoSize = true;
-            this.ConvFactorLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ConvFactorLabel.Location = new System.Drawing.Point(108, 90);
-            this.ConvFactorLabel.Name = "ConvFactorLabel";
-            this.ConvFactorLabel.Size = new System.Drawing.Size(94, 26);
-            this.ConvFactorLabel.TabIndex = 11;
-            this.ConvFactorLabel.Text = "-";
-            // 
-            // TestLabel
-            // 
-            this.TestLabel.AutoSize = true;
-            this.TestLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TestLabel.Location = new System.Drawing.Point(108, 148);
-            this.TestLabel.Name = "TestLabel";
-            this.TestLabel.Size = new System.Drawing.Size(94, 26);
-            this.TestLabel.TabIndex = 12;
-            this.TestLabel.Text = "-";
-            // 
-            // TestStdLabel
-            // 
-            this.TestStdLabel.AutoSize = true;
-            this.TestStdLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TestStdLabel.Location = new System.Drawing.Point(108, 177);
-            this.TestStdLabel.Name = "TestStdLabel";
-            this.TestStdLabel.Size = new System.Drawing.Size(94, 26);
-            this.TestStdLabel.TabIndex = 13;
-            this.TestStdLabel.Text = "-";
-            // 
-            // ConvStdLabel
-            // 
-            this.ConvStdLabel.AutoSize = true;
-            this.ConvStdLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ConvStdLabel.Location = new System.Drawing.Point(108, 119);
-            this.ConvStdLabel.Name = "ConvStdLabel";
-            this.ConvStdLabel.Size = new System.Drawing.Size(94, 26);
-            this.ConvStdLabel.TabIndex = 14;
-            this.ConvStdLabel.Text = "-";
-            // 
-            // conductTestButton
-            // 
-            this.conductTestButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.conductTestButton.Location = new System.Drawing.Point(108, 209);
-            this.conductTestButton.Name = "conductTestButton";
-            this.conductTestButton.Size = new System.Drawing.Size(94, 25);
-            this.conductTestButton.TabIndex = 15;
-            this.conductTestButton.Text = "Test";
-            this.conductTestButton.UseVisualStyleBackColor = true;
-            this.conductTestButton.Click += new System.EventHandler(this.conductTestButton_Click);
-            // 
-            // DeleteRowTestGrid
-            // 
-            this.DeleteRowTestGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DeleteRowTestGrid.Location = new System.Drawing.Point(6, 209);
-            this.DeleteRowTestGrid.Name = "DeleteRowTestGrid";
-            this.DeleteRowTestGrid.Size = new System.Drawing.Size(93, 25);
-            this.DeleteRowTestGrid.TabIndex = 16;
-            this.DeleteRowTestGrid.Text = "delete row";
-            this.DeleteRowTestGrid.UseVisualStyleBackColor = true;
-            this.DeleteRowTestGrid.Click += new System.EventHandler(this.DeleteRowTestGrid_Click);
-            // 
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
@@ -1107,7 +1143,7 @@
             this.tableLayoutPanel7.Controls.Add(this.ChiLabel, 1, 7);
             this.tableLayoutPanel7.Controls.Add(this.PLabel, 1, 8);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(1214, 402);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(1214, 3);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 12;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333402F));
@@ -1123,7 +1159,7 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333402F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.332568F));
             this.tableLayoutPanel7.Size = new System.Drawing.Size(208, 334);
-            this.tableLayoutPanel7.TabIndex = 8;
+            this.tableLayoutPanel7.TabIndex = 12;
             // 
             // label15
             // 
@@ -1334,7 +1370,6 @@
             this.poolAgeButton.TabIndex = 21;
             this.poolAgeButton.Text = "Pool age";
             this.poolAgeButton.UseVisualStyleBackColor = true;
-            this.poolAgeButton.Click += new System.EventHandler(this.poolAgeButton_Click);
             // 
             // DeleteRowAgeGrid
             // 
@@ -1345,7 +1380,6 @@
             this.DeleteRowAgeGrid.TabIndex = 22;
             this.DeleteRowAgeGrid.Text = "delete row";
             this.DeleteRowAgeGrid.UseVisualStyleBackColor = true;
-            this.DeleteRowAgeGrid.Click += new System.EventHandler(this.DeleteRowAgeGrid_Click);
             // 
             // ChiLabel
             // 
@@ -1366,14 +1400,6 @@
             this.PLabel.Size = new System.Drawing.Size(94, 24);
             this.PLabel.TabIndex = 24;
             this.PLabel.Text = "-";
-            // 
-            // ImportTest
-            // 
-            this.ImportTest.FileName = "ImportTest";
-            // 
-            // ImportSample
-            // 
-            this.ImportSample.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -1396,12 +1422,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.UCaChart)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            this.age.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.AgeGrid)).EndInit();
+            this.Zeta_test.ResumeLayout(false);
+            this.tableLayoutPanel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TestGrid)).EndInit();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            this.Age.ResumeLayout(false);
+            this.tableLayoutPanel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.AgeGrid)).EndInit();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
             this.ResumeLayout(false);
@@ -1447,17 +1475,21 @@
         private System.Windows.Forms.Label zetaLabel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TabPage age;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripButton optiondButton;
         private System.Windows.Forms.TextBox yr1Text;
         private System.Windows.Forms.Button calculateZeta;
         private System.Windows.Forms.Button deleteRow;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.DataGridView TestGrid;
-        private System.Windows.Forms.DataGridView AgeGrid;
         private System.Windows.Forms.OpenFileDialog ImportTest;
         private System.Windows.Forms.Label zetaErrLabel;
+        private System.Windows.Forms.OpenFileDialog ImportSample;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem importZetaFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importTestFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importSampleFileToolStripMenuItem;
+        private System.Windows.Forms.TabPage Zeta_test;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
+        private System.Windows.Forms.DataGridView TestGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn rawUCaTest;
         private System.Windows.Forms.DataGridViewTextBoxColumn UTest;
         private System.Windows.Forms.DataGridViewTextBoxColumn UstdTest;
@@ -1482,6 +1514,11 @@
         private System.Windows.Forms.Label TestLabel;
         private System.Windows.Forms.Label TestStdLabel;
         private System.Windows.Forms.Label ConvStdLabel;
+        private System.Windows.Forms.Button conductTestButton;
+        private System.Windows.Forms.Button DeleteRowTestGrid;
+        private System.Windows.Forms.TabPage Age;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private System.Windows.Forms.DataGridView AgeGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn SampleName;
         private System.Windows.Forms.DataGridViewTextBoxColumn NAge;
         private System.Windows.Forms.DataGridViewTextBoxColumn SAge;
@@ -1495,7 +1532,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Weightedstd;
         private System.Windows.Forms.DataGridViewTextBoxColumn FT;
         private System.Windows.Forms.DataGridViewTextBoxColumn sigma;
-        private System.Windows.Forms.OpenFileDialog ImportSample;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label FileSampleLabel;
@@ -1517,13 +1553,7 @@
         private System.Windows.Forms.Label NsLabel;
         private System.Windows.Forms.Label PooledAgeLabel;
         private System.Windows.Forms.Label AgeStdLabel;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStripMenuItem importZetaFileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importTestFileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importSampleFileToolStripMenuItem;
-        private System.Windows.Forms.Button conductTestButton;
         private System.Windows.Forms.Button poolAgeButton;
-        private System.Windows.Forms.Button DeleteRowTestGrid;
         private System.Windows.Forms.Button DeleteRowAgeGrid;
         private System.Windows.Forms.Label ChiLabel;
         private System.Windows.Forms.Label PLabel;
