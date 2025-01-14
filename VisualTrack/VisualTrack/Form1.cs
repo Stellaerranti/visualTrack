@@ -1113,5 +1113,124 @@ namespace VisualTrack
 
             AgeCalcutation();
         }
+
+        
+        //Updating rows
+
+        private void ZetaGridRowUpdate()
+        {
+            double U = Double.Parse(zetaTable.Rows[zetaTable.CurrentRow.Index].Cells["U"].Value.ToString());
+
+            double Ca = Double.Parse(zetaTable.Rows[zetaTable.CurrentRow.Index].Cells["Ca"].Value.ToString());
+            double U_std = Double.Parse(zetaTable.Rows[zetaTable.CurrentRow.Index].Cells["U_std"].Value.ToString()); 
+            double Ca_std = Double.Parse(zetaTable.Rows[zetaTable.CurrentRow.Index].Cells["Ca_std"].Value.ToString()); 
+
+            double UCa = U / Ca; ;
+            double UCa_std = Calc_UCa_std(U, Ca, U_std, Ca_std);
+
+            //row.Cells["UCaFlat"].Value = (Double.Parse(row.Cells["UCa"].Value.ToString()) + ((N/2)-(i+1)+0.5)*b).ToString("E3");
+
+
+            zetaTable.Rows[zetaTable.CurrentRow.Index].Cells["UCa"].Value = UCa;
+            zetaTable.Rows[zetaTable.CurrentRow.Index].Cells["UCastd"].Value = UCa_std;
+
+        }
+
+        private void ZetaGridUpdate()
+        {
+            try
+            {
+
+                UCaChart.Series["UCaError"].Points.Clear();
+                UCaChart.Series["UCaSeries"].Points.Clear();
+
+                UCaChart.Series["UCaFlatError"].Points.Clear();
+                UCaChart.Series["UCaFlat"].Points.Clear();
+
+                UCaChart.Series["FittingLine"].Points.Clear();
+
+                update();
+
+                FlattUCa();
+
+                if (CheckZetaInput())
+                {
+                    ZetaCalc();
+                }
+            }
+            catch { }
+        }
+
+        //Изменение данных в таблице теста
+        private void TestGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+        //Изменение данных в таблице возраста
+        private void AgeGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+        //Изменение данных в таблице зета
+        private void zetaTable_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void zetaTable_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if ((zetaTable.CurrentCell.ColumnIndex > 6) && (zetaTable.CurrentCell.ColumnIndex < 9))
+            {
+                ZetaGridUpdate();
+            }
+            else if ((zetaTable.CurrentCell.ColumnIndex < 9))
+            {
+                ZetaGridRowUpdate();
+                ZetaGridUpdate();
+            }
+            else
+            {
+
+                double b = MSE_b();
+                double a = MSE_a();
+                int N = zetaTable.Rows.Count + 1;
+                int i = 1;
+
+                UCaChart.Series["UCaError"].Points.Clear();
+                UCaChart.Series["UCaSeries"].Points.Clear();
+
+                UCaChart.Series["UCaFlatError"].Points.Clear();
+                UCaChart.Series["UCaFlat"].Points.Clear();
+
+                UCaChart.Series["FittingLine"].Points.Clear();
+
+                UCaChart.Series["FittingLine"].Points.AddXY(0, a);
+                UCaChart.Series["FittingLine"].Points.AddXY(N, a + b * N);
+
+                update();
+
+                foreach (DataGridViewRow row in zetaTable.Rows)
+                {
+                    DrawUCaFlatt(i, Double.Parse(row.Cells["UCaFlat"].Value.ToString()), Double.Parse(row.Cells["UCaFlatStd"].Value.ToString()));
+                    i++;
+                }
+
+                if (CheckZetaInput())
+                {
+                    ZetaCalc();
+                }
+            }
+        }
+
+        private void TestGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            testDurango();
+            AgeCalcutation();
+        }
+
+        private void AgeGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            AgeCalcutation();
+        }
     }
 }

@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea18 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series41 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series42 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series43 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series44 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series45 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ImportZeta = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -84,8 +84,6 @@
             this.calculateZeta = new System.Windows.Forms.Button();
             this.deleteRow = new System.Windows.Forms.Button();
             this.zetaErrLabel = new System.Windows.Forms.Label();
-            this.ImportTest = new System.Windows.Forms.OpenFileDialog();
-            this.ImportSample = new System.Windows.Forms.OpenFileDialog();
             this.Zeta_test = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.TestGrid = new System.Windows.Forms.DataGridView();
@@ -156,6 +154,8 @@
             this.DeleteRowAgeGrid = new System.Windows.Forms.Button();
             this.ChiLabel = new System.Windows.Forms.Label();
             this.PLabel = new System.Windows.Forms.Label();
+            this.ImportTest = new System.Windows.Forms.OpenFileDialog();
+            this.ImportSample = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -322,6 +322,8 @@
             this.zetaTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.zetaTable.Size = new System.Drawing.Size(1199, 390);
             this.zetaTable.TabIndex = 0;
+            this.zetaTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.zetaTable_CellEndEdit);
+            this.zetaTable.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.zetaTable_CellValueChanged);
             // 
             // NameColumn
             // 
@@ -403,47 +405,47 @@
             // 
             // UCaChart
             // 
-            chartArea1.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea1.AlignWithChartArea = "ChartArea2";
-            chartArea1.Name = "ChartArea1";
-            chartArea2.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea2.BorderColor = System.Drawing.Color.Bisque;
-            chartArea2.Name = "ChartArea2";
-            this.UCaChart.ChartAreas.Add(chartArea1);
-            this.UCaChart.ChartAreas.Add(chartArea2);
+            chartArea17.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea17.AlignWithChartArea = "ChartArea2";
+            chartArea17.Name = "ChartArea1";
+            chartArea18.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea18.BorderColor = System.Drawing.Color.Bisque;
+            chartArea18.Name = "ChartArea2";
+            this.UCaChart.ChartAreas.Add(chartArea17);
+            this.UCaChart.ChartAreas.Add(chartArea18);
             this.UCaChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.UCaChart.Legends.Add(legend1);
+            legend9.Enabled = false;
+            legend9.Name = "Legend1";
+            this.UCaChart.Legends.Add(legend9);
             this.UCaChart.Location = new System.Drawing.Point(3, 3);
             this.UCaChart.Name = "UCaChart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.Name = "UCaSeries";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series2.Legend = "Legend1";
-            series2.Name = "UCaError";
-            series2.YValuesPerPoint = 3;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "FittingLine";
-            series4.ChartArea = "ChartArea2";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series4.Legend = "Legend1";
-            series4.Name = "UCaFlat";
-            series5.ChartArea = "ChartArea2";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series5.Legend = "Legend1";
-            series5.Name = "UCaFlatError";
-            series5.YValuesPerPoint = 3;
-            this.UCaChart.Series.Add(series1);
-            this.UCaChart.Series.Add(series2);
-            this.UCaChart.Series.Add(series3);
-            this.UCaChart.Series.Add(series4);
-            this.UCaChart.Series.Add(series5);
+            series41.ChartArea = "ChartArea1";
+            series41.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series41.Legend = "Legend1";
+            series41.Name = "UCaSeries";
+            series42.ChartArea = "ChartArea1";
+            series42.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series42.Legend = "Legend1";
+            series42.Name = "UCaError";
+            series42.YValuesPerPoint = 3;
+            series43.ChartArea = "ChartArea1";
+            series43.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series43.Legend = "Legend1";
+            series43.Name = "FittingLine";
+            series44.ChartArea = "ChartArea2";
+            series44.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series44.Legend = "Legend1";
+            series44.Name = "UCaFlat";
+            series45.ChartArea = "ChartArea2";
+            series45.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series45.Legend = "Legend1";
+            series45.Name = "UCaFlatError";
+            series45.YValuesPerPoint = 3;
+            this.UCaChart.Series.Add(series41);
+            this.UCaChart.Series.Add(series42);
+            this.UCaChart.Series.Add(series43);
+            this.UCaChart.Series.Add(series44);
+            this.UCaChart.Series.Add(series45);
             this.UCaChart.Size = new System.Drawing.Size(1199, 390);
             this.UCaChart.TabIndex = 1;
             this.UCaChart.Text = "chart1";
@@ -673,14 +675,6 @@
             this.zetaErrLabel.TabIndex = 17;
             this.zetaErrLabel.Text = "-";
             // 
-            // ImportTest
-            // 
-            this.ImportTest.FileName = "ImportTest";
-            // 
-            // ImportSample
-            // 
-            this.ImportSample.FileName = "openFileDialog1";
-            // 
             // Zeta_test
             // 
             this.Zeta_test.Controls.Add(this.tableLayoutPanel8);
@@ -728,6 +722,8 @@
             this.tableLayoutPanel8.SetRowSpan(this.TestGrid, 2);
             this.TestGrid.Size = new System.Drawing.Size(1210, 798);
             this.TestGrid.TabIndex = 6;
+            this.TestGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.TestGrid_CellEndEdit);
+            this.TestGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.TestGrid_CellValueChanged);
             // 
             // rawUCaTest
             // 
@@ -969,6 +965,7 @@
             this.conductTestButton.TabIndex = 15;
             this.conductTestButton.Text = "Test";
             this.conductTestButton.UseVisualStyleBackColor = true;
+            this.conductTestButton.Click += new System.EventHandler(this.conductTestButton_Click);
             // 
             // DeleteRowTestGrid
             // 
@@ -979,6 +976,7 @@
             this.DeleteRowTestGrid.TabIndex = 16;
             this.DeleteRowTestGrid.Text = "delete row";
             this.DeleteRowTestGrid.UseVisualStyleBackColor = true;
+            this.DeleteRowTestGrid.Click += new System.EventHandler(this.DeleteRowTestGrid_Click);
             // 
             // Age
             // 
@@ -1033,6 +1031,8 @@
             this.tableLayoutPanel9.SetRowSpan(this.AgeGrid, 2);
             this.AgeGrid.Size = new System.Drawing.Size(1205, 792);
             this.AgeGrid.TabIndex = 11;
+            this.AgeGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.AgeGrid_CellEndEdit);
+            this.AgeGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.AgeGrid_CellValueChanged);
             // 
             // SampleName
             // 
@@ -1370,6 +1370,7 @@
             this.poolAgeButton.TabIndex = 21;
             this.poolAgeButton.Text = "Pool age";
             this.poolAgeButton.UseVisualStyleBackColor = true;
+            this.poolAgeButton.Click += new System.EventHandler(this.poolAgeButton_Click);
             // 
             // DeleteRowAgeGrid
             // 
@@ -1380,6 +1381,7 @@
             this.DeleteRowAgeGrid.TabIndex = 22;
             this.DeleteRowAgeGrid.Text = "delete row";
             this.DeleteRowAgeGrid.UseVisualStyleBackColor = true;
+            this.DeleteRowAgeGrid.Click += new System.EventHandler(this.DeleteRowAgeGrid_Click);
             // 
             // ChiLabel
             // 
@@ -1400,6 +1402,14 @@
             this.PLabel.Size = new System.Drawing.Size(94, 24);
             this.PLabel.TabIndex = 24;
             this.PLabel.Text = "-";
+            // 
+            // ImportTest
+            // 
+            this.ImportTest.FileName = "ImportTest";
+            // 
+            // ImportSample
+            // 
+            this.ImportSample.FileName = "openFileDialog1";
             // 
             // Form1
             // 
