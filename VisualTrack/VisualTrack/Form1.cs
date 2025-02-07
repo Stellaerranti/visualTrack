@@ -1113,7 +1113,6 @@ namespace VisualTrack
 
             AgeCalcutation();
         }
-
         
         //Updating rows
 
@@ -1131,8 +1130,8 @@ namespace VisualTrack
             //row.Cells["UCaFlat"].Value = (Double.Parse(row.Cells["UCa"].Value.ToString()) + ((N/2)-(i+1)+0.5)*b).ToString("E3");
 
 
-            zetaTable.Rows[zetaTable.CurrentRow.Index].Cells["UCa"].Value = UCa;
-            zetaTable.Rows[zetaTable.CurrentRow.Index].Cells["UCastd"].Value = UCa_std;
+            zetaTable.Rows[zetaTable.CurrentRow.Index].Cells["UCa"].Value = UCa.ToString("E3");
+            zetaTable.Rows[zetaTable.CurrentRow.Index].Cells["UCastd"].Value = UCa_std.ToString("E3");
 
         }
 
@@ -1222,10 +1221,53 @@ namespace VisualTrack
             }
         }
 
+        private void TestGridRowUpdate()
+        {
+            double U = Double.Parse(TestGrid.Rows[TestGrid.CurrentRow.Index].Cells[1].Value.ToString());
+            double U_std = Double.Parse(TestGrid.Rows[TestGrid.CurrentRow.Index].Cells[2].Value.ToString());
+            double Ca = Double.Parse(TestGrid.Rows[TestGrid.CurrentRow.Index].Cells[3].Value.ToString());
+            double Ca_std = Double.Parse(TestGrid.Rows[TestGrid.CurrentRow.Index].Cells[4].Value.ToString());
+
+            double  UCa = U / Ca;
+
+            //UCa_std = (Calc_UCa_std(U,Ca,U_std,Ca_std)/UCa)*(UCa* 1000000);
+            double UCa_std = Calc_UCa_std(U, Ca, U_std, Ca_std);
+
+            TestGrid.Rows[TestGrid.CurrentRow.Index].Cells[5].Value = UCa.ToString("E3");
+            TestGrid.Rows[TestGrid.CurrentRow.Index].Cells[6].Value = UCa_std.ToString("E3");
+        }
+
         private void TestGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            testDurango();
-            AgeCalcutation();
+            if(TestGrid.CurrentCell.ColumnIndex == 0)
+            {
+                if ((TestGrid.Rows.Count > 1) && (zetaTable.Rows.Count > 1))
+                {                   
+                    getConvFactor();
+                    conductTest();
+                }
+                AgeCalcutation();
+            }
+            else if(TestGrid.CurrentCell.ColumnIndex > 0 && TestGrid.CurrentCell.ColumnIndex < 5)
+            {
+                TestGridRowUpdate();
+                if ((TestGrid.Rows.Count > 1) && (zetaTable.Rows.Count > 1))
+                {
+                    getConvFactor();
+                    conductTest();
+                }
+                AgeCalcutation();
+            }
+            else
+            {
+                if ((TestGrid.Rows.Count > 1) && (zetaTable.Rows.Count > 1))
+                {
+                    getConvFactor();
+                    conductTest();
+                }
+                AgeCalcutation();
+            }
+            
         }
 
         private void AgeGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
