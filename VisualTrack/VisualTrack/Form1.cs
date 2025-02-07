@@ -1270,9 +1270,48 @@ namespace VisualTrack
             
         }
 
+        private void AgeGridRowUpdate()
+        {
+            double U = Double.Parse(AgeGrid.Rows[AgeGrid.CurrentRow.Index].Cells[3].Value.ToString());
+            double U_std = Double.Parse(AgeGrid.Rows[AgeGrid.CurrentRow.Index].Cells[4].Value.ToString());
+            double Ca = Double.Parse(AgeGrid.Rows[AgeGrid.CurrentRow.Index].Cells[5].Value.ToString());
+            double Ca_std = Double.Parse(AgeGrid.Rows[AgeGrid.CurrentRow.Index].Cells[6].Value.ToString());
+
+            double UCa = U / Ca;
+
+            //UCa_std = (Calc_UCa_std(U,Ca,U_std,Ca_std)/UCa)*(UCa* 1000000);
+            double UCa_std = Calc_UCa_std(U, Ca, U_std, Ca_std);
+
+            AgeGrid.Rows[AgeGrid.CurrentRow.Index].Cells[7].Value = UCa.ToString("E3");
+            AgeGrid.Rows[AgeGrid.CurrentRow.Index].Cells[8].Value = UCa_std.ToString("E3");
+
+        }
+
         private void AgeGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            AgeCalcutation();
+            if (AgeGrid.CurrentCell.ColumnIndex < 3)
+            {
+                AgeCalcutation();
+            }
+            else if (AgeGrid.CurrentCell.ColumnIndex < 7)
+            {
+                AgeGridRowUpdate();
+                AgeCalcutation();
+            }
+            else
+            {
+                if ((AgeGrid.Rows.Count > 1) && (CheckZetaInput()) && (TestGrid.Rows.Count > 1)
+                        && (zetaTable.Rows.Count > 1) && (Double.TryParse(ZetaAgeLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out double check_err)))
+                {
+                    //getWeighted();
+                    double PW = getPW();
+                    double PW_std = getPWSTD();
+                    getFTage();
+                    poolAge(PW, PW_std);
+                    chiSq();
+                }
+            }
+            
         }
     }
 }
