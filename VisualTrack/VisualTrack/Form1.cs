@@ -6,12 +6,14 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using VisualTrack.Properties;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace VisualTrack
@@ -41,6 +43,7 @@ namespace VisualTrack
         private void Form1_Load(object sender, EventArgs e)
         {           
             UCaChart.Series["UCaError"].Points.Clear();
+
             UCaChart.Series["UCaSeries"].Points.Clear();
 
             UCaChart.Series["UCaFlatError"].Points.Clear();
@@ -61,14 +64,26 @@ namespace VisualTrack
             UCaChart.Series["UCaFlat"].Color = Color.Blue;
             UCaChart.Series["UCaFlatError"].Color = Color.Orange;
 
-            
+            UCaChart.Titles[0].Text = "Before drift correction";
+            UCaChart.Titles[0].DockedToChartArea = "ChartArea1";
+            UCaChart.Titles[0].Docking = Docking.Top;
+            UCaChart.Titles[0].IsDockedInsideChartArea = false;
 
             UCaChart.ChartAreas[0].AxisX.Minimum = 0;
             UCaChart.ChartAreas[0].AxisY.Minimum = 0;
+
+            UCaChart.ChartAreas[0].AxisY.Title = "U/Ca flat";
+
             //UCaChart.ChartAreas[0].AxisY.Title = "U/Ca";
+
+            UCaChart.Titles[1].Text = "After drift correction";
+            UCaChart.Titles[1].DockedToChartArea = "ChartArea2";
+            UCaChart.Titles[1].Docking = Docking.Top;
+            UCaChart.Titles[1].IsDockedInsideChartArea = false;
 
             UCaChart.ChartAreas[1].AxisX.Minimum = 0;
             UCaChart.ChartAreas[1].AxisY.Minimum = 0;
+            UCaChart.ChartAreas[1].AxisY.Title = "U/Ca flat";
             //UCaChart.ChartAreas[1].AxisY.Title = "U/Ca Flattened";
 
             option_window = new options(this);
@@ -78,6 +93,86 @@ namespace VisualTrack
 
             Settings.Default.Ca_dimension = 1;
             Settings.Default.U_dimension = 1;
+        }
+
+        private void ImportZetafileButton_Click(object sender, EventArgs e)
+        {
+            zetaTable.Rows.Clear();
+            UCaChart.Series["UCaError"].Points.Clear();
+            UCaChart.Series["UCaSeries"].Points.Clear();
+
+            UCaChart.Series["UCaFlatError"].Points.Clear();
+            UCaChart.Series["UCaFlat"].Points.Clear();
+
+            UCaChart.Series["FittingLine"].Points.Clear();
+            readFile();
+            FlattUCa();
+            testDurango();
+            AgeCalcutation();
+
+            if (CheckZetaInput())
+            {
+                ZetaCalc();
+            }
+        }
+
+        private void ImportTestFileButton_Click(object sender, EventArgs e)
+        {
+            TestGrid.Rows.Clear();
+
+            readTestFile();
+            testDurango();
+            AgeCalcutation();
+
+        }
+
+        private void ImportSamplefileButton_Click(object sender, EventArgs e)
+        {
+            AgeGrid.Rows.Clear();
+            readSampleFile();
+            AgeCalcutation();
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            AgeGrid.Rows.Clear();
+            TestGrid.Rows.Clear();
+            zetaTable.Rows.Clear();
+            UCaChart.Series["UCaError"].Points.Clear();
+            UCaChart.Series["UCaSeries"].Points.Clear();
+
+            UCaChart.Series["UCaFlatError"].Points.Clear();
+            UCaChart.Series["UCaFlat"].Points.Clear();
+
+            UCaChart.Series["FittingLine"].Points.Clear();
+
+            fileLabel.Text = "-";
+            SlopeLabel.Text = "-";
+            InterseptLabel.Text = "-";
+            zetaLabel.Text = "-";
+            zetaErrLabel.Text = "-";
+
+            TestFileLabel.Text = "-";
+            RawTestLabel.Text = "-";
+            UCaTestLabel.Text = "-";
+            ConvFactorLabel.Text = "-";
+            ConvStdLabel.Text = "-";
+            TestLabel.Text = "-";
+            TestStdLabel.Text = "-";
+
+            FileSampleLabel.Text = "-";
+            GrainsLabel.Text = "-";
+            NsLabel.Text = "-";
+            PWLabel.Text = "-";
+            PWStdLabel.Text = "-";
+            PooledAgeLabel.Text = "-";
+            AgeStdLabel.Text = "-";
+            PLabel.Text = "-";
+            ChiLabel.Text = "-";
+            ZetaAgeLabel.Text = "-";
+            ZetaStdAgeLAbel.Text = "-";
+
+            UCaChart.Titles[1].Text = "After drift correction";
         }
 
         private double Calc_UCa_std(double U, double Ca, double U_std, double Ca_std)
@@ -163,6 +258,8 @@ namespace VisualTrack
                 DrawUCaFlatt(i, Double.Parse(row.Cells["UCaFlat"].Value.ToString()), Double.Parse(row.Cells["UCaFlatStd"].Value.ToString()));
                 i++;
             }
+
+            UCaChart.Titles[1].Text = "After drift correction (slope = " + b.ToString("E3") + ")";
 
         }
 
@@ -1313,5 +1410,7 @@ namespace VisualTrack
             }
             
         }
+
+        
     }
 }
