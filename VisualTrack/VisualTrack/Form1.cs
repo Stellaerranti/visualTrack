@@ -354,7 +354,7 @@ namespace VisualTrack
                         //UCa_std = (Calc_UCa_std(U,Ca,U_std,Ca_std)/UCa)*(UCa* 1000000);
                         UCa_std = Calc_UCa_std(U, Ca, U_std, Ca_std);
 
-                        TestGrid.Rows.Add(0,U.ToString("F4"), U_std.ToString("F4"),Ca.ToString("E3"),Ca_std.ToString("E3"),UCa.ToString("E3"),UCa_std.ToString("E3"),0,0);
+                        TestGrid.Rows.Add((i+1).ToString("F0"), 0,U.ToString("F4"), U_std.ToString("F4"),Ca.ToString("E3"),Ca_std.ToString("E3"),UCa.ToString("E3"),UCa_std.ToString("E3"),0,0);
                     }
                 }
             }
@@ -1239,7 +1239,7 @@ namespace VisualTrack
 
         private void TestGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if(TestGrid.CurrentCell.ColumnIndex == 0)
+            if(TestGrid.CurrentCell.ColumnIndex == 1)
             {
                 if ((TestGrid.Rows.Count > 1) && (zetaTable.Rows.Count > 1))
                 {                   
@@ -1248,7 +1248,7 @@ namespace VisualTrack
                 }
                 AgeCalcutation();
             }
-            else if(TestGrid.CurrentCell.ColumnIndex > 0 && TestGrid.CurrentCell.ColumnIndex < 5)
+            else if(TestGrid.CurrentCell.ColumnIndex > 1 && TestGrid.CurrentCell.ColumnIndex < 6)
             {
                 TestGridRowUpdate();
                 if ((TestGrid.Rows.Count > 1) && (zetaTable.Rows.Count > 1))

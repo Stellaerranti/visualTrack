@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ImportZeta = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -50,19 +50,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.zetaTable = new System.Windows.Forms.DataGridView();
-            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.U = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.U_std = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ca = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ca_std = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Trs = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.S = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCastd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCaFlat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCaFlatStd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Zeta_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Zeta_col_std = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UCaChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.yr1Text = new System.Windows.Forms.TextBox();
@@ -87,15 +74,6 @@
             this.Zeta_test = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.TestGrid = new System.Windows.Forms.DataGridView();
-            this.rawUCaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UstdTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CastdTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCastdTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ConvUCaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TestDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.TestFileLabel = new System.Windows.Forms.Label();
@@ -156,6 +134,29 @@
             this.PLabel = new System.Windows.Forms.Label();
             this.ImportTest = new System.Windows.Forms.OpenFileDialog();
             this.ImportSample = new System.Windows.Forms.OpenFileDialog();
+            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.U = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.U_std = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ca_std = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Trs = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.S = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCastd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCaFlat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCaFlatStd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Zeta_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Zeta_col_std = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ntest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rawUCaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UstdTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CastdTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCastdTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ConvUCaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TestDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -325,127 +326,49 @@
             this.zetaTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.zetaTable_CellEndEdit);
             this.zetaTable.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.zetaTable_CellValueChanged);
             // 
-            // NameColumn
-            // 
-            this.NameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NameColumn.HeaderText = "Name";
-            this.NameColumn.Name = "NameColumn";
-            // 
-            // U
-            // 
-            this.U.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.U.HeaderText = "U";
-            this.U.Name = "U";
-            // 
-            // U_std
-            // 
-            this.U_std.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.U_std.HeaderText = "U std";
-            this.U_std.Name = "U_std";
-            // 
-            // Ca
-            // 
-            this.Ca.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Ca.HeaderText = "Ca";
-            this.Ca.Name = "Ca";
-            // 
-            // Ca_std
-            // 
-            this.Ca_std.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Ca_std.HeaderText = "Ca std";
-            this.Ca_std.Name = "Ca_std";
-            // 
-            // Trs
-            // 
-            this.Trs.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Trs.HeaderText = "Trs";
-            this.Trs.Name = "Trs";
-            // 
-            // S
-            // 
-            this.S.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.S.HeaderText = "S";
-            this.S.Name = "S";
-            // 
-            // UCa
-            // 
-            this.UCa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCa.HeaderText = "U/Ca";
-            this.UCa.Name = "UCa";
-            // 
-            // UCastd
-            // 
-            this.UCastd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCastd.HeaderText = "U/Ca std";
-            this.UCastd.Name = "UCastd";
-            // 
-            // UCaFlat
-            // 
-            this.UCaFlat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCaFlat.HeaderText = "U/Ca Flat";
-            this.UCaFlat.Name = "UCaFlat";
-            // 
-            // UCaFlatStd
-            // 
-            this.UCaFlatStd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCaFlatStd.HeaderText = "U/Ca Flat std";
-            this.UCaFlatStd.Name = "UCaFlatStd";
-            // 
-            // Zeta_Col
-            // 
-            this.Zeta_Col.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Zeta_Col.HeaderText = "Zeta";
-            this.Zeta_Col.Name = "Zeta_Col";
-            // 
-            // Zeta_col_std
-            // 
-            this.Zeta_col_std.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Zeta_col_std.HeaderText = "Zeta std";
-            this.Zeta_col_std.Name = "Zeta_col_std";
-            // 
             // UCaChart
             // 
-            chartArea1.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea1.AlignWithChartArea = "ChartArea2";
-            chartArea1.Name = "ChartArea1";
-            chartArea2.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea2.BorderColor = System.Drawing.Color.Bisque;
-            chartArea2.Name = "ChartArea2";
-            this.UCaChart.ChartAreas.Add(chartArea1);
-            this.UCaChart.ChartAreas.Add(chartArea2);
+            chartArea3.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea3.AlignWithChartArea = "ChartArea2";
+            chartArea3.Name = "ChartArea1";
+            chartArea4.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea4.BorderColor = System.Drawing.Color.Bisque;
+            chartArea4.Name = "ChartArea2";
+            this.UCaChart.ChartAreas.Add(chartArea3);
+            this.UCaChart.ChartAreas.Add(chartArea4);
             this.UCaChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.UCaChart.Legends.Add(legend1);
+            legend2.Enabled = false;
+            legend2.Name = "Legend1";
+            this.UCaChart.Legends.Add(legend2);
             this.UCaChart.Location = new System.Drawing.Point(3, 3);
             this.UCaChart.Name = "UCaChart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.Name = "UCaSeries";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series2.Legend = "Legend1";
-            series2.Name = "UCaError";
-            series2.YValuesPerPoint = 3;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "FittingLine";
-            series4.ChartArea = "ChartArea2";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series4.Legend = "Legend1";
-            series4.Name = "UCaFlat";
-            series5.ChartArea = "ChartArea2";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series5.Legend = "Legend1";
-            series5.Name = "UCaFlatError";
-            series5.YValuesPerPoint = 3;
-            this.UCaChart.Series.Add(series1);
-            this.UCaChart.Series.Add(series2);
-            this.UCaChart.Series.Add(series3);
-            this.UCaChart.Series.Add(series4);
-            this.UCaChart.Series.Add(series5);
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series6.Legend = "Legend1";
+            series6.Name = "UCaSeries";
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series7.Legend = "Legend1";
+            series7.Name = "UCaError";
+            series7.YValuesPerPoint = 3;
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series8.Legend = "Legend1";
+            series8.Name = "FittingLine";
+            series9.ChartArea = "ChartArea2";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series9.Legend = "Legend1";
+            series9.Name = "UCaFlat";
+            series10.ChartArea = "ChartArea2";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series10.Legend = "Legend1";
+            series10.Name = "UCaFlatError";
+            series10.YValuesPerPoint = 3;
+            this.UCaChart.Series.Add(series6);
+            this.UCaChart.Series.Add(series7);
+            this.UCaChart.Series.Add(series8);
+            this.UCaChart.Series.Add(series9);
+            this.UCaChart.Series.Add(series10);
             this.UCaChart.Size = new System.Drawing.Size(1199, 390);
             this.UCaChart.TabIndex = 1;
             this.UCaChart.Text = "chart1";
@@ -706,6 +629,7 @@
             this.TestGrid.AllowUserToAddRows = false;
             this.TestGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TestGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Ntest,
             this.rawUCaTest,
             this.UTest,
             this.UstdTest,
@@ -724,60 +648,6 @@
             this.TestGrid.TabIndex = 6;
             this.TestGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.TestGrid_CellEndEdit);
             this.TestGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.TestGrid_CellValueChanged);
-            // 
-            // rawUCaTest
-            // 
-            this.rawUCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.rawUCaTest.HeaderText = "raw U/Ca";
-            this.rawUCaTest.Name = "rawUCaTest";
-            // 
-            // UTest
-            // 
-            this.UTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UTest.HeaderText = "U";
-            this.UTest.Name = "UTest";
-            // 
-            // UstdTest
-            // 
-            this.UstdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UstdTest.HeaderText = "U std";
-            this.UstdTest.Name = "UstdTest";
-            // 
-            // CaTest
-            // 
-            this.CaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CaTest.HeaderText = "Ca";
-            this.CaTest.Name = "CaTest";
-            // 
-            // CastdTest
-            // 
-            this.CastdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CastdTest.HeaderText = "Ca std";
-            this.CastdTest.Name = "CastdTest";
-            // 
-            // UCaTest
-            // 
-            this.UCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCaTest.HeaderText = "U/Ca";
-            this.UCaTest.Name = "UCaTest";
-            // 
-            // UCastdTest
-            // 
-            this.UCastdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCastdTest.HeaderText = "U/Ca std";
-            this.UCastdTest.Name = "UCastdTest";
-            // 
-            // ConvUCaTest
-            // 
-            this.ConvUCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ConvUCaTest.HeaderText = "Conv U/Ca";
-            this.ConvUCaTest.Name = "ConvUCaTest";
-            // 
-            // TestDur
-            // 
-            this.TestDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TestDur.HeaderText = "Test";
-            this.TestDur.Name = "TestDur";
             // 
             // tableLayoutPanel6
             // 
@@ -1411,6 +1281,143 @@
             // 
             this.ImportSample.FileName = "openFileDialog1";
             // 
+            // NameColumn
+            // 
+            this.NameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NameColumn.HeaderText = "Name";
+            this.NameColumn.Name = "NameColumn";
+            // 
+            // U
+            // 
+            this.U.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.U.HeaderText = "U, ppm";
+            this.U.Name = "U";
+            // 
+            // U_std
+            // 
+            this.U_std.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.U_std.HeaderText = "U SE";
+            this.U_std.Name = "U_std";
+            // 
+            // Ca
+            // 
+            this.Ca.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Ca.HeaderText = "Ca, ppm";
+            this.Ca.Name = "Ca";
+            // 
+            // Ca_std
+            // 
+            this.Ca_std.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Ca_std.HeaderText = "Ca SE";
+            this.Ca_std.Name = "Ca_std";
+            // 
+            // Trs
+            // 
+            this.Trs.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Trs.HeaderText = "Ns";
+            this.Trs.Name = "Trs";
+            // 
+            // S
+            // 
+            this.S.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.S.HeaderText = "S, cm^2";
+            this.S.Name = "S";
+            // 
+            // UCa
+            // 
+            this.UCa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCa.HeaderText = "U/Ca";
+            this.UCa.Name = "UCa";
+            // 
+            // UCastd
+            // 
+            this.UCastd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCastd.HeaderText = "U/Ca SE";
+            this.UCastd.Name = "UCastd";
+            // 
+            // UCaFlat
+            // 
+            this.UCaFlat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCaFlat.HeaderText = "U/Ca corrected";
+            this.UCaFlat.Name = "UCaFlat";
+            // 
+            // UCaFlatStd
+            // 
+            this.UCaFlatStd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCaFlatStd.HeaderText = "U/Ca Flat corrected SE";
+            this.UCaFlatStd.Name = "UCaFlatStd";
+            // 
+            // Zeta_Col
+            // 
+            this.Zeta_Col.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Zeta_Col.HeaderText = "Zeta";
+            this.Zeta_Col.Name = "Zeta_Col";
+            // 
+            // Zeta_col_std
+            // 
+            this.Zeta_col_std.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Zeta_col_std.HeaderText = "Zeta SE";
+            this.Zeta_col_std.Name = "Zeta_col_std";
+            // 
+            // Ntest
+            // 
+            this.Ntest.HeaderText = "N";
+            this.Ntest.Name = "Ntest";
+            // 
+            // rawUCaTest
+            // 
+            this.rawUCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.rawUCaTest.HeaderText = "raw U/Ca";
+            this.rawUCaTest.Name = "rawUCaTest";
+            // 
+            // UTest
+            // 
+            this.UTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UTest.HeaderText = "U";
+            this.UTest.Name = "UTest";
+            // 
+            // UstdTest
+            // 
+            this.UstdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UstdTest.HeaderText = "U std";
+            this.UstdTest.Name = "UstdTest";
+            // 
+            // CaTest
+            // 
+            this.CaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CaTest.HeaderText = "Ca";
+            this.CaTest.Name = "CaTest";
+            // 
+            // CastdTest
+            // 
+            this.CastdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CastdTest.HeaderText = "Ca std";
+            this.CastdTest.Name = "CastdTest";
+            // 
+            // UCaTest
+            // 
+            this.UCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCaTest.HeaderText = "U/Ca";
+            this.UCaTest.Name = "UCaTest";
+            // 
+            // UCastdTest
+            // 
+            this.UCastdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCastdTest.HeaderText = "U/Ca std";
+            this.UCastdTest.Name = "UCastdTest";
+            // 
+            // ConvUCaTest
+            // 
+            this.ConvUCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ConvUCaTest.HeaderText = "Conv U/Ca";
+            this.ConvUCaTest.Name = "ConvUCaTest";
+            // 
+            // TestDur
+            // 
+            this.TestDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TestDur.HeaderText = "Test";
+            this.TestDur.Name = "TestDur";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1456,19 +1463,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.DataGridView zetaTable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn U;
-        private System.Windows.Forms.DataGridViewTextBoxColumn U_std;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ca;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ca_std;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Trs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn S;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCastd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCaFlat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCaFlatStd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Zeta_Col;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Zeta_col_std;
         private System.Windows.Forms.DataVisualization.Charting.Chart UCaChart;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label fileLabel;
@@ -1500,15 +1494,6 @@
         private System.Windows.Forms.TabPage Zeta_test;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.DataGridView TestGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rawUCaTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UstdTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CaTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CastdTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCaTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCastdTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ConvUCaTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TestDur;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label TestFileLabel;
@@ -1567,6 +1552,29 @@
         private System.Windows.Forms.Button DeleteRowAgeGrid;
         private System.Windows.Forms.Label ChiLabel;
         private System.Windows.Forms.Label PLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn U;
+        private System.Windows.Forms.DataGridViewTextBoxColumn U_std;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ca;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ca_std;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Trs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn S;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCastd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCaFlat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCaFlatStd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Zeta_Col;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Zeta_col_std;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ntest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rawUCaTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UstdTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CaTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CastdTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCaTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCastdTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ConvUCaTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TestDur;
     }
 }
 
