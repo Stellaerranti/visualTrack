@@ -27,6 +27,7 @@ namespace VisualTrack
         public double durango_test_std = 0;
 
         public double conv_factor = 0;
+        private static double si_global = 0;
 
         private double previous_U_dimensions = 1;
         private double previous_Ca_dimensions = 1;
@@ -131,6 +132,18 @@ namespace VisualTrack
             AgeGrid.Rows.Clear();
             readSampleFile();
             AgeCalcutation();
+            CentralAgeCalculation();
+        }
+
+        private void CentralAgeCalculation()
+        {            
+            double centralAge = CalculateCentralAge(AgeGrid, Double.Parse(PooledAgeLabel.Text));
+            double centralAgeSigma = CalculateCentralAgeSigma(AgeGrid);
+            double dispersion = CalculateDispersion();
+
+            CentralAgeLabel.Text = centralAge.ToString();
+            CentralAgeSTDLabel.Text = centralAgeSigma.ToString();
+            CentralAgeDispLabel.Text = dispersion.ToString();
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
@@ -171,6 +184,9 @@ namespace VisualTrack
             ChiLabel.Text = "-";
             ZetaAgeLabel.Text = "-";
             ZetaStdAgeLAbel.Text = "-";
+            CentralAgeLabel.Text = "-";
+            CentralAgeSTDLabel.Text = "-";
+            CentralAgeDispLabel.Text = "-";
 
             UCaChart.Titles[1].Text = "After drift correction";
         }
@@ -1209,6 +1225,7 @@ namespace VisualTrack
             AgeGrid.Rows.RemoveAt(AgeGrid.CurrentCell.RowIndex);
 
             AgeCalcutation();
+            CentralAgeCalculation();
         }
         
         //Updating rows
@@ -1389,11 +1406,13 @@ namespace VisualTrack
             if (AgeGrid.CurrentCell.ColumnIndex < 3)
             {
                 AgeCalcutation();
+                CentralAgeCalculation();
             }
             else if (AgeGrid.CurrentCell.ColumnIndex < 7)
             {
                 AgeGridRowUpdate();
                 AgeCalcutation();
+                CentralAgeCalculation();
             }
             else
             {
@@ -1406,11 +1425,174 @@ namespace VisualTrack
                     getFTage();
                     poolAge(PW, PW_std);
                     chiSq();
+                    CentralAgeCalculation();
                 }
             }
             
         }
 
-        
+        public  double CalculateCentralAge(DataGridView ageGrid, double pooledMa)
+        {
+            double mu = Math.Log(pooledMa);
+            double si = 0;
+            int iterations = 100;
+
+            // Step 1: Determine Initial Si
+            si = DetermineInitialSi(ageGrid, mu);
+
+            // Step 2: Iterate Mu and Si using Newton-Raphson Method
+            mu = IterateMu(ageGrid, si, iterations);
+
+            return Math.Exp(mu);
+        }
+
+        public  double CalculateCentralAgeSigma(DataGridView ageGrid)
+        {
+            double denomsum = 0;
+            foreach (DataGridViewRow row in ageGrid.Rows)
+            {
+                if (row.Cells["Weighted"].Value != null && row.Cells["Weightedstd"].Value != null)
+                {
+                    double sgaMaErr = Convert.ToDouble(row.Cells["Weightedstd"].Value);
+                    double sgaMa = Convert.ToDouble(row.Cells["Weighted"].Value);
+                    double su = sgaMaErr / sgaMa;
+                    if (!double.IsNaN(su) && !double.IsInfinity(su))
+                    {
+                        denomsum += 1 / (si_global * si_global + su * su);
+                    }
+                }
+            }
+            return Math.Sqrt(1 / denomsum) * Math.Exp(si_global);
+        }
+
+        public  double CalculateDispersion()
+        {
+            return 100 * si_global;
+        }
+
+        private  double DetermineInitialSi(DataGridView ageGrid, double mu)
+        {
+            double si = 0.1;
+            for (int x = 1; x <= 16; x++)
+            {
+                double fsum = 0;
+                double dfsum = 0;
+
+                foreach (DataGridViewRow row in ageGrid.Rows)
+                {
+                    if (row.Cells["Weighted"].Value != null && row.Cells["Weightedstd"].Value != null)
+                    {
+                        double sgaMaErr = Convert.ToDouble(row.Cells["Weightedstd"].Value);
+                        double sgaMa = Convert.ToDouble(row.Cells["Weighted"].Value);
+                        double su = sgaMaErr / sgaMa;
+
+                        if (!double.IsNaN(su) && !double.IsInfinity(su))
+                        {
+                            double zu = Math.Log(sgaMa);
+                            double c = zu - mu;
+                            double b = (si * si) + (su * su);
+                            double f = (c * c) / (b * b) - 1 / b;
+                            double df = 1 / (b * b) - (2 * c * c) / (b * b * b);
+
+                            fsum += f;
+                            dfsum += df;
+                        }
+                    }
+                }
+
+                double dsi = si - (fsum / dfsum);
+
+                if ((si / mu) > 100)
+                {
+                    si = 0;
+                }
+                else
+                {
+                    si = dsi;
+                }
+            }
+            si_global = si;
+            return si;
+        }
+
+        private  double IterateMu(DataGridView ageGrid, double si, int iterations)
+        {
+            double mu = 0;
+            for (int i = 1; i <= iterations; i++)
+            {
+                double numsum = 0;
+                double denomsum = 0;
+
+                foreach (DataGridViewRow row in ageGrid.Rows)
+                {
+                    if (row.Cells["Weighted"].Value != null && row.Cells["Weightedstd"].Value != null)
+                    {
+                        double sgaMaErr = Convert.ToDouble(row.Cells["Weightedstd"].Value);
+                        double sgaMa = Convert.ToDouble(row.Cells["Weighted"].Value);
+                        double su = sgaMaErr / sgaMa;
+
+                        if (!double.IsNaN(su) && !double.IsInfinity(su))
+                        {
+                            double zu = Math.Log(sgaMa);
+                            double num = zu / (si * si + su * su);
+                            double denom = 1 / (si * si + su * su);
+                            numsum += num;
+                            denomsum += denom;
+                        }
+                    }
+                }
+
+                mu = numsum / denomsum;
+                si = IterateSi(ageGrid, mu, si, iterations);
+            }
+            return mu;
+        }
+
+        private  double IterateSi(DataGridView ageGrid, double mu, double si, int iterations)
+        {
+            for (int x = 1; x <= iterations; x++)
+            {
+                double fsum = 0;
+                double dfsum = 0;
+
+                foreach (DataGridViewRow row in ageGrid.Rows)
+                {
+                    if (row.Cells["Weighted"].Value != null && row.Cells["Weightedstd"].Value != null)
+                    {
+                        double sgaMaErr = Convert.ToDouble(row.Cells["Weightedstd"].Value);
+                        double sgaMa = Convert.ToDouble(row.Cells["Weighted"].Value);
+                        double su = sgaMaErr / sgaMa;
+
+                        if (!double.IsNaN(su) && !double.IsInfinity(su))
+                        {
+                            double zu = Math.Log(sgaMa);
+                            double c = zu - mu;
+                            double b = (si * si) + (su * su);
+                            double f = (c * c) / (b * b) - 1 / b;
+                            double df = 1 / (b * b) - (2 * c * c) / (b * b * b);
+
+                            fsum += f;
+                            dfsum += df;
+                        }
+                    }
+                }
+
+                double dsi = si - (fsum / dfsum);
+
+                if (si == 0)
+                    break;
+                if (Math.Abs((dsi - si) / si) < Math.Pow(10, -5))
+                    break;
+
+                if ((si / mu) > 100)
+                    si = 0;
+                else
+                    si = dsi;
+            }
+            si_global = si;
+            return si;
+        }
+
+
     }
 }

@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.ImportZeta = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -47,6 +47,9 @@
             this.importSampleFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optiondButton = new System.Windows.Forms.ToolStripButton();
             this.ImportZetafileButton = new System.Windows.Forms.ToolStripButton();
+            this.ImportTestFileButton = new System.Windows.Forms.ToolStripButton();
+            this.ImportSamplefileButton = new System.Windows.Forms.ToolStripButton();
+            this.ClearButton = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Zeta = new System.Windows.Forms.TabPage();
@@ -154,15 +157,18 @@
             this.NsLabel = new System.Windows.Forms.Label();
             this.PooledAgeLabel = new System.Windows.Forms.Label();
             this.AgeStdLabel = new System.Windows.Forms.Label();
-            this.poolAgeButton = new System.Windows.Forms.Button();
-            this.DeleteRowAgeGrid = new System.Windows.Forms.Button();
             this.ChiLabel = new System.Windows.Forms.Label();
             this.PLabel = new System.Windows.Forms.Label();
+            this.DeleteRowAgeGrid = new System.Windows.Forms.Button();
+            this.poolAgeButton = new System.Windows.Forms.Button();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.CentralAgeLabel = new System.Windows.Forms.Label();
             this.ImportTest = new System.Windows.Forms.OpenFileDialog();
             this.ImportSample = new System.Windows.Forms.OpenFileDialog();
-            this.ImportTestFileButton = new System.Windows.Forms.ToolStripButton();
-            this.ImportSamplefileButton = new System.Windows.Forms.ToolStripButton();
-            this.ClearButton = new System.Windows.Forms.ToolStripButton();
+            this.CentralAgeSTDLabel = new System.Windows.Forms.Label();
+            this.CentralAgeDispLabel = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -214,21 +220,21 @@
             // importZetaFileToolStripMenuItem
             // 
             this.importZetaFileToolStripMenuItem.Name = "importZetaFileToolStripMenuItem";
-            this.importZetaFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importZetaFileToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.importZetaFileToolStripMenuItem.Text = "Import Zeta file";
             this.importZetaFileToolStripMenuItem.Click += new System.EventHandler(this.importZetaFileToolStripMenuItem_Click);
             // 
             // importTestFileToolStripMenuItem
             // 
             this.importTestFileToolStripMenuItem.Name = "importTestFileToolStripMenuItem";
-            this.importTestFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importTestFileToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.importTestFileToolStripMenuItem.Text = "Import test file";
             this.importTestFileToolStripMenuItem.Click += new System.EventHandler(this.importTestFileToolStripMenuItem_Click);
             // 
             // importSampleFileToolStripMenuItem
             // 
             this.importSampleFileToolStripMenuItem.Name = "importSampleFileToolStripMenuItem";
-            this.importSampleFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importSampleFileToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.importSampleFileToolStripMenuItem.Text = "Import sample file";
             this.importSampleFileToolStripMenuItem.Click += new System.EventHandler(this.importSampleFileToolStripMenuItem_Click);
             // 
@@ -252,6 +258,36 @@
             this.ImportZetafileButton.Size = new System.Drawing.Size(92, 22);
             this.ImportZetafileButton.Text = "Import Zeta file";
             this.ImportZetafileButton.Click += new System.EventHandler(this.ImportZetafileButton_Click);
+            // 
+            // ImportTestFileButton
+            // 
+            this.ImportTestFileButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ImportTestFileButton.Image = ((System.Drawing.Image)(resources.GetObject("ImportTestFileButton.Image")));
+            this.ImportTestFileButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ImportTestFileButton.Name = "ImportTestFileButton";
+            this.ImportTestFileButton.Size = new System.Drawing.Size(88, 22);
+            this.ImportTestFileButton.Text = "Import test file";
+            this.ImportTestFileButton.Click += new System.EventHandler(this.ImportTestFileButton_Click);
+            // 
+            // ImportSamplefileButton
+            // 
+            this.ImportSamplefileButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ImportSamplefileButton.Image = ((System.Drawing.Image)(resources.GetObject("ImportSamplefileButton.Image")));
+            this.ImportSamplefileButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ImportSamplefileButton.Name = "ImportSamplefileButton";
+            this.ImportSamplefileButton.Size = new System.Drawing.Size(107, 22);
+            this.ImportSamplefileButton.Text = "Import sample file";
+            this.ImportSamplefileButton.Click += new System.EventHandler(this.ImportSamplefileButton_Click);
+            // 
+            // ClearButton
+            // 
+            this.ClearButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ClearButton.Image = ((System.Drawing.Image)(resources.GetObject("ClearButton.Image")));
+            this.ClearButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(38, 22);
+            this.ClearButton.Text = "Clear";
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // tableLayoutPanel4
             // 
@@ -427,59 +463,59 @@
             // 
             // UCaChart
             // 
-            chartArea1.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea1.AlignWithChartArea = "ChartArea2";
-            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            chartArea1.Name = "ChartArea1";
-            chartArea2.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            chartArea2.BorderColor = System.Drawing.Color.Bisque;
-            chartArea2.Name = "ChartArea2";
-            this.UCaChart.ChartAreas.Add(chartArea1);
-            this.UCaChart.ChartAreas.Add(chartArea2);
+            chartArea3.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea3.AlignWithChartArea = "ChartArea2";
+            chartArea3.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            chartArea3.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            chartArea3.Name = "ChartArea1";
+            chartArea4.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea4.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            chartArea4.BorderColor = System.Drawing.Color.Bisque;
+            chartArea4.Name = "ChartArea2";
+            this.UCaChart.ChartAreas.Add(chartArea3);
+            this.UCaChart.ChartAreas.Add(chartArea4);
             this.UCaChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.UCaChart.Legends.Add(legend1);
+            legend2.Enabled = false;
+            legend2.Name = "Legend1";
+            this.UCaChart.Legends.Add(legend2);
             this.UCaChart.Location = new System.Drawing.Point(3, 3);
             this.UCaChart.Name = "UCaChart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.Name = "UCaSeries";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series2.Legend = "Legend1";
-            series2.Name = "UCaError";
-            series2.YValuesPerPoint = 3;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "FittingLine";
-            series4.ChartArea = "ChartArea2";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series4.Legend = "Legend1";
-            series4.Name = "UCaFlat";
-            series5.ChartArea = "ChartArea2";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series5.Legend = "Legend1";
-            series5.Name = "UCaFlatError";
-            series5.YValuesPerPoint = 3;
-            this.UCaChart.Series.Add(series1);
-            this.UCaChart.Series.Add(series2);
-            this.UCaChart.Series.Add(series3);
-            this.UCaChart.Series.Add(series4);
-            this.UCaChart.Series.Add(series5);
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series6.Legend = "Legend1";
+            series6.Name = "UCaSeries";
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series7.Legend = "Legend1";
+            series7.Name = "UCaError";
+            series7.YValuesPerPoint = 3;
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series8.Legend = "Legend1";
+            series8.Name = "FittingLine";
+            series9.ChartArea = "ChartArea2";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series9.Legend = "Legend1";
+            series9.Name = "UCaFlat";
+            series10.ChartArea = "ChartArea2";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series10.Legend = "Legend1";
+            series10.Name = "UCaFlatError";
+            series10.YValuesPerPoint = 3;
+            this.UCaChart.Series.Add(series6);
+            this.UCaChart.Series.Add(series7);
+            this.UCaChart.Series.Add(series8);
+            this.UCaChart.Series.Add(series9);
+            this.UCaChart.Series.Add(series10);
             this.UCaChart.Size = new System.Drawing.Size(1199, 390);
             this.UCaChart.TabIndex = 1;
             this.UCaChart.Text = "chart1";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            title1.Name = "BeforeDriftTitle";
-            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            title2.Name = "AfterDriftTitle";
-            this.UCaChart.Titles.Add(title1);
-            this.UCaChart.Titles.Add(title2);
+            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title3.Name = "BeforeDriftTitle";
+            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title4.Name = "AfterDriftTitle";
+            this.UCaChart.Titles.Add(title3);
+            this.UCaChart.Titles.Add(title4);
             // 
             // tableLayoutPanel3
             // 
@@ -1175,27 +1211,36 @@
             this.tableLayoutPanel7.Controls.Add(this.NsLabel, 1, 2);
             this.tableLayoutPanel7.Controls.Add(this.PooledAgeLabel, 1, 9);
             this.tableLayoutPanel7.Controls.Add(this.AgeStdLabel, 1, 10);
-            this.tableLayoutPanel7.Controls.Add(this.poolAgeButton, 1, 11);
-            this.tableLayoutPanel7.Controls.Add(this.DeleteRowAgeGrid, 0, 11);
             this.tableLayoutPanel7.Controls.Add(this.ChiLabel, 1, 7);
             this.tableLayoutPanel7.Controls.Add(this.PLabel, 1, 8);
+            this.tableLayoutPanel7.Controls.Add(this.DeleteRowAgeGrid, 0, 14);
+            this.tableLayoutPanel7.Controls.Add(this.poolAgeButton, 1, 14);
+            this.tableLayoutPanel7.Controls.Add(this.label28, 0, 11);
+            this.tableLayoutPanel7.Controls.Add(this.label29, 0, 12);
+            this.tableLayoutPanel7.Controls.Add(this.label30, 0, 13);
+            this.tableLayoutPanel7.Controls.Add(this.CentralAgeLabel, 1, 11);
+            this.tableLayoutPanel7.Controls.Add(this.CentralAgeSTDLabel, 1, 12);
+            this.tableLayoutPanel7.Controls.Add(this.CentralAgeDispLabel, 1, 13);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(1214, 3);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 12;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333402F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333402F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333402F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333402F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333402F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333402F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333402F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333402F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333402F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333402F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333402F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.332568F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(208, 334);
+            this.tableLayoutPanel7.RowCount = 15;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.667254F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.667254F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.667254F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.667254F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.667254F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.667254F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.667254F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.667254F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.667254F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.667254F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.667254F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666588F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.664533F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.664533F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.664533F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(208, 391);
             this.tableLayoutPanel7.TabIndex = 12;
             // 
             // label15
@@ -1204,7 +1249,7 @@
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label15.Location = new System.Drawing.Point(6, 3);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(93, 24);
+            this.label15.Size = new System.Drawing.Size(93, 22);
             this.label15.TabIndex = 1;
             this.label15.Text = "File:";
             // 
@@ -1214,7 +1259,7 @@
             this.FileSampleLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FileSampleLabel.Location = new System.Drawing.Point(108, 3);
             this.FileSampleLabel.Name = "FileSampleLabel";
-            this.FileSampleLabel.Size = new System.Drawing.Size(94, 24);
+            this.FileSampleLabel.Size = new System.Drawing.Size(94, 22);
             this.FileSampleLabel.TabIndex = 2;
             this.FileSampleLabel.Text = "-";
             // 
@@ -1222,9 +1267,9 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label18.Location = new System.Drawing.Point(6, 30);
+            this.label18.Location = new System.Drawing.Point(6, 28);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(93, 24);
+            this.label18.Size = new System.Drawing.Size(93, 22);
             this.label18.TabIndex = 3;
             this.label18.Text = "Grains";
             // 
@@ -1232,9 +1277,9 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label19.Location = new System.Drawing.Point(6, 57);
+            this.label19.Location = new System.Drawing.Point(6, 53);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(93, 24);
+            this.label19.Size = new System.Drawing.Size(93, 22);
             this.label19.TabIndex = 4;
             this.label19.Text = "Ns";
             // 
@@ -1242,9 +1287,9 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label20.Location = new System.Drawing.Point(6, 84);
+            this.label20.Location = new System.Drawing.Point(6, 78);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(93, 24);
+            this.label20.Size = new System.Drawing.Size(93, 22);
             this.label20.TabIndex = 5;
             this.label20.Text = "Sum PW";
             // 
@@ -1252,9 +1297,9 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label21.Location = new System.Drawing.Point(6, 111);
+            this.label21.Location = new System.Drawing.Point(6, 103);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(93, 24);
+            this.label21.Size = new System.Drawing.Size(93, 22);
             this.label21.TabIndex = 6;
             this.label21.Text = "PW std";
             // 
@@ -1262,9 +1307,9 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label22.Location = new System.Drawing.Point(6, 138);
+            this.label22.Location = new System.Drawing.Point(6, 128);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(93, 24);
+            this.label22.Size = new System.Drawing.Size(93, 22);
             this.label22.TabIndex = 7;
             this.label22.Text = "Zeta";
             // 
@@ -1272,9 +1317,9 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label23.Location = new System.Drawing.Point(6, 165);
+            this.label23.Location = new System.Drawing.Point(6, 153);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(93, 24);
+            this.label23.Size = new System.Drawing.Size(93, 22);
             this.label23.TabIndex = 8;
             this.label23.Text = "Zeta std";
             // 
@@ -1282,9 +1327,9 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label24.Location = new System.Drawing.Point(6, 192);
+            this.label24.Location = new System.Drawing.Point(6, 178);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(93, 24);
+            this.label24.Size = new System.Drawing.Size(93, 22);
             this.label24.TabIndex = 9;
             this.label24.Text = "Xi sq";
             // 
@@ -1292,9 +1337,9 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label25.Location = new System.Drawing.Point(6, 219);
+            this.label25.Location = new System.Drawing.Point(6, 203);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(93, 24);
+            this.label25.Size = new System.Drawing.Size(93, 22);
             this.label25.TabIndex = 10;
             this.label25.Text = "P(Xi sq)";
             // 
@@ -1302,9 +1347,9 @@
             // 
             this.label26.AutoSize = true;
             this.label26.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label26.Location = new System.Drawing.Point(6, 246);
+            this.label26.Location = new System.Drawing.Point(6, 228);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(93, 24);
+            this.label26.Size = new System.Drawing.Size(93, 22);
             this.label26.TabIndex = 11;
             this.label26.Text = "Pooled age";
             // 
@@ -1312,9 +1357,9 @@
             // 
             this.label27.AutoSize = true;
             this.label27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label27.Location = new System.Drawing.Point(6, 273);
+            this.label27.Location = new System.Drawing.Point(6, 253);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(93, 24);
+            this.label27.Size = new System.Drawing.Size(93, 22);
             this.label27.TabIndex = 12;
             this.label27.Text = "Age std";
             // 
@@ -1322,9 +1367,9 @@
             // 
             this.ZetaAgeLabel.AutoSize = true;
             this.ZetaAgeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ZetaAgeLabel.Location = new System.Drawing.Point(108, 138);
+            this.ZetaAgeLabel.Location = new System.Drawing.Point(108, 128);
             this.ZetaAgeLabel.Name = "ZetaAgeLabel";
-            this.ZetaAgeLabel.Size = new System.Drawing.Size(94, 24);
+            this.ZetaAgeLabel.Size = new System.Drawing.Size(94, 22);
             this.ZetaAgeLabel.TabIndex = 13;
             this.ZetaAgeLabel.Text = "-";
             // 
@@ -1332,9 +1377,9 @@
             // 
             this.ZetaStdAgeLAbel.AutoSize = true;
             this.ZetaStdAgeLAbel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ZetaStdAgeLAbel.Location = new System.Drawing.Point(108, 165);
+            this.ZetaStdAgeLAbel.Location = new System.Drawing.Point(108, 153);
             this.ZetaStdAgeLAbel.Name = "ZetaStdAgeLAbel";
-            this.ZetaStdAgeLAbel.Size = new System.Drawing.Size(94, 24);
+            this.ZetaStdAgeLAbel.Size = new System.Drawing.Size(94, 22);
             this.ZetaStdAgeLAbel.TabIndex = 14;
             this.ZetaStdAgeLAbel.Text = "-";
             // 
@@ -1342,9 +1387,9 @@
             // 
             this.PWLabel.AutoSize = true;
             this.PWLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PWLabel.Location = new System.Drawing.Point(108, 84);
+            this.PWLabel.Location = new System.Drawing.Point(108, 78);
             this.PWLabel.Name = "PWLabel";
-            this.PWLabel.Size = new System.Drawing.Size(94, 24);
+            this.PWLabel.Size = new System.Drawing.Size(94, 22);
             this.PWLabel.TabIndex = 15;
             this.PWLabel.Text = "-";
             // 
@@ -1352,9 +1397,9 @@
             // 
             this.PWStdLabel.AutoSize = true;
             this.PWStdLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PWStdLabel.Location = new System.Drawing.Point(108, 111);
+            this.PWStdLabel.Location = new System.Drawing.Point(108, 103);
             this.PWStdLabel.Name = "PWStdLabel";
-            this.PWStdLabel.Size = new System.Drawing.Size(94, 24);
+            this.PWStdLabel.Size = new System.Drawing.Size(94, 22);
             this.PWStdLabel.TabIndex = 16;
             this.PWStdLabel.Text = "-";
             // 
@@ -1362,9 +1407,9 @@
             // 
             this.GrainsLabel.AutoSize = true;
             this.GrainsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GrainsLabel.Location = new System.Drawing.Point(108, 30);
+            this.GrainsLabel.Location = new System.Drawing.Point(108, 28);
             this.GrainsLabel.Name = "GrainsLabel";
-            this.GrainsLabel.Size = new System.Drawing.Size(94, 24);
+            this.GrainsLabel.Size = new System.Drawing.Size(94, 22);
             this.GrainsLabel.TabIndex = 17;
             this.GrainsLabel.Text = "-";
             // 
@@ -1372,9 +1417,9 @@
             // 
             this.NsLabel.AutoSize = true;
             this.NsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NsLabel.Location = new System.Drawing.Point(108, 57);
+            this.NsLabel.Location = new System.Drawing.Point(108, 53);
             this.NsLabel.Name = "NsLabel";
-            this.NsLabel.Size = new System.Drawing.Size(94, 24);
+            this.NsLabel.Size = new System.Drawing.Size(94, 22);
             this.NsLabel.TabIndex = 18;
             this.NsLabel.Text = "-";
             // 
@@ -1382,9 +1427,9 @@
             // 
             this.PooledAgeLabel.AutoSize = true;
             this.PooledAgeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PooledAgeLabel.Location = new System.Drawing.Point(108, 246);
+            this.PooledAgeLabel.Location = new System.Drawing.Point(108, 228);
             this.PooledAgeLabel.Name = "PooledAgeLabel";
-            this.PooledAgeLabel.Size = new System.Drawing.Size(94, 24);
+            this.PooledAgeLabel.Size = new System.Drawing.Size(94, 22);
             this.PooledAgeLabel.TabIndex = 19;
             this.PooledAgeLabel.Text = "-";
             // 
@@ -1392,41 +1437,19 @@
             // 
             this.AgeStdLabel.AutoSize = true;
             this.AgeStdLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AgeStdLabel.Location = new System.Drawing.Point(108, 273);
+            this.AgeStdLabel.Location = new System.Drawing.Point(108, 253);
             this.AgeStdLabel.Name = "AgeStdLabel";
-            this.AgeStdLabel.Size = new System.Drawing.Size(94, 24);
+            this.AgeStdLabel.Size = new System.Drawing.Size(94, 22);
             this.AgeStdLabel.TabIndex = 20;
             this.AgeStdLabel.Text = "-";
-            // 
-            // poolAgeButton
-            // 
-            this.poolAgeButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.poolAgeButton.Location = new System.Drawing.Point(108, 303);
-            this.poolAgeButton.Name = "poolAgeButton";
-            this.poolAgeButton.Size = new System.Drawing.Size(94, 25);
-            this.poolAgeButton.TabIndex = 21;
-            this.poolAgeButton.Text = "Pool age";
-            this.poolAgeButton.UseVisualStyleBackColor = true;
-            this.poolAgeButton.Click += new System.EventHandler(this.poolAgeButton_Click);
-            // 
-            // DeleteRowAgeGrid
-            // 
-            this.DeleteRowAgeGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DeleteRowAgeGrid.Location = new System.Drawing.Point(6, 303);
-            this.DeleteRowAgeGrid.Name = "DeleteRowAgeGrid";
-            this.DeleteRowAgeGrid.Size = new System.Drawing.Size(93, 25);
-            this.DeleteRowAgeGrid.TabIndex = 22;
-            this.DeleteRowAgeGrid.Text = "delete row";
-            this.DeleteRowAgeGrid.UseVisualStyleBackColor = true;
-            this.DeleteRowAgeGrid.Click += new System.EventHandler(this.DeleteRowAgeGrid_Click);
             // 
             // ChiLabel
             // 
             this.ChiLabel.AutoSize = true;
             this.ChiLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChiLabel.Location = new System.Drawing.Point(108, 192);
+            this.ChiLabel.Location = new System.Drawing.Point(108, 178);
             this.ChiLabel.Name = "ChiLabel";
-            this.ChiLabel.Size = new System.Drawing.Size(94, 24);
+            this.ChiLabel.Size = new System.Drawing.Size(94, 22);
             this.ChiLabel.TabIndex = 23;
             this.ChiLabel.Text = "-";
             // 
@@ -1434,11 +1457,70 @@
             // 
             this.PLabel.AutoSize = true;
             this.PLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PLabel.Location = new System.Drawing.Point(108, 219);
+            this.PLabel.Location = new System.Drawing.Point(108, 203);
             this.PLabel.Name = "PLabel";
-            this.PLabel.Size = new System.Drawing.Size(94, 24);
+            this.PLabel.Size = new System.Drawing.Size(94, 22);
             this.PLabel.TabIndex = 24;
             this.PLabel.Text = "-";
+            // 
+            // DeleteRowAgeGrid
+            // 
+            this.DeleteRowAgeGrid.Location = new System.Drawing.Point(6, 356);
+            this.DeleteRowAgeGrid.Name = "DeleteRowAgeGrid";
+            this.DeleteRowAgeGrid.Size = new System.Drawing.Size(93, 25);
+            this.DeleteRowAgeGrid.TabIndex = 22;
+            this.DeleteRowAgeGrid.Text = "delete row";
+            this.DeleteRowAgeGrid.UseVisualStyleBackColor = true;
+            this.DeleteRowAgeGrid.Click += new System.EventHandler(this.DeleteRowAgeGrid_Click);
+            // 
+            // poolAgeButton
+            // 
+            this.poolAgeButton.Location = new System.Drawing.Point(108, 356);
+            this.poolAgeButton.Name = "poolAgeButton";
+            this.poolAgeButton.Size = new System.Drawing.Size(94, 25);
+            this.poolAgeButton.TabIndex = 21;
+            this.poolAgeButton.Text = "Pool age";
+            this.poolAgeButton.UseVisualStyleBackColor = true;
+            this.poolAgeButton.Click += new System.EventHandler(this.poolAgeButton_Click);
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label28.Location = new System.Drawing.Point(6, 278);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(93, 22);
+            this.label28.TabIndex = 25;
+            this.label28.Text = "Central age";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label29.Location = new System.Drawing.Point(6, 303);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(93, 22);
+            this.label29.TabIndex = 26;
+            this.label29.Text = "Central age SE";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label30.Location = new System.Drawing.Point(6, 328);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(93, 22);
+            this.label30.TabIndex = 27;
+            this.label30.Text = "Central age disp";
+            // 
+            // CentralAgeLabel
+            // 
+            this.CentralAgeLabel.AutoSize = true;
+            this.CentralAgeLabel.Location = new System.Drawing.Point(108, 278);
+            this.CentralAgeLabel.Name = "CentralAgeLabel";
+            this.CentralAgeLabel.Size = new System.Drawing.Size(10, 13);
+            this.CentralAgeLabel.TabIndex = 28;
+            this.CentralAgeLabel.Text = "-";
             // 
             // ImportTest
             // 
@@ -1448,35 +1530,23 @@
             // 
             this.ImportSample.FileName = "openFileDialog1";
             // 
-            // ImportTestFileButton
+            // CentralAgeSTDLabel
             // 
-            this.ImportTestFileButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ImportTestFileButton.Image = ((System.Drawing.Image)(resources.GetObject("ImportTestFileButton.Image")));
-            this.ImportTestFileButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ImportTestFileButton.Name = "ImportTestFileButton";
-            this.ImportTestFileButton.Size = new System.Drawing.Size(88, 22);
-            this.ImportTestFileButton.Text = "Import test file";
-            this.ImportTestFileButton.Click += new System.EventHandler(this.ImportTestFileButton_Click);
+            this.CentralAgeSTDLabel.AutoSize = true;
+            this.CentralAgeSTDLabel.Location = new System.Drawing.Point(108, 303);
+            this.CentralAgeSTDLabel.Name = "CentralAgeSTDLabel";
+            this.CentralAgeSTDLabel.Size = new System.Drawing.Size(10, 13);
+            this.CentralAgeSTDLabel.TabIndex = 29;
+            this.CentralAgeSTDLabel.Text = "-";
             // 
-            // ImportSamplefileButton
+            // CentralAgeDispLabel
             // 
-            this.ImportSamplefileButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ImportSamplefileButton.Image = ((System.Drawing.Image)(resources.GetObject("ImportSamplefileButton.Image")));
-            this.ImportSamplefileButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ImportSamplefileButton.Name = "ImportSamplefileButton";
-            this.ImportSamplefileButton.Size = new System.Drawing.Size(107, 22);
-            this.ImportSamplefileButton.Text = "Import sample file";
-            this.ImportSamplefileButton.Click += new System.EventHandler(this.ImportSamplefileButton_Click);
-            // 
-            // ClearButton
-            // 
-            this.ClearButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ClearButton.Image = ((System.Drawing.Image)(resources.GetObject("ClearButton.Image")));
-            this.ClearButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(38, 22);
-            this.ClearButton.Text = "Clear";
-            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+            this.CentralAgeDispLabel.AutoSize = true;
+            this.CentralAgeDispLabel.Location = new System.Drawing.Point(108, 328);
+            this.CentralAgeDispLabel.Name = "CentralAgeDispLabel";
+            this.CentralAgeDispLabel.Size = new System.Drawing.Size(10, 13);
+            this.CentralAgeDispLabel.TabIndex = 30;
+            this.CentralAgeDispLabel.Text = "-";
             // 
             // Form1
             // 
@@ -1639,6 +1709,12 @@
         private System.Windows.Forms.ToolStripButton ImportTestFileButton;
         private System.Windows.Forms.ToolStripButton ImportSamplefileButton;
         private System.Windows.Forms.ToolStripButton ClearButton;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label CentralAgeLabel;
+        private System.Windows.Forms.Label CentralAgeSTDLabel;
+        private System.Windows.Forms.Label CentralAgeDispLabel;
     }
 }
 
