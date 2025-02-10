@@ -1451,10 +1451,11 @@ namespace VisualTrack
             double denomsum = 0;
             foreach (DataGridViewRow row in ageGrid.Rows)
             {
-                if (row.Cells["Weighted"].Value != null && row.Cells["Weightedstd"].Value != null)
+                if (row.Cells["FT"].Value != null && row.Cells["sigma"].Value != null)
                 {
-                    double sgaMaErr = Convert.ToDouble(row.Cells["Weightedstd"].Value);
-                    double sgaMa = Convert.ToDouble(row.Cells["Weighted"].Value);
+                    double sgaMa = Convert.ToDouble(row.Cells["FT"].Value);  // Use FT Age
+                    double sgaMaErr = Convert.ToDouble(row.Cells["sigma"].Value);
+
                     double su = sgaMaErr / sgaMa;
                     if (!double.IsNaN(su) && !double.IsInfinity(su))
                     {
@@ -1472,7 +1473,7 @@ namespace VisualTrack
 
         private  double DetermineInitialSi(DataGridView ageGrid, double mu)
         {
-            double si = 0.1;
+            double si = 0;
             for (int x = 1; x <= 16; x++)
             {
                 double fsum = 0;
@@ -1480,10 +1481,10 @@ namespace VisualTrack
 
                 foreach (DataGridViewRow row in ageGrid.Rows)
                 {
-                    if (row.Cells["Weighted"].Value != null && row.Cells["Weightedstd"].Value != null)
+                    if (row.Cells["FT"].Value != null && row.Cells["sigma"].Value != null)
                     {
-                        double sgaMaErr = Convert.ToDouble(row.Cells["Weightedstd"].Value);
-                        double sgaMa = Convert.ToDouble(row.Cells["Weighted"].Value);
+                        double sgaMa = Convert.ToDouble(row.Cells["FT"].Value);  // Use FT Age
+                        double sgaMaErr = Convert.ToDouble(row.Cells["sigma"].Value);
                         double su = sgaMaErr / sgaMa;
 
                         if (!double.IsNaN(su) && !double.IsInfinity(su))
@@ -1525,10 +1526,11 @@ namespace VisualTrack
 
                 foreach (DataGridViewRow row in ageGrid.Rows)
                 {
-                    if (row.Cells["Weighted"].Value != null && row.Cells["Weightedstd"].Value != null)
+                    if (row.Cells["FT"].Value != null && row.Cells["sigma"].Value != null)
                     {
-                        double sgaMaErr = Convert.ToDouble(row.Cells["Weightedstd"].Value);
-                        double sgaMa = Convert.ToDouble(row.Cells["Weighted"].Value);
+                        double sgaMa = Convert.ToDouble(row.Cells["FT"].Value);  // Use FT Age
+                        double sgaMaErr = Convert.ToDouble(row.Cells["sigma"].Value);
+
                         double su = sgaMaErr / sgaMa;
 
                         if (!double.IsNaN(su) && !double.IsInfinity(su))
@@ -1557,10 +1559,11 @@ namespace VisualTrack
 
                 foreach (DataGridViewRow row in ageGrid.Rows)
                 {
-                    if (row.Cells["Weighted"].Value != null && row.Cells["Weightedstd"].Value != null)
+                    if (row.Cells["FT"].Value != null && row.Cells["sigma"].Value != null)
                     {
-                        double sgaMaErr = Convert.ToDouble(row.Cells["Weightedstd"].Value);
-                        double sgaMa = Convert.ToDouble(row.Cells["Weighted"].Value);
+                        double sgaMa = Convert.ToDouble(row.Cells["FT"].Value);  // Use FT Age
+                        double sgaMaErr = Convert.ToDouble(row.Cells["sigma"].Value);
+
                         double su = sgaMaErr / sgaMa;
 
                         if (!double.IsNaN(su) && !double.IsInfinity(su))
