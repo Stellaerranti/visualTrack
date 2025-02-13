@@ -39,6 +39,9 @@
             System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.ImportZeta = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -169,6 +172,7 @@
             this.CentralAgeDispLabel = new System.Windows.Forms.Label();
             this.ImportTest = new System.Windows.Forms.OpenFileDialog();
             this.ImportSample = new System.Windows.Forms.OpenFileDialog();
+            this.TestChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -186,6 +190,7 @@
             this.tableLayoutPanel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AgeGrid)).BeginInit();
             this.tableLayoutPanel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TestChart)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -466,9 +471,11 @@
             chartArea1.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
             chartArea1.AlignWithChartArea = "ChartArea2";
             chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            chartArea1.AxisY.Title = "U/Ca flat";
             chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             chartArea1.Name = "ChartArea1";
             chartArea2.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea2.AxisY.Title = "U/Ca flat";
             chartArea2.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             chartArea2.BorderColor = System.Drawing.Color.Bisque;
             chartArea2.Name = "ChartArea2";
@@ -757,8 +764,9 @@
             this.tableLayoutPanel8.ColumnCount = 2;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel8.Controls.Add(this.TestGrid, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.TestGrid, 0, 1);
             this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel6, 1, 0);
+            this.tableLayoutPanel8.Controls.Add(this.TestChart, 0, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -784,11 +792,10 @@
             this.ConvUCaTest,
             this.TestDur});
             this.TestGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TestGrid.Location = new System.Drawing.Point(3, 3);
+            this.TestGrid.Location = new System.Drawing.Point(3, 405);
             this.TestGrid.Name = "TestGrid";
             this.TestGrid.RowHeadersVisible = false;
-            this.tableLayoutPanel8.SetRowSpan(this.TestGrid, 2);
-            this.TestGrid.Size = new System.Drawing.Size(1210, 798);
+            this.TestGrid.Size = new System.Drawing.Size(1210, 396);
             this.TestGrid.TabIndex = 6;
             this.TestGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.TestGrid_CellEndEdit);
             this.TestGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.TestGrid_CellValueChanged);
@@ -1548,6 +1555,27 @@
             // 
             this.ImportSample.FileName = "openFileDialog1";
             // 
+            // TestChart
+            // 
+            chartArea3.AxisY.Title = "Test";
+            chartArea3.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            chartArea3.Name = "ChartArea1";
+            this.TestChart.ChartAreas.Add(chartArea3);
+            this.TestChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TestChart.Location = new System.Drawing.Point(3, 3);
+            this.TestChart.Name = "TestChart";
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series6.Name = "TestSeries";
+            this.TestChart.Series.Add(series6);
+            this.TestChart.Size = new System.Drawing.Size(1210, 396);
+            this.TestChart.TabIndex = 9;
+            this.TestChart.Text = "chart1";
+            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title3.Name = "Title1";
+            title3.Text = "Test";
+            this.TestChart.Titles.Add(title3);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1579,6 +1607,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.AgeGrid)).EndInit();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TestChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1715,6 +1744,7 @@
         private System.Windows.Forms.Label CentralAgeLabel;
         private System.Windows.Forms.Label CentralAgeSTDLabel;
         private System.Windows.Forms.Label CentralAgeDispLabel;
+        private System.Windows.Forms.DataVisualization.Charting.Chart TestChart;
     }
 }
 
