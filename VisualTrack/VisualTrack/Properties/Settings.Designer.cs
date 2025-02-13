@@ -73,9 +73,10 @@ namespace VisualTrack.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsd=\"http://www.w3." +
-            "org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <s" +
-            "tring>Durango,31.44,0.18;Fish Canyon,27.8,0.5;</string>\r\n</ArrayOfString>")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>Durango,31.44,0.18;Fish Canyon,27.8,0.5;Buluk Member,16.4,0.2;Mt Dromedary,98.7,0.6; </string>
+</ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection StandartBoxItems {
             get {
                 return ((global::System.Collections.Specialized.StringCollection)(this["StandartBoxItems"]));

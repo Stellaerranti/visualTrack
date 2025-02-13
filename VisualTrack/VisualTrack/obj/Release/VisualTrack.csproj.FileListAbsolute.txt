@@ -30,3 +30,4 @@ C:\Users\Дмитрий\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj
 C:\Users\Дмитрий\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Release\VisualTrack.csproj.CoreCompileInputs.cache
 C:\Users\Дмитрий\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Release\VisualTrack.exe
 C:\Users\Дмитрий\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Release\VisualTrack.pdb
+C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Release\VisualTrack.StandardWindow.resources

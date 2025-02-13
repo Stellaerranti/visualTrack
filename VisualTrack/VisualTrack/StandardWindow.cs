@@ -14,14 +14,32 @@ namespace VisualTrack
     public partial class StandardWindow: Form
     {
         private Dictionary<string, string> standardMapping = new Dictionary<string, string>();
-        public StandardWindow()
+        private Form1 MainFormInstance;
+
+        public StandardWindow(Form1 mainForm)
         {
             InitializeComponent();
+            MainFormInstance = mainForm;
         }
 
         private void StandardWindow_Load(object sender, EventArgs e)
         {
             LoadComboBoxItems();
+        }
+
+        private void SaveStandards()
+        {
+            // Clear the current items in the StringCollection
+            Properties.Settings.Default.StandartBoxItems.Clear();
+
+            // Add each full standard (name, age, error) to the StringCollection
+            foreach (var standard in standardMapping.Values)
+            {
+                Properties.Settings.Default.StandartBoxItems.Add(standard);
+            }
+
+            // Save the changes
+            Properties.Settings.Default.Save();
         }
 
         private void LoadComboBoxItems()
@@ -56,6 +74,13 @@ namespace VisualTrack
             }
         }
 
+        private void ClearInputs()
+        {
+            StandardName.Clear();
+            StandardAge.Clear();
+            StandardErr.Clear();
+        }
+
         private void StandardListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (StandardListBox.SelectedItem == null) return;
@@ -81,13 +106,95 @@ namespace VisualTrack
         //Add new standard
         private void AddStandardbutton_Click(object sender, EventArgs e)
         {
+            string name = StandardName.Text;
+            string ageText = StandardAge.Text;
+            string errText = StandardErr.Text;
 
+            // Validate inputs
+            if (string.IsNullOrWhiteSpace(name) || !double.TryParse(ageText, out double age) || !double.TryParse(errText, out double err))
+            {
+                MessageBox.Show("Please enter valid values for Name, Age, and Error.");
+                return;
+            }
+
+            // Add to dictionary and ListBox
+            if (!standardMapping.ContainsKey(name)) // Avoid duplicate names
+            {
+                string fullData = $"{name},{age},{err}";
+                standardMapping[name] = fullData;
+                StandardListBox.Items.Add(name);  // Display only the name in the ListBox
+            }
+            else
+            {
+                MessageBox.Show("A standard with this name already exists.");
+            }
+
+            // Save to settings
+            SaveStandards();
+            ClearInputs();
+            MainFormInstance.LoadComboBoxItems();
         }
 
         //Delete standard
         private void DeleteStandardbutton_Click(object sender, EventArgs e)
         {
+            if (StandardListBox.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a standard to delete.");
+                return;
+            }
 
+            string selectedName = StandardListBox.SelectedItem.ToString();
+
+            // Remove from dictionary and ListBox
+            if (standardMapping.ContainsKey(selectedName))
+            {
+                standardMapping.Remove(selectedName);
+                StandardListBox.Items.Remove(selectedName);
+            }
+
+            // Save to settings
+            SaveStandards();
+            MainFormInstance.LoadComboBoxItems();
+        }
+
+        private void ModifyStandardbutton_Click(object sender, EventArgs e)
+        {
+            if (StandardListBox.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a standard to modify.");
+                return;
+            }
+
+            string selectedName = StandardListBox.SelectedItem.ToString();
+
+            // Validate input (similar to Add button)
+            string ageText = StandardAge.Text;
+            string errText = StandardErr.Text;
+
+            if (string.IsNullOrWhiteSpace(selectedName) || !double.TryParse(ageText, out double age) || !double.TryParse(errText, out double err))
+            {
+                MessageBox.Show("Please enter valid values for Age and Error.");
+                return;
+            }
+
+            // Update the dictionary with the modified data
+            string modifiedStandard = $"{selectedName},{age},{err}";
+
+            if (standardMapping.ContainsKey(selectedName))
+            {
+                // Replace the existing standard data with the modified one
+                standardMapping[selectedName] = modifiedStandard;
+            }
+
+            // Update the ListBox to reflect the changes
+            int selectedIndex = StandardListBox.SelectedIndex;
+            StandardListBox.Items[selectedIndex] = selectedName; // Update the displayed name in ListBox
+
+            // Save the updated data
+            SaveStandards();
+            ClearInputs();
+            MainFormInstance.LoadComboBoxItems();
         }
     }   
 

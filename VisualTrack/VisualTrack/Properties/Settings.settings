@@ -17,7 +17,7 @@
     <Setting Name="StandartBoxItems" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;string&gt;Durango,31.44,0.18;Fish Canyon,27.8,0.5;&lt;/string&gt;
+  &lt;string&gt;Durango,31.44,0.18;Fish Canyon,27.8,0.5;Buluk Member,16.4,0.2;Mt Dromedary,98.7,0.6; &lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
   </Settings>

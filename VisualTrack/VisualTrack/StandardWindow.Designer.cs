@@ -211,6 +211,7 @@
             this.ModifyStandardbutton.TabIndex = 2;
             this.ModifyStandardbutton.Text = "Modify";
             this.ModifyStandardbutton.UseVisualStyleBackColor = true;
+            this.ModifyStandardbutton.Click += new System.EventHandler(this.ModifyStandardbutton_Click);
             // 
             // StandardWindow
             // 

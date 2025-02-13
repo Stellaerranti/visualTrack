@@ -94,6 +94,7 @@ namespace VisualTrack
             TestChart.ChartAreas[0].AxisY.Minimum = 0;
 
             LoadComboBoxItems();
+            StandartBox.SelectedIndex = 0;
 
             option_window = new options(this);
 
@@ -104,14 +105,21 @@ namespace VisualTrack
             Settings.Default.U_dimension = 1;
         }
 
-        private void LoadComboBoxItems()
+        public void LoadComboBoxItems()
         {
-            // Load the data from the settings and populate the ComboBox
-            string StandardData = string.Join(";",Properties.Settings.Default.StandartBoxItems.Cast<string>());
+            // Clear the ComboBox before loading new data
+            StandartBox.Items.Clear();
 
-            // Split the string by semicolons to get each patient
-            var items = StandardData.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-            StandartBox.DataSource = items.Select(item => item.Split(',')[0]).ToList(); // Only display the name in ComboBox
+            // Load the data from the settings (StringCollection)
+            foreach (string item in Properties.Settings.Default.StandartBoxItems)
+            {
+                // Split the full standard data (e.g., "Durango,31.44,0.18") and add the name (first part) to ComboBox
+                string[] parts = item.Split(',');
+                if (parts.Length > 0)
+                {
+                    StandartBox.Items.Add(parts[0]);  // Only add the name (first part)
+                }
+            }
         }
 
 
@@ -133,6 +141,13 @@ namespace VisualTrack
             if (CheckZetaInput())
             {
                 ZetaCalc();
+
+                try
+                {
+                    CentralAgeCalculation();
+                }
+                catch
+                { }
             }
         }
 
@@ -633,6 +648,7 @@ namespace VisualTrack
                 getFTage();
                 poolAge(PW, PW_std);
                 chiSq();
+
             }
         }
 
@@ -1031,6 +1047,12 @@ namespace VisualTrack
             if(CheckZetaInput())
             {
                 ZetaCalc();
+                try
+                {
+                    CentralAgeCalculation();
+                }
+                catch
+                { }
             }
         }
 
@@ -1039,6 +1061,12 @@ namespace VisualTrack
             if (CheckZetaInput())
             {
                 ZetaCalc();
+                try
+                {
+                    CentralAgeCalculation();
+                }
+                catch
+                { }
             }
         }
 
@@ -1047,6 +1075,12 @@ namespace VisualTrack
             if (CheckZetaInput())
             {
                 ZetaCalc();
+                try
+                {
+                    CentralAgeCalculation();
+                }
+                catch
+                { }
             }
         }
 
@@ -1148,6 +1182,12 @@ namespace VisualTrack
             if (CheckZetaInput())
             {
                 ZetaCalc();
+                try
+                {
+                    CentralAgeCalculation();
+                }
+                catch
+                { }
             }
         }
 
@@ -1171,6 +1211,7 @@ namespace VisualTrack
             if (CheckZetaInput())
             {
                 ZetaCalc();
+
             }
         }
 
@@ -1200,6 +1241,12 @@ namespace VisualTrack
         {
             testDurango();
             AgeCalcutation();
+            try
+            {
+                CentralAgeCalculation();
+            }
+            catch
+            { }
         }
         //Get age
         private void poolAgeButton_Click(object sender, EventArgs e)
@@ -1210,7 +1257,7 @@ namespace VisualTrack
             { MessageBox.Show("No conversion factor"); }
             else if (AgeGrid.Rows.Count < 1)
             { MessageBox.Show("No sample data"); }
-            else { AgeCalcutation(); }
+            else { AgeCalcutation(); CentralAgeCalculation(); }
             
         }
 
@@ -1222,6 +1269,12 @@ namespace VisualTrack
             TestGrid.Rows.RemoveAt(TestGrid.CurrentCell.RowIndex);
             testDurango();
             AgeCalcutation();
+            try
+            {
+                CentralAgeCalculation();
+            }
+            catch
+            { }
         }
         private void deleteRow_Click(object sender, EventArgs e)
         {
@@ -1247,6 +1300,12 @@ namespace VisualTrack
                     ZetaCalc();
                     testDurango();
                     AgeCalcutation();
+                    try
+                    {
+                        CentralAgeCalculation();
+                    }
+                    catch
+                    { }
                 }
             }
             catch { }
@@ -1258,6 +1317,7 @@ namespace VisualTrack
 
             AgeCalcutation();
             CentralAgeCalculation();
+
         }
         
         //Updating rows
@@ -1301,6 +1361,12 @@ namespace VisualTrack
                 if (CheckZetaInput())
                 {
                     ZetaCalc();
+                    try
+                    {
+                        CentralAgeCalculation();
+                    }
+                    catch
+                    { }
                 }
             }
             catch { }
@@ -1363,6 +1429,12 @@ namespace VisualTrack
                 if (CheckZetaInput())
                 {
                     ZetaCalc();
+                    try
+                    {
+                        CentralAgeCalculation();
+                    }
+                    catch
+                    { }
                 }
             }
         }
@@ -1458,6 +1530,12 @@ namespace VisualTrack
                     poolAge(PW, PW_std);
                     chiSq();
                     CentralAgeCalculation();
+                    try
+                    {
+                        CentralAgeCalculation();
+                    }
+                    catch
+                    { }
                 }
             }
             
@@ -1656,13 +1734,19 @@ namespace VisualTrack
                 ZetaCalc();
                 testDurango();
                 AgeCalcutation();
+                try
+                {
+                    CentralAgeCalculation();
+                }
+                catch
+                { }
             }
 
         }
 
         private void StandardManagerButton_Click(object sender, EventArgs e)
         {
-            StandardWindow standardWindow = new StandardWindow();
+            StandardWindow standardWindow = new StandardWindow(this);
             standardWindow.ShowDialog();
         }
     }
