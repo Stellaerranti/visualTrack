@@ -78,8 +78,7 @@
             this.fileLabel = new System.Windows.Forms.Label();
             this.DurangoAgeText = new System.Windows.Forms.TextBox();
             this.DurangoErrText = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.StandartSELabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.SlopeLabel = new System.Windows.Forms.Label();
@@ -173,6 +172,8 @@
             this.ImportTest = new System.Windows.Forms.OpenFileDialog();
             this.ImportSample = new System.Windows.Forms.OpenFileDialog();
             this.TestChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.StandartBox = new System.Windows.Forms.ComboBox();
+            this.StandardManagerButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -201,7 +202,8 @@
             this.ImportZetafileButton,
             this.ImportTestFileButton,
             this.ImportSamplefileButton,
-            this.ClearButton});
+            this.ClearButton,
+            this.StandardManagerButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1445, 25);
@@ -534,8 +536,7 @@
             this.tableLayoutPanel3.Controls.Add(this.fileLabel, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.DurangoAgeText, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.DurangoErrText, 0, 2);
-            this.tableLayoutPanel3.Controls.Add(this.label1, 1, 1);
-            this.tableLayoutPanel3.Controls.Add(this.label2, 1, 2);
+            this.tableLayoutPanel3.Controls.Add(this.StandartSELabel, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.label3, 1, 3);
             this.tableLayoutPanel3.Controls.Add(this.label4, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.SlopeLabel, 0, 5);
@@ -549,6 +550,7 @@
             this.tableLayoutPanel3.Controls.Add(this.calculateZeta, 1, 10);
             this.tableLayoutPanel3.Controls.Add(this.deleteRow, 0, 10);
             this.tableLayoutPanel3.Controls.Add(this.zetaErrLabel, 0, 9);
+            this.tableLayoutPanel3.Controls.Add(this.StandartBox, 1, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(1214, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -609,23 +611,14 @@
             this.DurangoErrText.Text = "0.18";
             this.DurangoErrText.TextChanged += new System.EventHandler(this.DurangoErrText_TextChanged);
             // 
-            // label1
+            // StandartSELabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(108, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Durango age Ma";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(108, 61);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Durango Err";
+            this.StandartSELabel.AutoSize = true;
+            this.StandartSELabel.Location = new System.Drawing.Point(108, 61);
+            this.StandartSELabel.Name = "StandartSELabel";
+            this.StandartSELabel.Size = new System.Drawing.Size(64, 13);
+            this.StandartSELabel.TabIndex = 8;
+            this.StandartSELabel.Text = "Durango Err";
             // 
             // label3
             // 
@@ -1576,6 +1569,25 @@
             title3.Text = "Test";
             this.TestChart.Titles.Add(title3);
             // 
+            // StandartBox
+            // 
+            this.StandartBox.FormattingEnabled = true;
+            this.StandartBox.Location = new System.Drawing.Point(108, 35);
+            this.StandartBox.Name = "StandartBox";
+            this.StandartBox.Size = new System.Drawing.Size(94, 21);
+            this.StandartBox.TabIndex = 25;
+            this.StandartBox.SelectedIndexChanged += new System.EventHandler(this.StandartBox_SelectedIndexChanged);
+            // 
+            // StandardManagerButton
+            // 
+            this.StandardManagerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.StandardManagerButton.Image = ((System.Drawing.Image)(resources.GetObject("StandardManagerButton.Image")));
+            this.StandardManagerButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.StandardManagerButton.Name = "StandardManagerButton";
+            this.StandardManagerButton.Size = new System.Drawing.Size(108, 22);
+            this.StandardManagerButton.Text = "Standard manager";
+            this.StandardManagerButton.Click += new System.EventHandler(this.StandardManagerButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1627,8 +1639,7 @@
         private System.Windows.Forms.Label fileLabel;
         private System.Windows.Forms.TextBox DurangoAgeText;
         private System.Windows.Forms.TextBox DurangoErrText;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label StandartSELabel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label SlopeLabel;
@@ -1745,6 +1756,8 @@
         private System.Windows.Forms.Label CentralAgeSTDLabel;
         private System.Windows.Forms.Label CentralAgeDispLabel;
         private System.Windows.Forms.DataVisualization.Charting.Chart TestChart;
+        private System.Windows.Forms.ComboBox StandartBox;
+        private System.Windows.Forms.ToolStripButton StandardManagerButton;
     }
 }
 

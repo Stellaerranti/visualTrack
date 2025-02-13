@@ -34,6 +34,8 @@ namespace VisualTrack
         private double previous_S_dimensions = 1;
         private double previous_Tracks_dimensions = 1;
 
+        private List<(string Name, double Value1, double Value2)> StandardList = new List<(string, double, double)>();
+
         options option_window;
 
         public Form1()
@@ -91,6 +93,8 @@ namespace VisualTrack
             TestChart.ChartAreas[0].AxisX.Minimum = 0;
             TestChart.ChartAreas[0].AxisY.Minimum = 0;
 
+            LoadComboBoxItems();
+
             option_window = new options(this);
 
             Settings.Default.S = 1;
@@ -99,6 +103,17 @@ namespace VisualTrack
             Settings.Default.Ca_dimension = 1;
             Settings.Default.U_dimension = 1;
         }
+
+        private void LoadComboBoxItems()
+        {
+            // Load the data from the settings and populate the ComboBox
+            string StandardData = string.Join(";",Properties.Settings.Default.StandartBoxItems.Cast<string>());
+
+            // Split the string by semicolons to get each patient
+            var items = StandardData.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+            StandartBox.DataSource = items.Select(item => item.Split(',')[0]).ToList(); // Only display the name in ComboBox
+        }
+
 
         private void ImportZetafileButton_Click(object sender, EventArgs e)
         {
@@ -1230,6 +1245,8 @@ namespace VisualTrack
                 if (CheckZetaInput())
                 {
                     ZetaCalc();
+                    testDurango();
+                    AgeCalcutation();
                 }
             }
             catch { }
@@ -1613,5 +1630,40 @@ namespace VisualTrack
         }
 
 
+        //Changing Standard
+        private void StandartBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = StandartBox.SelectedIndex;
+            string StandardData = string.Join(";", Properties.Settings.Default.StandartBoxItems.Cast<string>());
+
+            var items = StandardData.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+            string selectedStandard = items[selectedIndex];
+
+            var standardData = selectedStandard.Split(',');
+
+            string name = standardData[0];
+            double value1 = Convert.ToDouble(standardData[1]);
+            double value2 = Convert.ToDouble(standardData[2]);
+
+            DurangoAgeText.Text = value1.ToString();
+            DurangoErrText.Text = value2.ToString();
+
+            StandartSELabel.Text = name + " Err";
+
+            if (CheckZetaInput())
+            {
+                ZetaCalc();
+                testDurango();
+                AgeCalcutation();
+            }
+
+        }
+
+        private void StandardManagerButton_Click(object sender, EventArgs e)
+        {
+            StandardWindow standardWindow = new StandardWindow();
+            standardWindow.ShowDialog();
+        }
     }
 }
