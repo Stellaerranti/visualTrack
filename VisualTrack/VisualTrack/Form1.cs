@@ -87,12 +87,6 @@ namespace VisualTrack
             UCaChart.ChartAreas[1].AxisY.Title = "U/Ca flat";
             //UCaChart.ChartAreas[1].AxisY.Title = "U/Ca Flattened";
 
-            TestChart.Series[0].Points.Clear();
-            TestChart.ChartAreas[0].AxisX.Minimum = 0;
-            TestChart.ChartAreas[0].AxisY.Minimum= 0;
-            TestChart.ChartAreas[0].AxisX2.Title = "Test";
-            TestChart.Titles[0].Text = "Test";
-
             option_window = new options(this);
 
             Settings.Default.S = 1;
@@ -164,8 +158,6 @@ namespace VisualTrack
             UCaChart.Series["UCaFlat"].Points.Clear();
 
             UCaChart.Series["FittingLine"].Points.Clear();
-
-            TestChart.Series[0].Points.Clear();
 
             fileLabel.Text = "-";
             SlopeLabel.Text = "-";
@@ -841,11 +833,6 @@ namespace VisualTrack
             catch { }
         }
 
-        private void DrawTest(int N, double Test)
-        {
-            TestChart.Series[0].Points.AddXY(N,Test);
-        }
-
         private void conductTest()
         {
 
@@ -854,7 +841,6 @@ namespace VisualTrack
                 double test = 0;
                 double test_mean = 0;
                 double convUCa = 0;
-                int i = 1;
 
                 foreach (DataGridViewRow row in TestGrid.Rows)
                 {
@@ -867,10 +853,6 @@ namespace VisualTrack
                     row.Cells["TestDur"].Value = test.ToString();
 
                     test_mean = test_mean + test;
-
-                    DrawTest(i, test);
-
-                    i++;
                 }
                 durango_test_res = test_mean / TestGrid.Rows.Count;
                 TestLabel.Text = durango_test_res.ToString();
@@ -1207,7 +1189,6 @@ namespace VisualTrack
         //Deleting rows
         private void DeleteRowTestGrid_Click(object sender, EventArgs e)
         {
-            TestChart.Series[0].Points.Clear();
             TestGrid.Rows.RemoveAt(TestGrid.CurrentCell.RowIndex);
             testDurango();
             AgeCalcutation();
