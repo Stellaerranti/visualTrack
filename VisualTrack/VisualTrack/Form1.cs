@@ -854,6 +854,8 @@ namespace VisualTrack
 
                 conv_factor = raw_mean / mean;
 
+                //conv_factor = 0.000034*10000000;
+
                 ConvFactorLabel.Text = (conv_factor).ToString("E3");
             }
             catch { }
@@ -1734,5 +1736,81 @@ namespace VisualTrack
             StandardWindow standardWindow = new StandardWindow(this);
             standardWindow.ShowDialog();
         }
+
+        //Exports the resaults
+        private void ExportResButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text files (*.txt)|*.txt";
+            saveFileDialog.Title = "Export Results";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    StringBuilder sb = new StringBuilder();
+
+                    sb.AppendLine("VisualTrack Export");
+                    sb.AppendLine("-------------------");
+
+                    // File names
+                    sb.AppendLine($"Zeta file: {fileLabel.Text ?? ""}");
+                    sb.AppendLine($"Test file: {TestFileLabel.Text ?? ""}");
+                    sb.AppendLine($"Sample file: {FileSampleLabel.Text ?? ""}");
+
+                    sb.AppendLine("");
+
+                    // Zeta info
+                    sb.AppendLine($"Zeta: {zetaLabel.Text ?? ""}");
+                    sb.AppendLine($"Zeta 1σ: {zetaErrLabel.Text ?? ""}");
+
+                    sb.AppendLine("");
+
+                    // Standart info
+                    sb.AppendLine($"Standard name: {StandartBox.SelectedItem?.ToString() ?? ""}");
+                    sb.AppendLine($"Standard age (Ma): {DurangoAgeText.Text ?? ""}");
+                    sb.AppendLine($"Standard 1σ (Ma): {DurangoErrText.Text ?? ""}");
+                    sb.AppendLine($"yr-1: {yr1Text.Text ?? ""}");
+
+                    sb.AppendLine("");
+
+                    // Durango test
+                    sb.AppendLine($"Conv. factor: {ConvFactorLabel.Text ?? ""}");
+                    sb.AppendLine($"Conv. 1σ: {ConvStdLabel.Text ?? ""}");
+                    sb.AppendLine($"Test value: {TestLabel.Text ?? ""}");
+                    sb.AppendLine($"Test 1σ: {TestStdLabel.Text ?? ""}");
+
+                    sb.AppendLine("");
+
+                    // Age statistics
+                    sb.AppendLine($"Grains: {GrainsLabel.Text ?? ""}");
+                    sb.AppendLine($"N_s: {NsLabel.Text ?? ""}");
+                    sb.AppendLine($"PW: {PWLabel.Text ?? ""}");
+                    sb.AppendLine($"PW 1σ: {PWStdLabel.Text ?? ""}");
+                    sb.AppendLine($"Pooled age (Ma): {PooledAgeLabel.Text ?? ""}");
+                    sb.AppendLine($"Pooled age 1σ: {AgeStdLabel.Text ?? ""}");
+
+                    sb.AppendLine("");
+
+                    // Central age
+                    sb.AppendLine($"Central age (Ma): {CentralAgeLabel.Text ?? ""}");
+                    sb.AppendLine($"Central age SE: {CentralAgeSTDLabel.Text ?? ""}");
+                    sb.AppendLine($"Central age %dispersion: {CentralAgeDispLabel.Text ?? ""}");
+
+                    sb.AppendLine("");
+                    sb.AppendLine($"Chi²: {ChiLabel.Text ?? ""}");
+                    sb.AppendLine($"P-value: {PLabel.Text ?? ""}");
+
+                    File.WriteAllText(saveFileDialog.FileName, sb.ToString());
+
+                    MessageBox.Show("Results exported successfully!", "Export Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Export failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
     }
 }
