@@ -170,14 +170,12 @@ namespace VisualTrack
         }
 
         private void CentralAgeCalculation()
-        {            
-            double centralAge = CalculateCentralAge(AgeGrid, Double.Parse(PooledAgeLabel.Text));
-            double centralAgeSigma = CalculateCentralAgeSigma(AgeGrid);
-            double dispersion = CalculateDispersion();
+        {
+            (double centralAge, double si, double sigma) = CalculateCentralAge(AgeGrid, Double.Parse(PooledAgeLabel.Text));
 
-            CentralAgeLabel.Text = centralAge.ToString();
-            CentralAgeSTDLabel.Text = centralAgeSigma.ToString();
-            CentralAgeDispLabel.Text = dispersion.ToString();
+            CentralAgeLabel.Text = centralAge.ToString("F3");
+            CentralAgeSTDLabel.Text = sigma.ToString("F3");
+            CentralAgeDispLabel.Text = (100 * si).ToString("F3");
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
@@ -368,7 +366,7 @@ namespace VisualTrack
                         //UCa = UCa * 1000000;
 
                         //Name, U, U std, Ca, Ca std, Trcs, S, U/Ca, U/Ca std
-                        zetaTable.Rows.Add(line[0], U.ToString("F4"), U_std.ToString("F4"), Ca.ToString("E3"), Ca_std.ToString("E3"),   
+                        zetaTable.Rows.Add(line[0], U.ToString("F3"), U_std.ToString("F3"), Ca.ToString("E3"), Ca_std.ToString("E3"),   
                             (Convert.ToDouble(line[5], provider)).ToString(),
                             (Convert.ToDouble(line[6], provider)).ToString("E3"),
                             UCa.ToString("E3"), UCa_std.ToString("E3"), 0, 0, 0, 0);
@@ -438,7 +436,7 @@ namespace VisualTrack
                         N_sum = N_sum + Convert.ToDouble(line[5], provider);
 
                         AgeGrid.Rows.Add(line[0], (Convert.ToDouble(line[5], provider)).ToString(), (Convert.ToDouble(line[6], provider)).ToString("E3")
-                            , U.ToString("F4"), U_std.ToString("F4"), Ca.ToString("E3"), Ca_std.ToString("E3"), UCa.ToString("E3"), UCa_std.ToString("E3"),0,0,0,0);
+                            , U.ToString("F3"), U_std.ToString("F3"), Ca.ToString("E3"), Ca_std.ToString("E3"), UCa.ToString("E3"), UCa_std.ToString("E3"),0,0,0,0);
 
 
                     }
@@ -514,21 +512,26 @@ namespace VisualTrack
 
 
         }
-        
+
 
         //Main age calculation
 
         private void getWeighted()
         {
-           
-            foreach(DataGridViewRow row in AgeGrid.Rows)
+            foreach (DataGridViewRow row in AgeGrid.Rows)
             {
-                row.Cells["Weighted"].Value = (conv_factor * Double.Parse(row.Cells["UCaDur"].Value.ToString())).ToString("E3");
+                double UCaDur = Double.Parse(row.Cells["UCaDur"].Value.ToString());
+                double UCastdDur = Double.Parse(row.Cells["UCastdDur"].Value.ToString());
 
-                 row.Cells["Weightedstd"].Value = (conv_factor * Double.Parse(row.Cells["UCaDur"].Value.ToString()) * (
-                    (Double.Parse(row.Cells["UCastdDur"].Value.ToString())/ Double.Parse(row.Cells["UCaDur"].Value.ToString()))+ durango_test_std)).ToString("E3");
+                double weighted = conv_factor * UCaDur;
 
+                double weightedStd = weighted * Math.Sqrt(
+                    Math.Pow(UCastdDur / UCaDur, 2) +
+                    Math.Pow(durango_test_std, 2)
+                );
 
+                row.Cells["Weighted"].Value = weighted.ToString("E3");
+                row.Cells["Weightedstd"].Value = weightedStd.ToString("E3");
             }
         }
 
@@ -631,10 +634,10 @@ namespace VisualTrack
 
             double age = (1 / yr1) * Math.Log(1 + (yr1 * zeta_value * Ns / PW)) / 1000000;
             //double age = (1 / 1.55) * Math.Log(1 + (yr1 * zeta_value * Ns / PW)) * 10000;
-            double age_std = age * Math.Sqrt((4 / Ns) + Math.Pow((PW_std / PW),2) + Math.Pow((zetaErr_value / zeta_value),2));
+            double age_std = age * Math.Sqrt((1 / Ns) + Math.Pow((PW_std / PW),2) + Math.Pow((zetaErr_value / zeta_value),2));
 
-            PooledAgeLabel.Text = age.ToString();
-            AgeStdLabel.Text = (age_std).ToString();
+            PooledAgeLabel.Text = age.ToString("F3");
+            AgeStdLabel.Text = (age_std).ToString("F3");
         }
 
         private void AgeCalcutation()
@@ -663,19 +666,11 @@ namespace VisualTrack
             double ratio = 0;
             double ratio_sum = 0;
 
-            double sigm = 0; ;
+            double sigm = 0;
             double sigm_sum = 0;
 
-            double Ns = 0;
-            double S = 0;
-
-            double FT = 0;
-            double FT_std = 0;
-
-            double UCa = 0;
-            double UCa_std = 0;
-
-            double Chi = 0;
+            double Ns, S, FT, FT_std, UCa, UCa_std;
+            double Chi;
 
             foreach (DataGridViewRow row in AgeGrid.Rows)
             {
@@ -688,37 +683,31 @@ namespace VisualTrack
                 UCa = Double.Parse(row.Cells["UCaDur"].Value.ToString());
                 UCa_std = Double.Parse(row.Cells["UCastdDur"].Value.ToString());
 
-                if (Ns == 0) 
+                if (Ns == 0)
                 {
-                    br_sq = (Math.Sqrt(FT)/(FT_std/(2*Math.Sqrt(FT)))) * (Math.Sqrt(FT) / (FT_std / (2 * Math.Sqrt(FT))));
-
-                    ratio = Math.Sqrt(FT) / Math.Pow(FT_std / (2 * Math.Sqrt(FT)), 2);
-
-                    sigm = 1 / Math.Pow(FT_std / (2 * Math.Sqrt(FT)), 2);
+                    // Assume log-normal distribution of age
+                    double term = FT_std / Math.Sqrt(FT);
+                    br_sq = Math.Pow(Math.Sqrt(FT) / term, 2);
+                    ratio = Math.Sqrt(FT) / (term * term);
+                    sigm = 1 / (term * term);
                 }
                 else
                 {
-                    br_sq = Math.Pow(Math.Log(FT)/Math.Sqrt((1/Ns) + Math.Pow(UCa_std/UCa/2,2)), 2);
-
-                    ratio = Math.Log(FT)/Math.Pow(Math.Sqrt((1 / Ns) + Math.Pow(UCa_std / UCa/2, 2)), 2);
-
-                    sigm = 1 / Math.Pow(Math.Sqrt((1 / Ns) + Math.Pow(UCa_std / UCa / 2, 2)), 2);
+                    double su = Math.Sqrt((1 / Ns) + Math.Pow(UCa_std / UCa, 2));
+                    br_sq = Math.Pow(Math.Log(FT) / su, 2);
+                    ratio = Math.Log(FT) / (su * su);
+                    sigm = 1 / (su * su);
                 }
 
-                br_sq_sum = br_sq_sum + br_sq;
-
-                ratio_sum = ratio_sum + ratio;  
-
-                sigm_sum = sigm_sum + sigm;
-
+                br_sq_sum += br_sq;
+                ratio_sum += ratio;
+                sigm_sum += sigm;
             }
 
-            Chi = br_sq_sum - Math.Pow(ratio_sum, 2)/ sigm_sum;
+            Chi = br_sq_sum - Math.Pow(ratio_sum, 2) / sigm_sum;
 
-            ChiLabel.Text = Chi.ToString(); 
-
-            PLabel.Text = Pchisq(Chi,AgeGrid.Rows.Count-1).ToString();
-
+            ChiLabel.Text = Chi.ToString("F3");
+            PLabel.Text = Pchisq(Chi, AgeGrid.Rows.Count - 1).ToString("F3");
         }
 
         //Number of functions for P of chisq. NOT MY CODE
@@ -860,12 +849,12 @@ namespace VisualTrack
                 raw_mean = raw_mean/TestGrid.Rows.Count;
                 mean = mean/TestGrid.Rows.Count;
 
-                RawTestLabel.Text = raw_mean.ToString();
-                UCaTestLabel.Text = mean.ToString();
+                RawTestLabel.Text = raw_mean.ToString("E3");
+                UCaTestLabel.Text = mean.ToString("E3");
 
                 conv_factor = raw_mean / mean;
 
-                ConvFactorLabel.Text = (conv_factor).ToString();
+                ConvFactorLabel.Text = (conv_factor).ToString("E3");
             }
             catch { }
         }
@@ -891,16 +880,16 @@ namespace VisualTrack
 
                     test = convUCa / Double.Parse(row.Cells["rawUCaTest"].Value.ToString());
 
-                    row.Cells["ConvUCaTest"].Value = convUCa.ToString();
+                    row.Cells["ConvUCaTest"].Value = convUCa.ToString("F3");
 
-                    row.Cells["TestDur"].Value = test.ToString();
+                    row.Cells["TestDur"].Value = test.ToString("F3");
 
                     test_mean = test_mean + test;
                     DrawTest(i, test);
                     i++;
                 }
                 durango_test_res = test_mean / TestGrid.Rows.Count;
-                TestLabel.Text = durango_test_res.ToString();
+                TestLabel.Text = durango_test_res.ToString("F3");
 
                 double s = 0;
 
@@ -911,9 +900,9 @@ namespace VisualTrack
 
                 durango_test_std = Math.Sqrt(s/(TestGrid.Rows.Count-1));
 
-                TestStdLabel.Text = durango_test_std.ToString();
+                TestStdLabel.Text = durango_test_std.ToString("F3");
 
-                ConvStdLabel.Text = (Double.Parse(ConvFactorLabel.Text)* durango_test_std).ToString();
+                ConvStdLabel.Text = (Double.Parse(ConvFactorLabel.Text)* durango_test_std).ToString("F3");
             }
             catch { }
         }
@@ -969,7 +958,7 @@ namespace VisualTrack
         
         private double ZetaSTD(double zeta, double yr1, double DurAgeMa, double DurAge_std, double PW, double PW_std, double Tracks)
         {
-            double first_bracket = zeta * zeta * 4 / Tracks;
+            double first_bracket = zeta * zeta  / Tracks;
             double second_bracket = (zeta * PW_std / PW);
             double third_bracket = ((DurAge_std/ DurAgeMa * Math.Exp(DurAgeMa*yr1-1))/(Tracks/PW));
 
@@ -1024,12 +1013,12 @@ namespace VisualTrack
             zeta_value = FindZeta(yr1, DurangoAge, PW_sum, Track_sum);
             zetaErr_value = ZetaSTD(zeta_value,yr1,DurangoAge,DurangoErr,PW_sum,PW_std_sum,Track_sum);
 
-            zetaLabel.Text = zeta_value.ToString();
-            zetaErrLabel.Text = zetaErr_value.ToString();
+            zetaLabel.Text = zeta_value.ToString("F3");
+            zetaErrLabel.Text = zetaErr_value.ToString("F3");
 
 
-            ZetaAgeLabel.Text = zeta_value.ToString();
-            ZetaStdAgeLAbel.Text = zetaErr_value.ToString();
+            ZetaAgeLabel.Text = zeta_value.ToString("F3");
+            ZetaStdAgeLAbel.Text = zetaErr_value.ToString("F3");
 
             AgeCalcutation();
 
@@ -1541,39 +1530,37 @@ namespace VisualTrack
             
         }
 
-        public  double CalculateCentralAge(DataGridView ageGrid, double pooledMa)
+        public (double centralAge, double si, double sigma) CalculateCentralAge(DataGridView ageGrid, double pooledMa)
         {
             double mu = Math.Log(pooledMa);
-            double si = 0;
-            int iterations = 100;
+            double si = DetermineInitialSi(ageGrid, mu);
 
-            // Step 1: Determine Initial Si
-            si = DetermineInitialSi(ageGrid, mu);
+            mu = IterateMu(ageGrid, ref si, 100);
 
-            // Step 2: Iterate Mu and Si using Newton-Raphson Method
-            mu = IterateMu(ageGrid, si, iterations);
+            double centralAge = Math.Exp(mu);
+            double sigma = CalculateCentralAgeSigma(ageGrid, si);
 
-            return Math.Exp(mu);
+            return (centralAge, si, sigma);
         }
 
-        public  double CalculateCentralAgeSigma(DataGridView ageGrid)
+        public double CalculateCentralAgeSigma(DataGridView ageGrid, double si)
         {
             double denomsum = 0;
             foreach (DataGridViewRow row in ageGrid.Rows)
             {
                 if (row.Cells["FT"].Value != null && row.Cells["sigma"].Value != null)
                 {
-                    double sgaMa = Convert.ToDouble(row.Cells["FT"].Value);  // Use FT Age
+                    double sgaMa = Convert.ToDouble(row.Cells["FT"].Value);
                     double sgaMaErr = Convert.ToDouble(row.Cells["sigma"].Value);
-
                     double su = sgaMaErr / sgaMa;
+
                     if (!double.IsNaN(su) && !double.IsInfinity(su))
                     {
-                        denomsum += 1 / (si_global * si_global + su * su);
+                        denomsum += 1 / (si * si + su * su);
                     }
                 }
             }
-            return Math.Sqrt(1 / denomsum) * Math.Exp(si_global);
+            return Math.Sqrt(1 / denomsum) * Math.Exp(si);
         }
 
         public  double CalculateDispersion()
@@ -1627,7 +1614,7 @@ namespace VisualTrack
             return si;
         }
 
-        private  double IterateMu(DataGridView ageGrid, double si, int iterations)
+        private double IterateMu(DataGridView ageGrid, ref double si, int iterations)
         {
             double mu = 0;
             for (int i = 1; i <= iterations; i++)
@@ -1639,18 +1626,16 @@ namespace VisualTrack
                 {
                     if (row.Cells["FT"].Value != null && row.Cells["sigma"].Value != null)
                     {
-                        double sgaMa = Convert.ToDouble(row.Cells["FT"].Value);  // Use FT Age
+                        double sgaMa = Convert.ToDouble(row.Cells["FT"].Value);
                         double sgaMaErr = Convert.ToDouble(row.Cells["sigma"].Value);
-
                         double su = sgaMaErr / sgaMa;
 
                         if (!double.IsNaN(su) && !double.IsInfinity(su))
                         {
                             double zu = Math.Log(sgaMa);
-                            double num = zu / (si * si + su * su);
-                            double denom = 1 / (si * si + su * su);
-                            numsum += num;
-                            denomsum += denom;
+                            double weight = 1 / (si * si + su * su);
+                            numsum += zu * weight;
+                            denomsum += weight;
                         }
                     }
                 }
@@ -1724,8 +1709,8 @@ namespace VisualTrack
             double value1 = Convert.ToDouble(standardData[1]);
             double value2 = Convert.ToDouble(standardData[2]);
 
-            DurangoAgeText.Text = value1.ToString();
-            DurangoErrText.Text = value2.ToString();
+            DurangoAgeText.Text = value1.ToString("F3");
+            DurangoErrText.Text = value2.ToString("F3");
 
             StandartSELabel.Text = name + " Err";
 

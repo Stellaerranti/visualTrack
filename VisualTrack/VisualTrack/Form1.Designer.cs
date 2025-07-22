@@ -53,6 +53,7 @@
             this.ImportTestFileButton = new System.Windows.Forms.ToolStripButton();
             this.ImportSamplefileButton = new System.Windows.Forms.ToolStripButton();
             this.ClearButton = new System.Windows.Forms.ToolStripButton();
+            this.StandardManagerButton = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Zeta = new System.Windows.Forms.TabPage();
@@ -92,6 +93,7 @@
             this.calculateZeta = new System.Windows.Forms.Button();
             this.deleteRow = new System.Windows.Forms.Button();
             this.zetaErrLabel = new System.Windows.Forms.Label();
+            this.StandartBox = new System.Windows.Forms.ComboBox();
             this.Zeta_test = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.TestGrid = new System.Windows.Forms.DataGridView();
@@ -122,6 +124,7 @@
             this.ConvStdLabel = new System.Windows.Forms.Label();
             this.conductTestButton = new System.Windows.Forms.Button();
             this.DeleteRowTestGrid = new System.Windows.Forms.Button();
+            this.TestChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Age = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.AgeGrid = new System.Windows.Forms.DataGridView();
@@ -171,9 +174,6 @@
             this.CentralAgeDispLabel = new System.Windows.Forms.Label();
             this.ImportTest = new System.Windows.Forms.OpenFileDialog();
             this.ImportSample = new System.Windows.Forms.OpenFileDialog();
-            this.TestChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.StandartBox = new System.Windows.Forms.ComboBox();
-            this.StandardManagerButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -187,11 +187,11 @@
             this.tableLayoutPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TestGrid)).BeginInit();
             this.tableLayoutPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TestChart)).BeginInit();
             this.Age.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AgeGrid)).BeginInit();
             this.tableLayoutPanel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TestChart)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -295,6 +295,16 @@
             this.ClearButton.Size = new System.Drawing.Size(38, 22);
             this.ClearButton.Text = "Clear";
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+            // 
+            // StandardManagerButton
+            // 
+            this.StandardManagerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.StandardManagerButton.Image = ((System.Drawing.Image)(resources.GetObject("StandardManagerButton.Image")));
+            this.StandardManagerButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.StandardManagerButton.Name = "StandardManagerButton";
+            this.StandardManagerButton.Size = new System.Drawing.Size(108, 22);
+            this.StandardManagerButton.Text = "Standard manager";
+            this.StandardManagerButton.Click += new System.EventHandler(this.StandardManagerButton_Click);
             // 
             // tableLayoutPanel4
             // 
@@ -742,6 +752,15 @@
             this.zetaErrLabel.TabIndex = 17;
             this.zetaErrLabel.Text = "-";
             // 
+            // StandartBox
+            // 
+            this.StandartBox.FormattingEnabled = true;
+            this.StandartBox.Location = new System.Drawing.Point(108, 35);
+            this.StandartBox.Name = "StandartBox";
+            this.StandartBox.Size = new System.Drawing.Size(94, 21);
+            this.StandartBox.TabIndex = 25;
+            this.StandartBox.SelectedIndexChanged += new System.EventHandler(this.StandartBox_SelectedIndexChanged);
+            // 
             // Zeta_test
             // 
             this.Zeta_test.Controls.Add(this.tableLayoutPanel8);
@@ -1050,6 +1069,27 @@
             this.DeleteRowTestGrid.Text = "delete row";
             this.DeleteRowTestGrid.UseVisualStyleBackColor = true;
             this.DeleteRowTestGrid.Click += new System.EventHandler(this.DeleteRowTestGrid_Click);
+            // 
+            // TestChart
+            // 
+            chartArea3.AxisY.Title = "Test";
+            chartArea3.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            chartArea3.Name = "ChartArea1";
+            this.TestChart.ChartAreas.Add(chartArea3);
+            this.TestChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TestChart.Location = new System.Drawing.Point(3, 3);
+            this.TestChart.Name = "TestChart";
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series6.Name = "TestSeries";
+            this.TestChart.Series.Add(series6);
+            this.TestChart.Size = new System.Drawing.Size(1210, 396);
+            this.TestChart.TabIndex = 9;
+            this.TestChart.Text = "chart1";
+            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title3.Name = "Title1";
+            title3.Text = "Test";
+            this.TestChart.Titles.Add(title3);
             // 
             // Age
             // 
@@ -1548,46 +1588,6 @@
             // 
             this.ImportSample.FileName = "openFileDialog1";
             // 
-            // TestChart
-            // 
-            chartArea3.AxisY.Title = "Test";
-            chartArea3.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            chartArea3.Name = "ChartArea1";
-            this.TestChart.ChartAreas.Add(chartArea3);
-            this.TestChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TestChart.Location = new System.Drawing.Point(3, 3);
-            this.TestChart.Name = "TestChart";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series6.Name = "TestSeries";
-            this.TestChart.Series.Add(series6);
-            this.TestChart.Size = new System.Drawing.Size(1210, 396);
-            this.TestChart.TabIndex = 9;
-            this.TestChart.Text = "chart1";
-            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            title3.Name = "Title1";
-            title3.Text = "Test";
-            this.TestChart.Titles.Add(title3);
-            // 
-            // StandartBox
-            // 
-            this.StandartBox.FormattingEnabled = true;
-            this.StandartBox.Location = new System.Drawing.Point(108, 35);
-            this.StandartBox.Name = "StandartBox";
-            this.StandartBox.Size = new System.Drawing.Size(94, 21);
-            this.StandartBox.TabIndex = 25;
-            this.StandartBox.SelectedIndexChanged += new System.EventHandler(this.StandartBox_SelectedIndexChanged);
-            // 
-            // StandardManagerButton
-            // 
-            this.StandardManagerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.StandardManagerButton.Image = ((System.Drawing.Image)(resources.GetObject("StandardManagerButton.Image")));
-            this.StandardManagerButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.StandardManagerButton.Name = "StandardManagerButton";
-            this.StandardManagerButton.Size = new System.Drawing.Size(108, 22);
-            this.StandardManagerButton.Text = "Standard manager";
-            this.StandardManagerButton.Click += new System.EventHandler(this.StandardManagerButton_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1614,12 +1614,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.TestGrid)).EndInit();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TestChart)).EndInit();
             this.Age.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AgeGrid)).EndInit();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TestChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
