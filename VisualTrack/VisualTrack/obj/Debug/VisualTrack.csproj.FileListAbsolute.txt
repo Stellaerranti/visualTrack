@@ -32,3 +32,4 @@ C:\Users\Дмитрий\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj
 C:\Users\Дмитрий\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Debug\VisualTrack.exe
 C:\Users\Дмитрий\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Debug\VisualTrack.pdb
 C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Debug\VisualTrack.StandardWindow.resources
+C:\Users\Rudko\Documents\GitHub\visualTrack\VisualTrack\VisualTrack\obj\Debug\VisualTrack.exe.config

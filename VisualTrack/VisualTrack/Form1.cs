@@ -604,13 +604,13 @@ namespace VisualTrack
                     {
                         FT = (1 / yr1)*Math.Log(1+(1 / yr1)*zeta_value*(Weighted/(S*Weighted_std*Weighted_std))*(0.5/((Weighted/Weighted_std)* (Weighted / Weighted_std) + 0.5))) / 1000000;
 
-                        FT_std = FT*Math.Sqrt(8+1/((Weighted / Weighted_std)* (Weighted / Weighted_std) + 0.5)+(zetaErr_value/zeta_value)* (zetaErr_value / zeta_value));
+                        FT_std = FT*Math.Sqrt(2+1/((Weighted / Weighted_std)* (Weighted / Weighted_std) + 0.5)+(zetaErr_value/zeta_value)* (zetaErr_value / zeta_value));
                     }
                     else
                     {
                         FT = (1 / yr1) * Math.Log(1+(yr1*zeta_value*(Ns/S)/Weighted))/ 1000000;
 
-                        FT_std = FT*Math.Sqrt(4/Ns+(Weighted_std/Weighted)* (Weighted_std / Weighted) + (zetaErr_value / zeta_value) * (zetaErr_value / zeta_value));
+                        FT_std = FT*Math.Sqrt(1/Ns+(Weighted_std/Weighted)* (Weighted_std / Weighted) + (zetaErr_value / zeta_value) * (zetaErr_value / zeta_value));
                     }
 
                     row.Cells["FT"].Value = FT.ToString("F4");
@@ -1614,9 +1614,9 @@ namespace VisualTrack
 
                 double dsi = si - (fsum / dfsum);
 
-                if ((si / mu) > 100)
+                if ((si / mu) > 100 || double.IsNaN(dsi) || dsi < 0)
                 {
-                    si = 0;
+                    si = 0.01;  // small positive fallback
                 }
                 else
                 {
