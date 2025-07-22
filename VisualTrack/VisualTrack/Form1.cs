@@ -742,29 +742,28 @@ namespace VisualTrack
             return (1.0 - PValue);
         }
 
-        private double igf(double S, double Z)
+        public double igf(double s, double z)
         {
-            if (Z < 0.0)
-            {
+            if (z < 0.0)
                 return 0.0;
-            }
-            double Sc = (1.0 / S);
-            Sc *= Math.Pow(Z, S);
-            Sc *= Math.Exp(-Z);
 
-            double Sum = 1.0;
-            double Nom = 1.0;
-            double Denom = 1.0;
+            double sc = (1.0 / s);
+            sc *= Math.Pow(z, s);
+            sc *= Math.Exp(-z);
 
-            for (int I = 0; I < 200; I++)
+            double sum = 1.0;
+            double nom = 1.0;
+            double denom = 1.0;
+
+            for (int i = 0; i < 200; i++)
             {
-                Nom *= Z;
-                S++;
-                Denom *= S;
-                Sum += (Nom / Denom);
+                nom *= z;
+                double s_iter = s + i + 1.0;
+                denom *= s_iter;
+                sum += (nom / denom);
             }
 
-            return Sum * Sc;
+            return sum * sc;
         }
 
         private double approx_gamma(double Z)
@@ -1306,6 +1305,7 @@ namespace VisualTrack
         {
             AgeGrid.Rows.RemoveAt(AgeGrid.CurrentCell.RowIndex);
 
+           
             AgeCalcutation();
             CentralAgeCalculation();
 
