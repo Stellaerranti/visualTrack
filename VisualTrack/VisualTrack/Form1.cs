@@ -1812,5 +1812,88 @@ namespace VisualTrack
             }
         }
 
+        private void CopyAgeButton_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            // Replace with the actual name of your TableLayoutPanel
+            TableLayoutPanel panel = tableLayoutPanel7;
+
+            for (int row = 0; row < panel.RowCount; row++)
+            {
+                for (int col = 0; col < panel.ColumnCount; col++)
+                {
+                    Control ctrl = panel.GetControlFromPosition(col, row);
+                    if (ctrl != null)
+                    {
+                        if (ctrl is System.Windows.Forms.Label || ctrl is System.Windows.Forms.TextBox)
+                        {
+                            sb.Append(ctrl.Text.Trim());
+                        }
+                        sb.Append("\t"); // separate columns with tab
+                    }
+                }
+                sb.AppendLine(); // new line per row
+            }
+
+            Clipboard.SetText(sb.ToString());
+            //MessageBox.Show("Table copied to clipboard.", "Copy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void CopyTestButton_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            // Replace with the actual name of your TableLayoutPanel
+            TableLayoutPanel panel = tableLayoutPanel6;
+
+            for (int row = 0; row < panel.RowCount; row++)
+            {
+                for (int col = 0; col < panel.ColumnCount; col++)
+                {
+                    Control ctrl = panel.GetControlFromPosition(col, row);
+                    if (ctrl != null)
+                    {
+                        if (ctrl is System.Windows.Forms.Label || ctrl is System.Windows.Forms.TextBox)
+                        {
+                            sb.Append(ctrl.Text.Trim());
+                        }
+                        sb.Append("\t"); // separate columns with tab
+                    }
+                }
+                sb.AppendLine(); // new line per row
+            }
+
+            Clipboard.SetText(sb.ToString());
+            //MessageBox.Show("Table copied to clipboard.", "Copy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void CopyZetaButton_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            // Replace with the actual name of your TableLayoutPanel
+            TableLayoutPanel panel = tableLayoutPanel3;
+
+            for (int row = 0; row < panel.RowCount; row++)
+            {
+                for (int col = 0; col < panel.ColumnCount; col++)
+                {
+                    Control ctrl = panel.GetControlFromPosition(col, row);
+                    if (ctrl != null)
+                    {
+                        if (ctrl is System.Windows.Forms.Label || ctrl is System.Windows.Forms.TextBox)
+                        {
+                            sb.Append(ctrl.Text.Trim());
+                        }
+                        sb.Append("\t"); // separate columns with tab
+                    }
+                }
+                sb.AppendLine(); // new line per row
+            }
+
+            Clipboard.SetText(sb.ToString());
+            //MessageBox.Show("Table copied to clipboard.", "Copy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
