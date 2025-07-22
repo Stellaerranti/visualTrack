@@ -93,6 +93,14 @@ namespace VisualTrack
             TestChart.ChartAreas[0].AxisX.Minimum = 0;
             TestChart.ChartAreas[0].AxisY.Minimum = 0;
 
+            RadialPlot.Series["Points"].Points.Clear();
+
+            //RadialPlot.Titles.Clear();
+            //RadialPlot.Titles.Add("Radial Plot");
+
+            RadialPlot.ChartAreas["RadialArea"].AxisX.Title = "Standardized deviation (Z)";
+            RadialPlot.ChartAreas["RadialArea"].AxisY.Title = "1 / σ";
+
             LoadComboBoxItems();
             StandartBox.SelectedIndex = 0;
 
@@ -651,6 +659,8 @@ namespace VisualTrack
                 getFTage();
                 poolAge(PW, PW_std);
                 chiSq();
+
+                DrawRadialPlot();
 
             }
         }
@@ -1894,6 +1904,48 @@ namespace VisualTrack
 
             Clipboard.SetText(sb.ToString());
             //MessageBox.Show("Table copied to clipboard.", "Copy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+        private void DrawRadialPlot()
+        {
+            if (AgeGrid.Rows.Count == 0) return;
+
+            RadialPlot.Series["Points"].Points.Clear();
+
+            // Calculate central log-age
+            List<double> logAges = new List<double>();
+            List<double> sigmas = new List<double>();
+
+            foreach (DataGridViewRow row in AgeGrid.Rows)
+            {
+                if (row.Cells["FT"].Value != null && row.Cells["sigma"].Value != null)
+                {
+                    double age = Convert.ToDouble(row.Cells["FT"].Value);
+                    double sigma = Convert.ToDouble(row.Cells["sigma"].Value);
+                    if (age > 0 && sigma > 0)
+                    {
+                        logAges.Add(Math.Log(age));
+                        sigmas.Add(sigma / age);  // relative sigma
+                    }
+                }
+            }
+
+            if (logAges.Count < 2) return;
+
+            double mu = logAges.Zip(sigmas, (z, s) => z / (s * s)).Sum() / sigmas.Select(s => 1 / (s * s)).Sum();
+
+            for (int i = 0; i < logAges.Count; i++)
+            {
+                double x = (logAges[i] - mu) / sigmas[i];     // standardized deviation
+                double y = 1.0 / sigmas[i];                    // precision
+
+                RadialPlot.Series["Points"].Points.AddXY(x, y);
+            }
+
+
+
+            
         }
     }
 }
