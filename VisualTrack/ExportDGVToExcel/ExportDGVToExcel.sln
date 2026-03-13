@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExportDGVToExcel", "ExportDGVToExcel\ExportDGVToExcel.csproj", "{04A0E3E0-C6A7-4724-928B-9AF54E20476E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04A0E3E0-C6A7-4724-928B-9AF54E20476E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04A0E3E0-C6A7-4724-928B-9AF54E20476E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04A0E3E0-C6A7-4724-928B-9AF54E20476E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A0E3E0-C6A7-4724-928B-9AF54E20476E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F885445-5DD9-4273-B4E5-EF337EA10268}
+	EndGlobalSection
+EndGlobal

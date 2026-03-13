@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\ExportDGVToExcel\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{04A0E3E0-C6A7-4724-928B-9AF54E20476E}|ExportDGVToExcel\\ExportDGVToExcel.csproj|c:\\users\\rudko\\documents\\github\\visualtrack\\visualtrack\\exportdgvtoexcel\\exportdgvtoexcel\\page1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04A0E3E0-C6A7-4724-928B-9AF54E20476E}|ExportDGVToExcel\\ExportDGVToExcel.csproj|solutionrelative:exportdgvtoexcel\\page1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04A0E3E0-C6A7-4724-928B-9AF54E20476E}|ExportDGVToExcel\\ExportDGVToExcel.csproj|c:\\users\\rudko\\documents\\github\\visualtrack\\visualtrack\\exportdgvtoexcel\\exportdgvtoexcel\\page1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{04A0E3E0-C6A7-4724-928B-9AF54E20476E}|ExportDGVToExcel\\ExportDGVToExcel.csproj|solutionrelative:exportdgvtoexcel\\page1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Page1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\ExportDGVToExcel\\ExportDGVToExcel\\Page1.Designer.cs",
+              "RelativeDocumentMoniker": "ExportDGVToExcel\\Page1.Designer.cs",
+              "ToolTip": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\ExportDGVToExcel\\ExportDGVToExcel\\Page1.Designer.cs",
+              "RelativeToolTip": "ExportDGVToExcel\\Page1.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T15:01:21.228Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Page1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\ExportDGVToExcel\\ExportDGVToExcel\\Page1.cs",
+              "RelativeDocumentMoniker": "ExportDGVToExcel\\Page1.cs",
+              "ToolTip": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\ExportDGVToExcel\\ExportDGVToExcel\\Page1.cs [Design]",
+              "RelativeToolTip": "ExportDGVToExcel\\Page1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T15:01:29.883Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

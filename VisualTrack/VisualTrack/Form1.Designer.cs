@@ -29,22 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title6 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.ImportZeta = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -57,12 +54,26 @@
             this.ImportSamplefileButton = new System.Windows.Forms.ToolStripButton();
             this.ClearButton = new System.Windows.Forms.ToolStripButton();
             this.StandardManagerButton = new System.Windows.Forms.ToolStripButton();
+            this.ExportResButton = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Zeta = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.zetaTable = new System.Windows.Forms.DataGridView();
+            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.U = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.U_std = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ca_std = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Trs = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.S = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCastd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCaFlat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCaFlatStd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Zeta_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Zeta_col_std = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UCaChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.yr1Text = new System.Windows.Forms.TextBox();
@@ -84,10 +95,22 @@
             this.deleteRow = new System.Windows.Forms.Button();
             this.zetaErrLabel = new System.Windows.Forms.Label();
             this.StandartBox = new System.Windows.Forms.ComboBox();
+            this.CopyZetaButton = new System.Windows.Forms.Button();
             this.Zeta_test = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.TestGrid = new System.Windows.Forms.DataGridView();
+            this.Ntest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rawUCaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UstdTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CastdTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCastdTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ConvUCaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TestDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.CopyTestButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.TestFileLabel = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -108,8 +131,23 @@
             this.Age = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.AgeGrid = new System.Windows.Forms.DataGridView();
+            this.SampleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UstdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CaDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CastdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCaDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCastdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Weighted = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Weightedstd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sigma = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.CopyAgeButton = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
+            this.FileSampleLabel = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -140,49 +178,6 @@
             this.CentralAgeDispLabel = new System.Windows.Forms.Label();
             this.ImportTest = new System.Windows.Forms.OpenFileDialog();
             this.ImportSample = new System.Windows.Forms.OpenFileDialog();
-            this.SampleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UstdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CaDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CastdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCaDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCastdDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Weighted = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Weightedstd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sigma = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ntest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rawUCaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UstdTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CastdTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCastdTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ConvUCaTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TestDur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.U = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.U_std = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ca = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ca_std = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Trs = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.S = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCastd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCaFlat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UCaFlatStd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Zeta_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Zeta_col_std = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ExportResButton = new System.Windows.Forms.ToolStripButton();
-            this.FileSampleLabel = new System.Windows.Forms.Label();
-            this.CopyAgeButton = new System.Windows.Forms.Button();
-            this.CopyTestButton = new System.Windows.Forms.Button();
-            this.CopyZetaButton = new System.Windows.Forms.Button();
-            this.RadialPlotTab = new System.Windows.Forms.TabPage();
-            this.RadialPlot = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -201,8 +196,6 @@
             this.tableLayoutPanel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AgeGrid)).BeginInit();
             this.tableLayoutPanel7.SuspendLayout();
-            this.RadialPlotTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RadialPlot)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -318,6 +311,16 @@
             this.StandardManagerButton.Text = "Standard manager";
             this.StandardManagerButton.Click += new System.EventHandler(this.StandardManagerButton_Click);
             // 
+            // ExportResButton
+            // 
+            this.ExportResButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ExportResButton.Image = ((System.Drawing.Image)(resources.GetObject("ExportResButton.Image")));
+            this.ExportResButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ExportResButton.Name = "ExportResButton";
+            this.ExportResButton.Size = new System.Drawing.Size(45, 22);
+            this.ExportResButton.Text = "Export";
+            this.ExportResButton.Click += new System.EventHandler(this.ExportResButton_Click);
+            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
@@ -336,7 +339,6 @@
             this.tabControl1.Controls.Add(this.Zeta);
             this.tabControl1.Controls.Add(this.Zeta_test);
             this.tabControl1.Controls.Add(this.Age);
-            this.tabControl1.Controls.Add(this.RadialPlotTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
@@ -413,63 +415,141 @@
             this.zetaTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.zetaTable_CellEndEdit);
             this.zetaTable.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.zetaTable_CellValueChanged);
             // 
+            // NameColumn
+            // 
+            this.NameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NameColumn.HeaderText = "Name";
+            this.NameColumn.Name = "NameColumn";
+            // 
+            // U
+            // 
+            this.U.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.U.HeaderText = "U, ppm";
+            this.U.Name = "U";
+            // 
+            // U_std
+            // 
+            this.U_std.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.U_std.HeaderText = "U std";
+            this.U_std.Name = "U_std";
+            // 
+            // Ca
+            // 
+            this.Ca.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Ca.HeaderText = "Ca, ppm";
+            this.Ca.Name = "Ca";
+            // 
+            // Ca_std
+            // 
+            this.Ca_std.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Ca_std.HeaderText = "Ca std";
+            this.Ca_std.Name = "Ca_std";
+            // 
+            // Trs
+            // 
+            this.Trs.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Trs.HeaderText = "Ns";
+            this.Trs.Name = "Trs";
+            // 
+            // S
+            // 
+            this.S.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.S.HeaderText = "S, cm^2";
+            this.S.Name = "S";
+            // 
+            // UCa
+            // 
+            this.UCa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCa.HeaderText = "U/Ca";
+            this.UCa.Name = "UCa";
+            // 
+            // UCastd
+            // 
+            this.UCastd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCastd.HeaderText = "U/Ca std";
+            this.UCastd.Name = "UCastd";
+            // 
+            // UCaFlat
+            // 
+            this.UCaFlat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCaFlat.HeaderText = "U/Ca corrected";
+            this.UCaFlat.Name = "UCaFlat";
+            // 
+            // UCaFlatStd
+            // 
+            this.UCaFlatStd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCaFlatStd.HeaderText = "U/Ca Flat corrected std";
+            this.UCaFlatStd.Name = "UCaFlatStd";
+            // 
+            // Zeta_Col
+            // 
+            this.Zeta_Col.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Zeta_Col.HeaderText = "Zeta";
+            this.Zeta_Col.Name = "Zeta_Col";
+            // 
+            // Zeta_col_std
+            // 
+            this.Zeta_col_std.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Zeta_col_std.HeaderText = "Zeta std";
+            this.Zeta_col_std.Name = "Zeta_col_std";
+            // 
             // UCaChart
             // 
-            chartArea1.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea1.AlignWithChartArea = "ChartArea2";
-            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            chartArea1.AxisY.Title = "U/Ca flat";
-            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            chartArea1.Name = "ChartArea1";
-            chartArea2.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea2.AxisY.Title = "U/Ca flat";
-            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            chartArea2.BorderColor = System.Drawing.Color.Bisque;
-            chartArea2.Name = "ChartArea2";
-            this.UCaChart.ChartAreas.Add(chartArea1);
-            this.UCaChart.ChartAreas.Add(chartArea2);
+            chartArea4.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea4.AlignWithChartArea = "ChartArea2";
+            chartArea4.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            chartArea4.AxisY.Title = "U/Ca flat";
+            chartArea4.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            chartArea4.Name = "ChartArea1";
+            chartArea5.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea5.AxisY.Title = "U/Ca flat";
+            chartArea5.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            chartArea5.BorderColor = System.Drawing.Color.Bisque;
+            chartArea5.Name = "ChartArea2";
+            this.UCaChart.ChartAreas.Add(chartArea4);
+            this.UCaChart.ChartAreas.Add(chartArea5);
             this.UCaChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.UCaChart.Legends.Add(legend1);
+            legend2.Enabled = false;
+            legend2.Name = "Legend1";
+            this.UCaChart.Legends.Add(legend2);
             this.UCaChart.Location = new System.Drawing.Point(3, 3);
             this.UCaChart.Name = "UCaChart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.Name = "UCaSeries";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series2.Legend = "Legend1";
-            series2.Name = "UCaError";
-            series2.YValuesPerPoint = 3;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "FittingLine";
-            series4.ChartArea = "ChartArea2";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series4.Legend = "Legend1";
-            series4.Name = "UCaFlat";
-            series5.ChartArea = "ChartArea2";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series5.Legend = "Legend1";
-            series5.Name = "UCaFlatError";
-            series5.YValuesPerPoint = 3;
-            this.UCaChart.Series.Add(series1);
-            this.UCaChart.Series.Add(series2);
-            this.UCaChart.Series.Add(series3);
-            this.UCaChart.Series.Add(series4);
-            this.UCaChart.Series.Add(series5);
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series7.Legend = "Legend1";
+            series7.Name = "UCaSeries";
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series8.Legend = "Legend1";
+            series8.Name = "UCaError";
+            series8.YValuesPerPoint = 3;
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series9.Legend = "Legend1";
+            series9.Name = "FittingLine";
+            series10.ChartArea = "ChartArea2";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series10.Legend = "Legend1";
+            series10.Name = "UCaFlat";
+            series11.ChartArea = "ChartArea2";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series11.Legend = "Legend1";
+            series11.Name = "UCaFlatError";
+            series11.YValuesPerPoint = 3;
+            this.UCaChart.Series.Add(series7);
+            this.UCaChart.Series.Add(series8);
+            this.UCaChart.Series.Add(series9);
+            this.UCaChart.Series.Add(series10);
+            this.UCaChart.Series.Add(series11);
             this.UCaChart.Size = new System.Drawing.Size(1199, 390);
             this.UCaChart.TabIndex = 1;
             this.UCaChart.Text = "chart1";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            title1.Name = "BeforeDriftTitle";
-            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            title2.Name = "AfterDriftTitle";
-            this.UCaChart.Titles.Add(title1);
-            this.UCaChart.Titles.Add(title2);
+            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title4.Name = "BeforeDriftTitle";
+            title5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title5.Name = "AfterDriftTitle";
+            this.UCaChart.Titles.Add(title4);
+            this.UCaChart.Titles.Add(title5);
             // 
             // tableLayoutPanel3
             // 
@@ -697,6 +777,16 @@
             this.StandartBox.TabIndex = 25;
             this.StandartBox.SelectedIndexChanged += new System.EventHandler(this.StandartBox_SelectedIndexChanged);
             // 
+            // CopyZetaButton
+            // 
+            this.CopyZetaButton.Location = new System.Drawing.Point(6, 336);
+            this.CopyZetaButton.Name = "CopyZetaButton";
+            this.CopyZetaButton.Size = new System.Drawing.Size(93, 20);
+            this.CopyZetaButton.TabIndex = 26;
+            this.CopyZetaButton.Text = "Copy";
+            this.CopyZetaButton.UseVisualStyleBackColor = true;
+            this.CopyZetaButton.Click += new System.EventHandler(this.CopyZetaButton_Click);
+            // 
             // Zeta_test
             // 
             this.Zeta_test.Controls.Add(this.tableLayoutPanel8);
@@ -748,6 +838,65 @@
             this.TestGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.TestGrid_CellEndEdit);
             this.TestGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.TestGrid_CellValueChanged);
             // 
+            // Ntest
+            // 
+            this.Ntest.HeaderText = "N";
+            this.Ntest.Name = "Ntest";
+            // 
+            // rawUCaTest
+            // 
+            this.rawUCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.rawUCaTest.HeaderText = "raw U/Ca";
+            this.rawUCaTest.Name = "rawUCaTest";
+            // 
+            // UTest
+            // 
+            this.UTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UTest.HeaderText = "U, ppm";
+            this.UTest.Name = "UTest";
+            // 
+            // UstdTest
+            // 
+            this.UstdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UstdTest.HeaderText = "U std";
+            this.UstdTest.Name = "UstdTest";
+            // 
+            // CaTest
+            // 
+            this.CaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CaTest.HeaderText = "Ca, ppm";
+            this.CaTest.Name = "CaTest";
+            // 
+            // CastdTest
+            // 
+            this.CastdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CastdTest.HeaderText = "Ca std";
+            this.CastdTest.Name = "CastdTest";
+            // 
+            // UCaTest
+            // 
+            this.UCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCaTest.HeaderText = "U/Ca";
+            this.UCaTest.Name = "UCaTest";
+            // 
+            // UCastdTest
+            // 
+            this.UCastdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCastdTest.HeaderText = "U/Ca std";
+            this.UCastdTest.Name = "UCastdTest";
+            // 
+            // ConvUCaTest
+            // 
+            this.ConvUCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ConvUCaTest.HeaderText = "Conv U/Ca";
+            this.ConvUCaTest.Name = "ConvUCaTest";
+            // 
+            // TestDur
+            // 
+            this.TestDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TestDur.HeaderText = "Test";
+            this.TestDur.Name = "TestDur";
+            // 
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
@@ -786,6 +935,17 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(209, 276);
             this.tableLayoutPanel6.TabIndex = 8;
+            // 
+            // CopyTestButton
+            // 
+            this.CopyTestButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CopyTestButton.Location = new System.Drawing.Point(6, 246);
+            this.CopyTestButton.Name = "CopyTestButton";
+            this.CopyTestButton.Size = new System.Drawing.Size(94, 24);
+            this.CopyTestButton.TabIndex = 17;
+            this.CopyTestButton.Text = "Copy";
+            this.CopyTestButton.UseVisualStyleBackColor = true;
+            this.CopyTestButton.Click += new System.EventHandler(this.CopyTestButton_Click);
             // 
             // label9
             // 
@@ -951,24 +1111,24 @@
             // 
             // TestChart
             // 
-            chartArea3.AxisY.Title = "Test";
-            chartArea3.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            chartArea3.Name = "ChartArea1";
-            this.TestChart.ChartAreas.Add(chartArea3);
+            chartArea6.AxisY.Title = "Test";
+            chartArea6.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            chartArea6.Name = "ChartArea1";
+            this.TestChart.ChartAreas.Add(chartArea6);
             this.TestChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TestChart.Location = new System.Drawing.Point(3, 3);
             this.TestChart.Name = "TestChart";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series6.Name = "TestSeries";
-            this.TestChart.Series.Add(series6);
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series12.Name = "TestSeries";
+            this.TestChart.Series.Add(series12);
             this.TestChart.Size = new System.Drawing.Size(1210, 396);
             this.TestChart.TabIndex = 9;
             this.TestChart.Text = "chart1";
-            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            title3.Name = "Title1";
-            title3.Text = "Test";
-            this.TestChart.Titles.Add(title3);
+            title6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title6.Name = "Title1";
+            title6.Text = "Test";
+            this.TestChart.Titles.Add(title6);
             // 
             // Age
             // 
@@ -1025,6 +1185,84 @@
             this.AgeGrid.TabIndex = 11;
             this.AgeGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.AgeGrid_CellEndEdit);
             this.AgeGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.AgeGrid_CellValueChanged);
+            // 
+            // SampleName
+            // 
+            this.SampleName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SampleName.HeaderText = "Name";
+            this.SampleName.Name = "SampleName";
+            // 
+            // NAge
+            // 
+            this.NAge.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NAge.HeaderText = "Ns";
+            this.NAge.Name = "NAge";
+            // 
+            // SAge
+            // 
+            this.SAge.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SAge.HeaderText = "S, cm^2";
+            this.SAge.Name = "SAge";
+            // 
+            // UDur
+            // 
+            this.UDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UDur.HeaderText = "U, ppm";
+            this.UDur.Name = "UDur";
+            // 
+            // UstdDur
+            // 
+            this.UstdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UstdDur.HeaderText = "U std";
+            this.UstdDur.Name = "UstdDur";
+            // 
+            // CaDur
+            // 
+            this.CaDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CaDur.HeaderText = "Ca, ppm";
+            this.CaDur.Name = "CaDur";
+            // 
+            // CastdDur
+            // 
+            this.CastdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CastdDur.HeaderText = "Ca std";
+            this.CastdDur.Name = "CastdDur";
+            // 
+            // UCaDur
+            // 
+            this.UCaDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCaDur.HeaderText = "U/Ca";
+            this.UCaDur.Name = "UCaDur";
+            // 
+            // UCastdDur
+            // 
+            this.UCastdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UCastdDur.HeaderText = "U/Ca std";
+            this.UCastdDur.Name = "UCastdDur";
+            // 
+            // Weighted
+            // 
+            this.Weighted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Weighted.HeaderText = "Weighted U/Ca";
+            this.Weighted.Name = "Weighted";
+            // 
+            // Weightedstd
+            // 
+            this.Weightedstd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Weightedstd.HeaderText = "Weighted  U/Ca std";
+            this.Weightedstd.Name = "Weightedstd";
+            // 
+            // FT
+            // 
+            this.FT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.FT.HeaderText = "FT Age, Ma";
+            this.FT.Name = "FT";
+            // 
+            // sigma
+            // 
+            this.sigma.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.sigma.HeaderText = "2 sigma, Ma";
+            this.sigma.Name = "sigma";
             // 
             // tableLayoutPanel7
             // 
@@ -1086,6 +1324,16 @@
             this.tableLayoutPanel7.Size = new System.Drawing.Size(208, 469);
             this.tableLayoutPanel7.TabIndex = 12;
             // 
+            // CopyAgeButton
+            // 
+            this.CopyAgeButton.Location = new System.Drawing.Point(6, 441);
+            this.CopyAgeButton.Name = "CopyAgeButton";
+            this.CopyAgeButton.Size = new System.Drawing.Size(93, 21);
+            this.CopyAgeButton.TabIndex = 31;
+            this.CopyAgeButton.Text = "copy";
+            this.CopyAgeButton.UseVisualStyleBackColor = true;
+            this.CopyAgeButton.Click += new System.EventHandler(this.CopyAgeButton_Click);
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -1095,6 +1343,16 @@
             this.label15.Size = new System.Drawing.Size(93, 26);
             this.label15.TabIndex = 1;
             this.label15.Text = "File:";
+            // 
+            // FileSampleLabel
+            // 
+            this.FileSampleLabel.AutoSize = true;
+            this.FileSampleLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FileSampleLabel.Location = new System.Drawing.Point(108, 3);
+            this.FileSampleLabel.Name = "FileSampleLabel";
+            this.FileSampleLabel.Size = new System.Drawing.Size(94, 26);
+            this.FileSampleLabel.TabIndex = 2;
+            this.FileSampleLabel.Text = "-";
             // 
             // label18
             // 
@@ -1381,304 +1639,6 @@
             // 
             this.ImportSample.FileName = "openFileDialog1";
             // 
-            // SampleName
-            // 
-            this.SampleName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.SampleName.HeaderText = "Name";
-            this.SampleName.Name = "SampleName";
-            // 
-            // NAge
-            // 
-            this.NAge.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NAge.HeaderText = "Ns";
-            this.NAge.Name = "NAge";
-            // 
-            // SAge
-            // 
-            this.SAge.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.SAge.HeaderText = "S, cm^2";
-            this.SAge.Name = "SAge";
-            // 
-            // UDur
-            // 
-            this.UDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UDur.HeaderText = "U, ppm";
-            this.UDur.Name = "UDur";
-            // 
-            // UstdDur
-            // 
-            this.UstdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UstdDur.HeaderText = "U std";
-            this.UstdDur.Name = "UstdDur";
-            // 
-            // CaDur
-            // 
-            this.CaDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CaDur.HeaderText = "Ca, ppm";
-            this.CaDur.Name = "CaDur";
-            // 
-            // CastdDur
-            // 
-            this.CastdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CastdDur.HeaderText = "Ca std";
-            this.CastdDur.Name = "CastdDur";
-            // 
-            // UCaDur
-            // 
-            this.UCaDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCaDur.HeaderText = "U/Ca";
-            this.UCaDur.Name = "UCaDur";
-            // 
-            // UCastdDur
-            // 
-            this.UCastdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCastdDur.HeaderText = "U/Ca std";
-            this.UCastdDur.Name = "UCastdDur";
-            // 
-            // Weighted
-            // 
-            this.Weighted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Weighted.HeaderText = "Weighted U/Ca";
-            this.Weighted.Name = "Weighted";
-            // 
-            // Weightedstd
-            // 
-            this.Weightedstd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Weightedstd.HeaderText = "Weighted  U/Ca std";
-            this.Weightedstd.Name = "Weightedstd";
-            // 
-            // FT
-            // 
-            this.FT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.FT.HeaderText = "FT Age, Ma";
-            this.FT.Name = "FT";
-            // 
-            // sigma
-            // 
-            this.sigma.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.sigma.HeaderText = "2 sigma, Ma";
-            this.sigma.Name = "sigma";
-            // 
-            // Ntest
-            // 
-            this.Ntest.HeaderText = "N";
-            this.Ntest.Name = "Ntest";
-            // 
-            // rawUCaTest
-            // 
-            this.rawUCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.rawUCaTest.HeaderText = "raw U/Ca";
-            this.rawUCaTest.Name = "rawUCaTest";
-            // 
-            // UTest
-            // 
-            this.UTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UTest.HeaderText = "U, ppm";
-            this.UTest.Name = "UTest";
-            // 
-            // UstdTest
-            // 
-            this.UstdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UstdTest.HeaderText = "U std";
-            this.UstdTest.Name = "UstdTest";
-            // 
-            // CaTest
-            // 
-            this.CaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CaTest.HeaderText = "Ca, ppm";
-            this.CaTest.Name = "CaTest";
-            // 
-            // CastdTest
-            // 
-            this.CastdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CastdTest.HeaderText = "Ca std";
-            this.CastdTest.Name = "CastdTest";
-            // 
-            // UCaTest
-            // 
-            this.UCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCaTest.HeaderText = "U/Ca";
-            this.UCaTest.Name = "UCaTest";
-            // 
-            // UCastdTest
-            // 
-            this.UCastdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCastdTest.HeaderText = "U/Ca std";
-            this.UCastdTest.Name = "UCastdTest";
-            // 
-            // ConvUCaTest
-            // 
-            this.ConvUCaTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ConvUCaTest.HeaderText = "Conv U/Ca";
-            this.ConvUCaTest.Name = "ConvUCaTest";
-            // 
-            // TestDur
-            // 
-            this.TestDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TestDur.HeaderText = "Test";
-            this.TestDur.Name = "TestDur";
-            // 
-            // NameColumn
-            // 
-            this.NameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NameColumn.HeaderText = "Name";
-            this.NameColumn.Name = "NameColumn";
-            // 
-            // U
-            // 
-            this.U.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.U.HeaderText = "U, ppm";
-            this.U.Name = "U";
-            // 
-            // U_std
-            // 
-            this.U_std.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.U_std.HeaderText = "U std";
-            this.U_std.Name = "U_std";
-            // 
-            // Ca
-            // 
-            this.Ca.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Ca.HeaderText = "Ca, ppm";
-            this.Ca.Name = "Ca";
-            // 
-            // Ca_std
-            // 
-            this.Ca_std.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Ca_std.HeaderText = "Ca std";
-            this.Ca_std.Name = "Ca_std";
-            // 
-            // Trs
-            // 
-            this.Trs.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Trs.HeaderText = "Ns";
-            this.Trs.Name = "Trs";
-            // 
-            // S
-            // 
-            this.S.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.S.HeaderText = "S, cm^2";
-            this.S.Name = "S";
-            // 
-            // UCa
-            // 
-            this.UCa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCa.HeaderText = "U/Ca";
-            this.UCa.Name = "UCa";
-            // 
-            // UCastd
-            // 
-            this.UCastd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCastd.HeaderText = "U/Ca std";
-            this.UCastd.Name = "UCastd";
-            // 
-            // UCaFlat
-            // 
-            this.UCaFlat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCaFlat.HeaderText = "U/Ca corrected";
-            this.UCaFlat.Name = "UCaFlat";
-            // 
-            // UCaFlatStd
-            // 
-            this.UCaFlatStd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCaFlatStd.HeaderText = "U/Ca Flat corrected std";
-            this.UCaFlatStd.Name = "UCaFlatStd";
-            // 
-            // Zeta_Col
-            // 
-            this.Zeta_Col.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Zeta_Col.HeaderText = "Zeta";
-            this.Zeta_Col.Name = "Zeta_Col";
-            // 
-            // Zeta_col_std
-            // 
-            this.Zeta_col_std.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Zeta_col_std.HeaderText = "Zeta std";
-            this.Zeta_col_std.Name = "Zeta_col_std";
-            // 
-            // ExportResButton
-            // 
-            this.ExportResButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ExportResButton.Image = ((System.Drawing.Image)(resources.GetObject("ExportResButton.Image")));
-            this.ExportResButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ExportResButton.Name = "ExportResButton";
-            this.ExportResButton.Size = new System.Drawing.Size(45, 22);
-            this.ExportResButton.Text = "Export";
-            this.ExportResButton.Click += new System.EventHandler(this.ExportResButton_Click);
-            // 
-            // FileSampleLabel
-            // 
-            this.FileSampleLabel.AutoSize = true;
-            this.FileSampleLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FileSampleLabel.Location = new System.Drawing.Point(108, 3);
-            this.FileSampleLabel.Name = "FileSampleLabel";
-            this.FileSampleLabel.Size = new System.Drawing.Size(94, 26);
-            this.FileSampleLabel.TabIndex = 2;
-            this.FileSampleLabel.Text = "-";
-            // 
-            // CopyAgeButton
-            // 
-            this.CopyAgeButton.Location = new System.Drawing.Point(6, 441);
-            this.CopyAgeButton.Name = "CopyAgeButton";
-            this.CopyAgeButton.Size = new System.Drawing.Size(93, 21);
-            this.CopyAgeButton.TabIndex = 31;
-            this.CopyAgeButton.Text = "copy";
-            this.CopyAgeButton.UseVisualStyleBackColor = true;
-            this.CopyAgeButton.Click += new System.EventHandler(this.CopyAgeButton_Click);
-            // 
-            // CopyTestButton
-            // 
-            this.CopyTestButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CopyTestButton.Location = new System.Drawing.Point(6, 246);
-            this.CopyTestButton.Name = "CopyTestButton";
-            this.CopyTestButton.Size = new System.Drawing.Size(94, 24);
-            this.CopyTestButton.TabIndex = 17;
-            this.CopyTestButton.Text = "Copy";
-            this.CopyTestButton.UseVisualStyleBackColor = true;
-            this.CopyTestButton.Click += new System.EventHandler(this.CopyTestButton_Click);
-            // 
-            // CopyZetaButton
-            // 
-            this.CopyZetaButton.Location = new System.Drawing.Point(6, 336);
-            this.CopyZetaButton.Name = "CopyZetaButton";
-            this.CopyZetaButton.Size = new System.Drawing.Size(93, 20);
-            this.CopyZetaButton.TabIndex = 26;
-            this.CopyZetaButton.Text = "Copy";
-            this.CopyZetaButton.UseVisualStyleBackColor = true;
-            this.CopyZetaButton.Click += new System.EventHandler(this.CopyZetaButton_Click);
-            // 
-            // RadialPlotTab
-            // 
-            this.RadialPlotTab.Controls.Add(this.RadialPlot);
-            this.RadialPlotTab.Location = new System.Drawing.Point(4, 22);
-            this.RadialPlotTab.Name = "RadialPlotTab";
-            this.RadialPlotTab.Padding = new System.Windows.Forms.Padding(3);
-            this.RadialPlotTab.Size = new System.Drawing.Size(1431, 804);
-            this.RadialPlotTab.TabIndex = 4;
-            this.RadialPlotTab.Text = "Radial Plot";
-            // 
-            // RadialPlot
-            // 
-            chartArea4.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            chartArea4.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            chartArea4.Name = "RadialArea";
-            this.RadialPlot.ChartAreas.Add(chartArea4);
-            this.RadialPlot.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.RadialPlot.Legends.Add(legend2);
-            this.RadialPlot.Location = new System.Drawing.Point(3, 3);
-            this.RadialPlot.Name = "RadialPlot";
-            series7.ChartArea = "RadialArea";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series7.IsVisibleInLegend = false;
-            series7.Legend = "Legend1";
-            series7.Name = "Points";
-            this.RadialPlot.Series.Add(series7);
-            this.RadialPlot.Size = new System.Drawing.Size(1425, 798);
-            this.RadialPlot.TabIndex = 0;
-            this.RadialPlot.Text = "chart1";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1687,7 +1647,7 @@
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.toolStrip1);
             this.Name = "Form1";
-            this.Text = " VisualTrack v.0.8.6";
+            this.Text = " VisualTrack v.0.8.7";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -1711,8 +1671,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.AgeGrid)).EndInit();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
-            this.RadialPlotTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.RadialPlot)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1722,13 +1680,40 @@
         private System.Windows.Forms.OpenFileDialog ImportZeta;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.ToolStripButton optiondButton;
+        private System.Windows.Forms.OpenFileDialog ImportTest;
+        private System.Windows.Forms.OpenFileDialog ImportSample;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem importZetaFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importTestFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importSampleFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton ImportZetafileButton;
+        private System.Windows.Forms.ToolStripButton ImportTestFileButton;
+        private System.Windows.Forms.ToolStripButton ImportSamplefileButton;
+        private System.Windows.Forms.ToolStripButton ClearButton;
+        private System.Windows.Forms.ToolStripButton StandardManagerButton;
+        private System.Windows.Forms.ToolStripButton ExportResButton;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage Zeta;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.DataGridView zetaTable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn U;
+        private System.Windows.Forms.DataGridViewTextBoxColumn U_std;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ca;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ca_std;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Trs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn S;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCastd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCaFlat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCaFlatStd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Zeta_Col;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Zeta_col_std;
         private System.Windows.Forms.DataVisualization.Charting.Chart UCaChart;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TextBox yr1Text;
         private System.Windows.Forms.Label fileLabel;
         private System.Windows.Forms.TextBox DurangoAgeText;
         private System.Windows.Forms.TextBox DurangoErrText;
@@ -1743,21 +1728,26 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ToolStripButton optiondButton;
-        private System.Windows.Forms.TextBox yr1Text;
         private System.Windows.Forms.Button calculateZeta;
         private System.Windows.Forms.Button deleteRow;
-        private System.Windows.Forms.OpenFileDialog ImportTest;
         private System.Windows.Forms.Label zetaErrLabel;
-        private System.Windows.Forms.OpenFileDialog ImportSample;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStripMenuItem importZetaFileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importTestFileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importSampleFileToolStripMenuItem;
+        private System.Windows.Forms.ComboBox StandartBox;
+        private System.Windows.Forms.Button CopyZetaButton;
         private System.Windows.Forms.TabPage Zeta_test;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.DataGridView TestGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ntest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rawUCaTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UstdTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CaTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CastdTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCaTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCastdTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ConvUCaTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TestDur;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.Button CopyTestButton;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label TestFileLabel;
         private System.Windows.Forms.Label label11;
@@ -1774,11 +1764,27 @@
         private System.Windows.Forms.Label ConvStdLabel;
         private System.Windows.Forms.Button conductTestButton;
         private System.Windows.Forms.Button DeleteRowTestGrid;
+        private System.Windows.Forms.DataVisualization.Charting.Chart TestChart;
         private System.Windows.Forms.TabPage Age;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.DataGridView AgeGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SampleName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NAge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SAge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UstdDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CaDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CastdDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCaDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCastdDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Weighted;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Weightedstd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sigma;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.Button CopyAgeButton;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label FileSampleLabel;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
@@ -1797,66 +1803,16 @@
         private System.Windows.Forms.Label NsLabel;
         private System.Windows.Forms.Label PooledAgeLabel;
         private System.Windows.Forms.Label AgeStdLabel;
-        private System.Windows.Forms.Button poolAgeButton;
-        private System.Windows.Forms.Button DeleteRowAgeGrid;
         private System.Windows.Forms.Label ChiLabel;
         private System.Windows.Forms.Label PLabel;
-        private System.Windows.Forms.ToolStripButton ImportZetafileButton;
-        private System.Windows.Forms.ToolStripButton ImportTestFileButton;
-        private System.Windows.Forms.ToolStripButton ImportSamplefileButton;
-        private System.Windows.Forms.ToolStripButton ClearButton;
+        private System.Windows.Forms.Button DeleteRowAgeGrid;
+        private System.Windows.Forms.Button poolAgeButton;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label CentralAgeLabel;
         private System.Windows.Forms.Label CentralAgeSTDLabel;
         private System.Windows.Forms.Label CentralAgeDispLabel;
-        private System.Windows.Forms.DataVisualization.Charting.Chart TestChart;
-        private System.Windows.Forms.ComboBox StandartBox;
-        private System.Windows.Forms.ToolStripButton StandardManagerButton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn U;
-        private System.Windows.Forms.DataGridViewTextBoxColumn U_std;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ca;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ca_std;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Trs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn S;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCastd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCaFlat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCaFlatStd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Zeta_Col;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Zeta_col_std;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ntest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rawUCaTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UstdTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CaTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CastdTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCaTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCastdTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ConvUCaTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TestDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SampleName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NAge;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SAge;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UstdDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CaDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CastdDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCaDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCastdDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Weighted;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Weightedstd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sigma;
-        private System.Windows.Forms.ToolStripButton ExportResButton;
-        private System.Windows.Forms.Label FileSampleLabel;
-        private System.Windows.Forms.Button CopyAgeButton;
-        private System.Windows.Forms.Button CopyTestButton;
-        private System.Windows.Forms.Button CopyZetaButton;
-        private System.Windows.Forms.TabPage RadialPlotTab;
-        private System.Windows.Forms.DataVisualization.Charting.Chart RadialPlot;
     }
 }
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +16,9 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using VisualTrack.Properties;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
+
+
 
 
 namespace VisualTrack
@@ -45,6 +50,7 @@ namespace VisualTrack
 
         private void Form1_Load(object sender, EventArgs e)
         {           
+            
             UCaChart.Series["UCaError"].Points.Clear();
 
             UCaChart.Series["UCaSeries"].Points.Clear();
@@ -58,14 +64,14 @@ namespace VisualTrack
             //UCaChart.Series["UCaFlat"].MarkerColor = UCaChart.Series["UCaSeries"].MarkerColor;
             //UCaChart.Series["UCaFlat"].MarkerImage = UCaChart.Series["UCaSeries"].MarkerImage;
 
-            UCaChart.Series["FittingLine"].Color = Color.Red;           
+            UCaChart.Series["FittingLine"].Color = System.Drawing.Color.Red;           
 
-            UCaChart.Series["UCaSeries"].Color = Color.Blue;
-            UCaChart.Series["UCaError"].Color = Color.Orange;
+            UCaChart.Series["UCaSeries"].Color = System.Drawing.Color.Blue;
+            UCaChart.Series["UCaError"].Color = System.Drawing.Color.Orange;
 
             UCaChart.Series["UCaFlat"].MarkerStyle = MarkerStyle.Square;
-            UCaChart.Series["UCaFlat"].Color = Color.Blue;
-            UCaChart.Series["UCaFlatError"].Color = Color.Orange;
+            UCaChart.Series["UCaFlat"].Color = System.Drawing.Color.Blue;
+            UCaChart.Series["UCaFlatError"].Color = System.Drawing.Color.Orange;
 
             UCaChart.Titles[0].Text = "Before drift correction";
             UCaChart.Titles[0].DockedToChartArea = "ChartArea1";
@@ -93,13 +99,13 @@ namespace VisualTrack
             TestChart.ChartAreas[0].AxisX.Minimum = 0;
             TestChart.ChartAreas[0].AxisY.Minimum = 0;
 
-            RadialPlot.Series["Points"].Points.Clear();
+            //RadialPlot.Series["Points"].Points.Clear();
 
             //RadialPlot.Titles.Clear();
             //RadialPlot.Titles.Add("Radial Plot");
 
-            RadialPlot.ChartAreas["RadialArea"].AxisX.Title = "Standardized deviation (Z)";
-            RadialPlot.ChartAreas["RadialArea"].AxisY.Title = "1 / σ";
+            //RadialPlot.ChartAreas["RadialArea"].AxisX.Title = "Standardized deviation (Z)";
+            //RadialPlot.ChartAreas["RadialArea"].AxisY.Title = "1 / σ";
 
             LoadComboBoxItems();
             StandartBox.SelectedIndex = 0;
@@ -660,7 +666,7 @@ namespace VisualTrack
                 poolAge(PW, PW_std);
                 chiSq();
 
-                DrawRadialPlot();
+                //DrawRadialPlot();
 
             }
         }
@@ -1751,69 +1757,119 @@ namespace VisualTrack
         private void ExportResButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Text files (*.txt)|*.txt";
+            saveFileDialog.Filter = "xlsx Spreadsheet (*.xlsx)|*.xlsx";
             saveFileDialog.Title = "Export Results";
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    StringBuilder sb = new StringBuilder();
+                    using (var wbook = new XLWorkbook())
+                    {
+                        var ws = wbook.AddWorksheet("Main table");
 
-                    sb.AppendLine("VisualTrack Export");
-                    sb.AppendLine("-------------------");
+                        int excelRow = 1;
 
-                    // File names
-                    sb.AppendLine($"Zeta file: {fileLabel.Text ?? ""}");
-                    sb.AppendLine($"Test file: {TestFileLabel.Text ?? ""}");
-                    sb.AppendLine($"Sample file: {FileSampleLabel.Text ?? ""}");
+                        // Write headers
+                        for (int x = 0; x < AgeGrid.ColumnCount; x++)
+                        {
+                            ws.Cell(excelRow, x + 1).Value = AgeGrid.Columns[x].HeaderText;
+                        }
 
-                    sb.AppendLine("");
+                        excelRow++;
 
-                    // Zeta info
-                    sb.AppendLine($"Zeta: {zetaLabel.Text ?? ""}");
-                    sb.AppendLine($"Zeta 1σ: {zetaErrLabel.Text ?? ""}");
+                        // Write data
+                        for (int i = 0; i < AgeGrid.Rows.Count; i++)
+                        {
+                            var gridRow = AgeGrid.Rows[i];
+                            if (gridRow.IsNewRow) continue;
 
-                    sb.AppendLine("");
+                            for (int x = 0; x < AgeGrid.ColumnCount; x++)
+                            {
+                                ws.Cell(excelRow, x + 1).Value = gridRow.Cells[x].Value?.ToString();
+                            }
 
-                    // Standart info
-                    sb.AppendLine($"Standard name: {StandartBox.SelectedItem?.ToString() ?? ""}");
-                    sb.AppendLine($"Standard age (Ma): {DurangoAgeText.Text ?? ""}");
-                    sb.AppendLine($"Standard 1σ (Ma): {DurangoErrText.Text ?? ""}");
-                    sb.AppendLine($"yr-1: {yr1Text.Text ?? ""}");
+                            excelRow++;
+                        }                        
 
-                    sb.AppendLine("");
+                        var ws_1 = wbook.AddWorksheet("Result table");
 
-                    // Durango test
-                    sb.AppendLine($"Conv. factor: {ConvFactorLabel.Text ?? ""}");
-                    sb.AppendLine($"Conv. 1σ: {ConvStdLabel.Text ?? ""}");
-                    sb.AppendLine($"Test value: {TestLabel.Text ?? ""}");
-                    sb.AppendLine($"Test 1σ: {TestStdLabel.Text ?? ""}");
+                        ws_1.Cell(1, 1).Value = "Zeta file:";
+                        ws_1.Cell(1, 2).Value = fileLabel.Text;
 
-                    sb.AppendLine("");
+                        ws_1.Cell(2, 1).Value = "Test file:";
+                        ws_1.Cell(2, 2).Value = TestFileLabel.Text;
 
-                    // Age statistics
-                    sb.AppendLine($"Grains: {GrainsLabel.Text ?? ""}");
-                    sb.AppendLine($"N_s: {NsLabel.Text ?? ""}");
-                    sb.AppendLine($"PW: {PWLabel.Text ?? ""}");
-                    sb.AppendLine($"PW 1σ: {PWStdLabel.Text ?? ""}");
-                    sb.AppendLine($"Pooled age (Ma): {PooledAgeLabel.Text ?? ""}");
-                    sb.AppendLine($"Pooled age 1σ: {AgeStdLabel.Text ?? ""}");
+                        ws_1.Cell(3, 1).Value = "Sample file:";
+                        ws_1.Cell(3, 2).Value = FileSampleLabel.Text;
 
-                    sb.AppendLine("");
+                        ws_1.Cell(4, 1).Value = "Zeta:";
+                        ws_1.Cell(4, 2).Value = zetaLabel.Text;
 
-                    // Central age
-                    sb.AppendLine($"Central age (Ma): {CentralAgeLabel.Text ?? ""}");
-                    sb.AppendLine($"Central age SE: {CentralAgeSTDLabel.Text ?? ""}");
-                    sb.AppendLine($"Central age %dispersion: {CentralAgeDispLabel.Text ?? ""}");
+                        ws_1.Cell(5, 1).Value = "Zeta 1σ:";
+                        ws_1.Cell(5, 2).Value = zetaErrLabel.Text;
 
-                    sb.AppendLine("");
-                    sb.AppendLine($"Chi²: {ChiLabel.Text ?? ""}");
-                    sb.AppendLine($"P-value: {PLabel.Text ?? ""}");
+                        ws_1.Cell(6, 1).Value = "Standard name:";
+                        ws_1.Cell(6, 2).Value = StandartBox.SelectedItem?.ToString();
 
-                    File.WriteAllText(saveFileDialog.FileName, sb.ToString());
+                        ws_1.Cell(7, 1).Value = "Standard age (Ma):";
+                        ws_1.Cell(7, 2).Value = DurangoAgeText.Text;
 
-                    MessageBox.Show("Results exported successfully!", "Export Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ws_1.Cell(8, 1).Value = "Standard 1σ(Ma)";
+                        ws_1.Cell(8, 2).Value = DurangoErrText.Text;
+
+                        ws_1.Cell(9, 1).Value = "yr-1:";
+                        ws_1.Cell(9, 2).Value = yr1Text.Text;
+
+                        ws_1.Cell(10, 1).Value = "Conv. factor:";
+                        ws_1.Cell(10, 2).Value = ConvFactorLabel.Text;
+
+                        ws_1.Cell(11, 1).Value = "Conv. 1σ:";
+                        ws_1.Cell(11, 2).Value = ConvStdLabel.Text;
+
+                        ws_1.Cell(12, 1).Value = "Test value:";
+                        ws_1.Cell(12, 2).Value = TestLabel.Text;
+
+                        ws_1.Cell(13, 1).Value = "Test 1σ:";
+                        ws_1.Cell(13, 2).Value = TestStdLabel.Text;
+
+                        ws_1.Cell(14, 1).Value = "Grains:";
+                        ws_1.Cell(14, 2).Value = GrainsLabel.Text;
+
+                        ws_1.Cell(15, 1).Value = "N_s";
+                        ws_1.Cell(15, 2).Value = NsLabel.Text;
+
+                        ws_1.Cell(16, 1).Value = "PW";
+                        ws_1.Cell(16, 2).Value = PWLabel.Text;
+
+                        ws_1.Cell(17, 1).Value = "PW 1σ:";
+                        ws_1.Cell(17, 2).Value = PWStdLabel.Text;
+
+                        ws_1.Cell(18, 1).Value = "Pooled age (Ma):";
+                        ws_1.Cell(18, 2).Value = PooledAgeLabel.Text;
+
+                        ws_1.Cell(19, 1).Value = "Pooled age 1σ:";
+                        ws_1.Cell(19, 2).Value = AgeStdLabel.Text;
+
+                        ws_1.Cell(20, 1).Value = "Central age (Ma):";
+                        ws_1.Cell(20, 2).Value = CentralAgeLabel.Text;
+
+                        ws_1.Cell(21, 1).Value = "Central age SE:";
+                        ws_1.Cell(21, 2).Value = CentralAgeSTDLabel.Text;
+
+                        ws_1.Cell(22, 1).Value = "Central age %dispersion:";
+                        ws_1.Cell(22, 2).Value = CentralAgeDispLabel.Text;
+
+                        ws_1.Cell(23, 1).Value = "Chi²";
+                        ws_1.Cell(23, 2).Value = ChiLabel.Text;
+
+                        ws_1.Cell(24, 1).Value = "P-value:";
+                        ws_1.Cell(24, 2).Value = PLabel.Text;
+
+                        wbook.SaveAs(saveFileDialog.FileName);
+                    }
+
+                    //MessageBox.Show("Results exported successfully!", "Export Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
@@ -1833,7 +1889,7 @@ namespace VisualTrack
             {
                 for (int col = 0; col < panel.ColumnCount; col++)
                 {
-                    Control ctrl = panel.GetControlFromPosition(col, row);
+                    System.Windows.Forms.Control ctrl = panel.GetControlFromPosition(col, row);
                     if (ctrl != null)
                     {
                         if (ctrl is System.Windows.Forms.Label || ctrl is System.Windows.Forms.TextBox)
@@ -1861,7 +1917,7 @@ namespace VisualTrack
             {
                 for (int col = 0; col < panel.ColumnCount; col++)
                 {
-                    Control ctrl = panel.GetControlFromPosition(col, row);
+                    System.Windows.Forms.Control ctrl = panel.GetControlFromPosition(col, row);
                     if (ctrl != null)
                     {
                         if (ctrl is System.Windows.Forms.Label || ctrl is System.Windows.Forms.TextBox)
@@ -1889,7 +1945,7 @@ namespace VisualTrack
             {
                 for (int col = 0; col < panel.ColumnCount; col++)
                 {
-                    Control ctrl = panel.GetControlFromPosition(col, row);
+                    System.Windows.Forms.Control ctrl = panel.GetControlFromPosition(col, row);
                     if (ctrl != null)
                     {
                         if (ctrl is System.Windows.Forms.Label || ctrl is System.Windows.Forms.TextBox)
@@ -1906,7 +1962,7 @@ namespace VisualTrack
             //MessageBox.Show("Table copied to clipboard.", "Copy", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-
+        /*
         private void DrawRadialPlot()
         {
             if (AgeGrid.Rows.Count == 0) return;
@@ -1946,6 +2002,6 @@ namespace VisualTrack
 
 
             
-        }
+        }*/
     }
 }

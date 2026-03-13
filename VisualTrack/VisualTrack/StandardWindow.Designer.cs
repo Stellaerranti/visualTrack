@@ -32,6 +32,9 @@
             this.StandardListBox = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.AddStandardbutton = new System.Windows.Forms.Button();
+            this.DeleteStandardbutton = new System.Windows.Forms.Button();
+            this.ModifyStandardbutton = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,9 +42,6 @@
             this.StandardName = new System.Windows.Forms.TextBox();
             this.StandardAge = new System.Windows.Forms.TextBox();
             this.StandardErr = new System.Windows.Forms.TextBox();
-            this.AddStandardbutton = new System.Windows.Forms.Button();
-            this.DeleteStandardbutton = new System.Windows.Forms.Button();
-            this.ModifyStandardbutton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -107,6 +107,39 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(319, 38);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
+            // AddStandardbutton
+            // 
+            this.AddStandardbutton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AddStandardbutton.Location = new System.Drawing.Point(6, 6);
+            this.AddStandardbutton.Name = "AddStandardbutton";
+            this.AddStandardbutton.Size = new System.Drawing.Size(96, 26);
+            this.AddStandardbutton.TabIndex = 0;
+            this.AddStandardbutton.Text = "Add";
+            this.AddStandardbutton.UseVisualStyleBackColor = true;
+            this.AddStandardbutton.Click += new System.EventHandler(this.AddStandardbutton_Click);
+            // 
+            // DeleteStandardbutton
+            // 
+            this.DeleteStandardbutton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DeleteStandardbutton.Location = new System.Drawing.Point(111, 6);
+            this.DeleteStandardbutton.Name = "DeleteStandardbutton";
+            this.DeleteStandardbutton.Size = new System.Drawing.Size(96, 26);
+            this.DeleteStandardbutton.TabIndex = 1;
+            this.DeleteStandardbutton.Text = "Delete";
+            this.DeleteStandardbutton.UseVisualStyleBackColor = true;
+            this.DeleteStandardbutton.Click += new System.EventHandler(this.DeleteStandardbutton_Click);
+            // 
+            // ModifyStandardbutton
+            // 
+            this.ModifyStandardbutton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ModifyStandardbutton.Location = new System.Drawing.Point(216, 6);
+            this.ModifyStandardbutton.Name = "ModifyStandardbutton";
+            this.ModifyStandardbutton.Size = new System.Drawing.Size(97, 26);
+            this.ModifyStandardbutton.TabIndex = 2;
+            this.ModifyStandardbutton.Text = "Modify";
+            this.ModifyStandardbutton.UseVisualStyleBackColor = true;
+            this.ModifyStandardbutton.Click += new System.EventHandler(this.ModifyStandardbutton_Click);
+            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
@@ -141,7 +174,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 42);
+            this.label2.Location = new System.Drawing.Point(6, 43);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 1;
@@ -150,7 +183,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 81);
+            this.label3.Location = new System.Drawing.Point(6, 83);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 13);
             this.label3.TabIndex = 2;
@@ -167,7 +200,7 @@
             // StandardAge
             // 
             this.StandardAge.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StandardAge.Location = new System.Drawing.Point(102, 45);
+            this.StandardAge.Location = new System.Drawing.Point(102, 46);
             this.StandardAge.Name = "StandardAge";
             this.StandardAge.Size = new System.Drawing.Size(211, 20);
             this.StandardAge.TabIndex = 4;
@@ -175,43 +208,10 @@
             // StandardErr
             // 
             this.StandardErr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StandardErr.Location = new System.Drawing.Point(102, 84);
+            this.StandardErr.Location = new System.Drawing.Point(102, 86);
             this.StandardErr.Name = "StandardErr";
             this.StandardErr.Size = new System.Drawing.Size(211, 20);
             this.StandardErr.TabIndex = 5;
-            // 
-            // AddStandardbutton
-            // 
-            this.AddStandardbutton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AddStandardbutton.Location = new System.Drawing.Point(6, 6);
-            this.AddStandardbutton.Name = "AddStandardbutton";
-            this.AddStandardbutton.Size = new System.Drawing.Size(96, 26);
-            this.AddStandardbutton.TabIndex = 0;
-            this.AddStandardbutton.Text = "Add";
-            this.AddStandardbutton.UseVisualStyleBackColor = true;
-            this.AddStandardbutton.Click += new System.EventHandler(this.AddStandardbutton_Click);
-            // 
-            // DeleteStandardbutton
-            // 
-            this.DeleteStandardbutton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DeleteStandardbutton.Location = new System.Drawing.Point(111, 6);
-            this.DeleteStandardbutton.Name = "DeleteStandardbutton";
-            this.DeleteStandardbutton.Size = new System.Drawing.Size(96, 26);
-            this.DeleteStandardbutton.TabIndex = 1;
-            this.DeleteStandardbutton.Text = "Delete";
-            this.DeleteStandardbutton.UseVisualStyleBackColor = true;
-            this.DeleteStandardbutton.Click += new System.EventHandler(this.DeleteStandardbutton_Click);
-            // 
-            // ModifyStandardbutton
-            // 
-            this.ModifyStandardbutton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ModifyStandardbutton.Location = new System.Drawing.Point(216, 6);
-            this.ModifyStandardbutton.Name = "ModifyStandardbutton";
-            this.ModifyStandardbutton.Size = new System.Drawing.Size(97, 26);
-            this.ModifyStandardbutton.TabIndex = 2;
-            this.ModifyStandardbutton.Text = "Modify";
-            this.ModifyStandardbutton.UseVisualStyleBackColor = true;
-            this.ModifyStandardbutton.Click += new System.EventHandler(this.ModifyStandardbutton_Click);
             // 
             // StandardWindow
             // 
