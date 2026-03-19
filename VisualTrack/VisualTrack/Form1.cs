@@ -188,7 +188,7 @@ namespace VisualTrack
             (double centralAge, double si, double sigma) = CalculateCentralAge(AgeGrid, Double.Parse(PooledAgeLabel.Text));
 
             CentralAgeLabel.Text = centralAge.ToString("F3");
-            CentralAgeSTDLabel.Text = sigma.ToString("F3");
+            CentralAgeSTDLabel.Text = (2 * sigma).ToString("F3"); 
             CentralAgeDispLabel.Text = (100 * si).ToString("F3");
         }
 
@@ -676,54 +676,67 @@ namespace VisualTrack
 
         private void chiSq()
         {
-            double br_sq = 0;
-            double br_sq_sum = 0;
-
-            double ratio = 0;
-            double ratio_sum = 0;
-
-            double sigm = 0;
-            double sigm_sum = 0;
-
-            double Ns, S, FT, FT_std, UCa, UCa_std;
-            double Chi;
+            List<double> z = new List<double>();
+            List<double> s = new List<double>();
 
             foreach (DataGridViewRow row in AgeGrid.Rows)
             {
-                Ns = Double.Parse(row.Cells["NAge"].Value.ToString());
-                S = Double.Parse(row.Cells["SAge"].Value.ToString());
+                double Ns = Double.Parse(row.Cells["NAge"].Value.ToString());
+                double FT = Double.Parse(row.Cells["FT"].Value.ToString());
 
-                FT = Double.Parse(row.Cells["FT"].Value.ToString());
-                FT_std = Double.Parse(row.Cells["sigma"].Value.ToString());
+                if (FT <= 0) continue;
 
-                UCa = Double.Parse(row.Cells["UCaDur"].Value.ToString());
-                UCa_std = Double.Parse(row.Cells["UCastdDur"].Value.ToString());
+                double si;
 
-                if (Ns == 0)
+                if (Ns > 0)
                 {
-                    // Assume log-normal distribution of age
-                    double term = FT_std / Math.Sqrt(FT);
-                    br_sq = Math.Pow(Math.Sqrt(FT) / term, 2);
-                    ratio = Math.Sqrt(FT) / (term * term);
-                    sigm = 1 / (term * term);
+                    double weighted = Double.Parse(row.Cells["Weighted"].Value.ToString());
+                    double weightedStd = Double.Parse(row.Cells["Weightedstd"].Value.ToString());
+
+                    si = Math.Sqrt((1.0 / Ns) + Math.Pow(weightedStd / weighted, 2));
                 }
                 else
                 {
-                    double su = Math.Sqrt((1 / Ns) + Math.Pow(UCa_std / UCa, 2));
-                    br_sq = Math.Pow(Math.Log(FT) / su, 2);
-                    ratio = Math.Log(FT) / (su * su);
-                    sigm = 1 / (su * su);
+                    double weighted = Double.Parse(row.Cells["Weighted"].Value.ToString());
+                    double weightedStd = Double.Parse(row.Cells["Weightedstd"].Value.ToString());
+
+                    double r = weighted / weightedStd;
+                    si = Math.Sqrt(2.0 + 1.0 / (r * r + 0.5));
                 }
 
-                br_sq_sum += br_sq;
-                ratio_sum += ratio;
-                sigm_sum += sigm;
+                if (double.IsNaN(si) || double.IsInfinity(si) || si <= 0) continue;
+
+                z.Add(Math.Log(FT));
+                s.Add(si);
             }
 
-            Chi = br_sq_sum - Math.Pow(ratio_sum, 2) / sigm_sum;
+            if (z.Count < 2)
+            {
+                ChiLabel.Text = "-";
+                PLabel.Text = "-";
+                return;
+            }
 
-            ChiLabel.Text = Chi.ToString("F3");
-            PLabel.Text = Pchisq(Chi, AgeGrid.Rows.Count - 1).ToString("F3");
+            double wsum = 0.0;
+            double zwsum = 0.0;
+
+            for (int i = 0; i < z.Count; i++)
+            {
+                double w = 1.0 / (s[i] * s[i]);
+                wsum += w;
+                zwsum += z[i] * w;
+            }
+
+            double zbar = zwsum / wsum;
+
+            double chi = 0.0;
+            for (int i = 0; i < z.Count; i++)
+            {
+                chi += Math.Pow(z[i] - zbar, 2) / (s[i] * s[i]);
+            }
+
+            ChiLabel.Text = chi.ToString("F3");
+            PLabel.Text = Pchisq(chi, z.Count - 1).ToString("F3");
         }
 
         //Number of functions for P of chisq. NOT MY CODE
@@ -912,10 +925,10 @@ namespace VisualTrack
 
                 foreach (DataGridViewRow row in TestGrid.Rows)
                 {
-                    s = (Double.Parse(row.Cells["TestDur"].Value.ToString()) - durango_test_res) * (Double.Parse(row.Cells["TestDur"].Value.ToString()) - durango_test_res);
+                    double d = Double.Parse(row.Cells["TestDur"].Value.ToString()) - durango_test_res;
+                    s += d * d;
                 }
-
-                durango_test_std = Math.Sqrt(s/(TestGrid.Rows.Count-1));
+                durango_test_std = Math.Sqrt(s / (TestGrid.Rows.Count - 1));
 
                 TestStdLabel.Text = durango_test_std.ToString("F3");
 
@@ -972,14 +985,18 @@ namespace VisualTrack
         {
             return PW * (Math.Exp(yr1* 1000000 * DurAgeMa)-1)/(Tracks*yr1);
         }
-        
-        private double ZetaSTD(double zeta, double yr1, double DurAgeMa, double DurAge_std, double PW, double PW_std, double Tracks)
-        {
-            double first_bracket = zeta * zeta  / Tracks;
-            double second_bracket = (zeta * PW_std / PW);
-            double third_bracket = ((DurAge_std/ DurAgeMa * Math.Exp(DurAgeMa*yr1-1))/(Tracks/PW));
 
-            return Math.Sqrt(first_bracket + Math.Pow(second_bracket, 2)+Math.Pow(third_bracket,2));
+        private double ZetaSTD(double zeta, double yr1, double DurAgeMa,double DurAge_std, double PW, double PW_std, double Tracks)
+        {
+            double expo = Math.Exp(yr1 * 1000000.0 * DurAgeMa);
+
+            double termTracks = zeta * zeta / Tracks; // Poisson: sigma_Tracks = sqrt(Tracks)
+            double termPW = Math.Pow(zeta * PW_std / PW, 2);
+
+            double relAgeFactor = (yr1 * 1000000.0 * expo) / (expo - 1.0);
+            double termAge = Math.Pow(zeta * relAgeFactor * DurAge_std, 2);
+
+            return Math.Sqrt(termTracks + termPW + termAge);
         }
 
         private void ZetaCalc()
@@ -1556,29 +1573,37 @@ namespace VisualTrack
             mu = IterateMu(ageGrid, ref si, 100);
 
             double centralAge = Math.Exp(mu);
-            double sigma = CalculateCentralAgeSigma(ageGrid, si);
+            double sigma = CalculateCentralAgeSigma(ageGrid, si, mu);
 
             return (centralAge, si, sigma);
         }
 
-        public double CalculateCentralAgeSigma(DataGridView ageGrid, double si)
+        public double CalculateCentralAgeSigma(DataGridView ageGrid, double si, double mu)
         {
             double denomsum = 0;
+
             foreach (DataGridViewRow row in ageGrid.Rows)
             {
                 if (row.Cells["FT"].Value != null && row.Cells["sigma"].Value != null)
                 {
-                    double sgaMa = Convert.ToDouble(row.Cells["FT"].Value);
-                    double sgaMaErr = Convert.ToDouble(row.Cells["sigma"].Value);
-                    double su = sgaMaErr / sgaMa;
+                    double age = Convert.ToDouble(row.Cells["FT"].Value);
+                    double ageErr = Convert.ToDouble(row.Cells["sigma"].Value);
 
-                    if (!double.IsNaN(su) && !double.IsInfinity(su))
+                    if (age > 0 && ageErr > 0)
                     {
-                        denomsum += 1 / (si * si + su * su);
+                        double su = ageErr / age;   // relative 1σ in log-age approximation
+                        denomsum += 1.0 / (si * si + su * su);
                     }
                 }
             }
-            return Math.Sqrt(1 / denomsum) * Math.Exp(si);
+
+            if (denomsum <= 0)
+                return double.NaN;
+
+            double sigmaMu = Math.Sqrt(1.0 / denomsum);
+            double centralAge = Math.Exp(mu);
+
+            return centralAge * sigmaMu;
         }
 
         public  double CalculateDispersion()
