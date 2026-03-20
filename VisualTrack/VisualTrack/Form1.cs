@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.ExtendedProperties;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using VisualTrack.Properties;
+using static ClosedXML.Excel.XLPredefinedFormat;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
@@ -36,10 +38,10 @@ namespace VisualTrack
         //public double zeta_value = 0;
         //public double zetaErr_value = 0;
 
-        public double durango_test_res = 0;
-        public double durango_test_std = 0;
+        //public double durango_test_res = 0;
+        //public double durango_test_std = 0;
 
-        public double conv_factor = 0;
+        //public double conv_factor = 0;
         private static double si_global = 0;
 
         private double previous_U_dimensions = 1;
@@ -146,6 +148,66 @@ namespace VisualTrack
             }
         }
 
+        private void ReadTestFileToObjects(string filename)
+        {
+            _testGrains.Clear();
+
+            string[] lines = File.ReadAllLines(filename);
+
+            int index = 1;
+            foreach (string rawLine in lines)
+            {
+                if (string.IsNullOrWhiteSpace(rawLine) || rawLine.Length <= 2)
+                    continue;
+
+                string line = NormalizeLine(rawLine);
+                string[] parts = line.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (parts.Length < 5)
+                    continue;
+
+                double u = ParseDouble(parts[1]);
+                double uStd = ParseDouble(parts[2]);
+                double ca = ParseDouble(parts[3]);
+                double caStd = ParseDouble(parts[4]);
+
+                var grain = new TestGrain
+                {
+                    Index = index,
+                    U = u,
+                    UStd = uStd,
+                    Ca = ca,
+                    CaStd = caStd,
+                    UCa = u / ca,
+                    UCaStd = Calc_UCa_std(u, ca, uStd, caStd)
+                };
+
+                _testGrains.Add(grain);
+                index++;
+            }
+        }
+
+        private void FillTestGrid()
+        {
+            TestGrid.Rows.Clear();
+
+            foreach (var g in _testGrains)
+            {
+                TestGrid.Rows.Add(
+                    g.Index,
+                    g.U,
+                    g.UStd,
+                    g.Ca,
+                    g.CaStd,
+                    g.UCa,
+                    g.UCaStd,
+                    g.RawUCa,
+                    g.ConvertedUCa,
+                    g.TestRatio
+                );
+            }
+        }
+
 
         private void ImportZetafileButton_Click(object sender, EventArgs e)
         {
@@ -186,12 +248,20 @@ namespace VisualTrack
 
         private void ImportTestFileButton_Click(object sender, EventArgs e)
         {
-            TestGrid.Rows.Clear();
+            try
+            {
+                TestGrid.Rows.Clear();
+                if (ImportTest.ShowDialog() == DialogResult.Cancel) { return; }
 
-            readTestFile();
-            testDurango();
-            AgeCalcutation();
+                string filename = ImportTest.FileName;
+                TestFileLabel.Text = Path.GetFileName(filename);
 
+                ReadTestFileToObjects(filename);
+                testDurango();
+                //AgeCalcutation();
+                FillTestGrid();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString(), "Import error"); }
         }
 
         private void ImportSamplefileButton_Click(object sender, EventArgs e)
@@ -585,11 +655,11 @@ namespace VisualTrack
                 double UCaDur = Double.Parse(row.Cells["UCaDur"].Value.ToString());
                 double UCastdDur = Double.Parse(row.Cells["UCastdDur"].Value.ToString());
 
-                double weighted = conv_factor * UCaDur;
+                double weighted = _analysisContext.ConversionFactor * UCaDur;
 
                 double weightedStd = weighted * Math.Sqrt(
                     Math.Pow(UCastdDur / UCaDur, 2) +
-                    Math.Pow(durango_test_std, 2)
+                    Math.Pow(_analysisContext.DurangoTestStd1, 2)
                 );
 
                 row.Cells["Weighted"].Value = weighted.ToString("E3");
@@ -899,20 +969,13 @@ namespace VisualTrack
         {
             try {
                 int i = 0;
-               foreach (DataGridViewRow row in TestGrid.Rows) 
+                var combinedList = _zetaGrains.Zip(_testGrains, (zetaGrain, testGrain) => new { ZetaGrain = zetaGrain, TestGrain = testGrain });
+                foreach (var item in combinedList)
                 {
-                    if (Double.TryParse(zetaTable.Rows[i].Cells["UCaFlat"].Value.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out double check_err))
-                    {
-                        row.Cells["rawUCaTest"].Value = (Double.Parse(zetaTable.Rows[i].Cells["UCaFlat"].Value.ToString())* 132.704).ToString("E4");
-                        i++;
-                    }
-                    else
-                    {
-                        break;
-                    }             
+                    item.TestGrain.RawUCa = item.ZetaGrain.UCaFlat * 132.704;
                 }
             }
-            catch { }
+            catch (Exception ex){ MessageBox.Show(ex.ToString(), "Error in raw U/Ca test"); }
         }
 
         private void getConvFactor()
@@ -922,25 +985,28 @@ namespace VisualTrack
                 double raw_mean = 0;
                 double mean = 0;
 
-                foreach(DataGridViewRow row in TestGrid.Rows)
+                foreach (var g in _testGrains)
                 {
-                    raw_mean = raw_mean + Double.Parse(row.Cells["rawUCaTest"].Value.ToString());
-                    mean = mean + Double.Parse(row.Cells["UCaTest"].Value.ToString());
-                }
+                    raw_mean += g.RawUCa;
+                    mean += g.UCa;
+                }                
 
-                raw_mean = raw_mean/TestGrid.Rows.Count;
-                mean = mean/TestGrid.Rows.Count;
+                raw_mean = raw_mean/ _testGrains.Count;
+                mean = mean/ _testGrains.Count;
 
-                RawTestLabel.Text = raw_mean.ToString("E3");
-                UCaTestLabel.Text = mean.ToString("E3");
+                _analysisContext.TestMeanRawUCa = raw_mean;
+                _analysisContext.TestMeanCorrectedUCa = mean;
 
-                conv_factor = raw_mean / mean;
+                RawTestLabel.Text = _analysisContext.TestMeanRawUCa.ToString("E3");
+                UCaTestLabel.Text = _analysisContext.TestMeanCorrectedUCa.ToString("E3");
+
+                _analysisContext.ConversionFactor = raw_mean / mean;
 
                 //conv_factor = 0.000034*10000000;
 
-                ConvFactorLabel.Text = (conv_factor).ToString("E3");
+                ConvFactorLabel.Text = (_analysisContext.ConversionFactor).ToString("E3");
             }
-            catch { }
+            catch (Exception ex) { MessageBox.Show(ex.ToString(), "Error in conv factor calculation"); }
         }
 
         private void DrawTest(int N, double Test)
@@ -953,47 +1019,56 @@ namespace VisualTrack
 
             try
             {
+                TestChart.Series[0].Points.Clear();
                 double test = 0;
                 double test_mean = 0;
                 double convUCa = 0;
                 int i = 1;
 
-                foreach (DataGridViewRow row in TestGrid.Rows)
+                foreach (var g in _testGrains)
                 {
-                    convUCa = Double.Parse(row.Cells["UCaTest"].Value.ToString()) * Double.Parse(ConvFactorLabel.Text);
+                    convUCa = g.UCa * _analysisContext.ConversionFactor;
 
-                    test = convUCa / Double.Parse(row.Cells["rawUCaTest"].Value.ToString());
+                    test = convUCa / g.RawUCa;
 
-                    row.Cells["ConvUCaTest"].Value = convUCa.ToString("F3");
+                    g.ConvertedUCa = convUCa;
 
-                    row.Cells["TestDur"].Value = test.ToString("F3");
+                    g.TestRatio = test;
 
-                    test_mean = test_mean + test;
+                    test_mean += test;
+
                     DrawTest(i, test);
                     i++;
                 }
-                durango_test_res = test_mean / TestGrid.Rows.Count;
-                TestLabel.Text = durango_test_res.ToString("F3");
+
+                _analysisContext.DurangoTestMean = test_mean/_testGrains.Count;
+                
+                TestLabel.Text = _analysisContext.DurangoTestMean.ToString("F3");
 
                 double s = 0;
 
-                foreach (DataGridViewRow row in TestGrid.Rows)
+                double d = 0;
+
+                foreach (var g in _testGrains)
                 {
-                    double d = Double.Parse(row.Cells["TestDur"].Value.ToString()) - durango_test_res;
+                    d = g.TestRatio - _analysisContext.DurangoTestMean;
                     s += d * d;
                 }
-                durango_test_std = Math.Sqrt(s / (TestGrid.Rows.Count - 1));
 
-                TestStdLabel.Text = durango_test_std.ToString("F3");
+                _analysisContext.DurangoTestStd1 = Math.Sqrt(s / (_testGrains.Count - 1)); ;
 
-                ConvStdLabel.Text = (Double.Parse(ConvFactorLabel.Text)* durango_test_std).ToString("F3");
+                TestStdLabel.Text = _analysisContext.DurangoTestStd1.ToString("F3");
+
+                _analysisContext.ConversionFactorStd1 = _analysisContext.ConversionFactor * _analysisContext.DurangoTestStd1;
+
+                ConvStdLabel.Text = _analysisContext.ConversionFactorStd1.ToString("F3");
             }
-            catch { }
+            catch (Exception ex) { MessageBox.Show(ex.ToString(), "Error in testing"); }
         }
 
         private void testDurango()
         {
-            if ((TestGrid.Rows.Count > 1) && (zetaTable.Rows.Count > 1))
+            if ((_zetaGrains.Count > 1) && (_testGrains.Count > 1))
             {
                 getRaw();
                 getConvFactor();
@@ -2111,6 +2186,9 @@ namespace VisualTrack
 
         public double ConversionFactor { get; set; }
         public double ConversionFactorStd1 { get; set; }
+
+        public double TestMeanRawUCa { get; set; }
+        public double TestMeanCorrectedUCa { get; set; }
 
         public double DurangoTestMean { get; set; }
         public double DurangoTestStd1 { get; set; }
