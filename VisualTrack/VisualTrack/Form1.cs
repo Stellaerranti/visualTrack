@@ -747,32 +747,40 @@ namespace VisualTrack
             List<double> z = new List<double>();
             List<double> s = new List<double>();
 
-            foreach (DataGridViewRow row in AgeGrid.Rows)
+            foreach (var g in _sampleGrains)
             {
-                double Ns = Double.Parse(row.Cells["NAge"].Value.ToString());
-                double FT = Double.Parse(row.Cells["FT"].Value.ToString());
+                double Ns = g.Ns;
+                double FT = g.FTAgeMa;
 
-                if (FT <= 0) continue;
+                if (FT <= 0)
+                    continue;
 
                 double si;
 
                 if (Ns > 0)
                 {
-                    double weighted = Double.Parse(row.Cells["Weighted"].Value.ToString());
-                    double weightedStd = Double.Parse(row.Cells["Weightedstd"].Value.ToString());
+                    double weighted = g.Weighted;
+                    double weightedStd = g.WeightedStd1;
+
+                    if (weighted <= 0 || weightedStd <= 0)
+                        continue;
 
                     si = Math.Sqrt((1.0 / Ns) + Math.Pow(weightedStd / weighted, 2));
                 }
                 else
                 {
-                    double weighted = Double.Parse(row.Cells["Weighted"].Value.ToString());
-                    double weightedStd = Double.Parse(row.Cells["Weightedstd"].Value.ToString());
+                    double weighted = g.Weighted;
+                    double weightedStd = g.WeightedStd1;
+
+                    if (weighted <= 0 || weightedStd <= 0)
+                        continue;
 
                     double r = weighted / weightedStd;
                     si = Math.Sqrt(2.0 + 1.0 / (r * r + 0.5));
                 }
 
-                if (double.IsNaN(si) || double.IsInfinity(si) || si <= 0) continue;
+                if (double.IsNaN(si) || double.IsInfinity(si) || si <= 0)
+                    continue;
 
                 z.Add(Math.Log(FT));
                 s.Add(si);
@@ -780,6 +788,9 @@ namespace VisualTrack
 
             if (z.Count < 2)
             {
+                _analysisContext.ChiSquare = double.NaN;
+                _analysisContext.PValue = double.NaN;
+
                 ChiLabel.Text = "-";
                 PLabel.Text = "-";
                 return;
@@ -803,8 +814,13 @@ namespace VisualTrack
                 chi += Math.Pow(z[i] - zbar, 2) / (s[i] * s[i]);
             }
 
-            ChiLabel.Text = chi.ToString("F3");
-            PLabel.Text = Pchisq(chi, z.Count - 1).ToString("F3");
+            double p = Pchisq(chi, z.Count - 1);
+
+            _analysisContext.ChiSquare = chi;
+            _analysisContext.PValue = p;
+
+            ChiLabel.Text = chi.ToString("E3");
+            PLabel.Text = p.ToString("E3");
         }
 
         //Number of functions for P of chisq. NOT MY CODE
