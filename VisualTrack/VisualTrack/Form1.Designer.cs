@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title7 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.Title title8 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title9 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.ImportZeta = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -144,6 +144,8 @@
             this.Weightedstd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sigma = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.piwi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PiWiSigma = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.CopyAgeButton = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
@@ -495,61 +497,61 @@
             // 
             // UCaChart
             // 
-            chartArea7.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea7.AlignWithChartArea = "ChartArea2";
-            chartArea7.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            chartArea7.AxisY.Title = "U/Ca flat";
-            chartArea7.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            chartArea7.Name = "ChartArea1";
-            chartArea8.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
-            chartArea8.AxisY.Title = "U/Ca flat";
-            chartArea8.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            chartArea8.BorderColor = System.Drawing.Color.Bisque;
-            chartArea8.Name = "ChartArea2";
-            this.UCaChart.ChartAreas.Add(chartArea7);
-            this.UCaChart.ChartAreas.Add(chartArea8);
+            chartArea1.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea1.AlignWithChartArea = "ChartArea2";
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            chartArea1.AxisY.Title = "U/Ca flat";
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            chartArea1.Name = "ChartArea1";
+            chartArea2.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.Position;
+            chartArea2.AxisY.Title = "U/Ca flat";
+            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            chartArea2.BorderColor = System.Drawing.Color.Bisque;
+            chartArea2.Name = "ChartArea2";
+            this.UCaChart.ChartAreas.Add(chartArea1);
+            this.UCaChart.ChartAreas.Add(chartArea2);
             this.UCaChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend3.Enabled = false;
-            legend3.Name = "Legend1";
-            this.UCaChart.Legends.Add(legend3);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.UCaChart.Legends.Add(legend1);
             this.UCaChart.Location = new System.Drawing.Point(3, 3);
             this.UCaChart.Name = "UCaChart";
-            series13.ChartArea = "ChartArea1";
-            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series13.Legend = "Legend1";
-            series13.Name = "UCaSeries";
-            series14.ChartArea = "ChartArea1";
-            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series14.Legend = "Legend1";
-            series14.Name = "UCaError";
-            series14.YValuesPerPoint = 3;
-            series15.ChartArea = "ChartArea1";
-            series15.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series15.Legend = "Legend1";
-            series15.Name = "FittingLine";
-            series16.ChartArea = "ChartArea2";
-            series16.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series16.Legend = "Legend1";
-            series16.Name = "UCaFlat";
-            series17.ChartArea = "ChartArea2";
-            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
-            series17.Legend = "Legend1";
-            series17.Name = "UCaFlatError";
-            series17.YValuesPerPoint = 3;
-            this.UCaChart.Series.Add(series13);
-            this.UCaChart.Series.Add(series14);
-            this.UCaChart.Series.Add(series15);
-            this.UCaChart.Series.Add(series16);
-            this.UCaChart.Series.Add(series17);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.Legend = "Legend1";
+            series1.Name = "UCaSeries";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series2.Legend = "Legend1";
+            series2.Name = "UCaError";
+            series2.YValuesPerPoint = 3;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "FittingLine";
+            series4.ChartArea = "ChartArea2";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series4.Legend = "Legend1";
+            series4.Name = "UCaFlat";
+            series5.ChartArea = "ChartArea2";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.ErrorBar;
+            series5.Legend = "Legend1";
+            series5.Name = "UCaFlatError";
+            series5.YValuesPerPoint = 3;
+            this.UCaChart.Series.Add(series1);
+            this.UCaChart.Series.Add(series2);
+            this.UCaChart.Series.Add(series3);
+            this.UCaChart.Series.Add(series4);
+            this.UCaChart.Series.Add(series5);
             this.UCaChart.Size = new System.Drawing.Size(1199, 390);
             this.UCaChart.TabIndex = 1;
             this.UCaChart.Text = "chart1";
-            title7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            title7.Name = "BeforeDriftTitle";
-            title8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            title8.Name = "AfterDriftTitle";
-            this.UCaChart.Titles.Add(title7);
-            this.UCaChart.Titles.Add(title8);
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title1.Name = "BeforeDriftTitle";
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title2.Name = "AfterDriftTitle";
+            this.UCaChart.Titles.Add(title1);
+            this.UCaChart.Titles.Add(title2);
             // 
             // tableLayoutPanel3
             // 
@@ -1111,24 +1113,24 @@
             // 
             // TestChart
             // 
-            chartArea9.AxisY.Title = "Test";
-            chartArea9.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            chartArea9.Name = "ChartArea1";
-            this.TestChart.ChartAreas.Add(chartArea9);
+            chartArea3.AxisY.Title = "Test";
+            chartArea3.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            chartArea3.Name = "ChartArea1";
+            this.TestChart.ChartAreas.Add(chartArea3);
             this.TestChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TestChart.Location = new System.Drawing.Point(3, 3);
             this.TestChart.Name = "TestChart";
-            series18.ChartArea = "ChartArea1";
-            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series18.Name = "TestSeries";
-            this.TestChart.Series.Add(series18);
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series6.Name = "TestSeries";
+            this.TestChart.Series.Add(series6);
             this.TestChart.Size = new System.Drawing.Size(1210, 396);
             this.TestChart.TabIndex = 9;
             this.TestChart.Text = "chart1";
-            title9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            title9.Name = "Title1";
-            title9.Text = "Test";
-            this.TestChart.Titles.Add(title9);
+            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title3.Name = "Title1";
+            title3.Text = "Test";
+            this.TestChart.Titles.Add(title3);
             // 
             // Age
             // 
@@ -1174,7 +1176,9 @@
             this.Weighted,
             this.Weightedstd,
             this.FT,
-            this.sigma});
+            this.sigma,
+            this.piwi,
+            this.PiWiSigma});
             this.AgeGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AgeGrid.Location = new System.Drawing.Point(3, 3);
             this.AgeGrid.Name = "AgeGrid";
@@ -1263,6 +1267,18 @@
             this.sigma.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.sigma.HeaderText = "2 sigma, Ma";
             this.sigma.Name = "sigma";
+            // 
+            // piwi
+            // 
+            this.piwi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.piwi.HeaderText = "PiWi";
+            this.piwi.Name = "piwi";
+            // 
+            // PiWiSigma
+            // 
+            this.PiWiSigma.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PiWiSigma.HeaderText = "PiWiSigma";
+            this.PiWiSigma.Name = "PiWiSigma";
             // 
             // tableLayoutPanel7
             // 
@@ -1768,19 +1784,6 @@
         private System.Windows.Forms.TabPage Age;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.DataGridView AgeGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SampleName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NAge;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SAge;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UstdDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CaDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CastdDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCaDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCastdDur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Weighted;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Weightedstd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sigma;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.Button CopyAgeButton;
         private System.Windows.Forms.Label label15;
@@ -1813,6 +1816,21 @@
         private System.Windows.Forms.Label CentralAgeLabel;
         private System.Windows.Forms.Label CentralAgeSTDLabel;
         private System.Windows.Forms.Label CentralAgeDispLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SampleName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NAge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SAge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UstdDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CaDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CastdDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCaDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCastdDur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Weighted;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Weightedstd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sigma;
+        private System.Windows.Forms.DataGridViewTextBoxColumn piwi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PiWiSigma;
     }
 }
 

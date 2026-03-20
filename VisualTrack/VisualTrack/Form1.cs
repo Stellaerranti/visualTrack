@@ -23,8 +23,14 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace VisualTrack
 {
+   
     public partial class Form1 : Form
     {
+
+        private readonly List<ZetaGrain> _zetaGrains = new();
+        private readonly List<TestGrain> _testGrains = new();
+        private readonly List<SampleGrain> _sampleGrains = new();
+
         public double zeta_value = 0;
         public double zetaErr_value = 0;
 
@@ -117,6 +123,8 @@ namespace VisualTrack
 
             Settings.Default.Ca_dimension = 1;
             Settings.Default.U_dimension = 1;
+
+
         }
 
         public void LoadComboBoxItems()
@@ -139,29 +147,37 @@ namespace VisualTrack
 
         private void ImportZetafileButton_Click(object sender, EventArgs e)
         {
-            zetaTable.Rows.Clear();
-            UCaChart.Series["UCaError"].Points.Clear();
-            UCaChart.Series["UCaSeries"].Points.Clear();
-
-            UCaChart.Series["UCaFlatError"].Points.Clear();
-            UCaChart.Series["UCaFlat"].Points.Clear();
-
-            UCaChart.Series["FittingLine"].Points.Clear();
-            readFile();
-            FlattUCa();
-            testDurango();
-            AgeCalcutation();
-
-            if (CheckZetaInput())
+            try
             {
-                ZetaCalc();
+                zetaTable.Rows.Clear();
+                UCaChart.Series["UCaError"].Points.Clear();
+                UCaChart.Series["UCaSeries"].Points.Clear();
+                UCaChart.Series["UCaFlatError"].Points.Clear();
+                UCaChart.Series["UCaFlat"].Points.Clear();
+                UCaChart.Series["FittingLine"].Points.Clear();
 
-                try
+                if (ImportZeta.ShowDialog() == DialogResult.Cancel)
+                    return;
+
+                string filename = ImportZeta.FileName;
+                fileLabel.Text = Path.GetFileName(filename);
+
+                ReadZetaFileToObjects(filename);
+                               
+                FlattUCa();
+                FillZetaGrid();
+                /*testDurango();
+                AgeCalcutation();
+
+                if (CheckZetaInput())
                 {
+                    ZetaCalc();
                     CentralAgeCalculation();
-                }
-                catch
-                { }
+                }*/
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Import error");
             }
         }
 
@@ -264,18 +280,18 @@ namespace VisualTrack
             double x_sum = 0;
             double y_sum = 0;
             double xsq_sum = 0;
-            int N = 1;
+            int n = 0;
 
-            foreach (DataGridViewRow row in zetaTable.Rows)
+            foreach (var g in _zetaGrains)
             {
-                x_sum += N;
-                y_sum += Double.Parse(row.Cells["UCa"].Value.ToString());
-                xsq_sum += N*N;
-                xy_sum += Double.Parse(row.Cells["UCa"].Value.ToString()) * N;
-                N += 1;
+                x_sum += n + 1;
+                y_sum += g.UCa;
+                xsq_sum += (n + 1) * (n + 1);
+                xy_sum += (n + 1) * g.UCa;
+                n++;
             }
 
-            return (N*xy_sum-y_sum*x_sum)/(N*xsq_sum-x_sum*x_sum);
+            return (n * xy_sum - x_sum * y_sum) / (n * xsq_sum - x_sum * x_sum);
         }
 
         private double MSE_a()
@@ -284,18 +300,18 @@ namespace VisualTrack
             double x_sum = 0;
             double y_sum = 0;
             double xsq_sum = 0;
-            int N = 1;
+            int n = 0;
 
-            foreach (DataGridViewRow row in zetaTable.Rows)
+            foreach (var g in _zetaGrains)
             {
-                x_sum += N;
-                y_sum += Double.Parse(row.Cells["UCa"].Value.ToString());
-                xsq_sum += N * N;
-                xy_sum += Double.Parse(row.Cells["UCa"].Value.ToString()) * N;
-                N += 1;
+                x_sum += n + 1;
+                y_sum += g.UCa;
+                xsq_sum += (n + 1) * (n + 1);
+                xy_sum += (n + 1) * g.UCa;
+                n++;
             }
 
-            return (xsq_sum*y_sum-xy_sum*x_sum) / (N * xsq_sum - x_sum * x_sum);
+            return (xsq_sum * y_sum - x_sum * xy_sum) / (n * xsq_sum - x_sum * x_sum);
         }
 
         //Flattering UCA chart
@@ -304,8 +320,8 @@ namespace VisualTrack
 
         {
             double b = MSE_b();
-            double a = MSE_a();
-            int N = zetaTable.Rows.Count +1 ;
+            double a = MSE_a();         
+            int N = _zetaGrains.Count;
             int i = 1;
 
             SlopeLabel.Text = b.ToString("E3");
@@ -314,12 +330,11 @@ namespace VisualTrack
             UCaChart.Series["FittingLine"].Points.AddXY(0, a);
             UCaChart.Series["FittingLine"].Points.AddXY(N, a+b*N);
 
-            foreach (DataGridViewRow row in zetaTable.Rows)
+            foreach(var g in _zetaGrains)
             {
-                row.Cells["UCaFlat"].Value = (Double.Parse(row.Cells["UCa"].Value.ToString()) + ((N/2)-(i+1)+0.5)*b).ToString("E3");
-                //UCaFlatStd
-                row.Cells["UCaFlatStd"].Value = (Double.Parse(row.Cells["UCastd"].Value.ToString()) / Double.Parse(row.Cells["UCa"].Value.ToString())*Double.Parse(row.Cells["UCaFlat"].Value.ToString())).ToString("E3");
-                DrawUCaFlatt(i, Double.Parse(row.Cells["UCaFlat"].Value.ToString()), Double.Parse(row.Cells["UCaFlatStd"].Value.ToString()));
+                g.UCaFlat = g.UCa + ((N / 2.0) - (i + 1) + 0.5)*b;
+                g.UCaFlatStd = (g.UCaStd / g.UCa) * g.UCaFlat;
+                DrawUCaFlatt(i, g.UCaFlat,g.UCaFlatStd);
                 i++;
             }
 
@@ -327,73 +342,103 @@ namespace VisualTrack
 
         }
 
-        //Reading files
-        private void readFile()
+        private static string NormalizeLine(string line)
         {
-            if (ImportZeta.ShowDialog() == DialogResult.Cancel) { return; }
+            while (line.Contains("  ")) line = line.Replace("  ", " ");
+            while (line.Contains("\t\t")) line = line.Replace("\t\t", "\t");
+            while (line.Contains("\t ")) line = line.Replace("\t ", "\t");
+            while (line.Contains(" \t")) line = line.Replace(" \t", "\t");
+            line = line.Replace(",", ".");
+            return line.Trim();
+        }
 
-            string filename = ImportZeta.FileName;
-            int ni = 0;
+        
+        private static readonly NumberFormatInfo DotFormat = new NumberFormatInfo
+        {
+            NumberDecimalSeparator = "."
+        };
 
-            try
+        private static double ParseDouble(string s)
+        {
+            return Convert.ToDouble(s, DotFormat);
+        }
+
+
+        private void ReadZetaFileToObjects(string filename)
+        {
+            _zetaGrains.Clear();
+
+            UCaChart.Series["UCaError"].Points.Clear();
+            UCaChart.Series["UCaSeries"].Points.Clear();
+
+            string[] lines = File.ReadAllLines(filename);
+
+            int index = 1;
+
+            foreach (string rawLine in lines)
             {
-                string[] lines = System.IO.File.ReadAllLines(filename);
+                if (string.IsNullOrWhiteSpace(rawLine) || rawLine.Length <= 2)
+                    continue;
 
-                fileLabel.Text = Path.GetFileName(filename);
+                string line = NormalizeLine(rawLine);
+                string[] parts = line.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
 
-                double U = 0;
-                double Ca = 0;
-                double U_std = 0;
-                double Ca_std = 0;
+                if (parts.Length < 7)
+                    continue;
 
-                double UCa = 0;
-                double UCa_std = 0;
+                double u = ParseDouble(parts[1]);
+                double uStd = ParseDouble(parts[2]);
+                double ca = ParseDouble(parts[3]);
+                double caStd = ParseDouble(parts[4]);
 
-                NumberFormatInfo provider = new NumberFormatInfo();
-                provider.NumberDecimalSeparator = ".";
-                //Char separator = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator[0];
-
-                for (int i = 0; i < lines.Length; i++)
+                var grain = new ZetaGrain
                 {
-                    ni = i;
+                    Name = parts[0],
+                    U = u,
+                    UStd = uStd,
+                    Ca = ca,
+                    CaStd = caStd,
+                    Tracks = ParseDouble(parts[5]),
+                    Area = ParseDouble(parts[6]),
+                    UCa = u / ca,
+                    UCaStd = Calc_UCa_std(u, ca, uStd, caStd)
+                };
 
-                    if (lines[i].Length > 2)
-                    {
-                        while (lines[i].Contains("  ")) { lines[i] = lines[i].Replace("  ", " "); }
-                        while (lines[i].Contains("\t\t")) { lines[i] = lines[i].Replace("\t\t", "\t"); }
-                        while (lines[i].Contains("\t ")) { lines[i] = lines[i].Replace("\t ", "\t"); }
-                        while (lines[i].Contains(" \t")) { lines[i] = lines[i].Replace(" \t", "\t"); }
-                        while (lines[i].Contains(",") ) { lines[i] = lines[i].Replace(",", "."); }                        
+                _zetaGrains.Add(grain);
 
-                        string[] line = lines[i].Split(new[] { ' ', '\t' });
+                DrawUCa(index, grain.UCa, grain.UCaStd);
 
-                        U = Convert.ToDouble(line[1], provider);
-                        Ca = Convert.ToDouble(line[3], provider);
-
-                        U_std = Convert.ToDouble(line[2], provider);
-                        Ca_std = Convert.ToDouble(line[4], provider);
-
-                        UCa = U / Ca;
-
-                        //UCa_std = (Calc_UCa_std(U,Ca,U_std,Ca_std)/UCa)*(UCa* 1000000);
-                        UCa_std = Calc_UCa_std(U, Ca, U_std, Ca_std); 
-                        //UCa = UCa * 1000000;
-
-                        //Name, U, U std, Ca, Ca std, Trcs, S, U/Ca, U/Ca std
-                        zetaTable.Rows.Add(line[0], U.ToString("F3"), U_std.ToString("F3"), Ca.ToString("E3"), Ca_std.ToString("E3"),   
-                            (Convert.ToDouble(line[5], provider)).ToString(),
-                            (Convert.ToDouble(line[6], provider)).ToString("E3"),
-                            UCa.ToString("E3"), UCa_std.ToString("E3"), 0, 0, 0, 0);
-
-                        DrawUCa(i+1,UCa,UCa_std);
-                    }
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Error while reading file at line " + (ni + 1).ToString());
+                index++;
             }
         }
+
+        private void FillZetaGrid()
+        {
+            zetaTable.Rows.Clear();
+
+            foreach (var g in _zetaGrains)
+            {
+                zetaTable.Rows.Add(
+                    g.Name,
+                    g.U,
+                    g.UStd,
+                    g.Ca,
+                    g.CaStd,
+                    g.Tracks,
+                    g.Area,
+                    g.UCa,
+                    g.UCaStd,
+                    g.UCaFlat,
+                    g.UCaFlatStd,
+                    g.Zeta,
+                    g.ZetaStd1
+                );
+            }
+        }
+
+
+        //Reading files
+        
 
         private void readSampleFile()
         {
@@ -561,6 +606,8 @@ namespace VisualTrack
                 //part for PW
                 PW = Double.Parse(row.Cells["Weighted"].Value.ToString()) * Double.Parse(row.Cells["SAge"].Value.ToString());
 
+                row.Cells["piwi"].Value = PW.ToString("E3");
+
                 PW_sum = PW_sum + PW;
 
             }
@@ -583,6 +630,9 @@ namespace VisualTrack
                 // PW_std = Math.Sqrt(Double.Parse(row.Cells["Weighted"].Value.ToString()) * Double.Parse(row.Cells["SAge"].Value.ToString())
                 //   * Double.Parse(row.Cells["Weighted"].Value.ToString()) * Double.Parse(row.Cells["SAge"].Value.ToString()));
                 PW_std = Double.Parse(row.Cells["Weightedstd"].Value.ToString()) * Double.Parse(row.Cells["SAge"].Value.ToString());
+
+                row.Cells["PiWiSigma"].Value = PW_std.ToString("E3");
+
                 PW_std_sum = PW_std_sum + PW_std * PW_std;
             }
 
@@ -1226,7 +1276,7 @@ namespace VisualTrack
             UCaChart.Series["UCaFlat"].Points.Clear();
 
             UCaChart.Series["FittingLine"].Points.Clear();
-            readFile();
+            //readFile();
             FlattUCa();
             testDurango();
             AgeCalcutation();
@@ -1987,46 +2037,92 @@ namespace VisualTrack
             //MessageBox.Show("Table copied to clipboard.", "Copy", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        /*
-        private void DrawRadialPlot()
-        {
-            if (AgeGrid.Rows.Count == 0) return;
+     
+    }
+    public class ZetaGrain
+    {
+        public string Name { get; set; } = "";
+        public double U { get; set; }
+        public double UStd { get; set; }
+        public double Ca { get; set; }
+        public double CaStd { get; set; }
+        public double Tracks { get; set; }
+        public double Area { get; set; }
 
-            RadialPlot.Series["Points"].Points.Clear();
+        public double UCa { get; set; }
+        public double UCaStd { get; set; }
 
-            // Calculate central log-age
-            List<double> logAges = new List<double>();
-            List<double> sigmas = new List<double>();
+        public double UCaFlat { get; set; }
+        public double UCaFlatStd { get; set; }
 
-            foreach (DataGridViewRow row in AgeGrid.Rows)
-            {
-                if (row.Cells["FT"].Value != null && row.Cells["sigma"].Value != null)
-                {
-                    double age = Convert.ToDouble(row.Cells["FT"].Value);
-                    double sigma = Convert.ToDouble(row.Cells["sigma"].Value);
-                    if (age > 0 && sigma > 0)
-                    {
-                        logAges.Add(Math.Log(age));
-                        sigmas.Add(sigma / age);  // relative sigma
-                    }
-                }
-            }
+        public double Zeta { get; set; }
+        public double ZetaStd1 { get; set; }
+    }
+    public class SampleGrain
+    {
+        public string Name { get; set; } = "";
 
-            if (logAges.Count < 2) return;
+        public double Ns { get; set; }
+        public double Area { get; set; }
 
-            double mu = logAges.Zip(sigmas, (z, s) => z / (s * s)).Sum() / sigmas.Select(s => 1 / (s * s)).Sum();
+        public double U { get; set; }
+        public double UStd { get; set; }
+        public double Ca { get; set; }
+        public double CaStd { get; set; }
 
-            for (int i = 0; i < logAges.Count; i++)
-            {
-                double x = (logAges[i] - mu) / sigmas[i];     // standardized deviation
-                double y = 1.0 / sigmas[i];                    // precision
+        public double UCa { get; set; }
+        public double UCaStd { get; set; }
 
-                RadialPlot.Series["Points"].Points.AddXY(x, y);
-            }
+        public double Weighted { get; set; }
+        public double WeightedStd1 { get; set; }
 
+        public double PiWi { get; set; }
+        public double PiWiStd1 { get; set; }
 
+        public double FTAgeMa { get; set; }
+        public double FTAgeSigma1 { get; set; }
 
-            
-        }*/
+        public double FTAgeSigma2 => 2.0 * FTAgeSigma1;
+    }
+    public class TestGrain
+    {
+        public int Index { get; set; }
+
+        public double U { get; set; }
+        public double UStd { get; set; }
+        public double Ca { get; set; }
+        public double CaStd { get; set; }
+
+        public double UCa { get; set; }
+        public double UCaStd { get; set; }
+
+        public double RawUCa { get; set; }
+        public double ConvertedUCa { get; set; }
+        public double TestRatio { get; set; }
+    }
+    public class AnalysisContext
+    {
+        public double ZetaValue { get; set; }
+        public double ZetaStd1 { get; set; }
+
+        public double ConversionFactor { get; set; }
+        public double ConversionFactorStd1 { get; set; }
+
+        public double DurangoTestMean { get; set; }
+        public double DurangoTestStd1 { get; set; }
+
+        public double PooledAgeMa { get; set; }
+        public double PooledAgeStd1 { get; set; }
+
+        public double CentralAgeMa { get; set; }
+        public double CentralAgeStd1 { get; set; }
+        public double Dispersion { get; set; }
+
+        public double ChiSquare { get; set; }
+        public double PValue { get; set; }
+
+        public double LambdaYr1 { get; set; }
+        public double StandardAgeMa { get; set; }
+        public double StandardAgeStd1 { get; set; }
     }
 }
