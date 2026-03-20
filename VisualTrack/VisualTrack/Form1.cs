@@ -196,11 +196,11 @@ namespace VisualTrack
                 TestGrid.Rows.Add(
                     g.Index,
                     g.U,
-                    g.UStd,
+                    2 * g.UStd,
                     g.Ca,
-                    g.CaStd,
+                    2 * g.CaStd,
                     g.UCa,
-                    g.UCaStd,
+                    2 * g.UCaStd,
                     g.RawUCa,
                     g.ConvertedUCa,
                     g.TestRatio
@@ -297,17 +297,17 @@ namespace VisualTrack
                     g.Ns,
                     g.Area,
                     g.U,
-                    g.UStd,
+                    2 * g.UStd,
                     g.Ca,
-                    g.CaStd,
+                    2 * g.CaStd,
                     g.UCa,
-                    g.UCaStd,
+                    2 * g.UCaStd,
                     g.Weighted,
-                    g.WeightedStd1,
+                    2 * g.WeightedStd1,
                     g.FTAgeMa,
-                    g.FTAgeSigma1,
+                    2 * g.FTAgeSigma1,
                     g.PiWi,
-                    g.PiWiStd1                    
+                    2 * g.PiWiStd1                    
                 );
             }
         }
@@ -575,17 +575,17 @@ namespace VisualTrack
                 zetaTable.Rows.Add(
                     g.Name,
                     g.U,
-                    g.UStd,
+                    2 * g.UStd,
                     g.Ca,
-                    g.CaStd,
+                    2 * g.CaStd,
                     g.Tracks,
                     g.Area,
                     g.UCa,
-                    g.UCaStd,
+                    2 * g.UCaStd,
                     g.UCaFlat,
-                    g.UCaFlatStd,
+                    2 * g.UCaFlatStd,
                     g.Zeta,
-                    g.ZetaStd1
+                    2 * g.ZetaStd1
                 );
             }
         }
@@ -645,7 +645,7 @@ namespace VisualTrack
             }     
 
             PW_std_sum = Math.Sqrt(PW_std_sum);
-            PWStdLabel.Text = PW_std_sum.ToString("E3");
+            PWStdLabel.Text = (2 * PW_std_sum).ToString("E3");
 
             return PW_std_sum;
         }
@@ -719,7 +719,7 @@ namespace VisualTrack
             _analysisContext.PooledAgeStd1 = age_std;
 
             PooledAgeLabel.Text = age.ToString("F3");
-            AgeStdLabel.Text = (age_std).ToString("F3");
+            AgeStdLabel.Text = (2 * age_std).ToString("F3");
         }
 
         private void AgeCalcutation()
@@ -1017,11 +1017,11 @@ namespace VisualTrack
 
                 _analysisContext.DurangoTestStd1 = Math.Sqrt(s / (_testGrains.Count - 1)); ;
 
-                TestStdLabel.Text = _analysisContext.DurangoTestStd1.ToString("F3");
+                TestStdLabel.Text = (2 * _analysisContext.DurangoTestStd1).ToString("F3");
 
                 _analysisContext.ConversionFactorStd1 = _analysisContext.ConversionFactor * _analysisContext.DurangoTestStd1;
 
-                ConvStdLabel.Text = _analysisContext.ConversionFactorStd1.ToString("F3");
+                ConvStdLabel.Text = (2 * _analysisContext.ConversionFactorStd1).ToString("F3");
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString(), "Error in testing"); }
         }
@@ -1134,10 +1134,10 @@ namespace VisualTrack
             _analysisContext.ZetaStd1 = ZetaSTD(_analysisContext.ZetaValue, yr1, DurangoAge, DurangoErr, PW_sum, PW_std_sum, Track_sum);
 
             zetaLabel.Text = _analysisContext.ZetaValue.ToString("F3");
-            zetaErrLabel.Text = _analysisContext.ZetaStd1.ToString("F3");
+            zetaErrLabel.Text = (2 * _analysisContext.ZetaStd1).ToString("F3");
 
             ZetaAgeLabel.Text = _analysisContext.ZetaValue.ToString("F3");
-            ZetaStdAgeLAbel.Text = _analysisContext.ZetaStd1.ToString("F3");
+            ZetaStdAgeLAbel.Text = (2 * _analysisContext.ZetaStd1).ToString("F3");
 
             
             //zeta_value = FindZeta(yr1, DurangoAge, PW_sum, Track_sum);
@@ -1959,7 +1959,7 @@ namespace VisualTrack
                         ws_1.Cell(4, 1).Value = "Zeta:";
                         ws_1.Cell(4, 2).Value = zetaLabel.Text;
 
-                        ws_1.Cell(5, 1).Value = "Zeta 1σ:";
+                        ws_1.Cell(5, 1).Value = "Zeta 2σ:";
                         ws_1.Cell(5, 2).Value = zetaErrLabel.Text;
 
                         ws_1.Cell(6, 1).Value = "Standard name:";
@@ -1977,13 +1977,13 @@ namespace VisualTrack
                         ws_1.Cell(10, 1).Value = "Conv. factor:";
                         ws_1.Cell(10, 2).Value = ConvFactorLabel.Text;
 
-                        ws_1.Cell(11, 1).Value = "Conv. 1σ:";
+                        ws_1.Cell(11, 1).Value = "Conv. 2σ:";
                         ws_1.Cell(11, 2).Value = ConvStdLabel.Text;
 
                         ws_1.Cell(12, 1).Value = "Test value:";
                         ws_1.Cell(12, 2).Value = TestLabel.Text;
 
-                        ws_1.Cell(13, 1).Value = "Test 1σ:";
+                        ws_1.Cell(13, 1).Value = "Test 2σ:";
                         ws_1.Cell(13, 2).Value = TestStdLabel.Text;
 
                         ws_1.Cell(14, 1).Value = "Grains:";
@@ -1995,13 +1995,13 @@ namespace VisualTrack
                         ws_1.Cell(16, 1).Value = "PW";
                         ws_1.Cell(16, 2).Value = PWLabel.Text;
 
-                        ws_1.Cell(17, 1).Value = "PW 1σ:";
+                        ws_1.Cell(17, 1).Value = "PW 2σ:";
                         ws_1.Cell(17, 2).Value = PWStdLabel.Text;
 
                         ws_1.Cell(18, 1).Value = "Pooled age (Ma):";
                         ws_1.Cell(18, 2).Value = PooledAgeLabel.Text;
 
-                        ws_1.Cell(19, 1).Value = "Pooled age 1σ:";
+                        ws_1.Cell(19, 1).Value = "Pooled age 2σ:";
                         ws_1.Cell(19, 2).Value = AgeStdLabel.Text;
 
                         ws_1.Cell(20, 1).Value = "Central age (Ma):";
