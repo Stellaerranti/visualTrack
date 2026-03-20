@@ -246,6 +246,71 @@ namespace VisualTrack
             }
         }
 
+        private void ReadSampleFileToObjects(string filename)
+        {
+            _sampleGrains.Clear();
+
+            string[] lines = File.ReadAllLines(filename);
+
+            foreach (string rawLine in lines)
+            {
+                if (string.IsNullOrWhiteSpace(rawLine) || rawLine.Length <= 2)
+                    continue;
+
+                string line = NormalizeLine(rawLine);
+                string[] parts = line.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (parts.Length < 7)
+                    continue;
+
+                double u = ParseDouble(parts[1]);
+                double uStd = ParseDouble(parts[2]);
+                double ca = ParseDouble(parts[3]);
+                double caStd = ParseDouble(parts[4]);
+
+                var grain = new SampleGrain
+                {
+                    Name = parts[0],
+                    U = u,
+                    UStd = uStd,
+                    Ca = ca,
+                    CaStd = caStd,
+                    Ns = ParseDouble(parts[5]),
+                    Area = ParseDouble(parts[6]),
+                    UCa = u / ca,
+                    UCaStd = Calc_UCa_std(u, ca, uStd, caStd)
+                };
+
+                _sampleGrains.Add(grain);
+            }
+        }
+
+        private void FillSampleGrid()
+        {
+            AgeGrid.Rows.Clear();
+
+            foreach (var g in _sampleGrains)
+            {
+                AgeGrid.Rows.Add(
+                    g.Name,
+                    g.Ns,
+                    g.Area,
+                    g.U,
+                    g.UStd,
+                    g.Ca,
+                    g.CaStd,
+                    g.UCa,
+                    g.UCaStd,
+                    g.Weighted,
+                    g.WeightedStd1,
+                    g.FTAgeMa,
+                    g.FTAgeSigma1,
+                    g.PiWi,
+                    g.PiWiStd1                    
+                );
+            }
+        }
+
         private void ImportTestFileButton_Click(object sender, EventArgs e)
         {
             try
@@ -266,10 +331,26 @@ namespace VisualTrack
 
         private void ImportSamplefileButton_Click(object sender, EventArgs e)
         {
-            AgeGrid.Rows.Clear();
-            readSampleFile();
-            AgeCalcutation();
-            CentralAgeCalculation();
+            try {
+                if (ImportSample.ShowDialog() == DialogResult.Cancel) { return; }
+
+                string filename = ImportSample.FileName;
+                FileSampleLabel.Text = Path.GetFileName(filename);
+                AgeGrid.Rows.Clear();
+
+                ReadSampleFileToObjects(filename);
+                AgeCalcutation();
+                FillSampleGrid();
+
+
+                
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString(), "Import Error"); }
+            
+
+            //readSampleFile();
+            //AgeCalcutation();
+            //CentralAgeCalculation();
         }
 
         private void CentralAgeCalculation()
@@ -513,180 +594,40 @@ namespace VisualTrack
         //Reading files
         
 
-        private void readSampleFile()
-        {
-            if (ImportSample.ShowDialog() == DialogResult.Cancel) { return; }
+        
 
-            string filename = ImportSample.FileName;
-            int ni = 0;
-            try 
-            {
-
-                string[] lines = System.IO.File.ReadAllLines(filename);
-                //fileLabel.Text = Path.GetFileName(filename);
-                FileSampleLabel.Text = Path.GetFileName(filename);
-
-                double U = 0;
-                double Ca = 0;
-                double U_std = 0;
-                double Ca_std = 0;
-
-                double UCa = 0;
-                double UCa_std = 0;
-
-                double N_sum = 0;
-
-                NumberFormatInfo provider = new NumberFormatInfo();
-                provider.NumberDecimalSeparator = ".";
-
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    ni = i;
-
-                    if (lines[i].Length > 2)
-                    {
-                        while (lines[i].Contains("  ")) { lines[i] = lines[i].Replace("  ", " "); }
-                        while (lines[i].Contains("\t\t")) { lines[i] = lines[i].Replace("\t\t", "\t"); }
-                        while (lines[i].Contains("\t ")) { lines[i] = lines[i].Replace("\t ", "\t"); }
-                        while (lines[i].Contains(" \t")) { lines[i] = lines[i].Replace(" \t", "\t"); }
-                        while (lines[i].Contains(",")) { lines[i] = lines[i].Replace(",", "."); }
-
-                        string[] line = lines[i].Split(new[] { ' ', '\t' });
-
-                        U = Convert.ToDouble(line[1], provider);
-                        Ca = Convert.ToDouble(line[3], provider);
-
-                        U_std = Convert.ToDouble(line[2], provider);
-                        Ca_std = Convert.ToDouble(line[4], provider);
-
-                        UCa = U / Ca;
-
-                        //UCa_std = (Calc_UCa_std(U,Ca,U_std,Ca_std)/UCa)*(UCa* 1000000);
-                        UCa_std = Calc_UCa_std(U, Ca, U_std, Ca_std);
-                        //UCa = UCa * 1000000;
-
-                        N_sum = N_sum + Convert.ToDouble(line[5], provider);
-
-                        AgeGrid.Rows.Add(line[0], (Convert.ToDouble(line[5], provider)).ToString(), (Convert.ToDouble(line[6], provider)).ToString("E3")
-                            , U.ToString("F3"), U_std.ToString("F3"), Ca.ToString("E3"), Ca_std.ToString("E3"), UCa.ToString("E3"), UCa_std.ToString("E3"),0,0,0,0);
-
-
-                    }
-                    
-                }
-                GrainsLabel.Text = (ni).ToString();
-                NsLabel.Text = (N_sum).ToString();
-
-
-            } 
-            catch 
-            {
-                MessageBox.Show("Error while reading file at line " + (ni + 1).ToString());
-            }
-        }
-
-        private void readTestFile()
-        {
-            if (ImportTest.ShowDialog() == DialogResult.Cancel) { return; }
-
-            string filename = ImportTest.FileName;
-            int ni = 0;
-
-            try
-            {
-                string[] lines = System.IO.File.ReadAllLines(filename);
-
-                TestFileLabel.Text = Path.GetFileName(filename);
-                double U = 0;
-                double Ca = 0;
-                double U_std = 0;
-                double Ca_std = 0;
-
-                double UCa = 0;
-                double UCa_std = 0;
-
-                NumberFormatInfo provider = new NumberFormatInfo();
-                provider.NumberDecimalSeparator = ".";
-
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    ni = i;
-
-                    if (lines[i].Length > 2)
-                    {
-                        while (lines[i].Contains("  ")) { lines[i] = lines[i].Replace("  ", " "); }
-                        while (lines[i].Contains("\t\t")) { lines[i] = lines[i].Replace("\t\t", "\t"); }
-                        while (lines[i].Contains("\t ")) { lines[i] = lines[i].Replace("\t ", "\t"); }
-                        while (lines[i].Contains(" \t")) { lines[i] = lines[i].Replace(" \t", "\t"); }
-                        while (lines[i].Contains(",")) { lines[i] = lines[i].Replace(",", "."); }
-
-                        string[] line = lines[i].Split(new[] { ' ', '\t' });
-
-                        U = Convert.ToDouble(line[1], provider);
-                        Ca = Convert.ToDouble(line[3], provider);
-
-                        U_std = Convert.ToDouble(line[2], provider);
-                        Ca_std = Convert.ToDouble(line[4], provider);
-
-                        UCa = U / Ca;
-
-                        //UCa_std = (Calc_UCa_std(U,Ca,U_std,Ca_std)/UCa)*(UCa* 1000000);
-                        UCa_std = Calc_UCa_std(U, Ca, U_std, Ca_std);
-
-                        TestGrid.Rows.Add((i+1).ToString("F0"), 0,U.ToString("F4"), U_std.ToString("F4"),Ca.ToString("E3"),Ca_std.ToString("E3"),UCa.ToString("E3"),UCa_std.ToString("E3"),0,0);
-                    }
-                }
-            }
-            catch 
-            {
-                MessageBox.Show("Error while reading file at line " + (ni + 1).ToString());
-            }
-
-
-        }
+        
 
 
         //Main age calculation
 
         private void getWeighted()
         {
-            foreach (DataGridViewRow row in AgeGrid.Rows)
+            foreach (var g in _sampleGrains)
             {
-                double UCaDur = Double.Parse(row.Cells["UCaDur"].Value.ToString());
-                double UCastdDur = Double.Parse(row.Cells["UCastdDur"].Value.ToString());
+                
+                g.Weighted = _analysisContext.ConversionFactor * g.UCa; 
 
-                double weighted = _analysisContext.ConversionFactor * UCaDur;
-
-                double weightedStd = weighted * Math.Sqrt(
-                    Math.Pow(UCastdDur / UCaDur, 2) +
+                g.WeightedStd1 = g.Weighted * Math.Sqrt(
+                    Math.Pow(g.UCaStd / g.UCa, 2) +
                     Math.Pow(_analysisContext.DurangoTestStd1, 2)
-                );
-
-                row.Cells["Weighted"].Value = weighted.ToString("E3");
-                row.Cells["Weightedstd"].Value = weightedStd.ToString("E3");
+                ); 
             }
+            
         }
 
         private double getPW()
         {
-            double PW = 0;
-           
-
+                     
             double PW_sum = 0;
 
-            foreach (DataGridViewRow row in AgeGrid.Rows)
+            foreach (var g in _sampleGrains)
             {
-                //part for PW
-                PW = Double.Parse(row.Cells["Weighted"].Value.ToString()) * Double.Parse(row.Cells["SAge"].Value.ToString());
+                g.PiWi = g.Weighted * g.Area;
 
-                row.Cells["piwi"].Value = PW.ToString("E3");
-
-                PW_sum = PW_sum + PW;
-
+                PW_sum += g.PiWi;
             }
-
-
-
+            
             PWLabel.Text = PW_sum.ToString("E3");
 
             return PW_sum;
@@ -694,21 +635,14 @@ namespace VisualTrack
 
         private double getPWSTD()
         {
-            double PW_std = 0;
             double PW_std_sum = 0;
 
-            foreach (DataGridViewRow row in AgeGrid.Rows)
+            foreach (var g in _sampleGrains)
             {
+                g.PiWiStd1 = g.WeightedStd1 * g.Area;
 
-                // PW_std = Math.Sqrt(Double.Parse(row.Cells["Weighted"].Value.ToString()) * Double.Parse(row.Cells["SAge"].Value.ToString())
-                //   * Double.Parse(row.Cells["Weighted"].Value.ToString()) * Double.Parse(row.Cells["SAge"].Value.ToString()));
-                PW_std = Double.Parse(row.Cells["Weightedstd"].Value.ToString()) * Double.Parse(row.Cells["SAge"].Value.ToString());
-
-                row.Cells["PiWiSigma"].Value = PW_std.ToString("E3");
-
-                PW_std_sum = PW_std_sum + PW_std * PW_std;
-            }
-
+                PW_std_sum += g.PiWiStd1 * g.PiWiStd1;
+            }     
 
             PW_std_sum = Math.Sqrt(PW_std_sum);
             PWStdLabel.Text = PW_std_sum.ToString("E3");
@@ -731,35 +665,34 @@ namespace VisualTrack
 
                 double yr1 = Double.Parse(yr1Text.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
 
-                foreach (DataGridViewRow row in AgeGrid.Rows)
+                foreach (var g in _sampleGrains)
                 {
-                    //part for FT
-
-                    Ns = Double.Parse(row.Cells["NAge"].Value.ToString());
-                    S = Double.Parse(row.Cells["SAge"].Value.ToString());
-                    Weighted = Double.Parse(row.Cells["Weighted"].Value.ToString());
-                    Weighted_std = Double.Parse(row.Cells["Weightedstd"].Value.ToString());
+                    Ns = g.Ns;
+                    S = g.Area;
+                    Weighted = g.Weighted;
+                    Weighted_std = g.WeightedStd1;
 
                     if (Ns == 0)
                     {
-                        FT = (1 / yr1)*Math.Log(1+(1 / yr1) * _analysisContext.ZetaValue * (Weighted/(S*Weighted_std*Weighted_std))*(0.5/((Weighted/Weighted_std)* (Weighted / Weighted_std) + 0.5))) / 1000000;
+                        FT = (1 / yr1) * Math.Log(1 + (1 / yr1) * _analysisContext.ZetaValue * (Weighted / (S * Weighted_std * Weighted_std)) * (0.5 / ((Weighted / Weighted_std) * (Weighted / Weighted_std) + 0.5))) / 1000000;
 
-                        FT_std = FT*Math.Sqrt(2+1/((Weighted / Weighted_std)* (Weighted / Weighted_std) + 0.5)+(_analysisContext.ZetaStd1 / _analysisContext.ZetaValue) * (_analysisContext.ZetaStd1 / _analysisContext.ZetaValue));
+                        FT_std = FT * Math.Sqrt(2 + 1 / ((Weighted / Weighted_std) * (Weighted / Weighted_std) + 0.5) + (_analysisContext.ZetaStd1 / _analysisContext.ZetaValue) * (_analysisContext.ZetaStd1 / _analysisContext.ZetaValue));
                     }
                     else
                     {
-                        FT = (1 / yr1) * Math.Log(1+(yr1 * _analysisContext.ZetaValue * (Ns/S)/Weighted))/ 1000000;
+                        FT = (1 / yr1) * Math.Log(1 + (yr1 * _analysisContext.ZetaValue * (Ns / S) / Weighted)) / 1000000;
 
-                        FT_std = FT*Math.Sqrt(1/Ns+(Weighted_std/Weighted)* (Weighted_std / Weighted) + (_analysisContext.ZetaStd1 / _analysisContext.ZetaValue) *
+                        FT_std = FT * Math.Sqrt(1 / Ns + (Weighted_std / Weighted) * (Weighted_std / Weighted) + (_analysisContext.ZetaStd1 / _analysisContext.ZetaValue) *
                             (_analysisContext.ZetaStd1 / _analysisContext.ZetaValue));
                     }
 
-                    row.Cells["FT"].Value = FT.ToString("F4");
-                    row.Cells["sigma"].Value=FT_std.ToString("F4");
-
+                    g.FTAgeMa = FT;
+                    g.FTAgeSigma1 = FT_std;
                 }
+
+                
             }
-            catch { }
+            catch (Exception ex) { MessageBox.Show(ex.ToString(), "FT age error"); }
 
         }
 
@@ -768,7 +701,15 @@ namespace VisualTrack
             double yr1 = Double.Parse(yr1Text.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
             //double PW = Double.Parse(PWLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
             //double PW_std = Double.Parse(PWStdLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
-            double Ns = Double.Parse(NsLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
+
+            double Ns = 0;
+
+            foreach (var g in _sampleGrains)
+            {
+                Ns += g.Ns;
+            }
+
+            NsLabel.Text = Ns.ToString();   
 
             double age = (1 / yr1) * Math.Log(1 + (yr1 * _analysisContext.ZetaValue * Ns / PW)) / 1000000;
             //double age = (1 / 1.55) * Math.Log(1 + (yr1 * zeta_value * Ns / PW)) * 10000;
@@ -780,8 +721,8 @@ namespace VisualTrack
 
         private void AgeCalcutation()
         {
-            if ((AgeGrid.Rows.Count>1) && (CheckZetaInput()) && (TestGrid.Rows.Count > 1)
-                && (zetaTable.Rows.Count > 1) && (Double.TryParse(ZetaAgeLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out double check_err)))
+            if ((_sampleGrains.Count>1) && (CheckZetaInput()) && (_testGrains.Count > 1)
+                && (_zetaGrains.Count > 1))
             {
                 getWeighted();
                 double PW = getPW();
@@ -968,7 +909,7 @@ namespace VisualTrack
         private void getRaw()
         {
             try {
-                int i = 0;
+                //int i = 0;
                 var combinedList = _zetaGrains.Zip(_testGrains, (zetaGrain, testGrain) => new { ZetaGrain = zetaGrain, TestGrain = testGrain });
                 foreach (var item in combinedList)
                 {
@@ -1374,7 +1315,7 @@ namespace VisualTrack
         {
             TestGrid.Rows.Clear();
 
-            readTestFile();
+            //readTestFile();
             testDurango();
             AgeCalcutation();
 
@@ -1384,7 +1325,7 @@ namespace VisualTrack
         private void importSampleFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AgeGrid.Rows.Clear();
-            readSampleFile();
+            //readSampleFile();
             AgeCalcutation();
         }
 
