@@ -283,6 +283,7 @@ namespace VisualTrack
 
                 _sampleGrains.Add(grain);
             }
+            GrainsLabel.Text = _sampleGrains.Count.ToString();
         }
 
         private void FillSampleGrid()
@@ -340,25 +341,23 @@ namespace VisualTrack
 
                 ReadSampleFileToObjects(filename);
                 AgeCalcutation();
+                CentralAgeCalculation();
+
                 FillSampleGrid();
-
-
-                
+                               
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString(), "Import Error"); }
-            
+            catch (Exception ex) { MessageBox.Show(ex.ToString(), "Import Error"); }           
 
-            //readSampleFile();
-            //AgeCalcutation();
-            //CentralAgeCalculation();
         }
 
         private void CentralAgeCalculation()
         {
-            (double centralAge, double si, double sigma) = CalculateCentralAge(AgeGrid, Double.Parse(PooledAgeLabel.Text));
+            double pooledMa = double.Parse(PooledAgeLabel.Text, CultureInfo.InvariantCulture);
+
+            (double centralAge, double si, double sigma) = CalculateCentralAge(pooledMa);
 
             CentralAgeLabel.Text = centralAge.ToString("F3");
-            CentralAgeSTDLabel.Text = (2 * sigma).ToString("F3"); 
+            CentralAgeSTDLabel.Text = (2 * sigma).ToString("F3");
             CentralAgeDispLabel.Text = (100 * si).ToString("F3");
         }
 
@@ -563,7 +562,8 @@ namespace VisualTrack
                 DrawUCa(index, grain.UCa, grain.UCaStd);
 
                 index++;
-            }
+            }    
+
         }
 
         private void FillZetaGrid()
@@ -714,6 +714,9 @@ namespace VisualTrack
             double age = (1 / yr1) * Math.Log(1 + (yr1 * _analysisContext.ZetaValue * Ns / PW)) / 1000000;
             //double age = (1 / 1.55) * Math.Log(1 + (yr1 * zeta_value * Ns / PW)) * 10000;
             double age_std = age * Math.Sqrt((1 / Ns) + Math.Pow((PW_std / PW),2) + Math.Pow((_analysisContext.ZetaStd1 / _analysisContext.ZetaValue),2));
+
+            _analysisContext.PooledAgeMa = age;
+            _analysisContext.PooledAgeStd1 = age_std;
 
             PooledAgeLabel.Text = age.ToString("F3");
             AgeStdLabel.Text = (age_std).ToString("F3");
@@ -1635,37 +1638,35 @@ namespace VisualTrack
             
         }
 
-        public (double centralAge, double si, double sigma) CalculateCentralAge(DataGridView ageGrid, double pooledMa)
+        public (double centralAge, double si, double sigma) CalculateCentralAge(double pooledMa)
         {
-            double mu = Math.Log(pooledMa);
-            double si = DetermineInitialSi(ageGrid, mu);
+            if (pooledMa <= 0)
+                return (double.NaN, double.NaN, double.NaN);
 
-            mu = IterateMu(ageGrid, ref si, 100);
+            double mu = Math.Log(pooledMa);
+            double si = DetermineInitialSi(mu);
+
+            mu = IterateMu(ref si, 100);
 
             double centralAge = Math.Exp(mu);
-            double sigma = CalculateCentralAgeSigma(ageGrid, si, mu);
+            double sigma = CalculateCentralAgeSigma(si, mu);
 
             return (centralAge, si, sigma);
         }
 
-        public double CalculateCentralAgeSigma(DataGridView ageGrid, double si, double mu)
+        public double CalculateCentralAgeSigma(double si, double mu)
         {
             double denomsum = 0;
+            double su = 0;
 
-            foreach (DataGridViewRow row in ageGrid.Rows)
+            foreach (var g in _sampleGrains)
             {
-                if (row.Cells["FT"].Value != null && row.Cells["sigma"].Value != null)
+                if (g.FTAgeMa > 0 && g.FTAgeSigma1 > 0)
                 {
-                    double age = Convert.ToDouble(row.Cells["FT"].Value);
-                    double ageErr = Convert.ToDouble(row.Cells["sigma"].Value);
-
-                    if (age > 0 && ageErr > 0)
-                    {
-                        double su = ageErr / age;   // relative 1σ in log-age approximation
-                        denomsum += 1.0 / (si * si + su * su);
-                    }
+                    su = g.FTAgeSigma1 / g.FTAgeMa;
+                    denomsum += 1.0 / (si * si + su * su);
                 }
-            }
+            }                       
 
             if (denomsum <= 0)
                 return double.NaN;
@@ -1682,125 +1683,166 @@ namespace VisualTrack
         }
 
         //Function to
-        private  double DetermineInitialSi(DataGridView ageGrid, double mu)
+        private double DetermineInitialSi(double mu)
         {
-            double si = 0;
-            for (int x = 1; x <= 16; x++)
+            double si = 0.01;   // better starting point than exact zero
+
+            for (int iter = 0; iter < 16; iter++)
             {
-                double fsum = 0;
-                double dfsum = 0;
+                double fsum = 0.0;
+                double dfsum = 0.0;
 
-                foreach (DataGridViewRow row in ageGrid.Rows)
+                foreach (var g in _sampleGrains)
                 {
-                    if (row.Cells["FT"].Value != null && row.Cells["sigma"].Value != null)
-                    {
-                        double sgaMa = Convert.ToDouble(row.Cells["FT"].Value);  // Use FT Age
-                        double sgaMaErr = Convert.ToDouble(row.Cells["sigma"].Value);
-                        double su = sgaMaErr / sgaMa;
+                    if (g.FTAgeMa <= 0 || g.FTAgeSigma1 <= 0)
+                        continue;
 
-                        if (!double.IsNaN(su) && !double.IsInfinity(su))
-                        {
-                            double zu = Math.Log(sgaMa);
-                            double c = zu - mu;
-                            double b = (si * si) + (su * su);
-                            double f = (c * c) / (b * b) - 1 / b;
-                            double df = 1 / (b * b) - (2 * c * c) / (b * b * b);
+                    double su = g.FTAgeSigma1 / g.FTAgeMa;
+                    if (double.IsNaN(su) || double.IsInfinity(su) || su <= 0)
+                        continue;
 
-                            fsum += f;
-                            dfsum += df;
-                        }
-                    }
+                    double zu = Math.Log(g.FTAgeMa);
+                    double c = zu - mu;
+                    double b = si * si + su * su;
+
+                    if (b <= 0 || double.IsNaN(b) || double.IsInfinity(b))
+                        continue;
+
+                    double f = (c * c) / (b * b) - 1.0 / b;
+                    double df = 1.0 / (b * b) - (2.0 * c * c) / (b * b * b);
+
+                    fsum += f;
+                    dfsum += df;
                 }
 
-                double dsi = si - (fsum / dfsum);
+                if (Math.Abs(dfsum) < 1e-20 || double.IsNaN(dfsum) || double.IsInfinity(dfsum))
+                    break;
 
-                if ((si / mu) > 100 || double.IsNaN(dsi) || dsi < 0)
+                double dsi = si - fsum / dfsum;
+
+                if (double.IsNaN(dsi) || double.IsInfinity(dsi) || dsi < 0)
                 {
-                    si = 0.01;  // small positive fallback
+                    si = 0.01;
+                    break;
                 }
-                else
+
+                if (Math.Abs(dsi - si) < 1e-8)
                 {
                     si = dsi;
+                    break;
                 }
+
+                si = dsi;
             }
+
             si_global = si;
             return si;
         }
 
-        private double IterateMu(DataGridView ageGrid, ref double si, int iterations)
+        private double IterateMu(ref double si, int iterations)
         {
-            double mu = 0;
-            for (int i = 1; i <= iterations; i++)
+            double mu = 0.0;
+
+            for (int iter = 0; iter < iterations; iter++)
             {
-                double numsum = 0;
-                double denomsum = 0;
+                double numsum = 0.0;
+                double denomsum = 0.0;
 
-                foreach (DataGridViewRow row in ageGrid.Rows)
+                foreach (var g in _sampleGrains)
                 {
-                    if (row.Cells["FT"].Value != null && row.Cells["sigma"].Value != null)
-                    {
-                        double sgaMa = Convert.ToDouble(row.Cells["FT"].Value);
-                        double sgaMaErr = Convert.ToDouble(row.Cells["sigma"].Value);
-                        double su = sgaMaErr / sgaMa;
+                    if (g.FTAgeMa <= 0 || g.FTAgeSigma1 <= 0)
+                        continue;
 
-                        if (!double.IsNaN(su) && !double.IsInfinity(su))
-                        {
-                            double zu = Math.Log(sgaMa);
-                            double weight = 1 / (si * si + su * su);
-                            numsum += zu * weight;
-                            denomsum += weight;
-                        }
-                    }
+                    double su = g.FTAgeSigma1 / g.FTAgeMa;
+                    if (double.IsNaN(su) || double.IsInfinity(su) || su <= 0)
+                        continue;
+
+                    double b = si * si + su * su;
+                    if (b <= 0 || double.IsNaN(b) || double.IsInfinity(b))
+                        continue;
+
+                    double w = 1.0 / b;
+                    double zu = Math.Log(g.FTAgeMa);
+
+                    numsum += zu * w;
+                    denomsum += w;
                 }
 
-                mu = numsum / denomsum;
-                si = IterateSi(ageGrid, mu, si, iterations);
+                if (denomsum <= 0 || double.IsNaN(denomsum) || double.IsInfinity(denomsum))
+                    return double.NaN;
+
+                double newMu = numsum / denomsum;
+
+                if (double.IsNaN(newMu) || double.IsInfinity(newMu))
+                    return double.NaN;
+
+                si = IterateSi(newMu, si, iterations);
+
+                if (double.IsNaN(si) || double.IsInfinity(si))
+                    return double.NaN;
+
+                if (Math.Abs(newMu - mu) < 1e-10)
+                {
+                    mu = newMu;
+                    break;
+                }
+
+                mu = newMu;
             }
+
             return mu;
         }
 
-        private  double IterateSi(DataGridView ageGrid, double mu, double si, int iterations)
+        private double IterateSi(double mu, double si, int iterations)
         {
-            for (int x = 1; x <= iterations; x++)
+            for (int iter = 0; iter < iterations; iter++)
             {
-                double fsum = 0;
-                double dfsum = 0;
+                double fsum = 0.0;
+                double dfsum = 0.0;
 
-                foreach (DataGridViewRow row in ageGrid.Rows)
+                foreach (var g in _sampleGrains)
                 {
-                    if (row.Cells["FT"].Value != null && row.Cells["sigma"].Value != null)
-                    {
-                        double sgaMa = Convert.ToDouble(row.Cells["FT"].Value);  // Use FT Age
-                        double sgaMaErr = Convert.ToDouble(row.Cells["sigma"].Value);
+                    if (g.FTAgeMa <= 0 || g.FTAgeSigma1 <= 0)
+                        continue;
 
-                        double su = sgaMaErr / sgaMa;
+                    double su = g.FTAgeSigma1 / g.FTAgeMa;
+                    if (double.IsNaN(su) || double.IsInfinity(su) || su <= 0)
+                        continue;
 
-                        if (!double.IsNaN(su) && !double.IsInfinity(su))
-                        {
-                            double zu = Math.Log(sgaMa);
-                            double c = zu - mu;
-                            double b = (si * si) + (su * su);
-                            double f = (c * c) / (b * b) - 1 / b;
-                            double df = 1 / (b * b) - (2 * c * c) / (b * b * b);
+                    double zu = Math.Log(g.FTAgeMa);
+                    double c = zu - mu;
+                    double b = si * si + su * su;
 
-                            fsum += f;
-                            dfsum += df;
-                        }
-                    }
+                    if (b <= 0 || double.IsNaN(b) || double.IsInfinity(b))
+                        continue;
+
+                    double f = (c * c) / (b * b) - 1.0 / b;
+                    double df = 1.0 / (b * b) - (2.0 * c * c) / (b * b * b);
+
+                    fsum += f;
+                    dfsum += df;
                 }
 
-                double dsi = si - (fsum / dfsum);
-
-                if (si == 0)
-                    break;
-                if (Math.Abs((dsi - si) / si) < Math.Pow(10, -5))
+                if (Math.Abs(dfsum) < 1e-20 || double.IsNaN(dfsum) || double.IsInfinity(dfsum))
                     break;
 
-                if ((si / mu) > 100)
-                    si = 0;
-                else
+                double dsi = si - fsum / dfsum;
+
+                if (double.IsNaN(dsi) || double.IsInfinity(dsi) || dsi < 0)
+                {
+                    si = 0.0;
+                    break;
+                }
+
+                if (si > 0 && Math.Abs((dsi - si) / si) < 1e-5)
+                {
                     si = dsi;
+                    break;
+                }
+
+                si = dsi;
             }
+
             si_global = si;
             return si;
         }
