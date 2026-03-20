@@ -31,8 +31,10 @@ namespace VisualTrack
         private readonly List<TestGrain> _testGrains = new();
         private readonly List<SampleGrain> _sampleGrains = new();
 
-        public double zeta_value = 0;
-        public double zetaErr_value = 0;
+        private readonly AnalysisContext _analysisContext = new AnalysisContext();
+
+        //public double zeta_value = 0;
+        //public double zetaErr_value = 0;
 
         public double durango_test_res = 0;
         public double durango_test_std = 0;
@@ -162,9 +164,10 @@ namespace VisualTrack
                 string filename = ImportZeta.FileName;
                 fileLabel.Text = Path.GetFileName(filename);
 
-                ReadZetaFileToObjects(filename);
-                               
+                ReadZetaFileToObjects(filename);                               
                 FlattUCa();
+                ZetaCalc();
+
                 FillZetaGrid();
                 /*testDurango();
                 AgeCalcutation();
@@ -669,15 +672,16 @@ namespace VisualTrack
 
                     if (Ns == 0)
                     {
-                        FT = (1 / yr1)*Math.Log(1+(1 / yr1)*zeta_value*(Weighted/(S*Weighted_std*Weighted_std))*(0.5/((Weighted/Weighted_std)* (Weighted / Weighted_std) + 0.5))) / 1000000;
+                        FT = (1 / yr1)*Math.Log(1+(1 / yr1) * _analysisContext.ZetaValue * (Weighted/(S*Weighted_std*Weighted_std))*(0.5/((Weighted/Weighted_std)* (Weighted / Weighted_std) + 0.5))) / 1000000;
 
-                        FT_std = FT*Math.Sqrt(2+1/((Weighted / Weighted_std)* (Weighted / Weighted_std) + 0.5)+(zetaErr_value/zeta_value)* (zetaErr_value / zeta_value));
+                        FT_std = FT*Math.Sqrt(2+1/((Weighted / Weighted_std)* (Weighted / Weighted_std) + 0.5)+(_analysisContext.ZetaStd1 / _analysisContext.ZetaValue) * (_analysisContext.ZetaStd1 / _analysisContext.ZetaValue));
                     }
                     else
                     {
-                        FT = (1 / yr1) * Math.Log(1+(yr1*zeta_value*(Ns/S)/Weighted))/ 1000000;
+                        FT = (1 / yr1) * Math.Log(1+(yr1 * _analysisContext.ZetaValue * (Ns/S)/Weighted))/ 1000000;
 
-                        FT_std = FT*Math.Sqrt(1/Ns+(Weighted_std/Weighted)* (Weighted_std / Weighted) + (zetaErr_value / zeta_value) * (zetaErr_value / zeta_value));
+                        FT_std = FT*Math.Sqrt(1/Ns+(Weighted_std/Weighted)* (Weighted_std / Weighted) + (_analysisContext.ZetaStd1 / _analysisContext.ZetaValue) *
+                            (_analysisContext.ZetaStd1 / _analysisContext.ZetaValue));
                     }
 
                     row.Cells["FT"].Value = FT.ToString("F4");
@@ -696,9 +700,9 @@ namespace VisualTrack
             //double PW_std = Double.Parse(PWStdLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
             double Ns = Double.Parse(NsLabel.Text, NumberStyles.Any, CultureInfo.InvariantCulture);
 
-            double age = (1 / yr1) * Math.Log(1 + (yr1 * zeta_value * Ns / PW)) / 1000000;
+            double age = (1 / yr1) * Math.Log(1 + (yr1 * _analysisContext.ZetaValue * Ns / PW)) / 1000000;
             //double age = (1 / 1.55) * Math.Log(1 + (yr1 * zeta_value * Ns / PW)) * 10000;
-            double age_std = age * Math.Sqrt((1 / Ns) + Math.Pow((PW_std / PW),2) + Math.Pow((zetaErr_value / zeta_value),2));
+            double age_std = age * Math.Sqrt((1 / Ns) + Math.Pow((PW_std / PW),2) + Math.Pow((_analysisContext.ZetaStd1 / _analysisContext.ZetaValue),2));
 
             PooledAgeLabel.Text = age.ToString("F3");
             AgeStdLabel.Text = (age_std).ToString("F3");
@@ -1070,23 +1074,20 @@ namespace VisualTrack
             {
                 return;
             }
-          
-            foreach (DataGridViewRow row in zetaTable.Rows)
+
+            foreach  (var g in _zetaGrains)
             {
+                PW = g.UCaFlat * 132.704 * g.Area;
+                Track = g.Tracks;
 
-                //row.Cells["UCaFlat"].Value
-                
-                PW = Double.Parse(row.Cells["UCaFlat"].Value.ToString())*132.704 * Double.Parse(row.Cells["S"].Value.ToString());
-                Track = Double.Parse(row.Cells["Trs"].Value.ToString());
+                PW_std = PW * g.UCaFlatStd / g.UCaFlat;
 
-                PW_std = PW*Double.Parse(row.Cells["UCaFlatStd"].Value.ToString())/ Double.Parse(row.Cells["UCaFlat"].Value.ToString());
-
-                row.Cells["Zeta_Col"].Value = FindZeta(yr1,DurangoAge,PW, Track);
-
-                row.Cells["Zeta_col_std"].Value = ZetaSTD(FindZeta(yr1, DurangoAge, PW, Track),
+                g.Zeta = FindZeta(yr1, DurangoAge, PW, Track);
+                g.ZetaStd1 = ZetaSTD(FindZeta(yr1, DurangoAge, PW, Track),
                     yr1, DurangoAge, DurangoErr, PW, PW_std, Track);
 
-                S_sum += Double.Parse(row.Cells["S"].Value.ToString());
+                S_sum += g.Area;
+
                 Track_sum += Track;
                 PW_sum += PW;
                 PW_std_sum += PW_std * PW_std;
@@ -1094,15 +1095,18 @@ namespace VisualTrack
 
             PW_std_sum = Math.Sqrt(PW_std_sum);
 
-            zeta_value = FindZeta(yr1, DurangoAge, PW_sum, Track_sum);
-            zetaErr_value = ZetaSTD(zeta_value,yr1,DurangoAge,DurangoErr,PW_sum,PW_std_sum,Track_sum);
+            _analysisContext.ZetaValue = FindZeta(yr1, DurangoAge, PW_sum, Track_sum);
+            _analysisContext.ZetaStd1 = ZetaSTD(_analysisContext.ZetaValue, yr1, DurangoAge, DurangoErr, PW_sum, PW_std_sum, Track_sum);
 
-            zetaLabel.Text = zeta_value.ToString("F3");
-            zetaErrLabel.Text = zetaErr_value.ToString("F3");
+            zetaLabel.Text = _analysisContext.ZetaValue.ToString("F3");
+            zetaErrLabel.Text = _analysisContext.ZetaStd1.ToString("F3");
 
+            ZetaAgeLabel.Text = _analysisContext.ZetaValue.ToString("F3");
+            ZetaStdAgeLAbel.Text = _analysisContext.ZetaStd1.ToString("F3");
 
-            ZetaAgeLabel.Text = zeta_value.ToString("F3");
-            ZetaStdAgeLAbel.Text = zetaErr_value.ToString("F3");
+            
+            //zeta_value = FindZeta(yr1, DurangoAge, PW_sum, Track_sum);
+            //zetaErr_value = ZetaSTD(zeta_value,yr1,DurangoAge,DurangoErr,PW_sum,PW_std_sum,Track_sum);            
 
             AgeCalcutation();
 
