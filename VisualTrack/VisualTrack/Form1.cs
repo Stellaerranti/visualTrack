@@ -28,6 +28,7 @@ namespace VisualTrack
    
     public partial class Form1 : Form
     {
+        private readonly UndoManager _undoManager = new UndoManager();
 
         private readonly List<ZetaGrain> _zetaGrains = new();
         private readonly List<TestGrain> _testGrains = new();
@@ -1377,16 +1378,26 @@ namespace VisualTrack
         //Deleting rows
         private void DeleteRowTestGrid_Click(object sender, EventArgs e)
         {
-            TestChart.Series[0].Points.Clear();
-            TestGrid.Rows.RemoveAt(TestGrid.CurrentCell.RowIndex);
-            testDurango();
-            AgeCalcutation();
-            try
-            {
-                CentralAgeCalculation();
-            }
-            catch
-            { }
+            if (TestGrid.CurrentRow == null || TestGrid.CurrentRow.IsNewRow)
+                return;
+
+            int index = TestGrid.CurrentRow.Index;
+            if (index < 0 || index >= _testGrains.Count)
+                return;
+
+            var deletedItem = _testGrains[index];
+            _testGrains.RemoveAt(index);
+
+            _undoManager.AddAction(
+                new DeleteUndoAction<TestGrain>(
+                    _testGrains,
+                    deletedItem,
+                    index,
+                    RefreshTestSection
+                )
+            );
+
+            RefreshTestSection();
         }
         private void deleteRow_Click(object sender, EventArgs e)
         {
@@ -2165,7 +2176,43 @@ namespace VisualTrack
             //MessageBox.Show("Table copied to clipboard.", "Copy", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-     
+        private void RefreshTestSection()
+        {
+            TestChart.Series[0].Points.Clear();
+            FillTestGrid();
+            testDurango();
+            AgeCalcutation();
+            try { CentralAgeCalculation(); } catch { }
+        }
+
+        private void RefreshZetaSection()
+        {
+            UCaChart.Series["UCaError"].Points.Clear();
+            UCaChart.Series["UCaSeries"].Points.Clear();
+            UCaChart.Series["UCaFlatError"].Points.Clear();
+            UCaChart.Series["UCaFlat"].Points.Clear();
+            UCaChart.Series["FittingLine"].Points.Clear();
+
+            FlattUCa();
+            FillZetaGrid();
+
+            if (CheckZetaInput())
+            {
+                ZetaCalc();
+                testDurango();
+                AgeCalcutation();
+                try { CentralAgeCalculation(); } catch { }
+            }
+        }
+
+        private void RefreshAgeSection()
+        {
+            FillSampleGrid();
+            AgeCalcutation();
+            try { CentralAgeCalculation(); } catch { }
+        }
+
+
     }
     public class ZetaGrain
     {
