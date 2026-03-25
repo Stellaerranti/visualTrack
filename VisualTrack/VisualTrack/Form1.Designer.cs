@@ -432,7 +432,7 @@
             // U_std
             // 
             this.U_std.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.U_std.HeaderText = "U std";
+            this.U_std.HeaderText = "U 2σ";
             this.U_std.Name = "U_std";
             // 
             // Ca
@@ -444,7 +444,7 @@
             // Ca_std
             // 
             this.Ca_std.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Ca_std.HeaderText = "Ca std";
+            this.Ca_std.HeaderText = "Ca 2σ";
             this.Ca_std.Name = "Ca_std";
             // 
             // Trs
@@ -468,7 +468,7 @@
             // UCastd
             // 
             this.UCastd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCastd.HeaderText = "U/Ca std";
+            this.UCastd.HeaderText = "U/Ca 2σ";
             this.UCastd.Name = "UCastd";
             // 
             // UCaFlat
@@ -480,7 +480,7 @@
             // UCaFlatStd
             // 
             this.UCaFlatStd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCaFlatStd.HeaderText = "U/Ca Flat corrected std";
+            this.UCaFlatStd.HeaderText = "U/Ca Flat corrected 2σ";
             this.UCaFlatStd.Name = "UCaFlatStd";
             // 
             // Zeta_Col
@@ -492,7 +492,7 @@
             // Zeta_col_std
             // 
             this.Zeta_col_std.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Zeta_col_std.HeaderText = "Zeta std";
+            this.Zeta_col_std.HeaderText = "Zeta 2σ";
             this.Zeta_col_std.Name = "Zeta_col_std";
             // 
             // UCaChart
@@ -725,9 +725,9 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(108, 273);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(46, 13);
+            this.label10.Size = new System.Drawing.Size(45, 13);
             this.label10.TabIndex = 18;
-            this.label10.Text = "Zeta std";
+            this.label10.Text = "Zeta 2σ";
             // 
             // label5
             // 
@@ -860,7 +860,7 @@
             // UstdTest
             // 
             this.UstdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UstdTest.HeaderText = "U std";
+            this.UstdTest.HeaderText = "U 2σ";
             this.UstdTest.Name = "UstdTest";
             // 
             // CaTest
@@ -872,7 +872,7 @@
             // CastdTest
             // 
             this.CastdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CastdTest.HeaderText = "Ca std";
+            this.CastdTest.HeaderText = "Ca 2σ";
             this.CastdTest.Name = "CastdTest";
             // 
             // UCaTest
@@ -884,7 +884,7 @@
             // UCastdTest
             // 
             this.UCastdTest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCastdTest.HeaderText = "U/Ca std";
+            this.UCastdTest.HeaderText = "U/Ca 2σ";
             this.UCastdTest.Name = "UCastdTest";
             // 
             // ConvUCaTest
@@ -1007,7 +1007,7 @@
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(94, 27);
             this.label14.TabIndex = 5;
-            this.label14.Text = "2SD";
+            this.label14.Text = "2σ";
             // 
             // label16
             // 
@@ -1027,7 +1027,7 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(94, 27);
             this.label17.TabIndex = 8;
-            this.label17.Text = "2SD";
+            this.label17.Text = "2σ";
             // 
             // RawTestLabel
             // 
@@ -1217,7 +1217,7 @@
             // UstdDur
             // 
             this.UstdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UstdDur.HeaderText = "U std";
+            this.UstdDur.HeaderText = "U 2σ";
             this.UstdDur.Name = "UstdDur";
             // 
             // CaDur
@@ -1229,7 +1229,7 @@
             // CastdDur
             // 
             this.CastdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CastdDur.HeaderText = "Ca std";
+            this.CastdDur.HeaderText = "Ca 2σ";
             this.CastdDur.Name = "CastdDur";
             // 
             // UCaDur
@@ -1241,7 +1241,7 @@
             // UCastdDur
             // 
             this.UCastdDur.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UCastdDur.HeaderText = "U/Ca std";
+            this.UCastdDur.HeaderText = "U/Ca 2σ";
             this.UCastdDur.Name = "UCastdDur";
             // 
             // Weighted
@@ -1253,7 +1253,7 @@
             // Weightedstd
             // 
             this.Weightedstd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Weightedstd.HeaderText = "Weighted  U/Ca std";
+            this.Weightedstd.HeaderText = "Weighted  U/Ca 2σ";
             this.Weightedstd.Name = "Weightedstd";
             // 
             // FT
@@ -1265,19 +1265,19 @@
             // sigma
             // 
             this.sigma.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.sigma.HeaderText = "2 sigma, Ma";
+            this.sigma.HeaderText = "2σ, Ma";
             this.sigma.Name = "sigma";
             // 
             // piwi
             // 
             this.piwi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.piwi.HeaderText = "PiWi";
+            this.piwi.HeaderText = "PiΩi";
             this.piwi.Name = "piwi";
             // 
             // PiWiSigma
             // 
             this.PiWiSigma.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PiWiSigma.HeaderText = "PiWiSigma";
+            this.PiWiSigma.HeaderText = "PiΩi 2σ";
             this.PiWiSigma.Name = "PiWiSigma";
             // 
             // tableLayoutPanel7
@@ -1408,7 +1408,7 @@
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(93, 26);
             this.label21.TabIndex = 6;
-            this.label21.Text = "PW std";
+            this.label21.Text = "PW 2σ";
             // 
             // label22
             // 
@@ -1428,7 +1428,7 @@
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(93, 26);
             this.label23.TabIndex = 8;
-            this.label23.Text = "Zeta std";
+            this.label23.Text = "Zeta 2σ";
             // 
             // label24
             // 
@@ -1468,7 +1468,7 @@
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(93, 26);
             this.label27.TabIndex = 12;
-            this.label27.Text = "Age std";
+            this.label27.Text = "Pooled age 2σ";
             // 
             // ZetaAgeLabel
             // 
@@ -1608,7 +1608,7 @@
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(93, 26);
             this.label29.TabIndex = 26;
-            this.label29.Text = "Central age SE";
+            this.label29.Text = "Central age 2σ";
             // 
             // label30
             // 
@@ -1714,19 +1714,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.DataGridView zetaTable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn U;
-        private System.Windows.Forms.DataGridViewTextBoxColumn U_std;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ca;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ca_std;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Trs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn S;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCastd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCaFlat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCaFlatStd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Zeta_Col;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Zeta_col_std;
         private System.Windows.Forms.DataVisualization.Charting.Chart UCaChart;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TextBox yr1Text;
@@ -1752,16 +1739,6 @@
         private System.Windows.Forms.TabPage Zeta_test;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.DataGridView TestGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ntest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rawUCaTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UstdTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CaTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CastdTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCaTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UCastdTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ConvUCaTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TestDur;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Button CopyTestButton;
         private System.Windows.Forms.Label label9;
@@ -1816,6 +1793,29 @@
         private System.Windows.Forms.Label CentralAgeLabel;
         private System.Windows.Forms.Label CentralAgeSTDLabel;
         private System.Windows.Forms.Label CentralAgeDispLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn U;
+        private System.Windows.Forms.DataGridViewTextBoxColumn U_std;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ca;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ca_std;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Trs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn S;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCastd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCaFlat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCaFlatStd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Zeta_Col;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Zeta_col_std;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ntest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rawUCaTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UstdTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CaTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CastdTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCaTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCastdTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ConvUCaTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TestDur;
         private System.Windows.Forms.DataGridViewTextBoxColumn SampleName;
         private System.Windows.Forms.DataGridViewTextBoxColumn NAge;
         private System.Windows.Forms.DataGridViewTextBoxColumn SAge;

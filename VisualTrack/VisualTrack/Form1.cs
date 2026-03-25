@@ -2019,6 +2019,28 @@ namespace VisualTrack
                         ws_1.Cell(24, 1).Value = "P-value:";
                         ws_1.Cell(24, 2).Value = PLabel.Text;
 
+                        var ws_2 = wbook.AddWorksheet("Supplementary table");
+
+                        (double minU, double maxU, double avU, double N, double meanU) = Calculate_U_Dist();
+
+                        ws_2.Cell(1, 1).Value = "Mean trace density:";
+                        ws_2.Cell(1, 2).Value = avU;
+
+                        ws_2.Cell(2, 1).Value = "Traces:";
+                        ws_2.Cell(2, 2).Value = N;
+
+                        ws_2.Cell(3, 1).Value = "Mean U:";
+                        ws_2.Cell(3, 2).Value = meanU;
+
+                        ws_2.Cell(4, 1).Value = "Min U";
+                        ws_2.Cell(4, 2).Value = minU;
+
+                        ws_2.Cell(5, 1).Value = "Max U";
+                        ws_2.Cell(5, 2).Value = maxU;
+
+                        ws_2.Cell(6, 1).Value = "P(x):";
+                        ws_2.Cell(6, 2).Value = PLabel.Text;
+
                         wbook.SaveAs(saveFileDialog.FileName);
                     }
 
@@ -2030,6 +2052,34 @@ namespace VisualTrack
                 }
             }
         }
+
+        public (double minU, double maxU, double avU, double N, double meanU) Calculate_U_Dist()
+        {
+            double minU = _sampleGrains[0].U;
+            double maxU = _sampleGrains[0].U;
+            double meanU = 0;
+
+            double sum_U = 0;
+            double N = 0;
+
+            foreach (var g in _sampleGrains)
+            {
+                if (g.U < minU) {minU = g.U;}
+                if (g.U > maxU) {maxU = g.U;}
+
+                N += g.Ns;
+
+                sum_U += g.Ns / g.Area;
+
+                meanU += g.U;
+            }
+
+            sum_U = sum_U / _sampleGrains.Count;
+            meanU = meanU / _sampleGrains.Count;
+
+            return (minU, maxU, sum_U/1000000, N, meanU);
+        }
+
 
         private void CopyAgeButton_Click(object sender, EventArgs e)
         {
