@@ -235,6 +235,18 @@ namespace VisualTrack
             }
         }
 
+        private void RedrawRawUCaChart()
+        {
+            UCaChart.Series["UCaError"].Points.Clear();
+            UCaChart.Series["UCaSeries"].Points.Clear();
+
+            int index = 1;
+            foreach (var g in _zetaGrains)
+            {
+                DrawUCa(index, g.UCa, g.UCaStd);
+                index++;
+            }
+        }
 
         private void ImportZetafileButton_Click(object sender, EventArgs e)
         {
@@ -253,7 +265,8 @@ namespace VisualTrack
                 string filename = ImportZeta.FileName;
                 fileLabel.Text = Path.GetFileName(filename);
 
-                ReadZetaFileToObjects(filename);                               
+                ReadZetaFileToObjects(filename);
+                RedrawRawUCaChart();
                 FlattUCa();
                 ZetaCalc();
 
@@ -584,9 +597,7 @@ namespace VisualTrack
                     UCaStd = Calc_UCa_std(u, ca, uStd, caStd)
                 };
 
-                _zetaGrains.Add(grain);
-
-                DrawUCa(index, grain.UCa, grain.UCaStd);
+                _zetaGrains.Add(grain);               
 
                 index++;
             }    
@@ -2224,6 +2235,7 @@ namespace VisualTrack
 
             FlattUCa();
             FillZetaGrid();
+            RedrawRawUCaChart();
 
             if (CheckZetaInput())
             {
