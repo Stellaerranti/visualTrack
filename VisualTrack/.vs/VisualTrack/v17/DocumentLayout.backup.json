@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|solutionrelative:visualtrack\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\visualtrack\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|solutionrelative:visualtrack\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|c:\\users\\rudko\\documents\\github\\visualtrack\\visualtrack\\visualtrack\\undomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|solutionrelative:visualtrack\\undomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|c:\\users\\rudko\\documents\\github\\visualtrack\\visualtrack\\visualtrack\\iundoaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|solutionrelative:visualtrack\\iundoaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\visualtrack\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5A0BB733-C9A7-40B2-9B25-E952376295AC}|VisualTrack\\VisualTrack.csproj|solutionrelative:visualtrack\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +34,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "UndoManager.cs",
               "DocumentMoniker": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\UndoManager.cs",
               "RelativeDocumentMoniker": "VisualTrack\\UndoManager.cs",
@@ -47,7 +47,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "DeleteUndoAction.cs",
               "DocumentMoniker": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\DeleteUndoAction.cs",
               "RelativeDocumentMoniker": "VisualTrack\\DeleteUndoAction.cs",
@@ -60,7 +60,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "IUndoAction.cs",
               "DocumentMoniker": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\IUndoAction.cs",
               "RelativeDocumentMoniker": "VisualTrack\\IUndoAction.cs",
@@ -73,12 +73,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\Form1.cs",
               "RelativeDocumentMoniker": "VisualTrack\\Form1.cs",
-              "ToolTip": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\Form1.cs [Design]",
-              "RelativeToolTip": "VisualTrack\\Form1.cs [Design]",
+              "ToolTip": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\Form1.cs [Design]*",
+              "RelativeToolTip": "VisualTrack\\Form1.cs [Design]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-19T15:23:43.075Z",
               "EditorCaption": " [Design]"
@@ -89,9 +89,9 @@
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\Form1.cs",
               "RelativeDocumentMoniker": "VisualTrack\\Form1.cs",
-              "ToolTip": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\Form1.cs",
-              "RelativeToolTip": "VisualTrack\\Form1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAABGAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Rudko\\Documents\\GitHub\\visualTrack\\VisualTrack\\VisualTrack\\Form1.cs*",
+              "RelativeToolTip": "VisualTrack\\Form1.cs*",
+              "ViewState": "AgIAADIAAAAAAAAAAAAiwDwAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-22T21:01:26.223Z",
               "EditorCaption": ""

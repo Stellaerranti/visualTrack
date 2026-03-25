@@ -57,7 +57,33 @@ namespace VisualTrack
         public Form1()
         {
             InitializeComponent();
+            this.KeyPreview = true;
+            this.KeyDown += Form1_KeyDown;
         }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Delete key → delete row
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (TestGrid.Focused)
+                    DeleteRowTestGrid_Click(null, EventArgs.Empty);
+                else if (zetaTable.Focused)
+                    deleteRow_Click(null, EventArgs.Empty);
+                else if (AgeGrid.Focused)
+                    DeleteRowAgeGrid_Click(null, EventArgs.Empty);
+
+                e.Handled = true;
+            }
+
+            // Ctrl+Z → undo
+            if (e.Control && e.KeyCode == Keys.Z)
+            {
+                TakeBackButton_Click(null, EventArgs.Empty);
+                e.Handled = true;
+            }
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {           
@@ -1401,49 +1427,52 @@ namespace VisualTrack
         }
         private void deleteRow_Click(object sender, EventArgs e)
         {
-            try
-            {
+            if (zetaTable.CurrentRow == null || zetaTable.CurrentRow.IsNewRow)
+                return;
 
-                zetaTable.Rows.RemoveAt(zetaTable.CurrentCell.RowIndex);
+            int index = zetaTable.CurrentRow.Index;
+            if (index < 0 || index >= _zetaGrains.Count)
+                return;
 
-                UCaChart.Series["UCaError"].Points.Clear();
-                UCaChart.Series["UCaSeries"].Points.Clear();
+            var deletedItem = _zetaGrains[index];
+            _zetaGrains.RemoveAt(index);
 
-                UCaChart.Series["UCaFlatError"].Points.Clear();
-                UCaChart.Series["UCaFlat"].Points.Clear();
+            _undoManager.AddAction(
+                new DeleteUndoAction<ZetaGrain>(
+                    _zetaGrains,
+                    deletedItem,
+                    index,
+                    RefreshZetaSection
+                )
+            );
 
-                UCaChart.Series["FittingLine"].Points.Clear();
-
-                update();
-
-                FlattUCa();
-
-                if (CheckZetaInput())
-                {
-                    ZetaCalc();
-                    testDurango();
-                    AgeCalcutation();
-                    try
-                    {
-                        CentralAgeCalculation();
-                    }
-                    catch
-                    { }
-                }
-            }
-            catch { }
+            RefreshZetaSection();
         }
 
         private void DeleteRowAgeGrid_Click(object sender, EventArgs e)
         {
-            AgeGrid.Rows.RemoveAt(AgeGrid.CurrentCell.RowIndex);
+            if (AgeGrid.CurrentRow == null || AgeGrid.CurrentRow.IsNewRow)
+                return;
 
-           
-            AgeCalcutation();
-            CentralAgeCalculation();
+            int index = AgeGrid.CurrentRow.Index;
+            if (index < 0 || index >= _sampleGrains.Count)
+                return;
 
+            var deletedItem = _sampleGrains[index];
+            _sampleGrains.RemoveAt(index);
+
+            _undoManager.AddAction(
+                new DeleteUndoAction<SampleGrain>(
+                    _sampleGrains,
+                    deletedItem,
+                    index,
+                    RefreshAgeSection
+                )
+            );
+
+            RefreshAgeSection();
         }
-        
+
         //Updating rows
 
         private void ZetaGridRowUpdate()
@@ -2212,7 +2241,16 @@ namespace VisualTrack
             try { CentralAgeCalculation(); } catch { }
         }
 
+        private void TakeBackButton_Click(object sender, EventArgs e)
+        {
+            if (!_undoManager.CanUndo)
+            {
+                //MessageBox.Show("Nothing to undo.");
+                return;
+            }
 
+            _undoManager.Undo();
+        }
     }
     public class ZetaGrain
     {
